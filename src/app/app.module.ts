@@ -123,6 +123,7 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 import { FaqComponent } from './custom-components/faq/faq.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +159,8 @@ import { CreateCertificateComponent } from './create-certificate/create-certific
     FaqComponent,
     SafeHtmlPipe,
     PagesComponent,
-    DocDetailViewComponent
+    DocDetailViewComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
