@@ -82,6 +82,9 @@
 .pb-0{
     padding-bottom: 0 !important;
 }
+.pr-10{
+    padding-right: 10px;
+}
 .mt-20{
     margin-top: 20px !important;
 }
@@ -95,4 +98,29 @@
 }
 .card-title{
     padding-left: 10px !important;
+}
+.float-left{
+    float: left;
+}
+.nav-item{
+    padding: 35px 15px 10px;
+}
+.ham-menu{
+    position: absolute;
+    top: 23px;
+    left: 57px;
+    z-index: 9;
+    border-radius: 14px;
+    background: #f6f8fc;
+    width: 90%;  
+}
+.custom-toggler{
+    position: absolute;
+    left: 73px;
+    top: 24px;
+    z-index: 9999;
+    .fa-bars{
+        color: #5526F5;
+
+    }
 }
