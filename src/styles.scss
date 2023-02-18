@@ -780,3 +780,18 @@ label {
         }
     }
 }
+.toolbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 21px 41.92px 33.536px;
+    gap: 41.92px;
+    position: fixed;
+    height: 79.69px;
+    left: 0px;
+    right: 0px;
+    bottom: -12px;
+    background: linear-gradient(217.32deg, #FCFCFD -0.01%, rgba(252, 252, 253, 0.6) 100%);
+    backdrop-filter: blur(16.768px);
+}
