@@ -29,7 +29,7 @@ const routes: Routes = [
 
 // Auth
 // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
-{ path: '', component: OnBoardingComponent ,  canActivate: [AuthGuard]},
+{ path: '', component: OnBoardingComponent},
 { path: 'logout', component: LogoutComponent},
 
 // Home
