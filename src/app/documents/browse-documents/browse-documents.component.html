@@ -159,11 +159,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <ng-template ngFor let-item [ngForOf]="documentTypes" let-i="index">
                     <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2">
                         <a [routerLink]="['add',item.osid]">
-                            <div class="card height-100">
+                            <div class="card height-100 ekta2">
                                 <div class="card-body">
                                     <div class="card-intro-info">
                                         <div class="card-title mb-2 fs-14">{{item.title}}
@@ -178,7 +178,45 @@
                         </a>
                     </div>
                 </ng-template>
-            </div>
+            </div> -->
+            <div class="col-12 col-sm-4">
+                <div class="card mb-3" (click)="toggleResults()">
+                    <div class="row g-0 p-4">
+                      <div class="col-2 align-self-center">
+                        <div class="img-circle">
+                            <img src="../../../assets/images/headerlogo.png" class="img-fluid rounded-circle bg-secondary-light" alt="...">
+                        </div>
+                      </div>
+                      <div class="col-8 align-self-center">
+                        <h5 class="card-title"><span class="fs-16 font-600 d-block">Class 12th Marksheet</span> <span class="fs-12">UP State Board</span></h5>
+                      </div>
+                      <div class="col-2 align-self-center">
+                        <div class="text-circle">
+                          2
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              </div>
+              <div class="col-12 col-sm-4">
+                <div class="card mb-3" (click)="toggleResults()">
+                    <div class="row g-0 p-4">
+                      <div class="col-2 align-self-center">
+                        <div class="img-circle">
+                            <img src="../../../assets/images/headerlogo.png" class="img-fluid rounded-circle bg-secondary-light" alt="...">
+                        </div>
+                      </div>
+                      <div class="col-8 align-self-center">
+                          <h5 class="card-title"><span class="fs-16 font-600 d-block">Class 10th Marksheet</span> <span class="fs-12">UP State Board</span></h5>
+                      </div>
+                      <div class="col-2 align-self-center">
+                        <div class="text-circle">
+                          2
+                        </div>
+                      </div>
+                    </div>
+              </div>
+              </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
         <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
