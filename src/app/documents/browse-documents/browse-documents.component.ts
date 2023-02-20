@@ -7,6 +7,8 @@ import { GeneralService } from 'src/app/services/general/general.service';
   styleUrls: ['./browse-documents.component.scss']
 })
 export class BrowseDocumentsComponent implements OnInit {
+  showIssuers = true;
+  showFetchedDocuments = false;
   documentTypes: any;
   constructor(public generalService: GeneralService) { }
 
@@ -24,6 +26,12 @@ export class BrowseDocumentsComponent implements OnInit {
       // this.toastMsg.error('error', err.error.params.errmsg)
       console.log('error', err)
     });
+
+  }
+
+  toggleResults() {
+    this.showFetchedDocuments = !this.showFetchedDocuments;
+    this.showIssuers = !this.showIssuers;
   }
 
 }

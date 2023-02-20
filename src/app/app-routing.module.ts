@@ -33,7 +33,7 @@ const routes: Routes = [
 
 
 // Auth
-{ path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
+// { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
 { path: 'logout', component: LogoutComponent},
 
 // Forms
@@ -85,7 +85,8 @@ const routes: Routes = [
 { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
 { path: ':entity/documents/detail/:type/:id', component: DocDetailViewComponent, canActivate: [AuthGuard] },
 { path: ':entity/documents/detail/:type/:id/view', component: DocViewComponent, canActivate: [AuthGuard] },
-{ path: ':entity/documents/browse', component: BrowseDocumentsComponent, canActivate: [AuthGuard] },
+// { path: ':entity/documents/browse', component: BrowseDocumentsComponent, canActivate: [AuthGuard] },
+{ path: ':entity/documents/browse', component: BrowseDocumentsComponent },
 { path: ':entity/documents/:type/add/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
 { path: ':entity/documents/add/:type', component: AddDocumentComponent, canActivate: [AuthGuard] },
 { path: ':entity/documents/add/:type/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },

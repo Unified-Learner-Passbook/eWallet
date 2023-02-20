@@ -1,0 +1,196 @@
+{
+    "type": "opensaberLayoutSchema",
+    "version": "0.1",
+    "forms": [
+        {
+            "user-signup": {
+                "api": "/User/invite",
+                "type": "entity",
+                "formclass": "row",
+                "header": "default",
+                "title": "REGISTER",
+                "isSignupForm":"true",
+                "langKey": "elocker",
+                "fieldsets": [
+                    {
+                        "definition": "User",
+                        "fields": [
+                            {
+                                "name": "identityDetails",
+                                "children": {
+                                    "definition": "IdentityDetails",
+                                    "fields": [
+                                        {
+                                            "name": "fullName"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "contactDetails",
+                                "children": {
+                                    "definition": "ContactDetails",
+                                    "fields": [
+                                        {
+                                            "name": "mobile",
+                                            "required": true,
+                                            "validation": {
+                                                "pattern": "[6-9]{1}[0-9]{9}",
+                                                "message": "MOBILE_NO_MUST_10_DIGIT"
+                                            }
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "name": "t&c",
+                                "custom": true,
+                                "required": true,
+                                "element": {
+                                    "title": "ACCEPT_TERMS_CONDITIONS ",
+                                    "widget": {
+                                        "formlyConfig": {
+                                            "type": "checkbox",
+                                            "fieldGroupClassName": "controls",
+                                            "className": "checkbox",
+                                            "templateOptions": {
+                                                "required": true
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                ],
+                "redirectTo": "/User/documents"
+            }
+        },
+        {
+            "user-setup": {
+                "api": "/User",
+                "type": "entity",
+                "title": "USER_DETAILS",
+                "langKey": "elocker",
+                "fieldsets": [
+                    {
+                        "definition": "User",
+                        "privacyConfig": "UserOsConfig",
+                        "globalPrivacyConfig": "public-access",
+                        "title": "BASIC_DETAILS",
+                        "fields": [
+                            {
+                                "name": "identityDetails",
+                                "required": true
+                            },
+                            {
+                                "name": "contactDetails",
+                                "required": true
+                            }
+                        ],
+                        "except": [
+                            "affiliation"
+                        ]
+                    }
+                ],
+                "redirectTo": "/User/institute"
+            }
+        },
+        {
+            "course": {
+                "api": "/Institute",
+                "type": "property:courses",
+                "title": "COURSES",
+                "redirectTo": "/profile/institute",
+                "fieldsets": [
+                    {
+                        "definition": "Courses",
+                        "privacyConfig": "CoursesOsConfig",
+                        "fields": [
+                            {
+                                "name": "name",
+                                "required": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "skill": {
+                "api": "/Institute",
+                "type": "property:skills",
+                "title": "SKILLS",
+                "redirectTo": "/profile/institute",
+                "fieldsets": [
+                    {
+                        "definition": "Skills",
+                        "privacyConfig": "SkillsOsConfig",
+                        "fields": [
+                            {
+                                "name": "name",
+                                "required": true
+                            }
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "issue": {
+                "api": "/Certificates",
+                "type": "passport:Student",
+                "header": "institute",
+                "title": "ISSUE_CERTIFICATE",
+                "redirectTo": "/profile/institute",
+                "fieldsets": [
+                    {
+                        "definition": "Certificates",
+                        "privacyConfig": "CertificatesOsConfig",
+                        "fields": [
+                            {
+                                "name": "name",
+                                "required": true
+                            },
+                            {
+                                "name": "certificateType",
+                                "required": true
+                            },
+                            {
+                                "name": "mobile",
+                                "required": true
+                            },
+                            {
+                                "name": "email",
+                                "required": true
+                            },
+                            {
+                                "name": "course",
+                                "required": true,
+                                "hideExpression":"model.certificateType != 'Attendance'"
+                            
+                            },
+                            {
+                                "name": "skill",
+                                "required": true,
+                                "hideExpression":"model.certificateType != 'Skill'"
+                              
+                            },
+                            {
+                                "name": "grades",
+                                "required": true,
+                                "hideExpression":"model.certificateType != 'Skill'"
+                            },
+                            {
+                                "name": "awardedOn",
+                                "required": true,
+                                "type": "date"
+                            }
+                            
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

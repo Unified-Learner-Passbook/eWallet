@@ -1,0 +1,20 @@
+{
+  "environment": "development",
+  "appType": "digital_wallet",
+  "keycloak": {
+    "clientId": "registry-frontend",
+    "realm": "sunbird-rc",
+    "url": "https://elocker.xiv.in/auth"
+  },
+  "configFolder": "/assets/config/ui-config",
+  "logoPath": "/assets/images/logo.svg",
+  "title": "Sunbird RC ELocker",
+  "baseUrl": "https://elocker.xiv.in/elocker/api/v1",
+  "schemaUrl": "https://elocker.xiv.in/elocker/api/docs/swagger.json",
+  "footerText": "Sunbird RC",
+  "languages": [
+    "en",
+    "hi"
+  ],
+  "languageUrl": "https://elocker.xiv.in/elocker/api/v1/Localization/search"
+}
