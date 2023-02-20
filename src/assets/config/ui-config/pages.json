@@ -1,0 +1,18 @@
+{
+    "type": "opensaberLayoutSchema",
+    "version": "0.1",
+    "pages": [
+        {
+            "about":{
+                "title": "About Us",
+                "path": "/assets/pages/about.html"
+            }
+        },
+        {
+            "terms-and-conditions": {
+                "title": "Terms and Conditions",
+                "path": "/assets/pages/terms-and-conditions.html"
+            }
+        }
+    ]
+}

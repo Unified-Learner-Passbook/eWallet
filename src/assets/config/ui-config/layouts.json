@@ -1,0 +1,89 @@
+{
+    "type": "opensaberLayoutSchema",
+    "version": "0.1",
+    "layouts": [{
+            "user": {
+                "api": "User",
+                "title": "MY_PROFILE",
+                "langKey": "elocker",
+                "headerName": "identityDetails.fullName",
+                "subHeadername": "contactDetails.address.state,contactDetails.address.city",
+                "blocks": [{
+                        "definition": "User",
+                        "title": "USER_DETAILS",
+                        "add": false,
+                        "edit": false,
+                        "editform": "user-setup",
+                        "fields": {
+                            "includes": ["*"]
+                        }
+                    }
+
+                ]
+            }
+        },
+        {
+            "student": {
+                "api": "/Student",
+                "title": "Student Profile",
+                "headerName": "identityDetails.fullName",
+                "langKey": "elocker",
+                "subHeadername": "contactDetails.address.state,contactDetails.address.city",
+                "blocks": [{
+                        "definition": "Student",
+                        "title": "Basic details",
+                        "add": false,
+                        "edit": true,
+
+                        "editform": "student-setup",
+                        "fields": {
+                            "includes": ["*"],
+                            "excludes": ["educationDetails"]
+                        }
+                    },
+                    {
+                        "type": "passport",
+                        "title": "My Certificates",
+                        "multiple": true,
+                        "apiURL": "https://ndear.xiv.in/skills/api/v1/Certificates/search",
+                        "body": {
+                            "filters": {
+                                "mobile": {
+                                    "eq": "{{value}}"
+                                }
+                            },
+                            "limit": 20,
+                            "offset": 0
+                        },
+                        "fields": [{
+                                "title": "Course",
+                                "field": "course"
+                            },
+                            {
+                                "title": "Certificate type",
+                                "field": "certificateType"
+                            },
+                            {
+                                "title": "Awarded on",
+                                "field": "awardedOn"
+                            },
+                            {
+                                "title": "Certificate ID",
+                                "field": "osid"
+                            }
+                        ],
+                        "button": {
+                            "redirectTo": "/Student/certificates/{{value}}",
+                            "value": "osid"
+                        }
+                    }
+                ]
+            }
+        },
+        {
+            "board-cbse": {
+                "table": "board-cbse-attestation"
+            }
+        }
+    ]
+}

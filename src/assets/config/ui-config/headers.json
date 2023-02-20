@@ -1,0 +1,101 @@
+{
+    "type": "opensaberLayoutSchema",
+    "version": "0.1",
+    "headers": [{
+            "blank": {}
+        },
+        {
+            "default": {
+                "left": [{
+                        "title": "ABOUT",
+                        "redirectTo": "/page/about"
+                    },
+                    {
+                        "title": "TERMS_AND_CONDITIONS",
+                        "redirectTo": "/page/terms-and-conditions"
+                    }
+                ],
+                "right": [{
+                    "title": "LOGIN",
+                    "redirectTo": "/login"
+                }]
+            }
+        },
+        {
+            "user": {
+                "left": [{
+                        "title": "DOCUMENTS",
+                        "redirectTo": "/User/documents"
+                    },
+                    {
+                        "title": "BROWSE_DOCUMENT",
+                        "redirectTo": "/User/documents/browse"
+                    },
+                    {
+                        "title": "ABOUT",
+                        "redirectTo": "/page/about"
+                    },
+                    {
+                        "title": "TERMS_AND_CONDITIONS",
+                        "redirectTo": "/page/terms-and-conditions"
+                    }
+
+                ],
+                "right": [{
+                        "title": "PROFILE",
+                        "redirectTo": "/profile/User",
+                        "activeTab": "active"
+
+                    },
+
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className": "font-weight-bold"
+                    }
+
+                ]
+            }
+        },
+        {
+            "documents": {
+                "left": [{
+                        "title": "DOCUMENTS",
+                        "redirectTo": "/User/documents",
+                        "activeTab": "active"
+
+                    },
+                    {
+                        "title": "BROWSE_DOCUMENT",
+                        "redirectTo": "/User/documents/browse"
+                    },
+                    {
+                        "title": "ABOUT",
+                        "redirectTo": "/page/about"
+                    },
+                    {
+                        "title": "TERMS_AND_CONDITIONS",
+                        "redirectTo": "/page/terms-and-conditions"
+                    },
+                    {
+                        "title": "FAQ",
+                        "redirectTo": "/faq"
+                    }
+
+                ],
+                "right": [{
+                        "title": "PROFILE",
+                        "redirectTo": "/profile/User"
+                    },
+
+                    {
+                        "title": "LOGOUT",
+                        "redirectTo": "/logout",
+                        "className": "font-weight-bold"
+                    }
+
+                ]
+            }
+        }
+    ]
+}
