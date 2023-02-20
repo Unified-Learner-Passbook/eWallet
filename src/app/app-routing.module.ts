@@ -22,9 +22,15 @@ import { PagesComponent } from './pages/pages.component';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { FaqComponent } from './custom-components/faq/faq.component';
+import { OnBoardingComponent } from './on-boarding/on-boarding.component';
+import { LoginComponent } from './login/login.component';
 const routes: Routes = [
 // Home
 { path: 'home', component: HomeComponent },
+{ path: 'onboard', component: OnBoardingComponent },
+{ path: 'login', component: LoginComponent },
+
+
 
 // Auth
 { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},

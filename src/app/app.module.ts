@@ -123,6 +123,8 @@ import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-v
 import { FaqComponent } from './custom-components/faq/faq.component';
 import { SafeHtmlPipe } from './safe-html.pipe';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
+import { OnBoardingComponent } from './on-boarding/on-boarding.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -158,7 +160,9 @@ import { CreateCertificateComponent } from './create-certificate/create-certific
     FaqComponent,
     SafeHtmlPipe,
     PagesComponent,
-    DocDetailViewComponent
+    DocDetailViewComponent,
+    OnBoardingComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
