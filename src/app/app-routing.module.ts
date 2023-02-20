@@ -25,16 +25,19 @@ import { FaqComponent } from './custom-components/faq/faq.component';
 import { OnBoardingComponent } from './on-boarding/on-boarding.component';
 import { LoginComponent } from './login/login.component';
 const routes: Routes = [
+
+
+// Auth
+// { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
+{ path: '', component: OnBoardingComponent ,  canActivate: [AuthGuard]},
+{ path: 'logout', component: LogoutComponent},
+
 // Home
 { path: 'home', component: HomeComponent },
 { path: 'onboard', component: OnBoardingComponent },
 { path: 'login', component: LoginComponent },
 
 
-
-// Auth
-// { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
-{ path: 'logout', component: LogoutComponent},
 
 // Forms
 { path: 'form/:form', component: FormsComponent },
