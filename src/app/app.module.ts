@@ -125,6 +125,7 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { OnBoardingComponent } from './on-boarding/on-boarding.component';
 import { LoginComponent } from './login/login.component';
+import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
 
 @NgModule({
   declarations: [
@@ -162,7 +163,8 @@ import { LoginComponent } from './login/login.component';
     PagesComponent,
     DocDetailViewComponent,
     OnBoardingComponent,
-    LoginComponent
+    LoginComponent,
+    ManageEnrollmentConflictComponent
   ],
   imports: [
     BrowserModule,
