@@ -53,11 +53,11 @@ import { SearchComponent } from '../app/discovery/search/search.component';
 import { AuthConfigService } from './authentication/auth-config.service';
 import { DocumentsComponent } from './documents/documents.component';
 import { AddDocumentComponent } from './documents/add-document/add-document.component';
-import {WebcamModule} from 'ngx-webcam';
+import { WebcamModule } from 'ngx-webcam';
 import { ScanDocumentComponent } from './documents/scan-document/scan-document.component';
 import { ScanQrCodeComponent } from './documents/scan-qr-code/scan-qr-code.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
-import {QuarModule} from '@altack/quar';
+import { QuarModule } from '@altack/quar';
 import { BrowseDocumentsComponent } from './documents/browse-documents/browse-documents.component';
 
 import { TranslateLoader, TranslateModule, TranslateService } from '@ngx-translate/core';
@@ -117,7 +117,7 @@ import { PagesComponent } from './pages/pages.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import {AuthImagePipe} from '../app/layouts/doc-view/doc-view.component';
+import { AuthImagePipe } from '../app/layouts/doc-view/doc-view.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
 import { FaqComponent } from './custom-components/faq/faq.component';
@@ -125,6 +125,8 @@ import { SafeHtmlPipe } from './safe-html.pipe';
 import { CreateCertificateComponent } from './create-certificate/create-certificate.component';
 import { OnBoardingComponent } from './on-boarding/on-boarding.component';
 import { LoginComponent } from './login/login.component';
+import { MenuComponent } from './menu/menu.component';
+import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
 
 @NgModule({
@@ -164,6 +166,8 @@ import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/
     DocDetailViewComponent,
     OnBoardingComponent,
     LoginComponent,
+    MenuComponent,
+    ToolbarComponent,
     ManageEnrollmentConflictComponent
   ],
   imports: [
