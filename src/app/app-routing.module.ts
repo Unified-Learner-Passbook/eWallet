@@ -89,7 +89,7 @@ const routes: Routes = [
   { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/detail/:type/:id', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/detail/:type/:id/view', component: DocViewComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/detail/:type/:id/view', component: DocViewComponent, data: { showToolbar: true } },
+  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false } },
   // { path: ':entity/documents/browse', component: BrowseDocumentsComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/browse', component: BrowseDocumentsComponent, data: { showToolbar: true } },
   { path: ':entity/documents/:type/add/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
