@@ -1,8 +1,15 @@
-<h6 class="font-weight-bold mt-3 ml-3"><i onClick="history.go(-1); return false;" class="fas fa-chevron-left mr-2" aria-hidden="true"></i> {{'SCAN_THE_QR_CODE'|translate}}</h6>
-<quar-scanner (scanSuccess)="scanSuccessHandler($event)"></quar-scanner>
+<h6 class="font-weight-bold mt-3 ml-3">
+    <i onClick="history.go(-1); return false;" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
+    {{'SCAN_THE_QR_CODE'|translate}}
+</h6>
+
 <div class="scanner">
+    <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
+</div>
+<h5>{{qrString}}</h5>
+<div class="scan-result">
     <div *ngIf="loader" class="d-flex justify-content-center">
-        <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
+        <div class="spinner-border">
             <span class="sr-only">{{'LOADING'|translate}}</span>
         </div>
     </div>

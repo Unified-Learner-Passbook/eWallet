@@ -96,7 +96,7 @@ const routes: Routes = [
   { path: ':entity/documents/add/:type', component: AddDocumentComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/add/:type/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/scan/vc', component: ScanQrCodeComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/scan/vc', component: ScanQrCodeComponent, data: { showToolbar: false } },
+  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: false } },
   // { path: 'document/detail', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: 'document/view/:id', component: DocViewComponent, canActivate: [AuthGuard] },
   { path: 'discovery', component: SearchComponent },
@@ -109,7 +109,7 @@ const routes: Routes = [
   // Custom
   { path: 'faq', component: FaqComponent },
 
-  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent }
+  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } }
 ];
 
 @NgModule({
