@@ -1,0 +1,54 @@
+.title {
+  display: flex;
+  justify-content: center;
+  font-weight: 500;
+  font-size: 20px;
+  line-height: 24px;
+  margin-top: 40px;
+  color: #1b1818;
+  //font-family: Poppins;
+}
+.sub-title {
+  //font-family: Poppins;
+  font-size: 18px;
+  font-weight: 500;
+  line-height: 21px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: #373737;
+  margin-top: 40px;
+}
+.table-property {
+  //font-family: Poppins;
+  border-collapse: collapse;
+
+  color: #000000;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 40px;
+}
+
+td,
+th {
+  //border: 1px solid #dddddd;
+  text-align: center;
+  padding: 8px;
+  color: #373737;
+}
+.register-button {
+  height: 3rem;
+  width: 16em;
+  border-radius: 5px;
+  margin-top: 4rem;
+  font-weight: 600;
+  background: #1e2060;
+  font-size: 16px;
+  color: white;
+  margin-left: 520px;
+}
+.th,
+td,
+input {
+  font-family: Poppins;
+  margin-left: 5px;
+}
