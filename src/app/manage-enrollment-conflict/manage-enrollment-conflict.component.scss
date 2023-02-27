@@ -1,15 +1,10 @@
 .title {
-  display: flex;
-  justify-content: center;
   font-weight: 500;
   font-size: 20px;
-  line-height: 24px;
+
   margin-top: 40px;
-  color: #1b1818;
-  //font-family: Poppins;
 }
 .sub-title {
-  //font-family: Poppins;
   font-size: 18px;
   font-weight: 500;
   line-height: 21px;
@@ -19,7 +14,6 @@
   margin-top: 40px;
 }
 .table-property {
-  //font-family: Poppins;
   border-collapse: collapse;
 
   color: #000000;
@@ -30,7 +24,6 @@
 
 td,
 th {
-  //border: 1px solid #dddddd;
   text-align: center;
   padding: 8px;
   color: #373737;
@@ -44,11 +37,27 @@ th {
   background: #1e2060;
   font-size: 16px;
   color: white;
-  margin-left: 520px;
 }
 .th,
 td,
 input {
   font-family: Poppins;
   margin-left: 5px;
+}
+
+.enrollment-button-div {
+  width: 100%;
+  text-align: center;
+}
+.enrollment-button {
+  text-align: center;
+}
+.back-arrow {
+  color: #434343;
+}
+.entrollment-component .title {
+  width: 100%;
+}
+#myForm {
+  text-align: center;
 }
