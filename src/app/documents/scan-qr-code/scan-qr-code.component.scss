@@ -1,4 +1,16 @@
-.scanner{
-    text-align:-webkit-center;
-    margin-top:50%;
+.scan-result {
+    text-align: -webkit-center;
+    margin-top: 50%;
+}
+.scanner {
+    margin: 50px auto 10px;
+    max-width: 300px;
+    background: #dbdbdb;
+    height: 400px;
+    border: 2px dashed #4e4e4f;
+    border-style: dashed;
+}
+.spinner-border {
+    width: 5rem;
+    height: 5rem;
 }
