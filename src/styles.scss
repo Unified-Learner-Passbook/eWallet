@@ -36,7 +36,7 @@
     // SL
     --primaryColor: #060461;
     --secondaryColor: #4A227C;
-    --bodyBackground: #F6F8FC;
+    --bodyBackgroundd: url(assets/images/background.png) no-repeat center center/cover;
     --cardBackground: #FFFFFF;
     --tagsBackground: #F4ECFF;
     --navLabelColor: #B275FF;
@@ -317,7 +317,8 @@ body {
     margin: 0;
     font-family: "Lato", sans-serif !important;
     color: rgb(0, 0, 0);
-    background: var(--bodyBackground) !important;
+    background: var(--bodyBackgroundd) !important;
+    background-repeat: no-repeat;
 }
 
 .fs-7 {
