@@ -1,4 +1,4 @@
-<div class="container text-center pb-0 mt-20 productivity" *ngIf="currentPage === 'productivity'">
+<!-- <div class="container text-center pb-0 mt-20 productivity" *ngIf="currentPage === 'productivity'">
     <div class="row">
       <div class="col-12">
         <div class="mb-3">
@@ -68,9 +68,9 @@
      <div class="pb-10">
         <button type="button" class="onboard-btn" (click)="currentPage = 'wallet'">Next</button>
      </div>
-  </div>
+  </div> -->
 
-  <div class="container text-center pb-0 mt-20 wallet" *ngIf="currentPage === 'wallet'">
+  <div class="container text-center pb-0 mt-20 wallet">
     <div class="row">
       <div class="col-12">
         <div class="mb-3">
@@ -102,7 +102,7 @@
         Welcome to your academic wallet
      </div>
      <div class="pb-10">
-        <button type="button" class="login-btn" [routerLink]="['login']">Login</button>
-        <button type="button" class="register-btn">Register</button>
+        <button type="button" class="login-btn bg-blue-dark" [routerLink]="['login']">Login using Aadhar</button>
+        <button type="button" class="register-btn">Login using Username & Password</button>
      </div>
   </div>

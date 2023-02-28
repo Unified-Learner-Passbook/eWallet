@@ -34,7 +34,7 @@
     // --primaryTextColor: #000000;
     // --secondaryTextColor: #8D9091;
     // SL
-    --primaryColor: #F07D00;
+    --primaryColor: #060461;
     --secondaryColor: #4A227C;
     --bodyBackground: #F6F8FC;
     --cardBackground: #FFFFFF;
@@ -573,6 +573,10 @@ formly-autocomplete-type .ng-select {
     width: 45px;
 }
 
+.w-25 {
+    width: 25px;
+}
+
 .min-70 {
     min-width: 70px;
 }
@@ -583,6 +587,10 @@ formly-autocomplete-type .ng-select {
 
 .fs-12 {
     font-size: 12px;
+}
+
+.fs-13 {
+    font-size: 13px;
 }
 
 .fs-14 {
@@ -597,7 +605,7 @@ formly-autocomplete-type .ng-select {
 /* Button */
 
 .btn {
-    border-radius: 8px !important;
+    border-radius: 5px !important;
     text-transform: capitalize !important;
     box-shadow: none !important;
 }
@@ -989,7 +997,10 @@ label {
     justify-content: space-evenly !important;
 }
 .btn-padding{
-    padding: 8px 55px;
+    padding: 8px 55px !important;
+}
+.fs-20{
+    font-size: 20px;
 }
 .fs-22{
     font-size: 22px;
