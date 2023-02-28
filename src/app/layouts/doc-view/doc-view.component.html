@@ -43,7 +43,8 @@
 
     <ng-template [ngIf]="extension === 'pdf'">
         <div class="text-center img-mb">
-            <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer>
+            <!-- <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer> -->
+            <ngx-extended-pdf-viewer [src]="docUrl"></ngx-extended-pdf-viewer>
         </div>
     </ng-template>
 
