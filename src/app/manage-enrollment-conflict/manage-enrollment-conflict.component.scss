@@ -13,51 +13,47 @@
   color: #373737;
   margin-top: 40px;
 }
-.table-property {
-  border-collapse: collapse;
+th{
+  text-align: center;
+  color: #ffffff;
+  background: #1E2060;
+  padding: 7px;
+  border: none;
+}
+td{
+  padding: 7px;
+}
+// .table-property {
+//   //font-family: Poppins;
+//   border-collapse: collapse;
 
-  color: #000000;
-  margin-left: auto;
-  margin-right: auto;
-  margin-top: 40px;
-}
+//   color: #000000;
+//   margin-left: auto;
+//   margin-right: auto;
+//   margin-top: 40px;
+// }
 
-td,
-th {
-  text-align: center;
-  padding: 8px;
-  color: #373737;
-}
-.register-button {
-  height: 3rem;
-  width: 16em;
-  border-radius: 5px;
-  margin-top: 4rem;
-  font-weight: 600;
-  background: #1e2060;
-  font-size: 16px;
-  color: white;
-}
-.th,
-td,
-input {
-  font-family: Poppins;
-  margin-left: 5px;
-}
-
-.enrollment-button-div {
-  width: 100%;
-  text-align: center;
-}
-.enrollment-button {
-  text-align: center;
-}
-.back-arrow {
-  color: #434343;
-}
-.entrollment-component .title {
-  width: 100%;
-}
-#myForm {
-  text-align: center;
-}
+// td,
+// th {
+//   //border: 1px solid #dddddd;
+//   text-align: center;
+//   padding: 8px;
+//   color: #373737;
+// }
+// .register-button {
+//   height: 3rem;
+//   width: 16em;
+//   border-radius: 5px;
+//   margin-top: 4rem;
+//   font-weight: 600;
+//   background: #1e2060;
+//   font-size: 16px;
+//   color: white;
+//   margin-left: 520px;
+// }
+// .th,
+// td,
+// input {
+//   font-family: Poppins;
+//   margin-left: 5px;
+// }

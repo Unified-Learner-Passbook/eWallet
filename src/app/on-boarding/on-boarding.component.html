@@ -1,4 +1,4 @@
-<div class="container text-center pb-0 mt-20 productivity" *ngIf="currentPage === 'productivity'">
+<!-- <div class="container text-center pb-0 mt-20 productivity" *ngIf="currentPage === 'productivity'">
     <div class="row">
       <div class="col-12">
         <div class="mb-3">
@@ -68,20 +68,18 @@
      <div class="pb-10">
         <button type="button" class="onboard-btn" (click)="currentPage = 'wallet'">Next</button>
      </div>
-  </div>
+  </div> -->
 
-  <div class="container text-center pb-0 mt-20 wallet" *ngIf="currentPage === 'wallet'">
+  <div class="container text-center pb-0 mt-20 wallet">
     <div class="row">
       <div class="col-12">
         <div class="mb-3">
             <div class="row g-0 p-4 mt-20">
-              <div class="col-4 col-md-2 px-0">
-                <div>
+              <div class="col-3 col-md-2 px-0">
                     <img src="../../../assets/images/headerlogo.png" class="img-fluid pb-40" alt="...">
-                </div>
               </div>
-              <div class="col-8 col-md-10 text-left px-0">
-                  <h5 class="card-title fs-14 font-600 pl-0">
+              <div class="col-8 col-md-10 text-left px-0 br-l h-62">
+                  <h5 class="card-title fs-14 font-600">
                   <div class="text-gray-0 fs-14">DEPARTMENT OF</div>
                   <div class="fs-22 heading3"> Basic Education</div>
                    
@@ -102,7 +100,7 @@
         Welcome to your academic wallet
      </div>
      <div class="pb-10">
-        <button type="button" class="login-btn" [routerLink]="['login']">Login</button>
-        <button type="button" class="register-btn">Register</button>
+        <button type="button" class="login-btn bg-blue-dark" [routerLink]="['login']">Login using Aadhar</button>
+        <button type="button" class="register-btn">Login using Username & Password</button>
      </div>
   </div>
