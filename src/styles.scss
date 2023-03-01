@@ -34,9 +34,9 @@
     // --primaryTextColor: #000000;
     // --secondaryTextColor: #8D9091;
     // SL
-    --primaryColor: #F07D00;
+    --primaryColor: #060461;
     --secondaryColor: #4A227C;
-    --bodyBackground: #F6F8FC;
+    --bodyBackgroundd: url(assets/images/background.png) no-repeat center center/cover;
     --cardBackground: #FFFFFF;
     --tagsBackground: #F4ECFF;
     --navLabelColor: #B275FF;
@@ -317,7 +317,8 @@ body {
     margin: 0;
     font-family: "Lato", sans-serif !important;
     color: rgb(0, 0, 0);
-    background: var(--bodyBackground) !important;
+    background: var(--bodyBackgroundd) !important;
+    background-repeat: no-repeat;
 }
 
 .fs-7 {
@@ -573,6 +574,10 @@ formly-autocomplete-type .ng-select {
     width: 45px;
 }
 
+.w-25 {
+    width: 25px;
+}
+
 .min-70 {
     min-width: 70px;
 }
@@ -583,6 +588,10 @@ formly-autocomplete-type .ng-select {
 
 .fs-12 {
     font-size: 12px;
+}
+
+.fs-13 {
+    font-size: 13px;
 }
 
 .fs-14 {
@@ -597,7 +606,7 @@ formly-autocomplete-type .ng-select {
 /* Button */
 
 .btn {
-    border-radius: 8px !important;
+    border-radius: 5px !important;
     text-transform: capitalize !important;
     box-shadow: none !important;
 }
@@ -863,6 +872,7 @@ label {
     line-height: 1.5rem;
     color: #ffffff;
     font-size: 12px;
+    text-align: center;
 }
 .font-600{
     font-weight: 600;
@@ -936,7 +946,7 @@ label {
 .login-btn{
     background: #1E232C;
     border-radius: 7.60331px;
-    width: 100%;
+    width: 88%;
     color: #fff;
     padding: 10px 15px;
     font-size: 18px;
@@ -988,11 +998,20 @@ label {
     justify-content: space-evenly !important;
 }
 .btn-padding{
-    padding: 8px 55px;
+    padding: 8px 55px !important;
+}
+.fs-20{
+    font-size: 20px;
 }
 .fs-22{
     font-size: 22px;
 }
 .pl-25{
     padding-left: 25px;
+}
+.br-l{
+    border-left: solid 1px #ccc;
+}
+.h-62{
+    height: 62px;
 }
