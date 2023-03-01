@@ -43,7 +43,7 @@ export class BrowseDocumentsComponent implements OnInit {
     const payload = {
       "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
     }
-    this.credentials$ = this.generalService.postData('http://64.227.185.154:3002/credentials', payload).pipe(tap((credentials) => {
+    this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base//credentials', payload).pipe(tap((credentials) => {
       credentials.forEach(element => {
         element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
       });
