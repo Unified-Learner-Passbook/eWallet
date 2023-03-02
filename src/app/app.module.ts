@@ -128,6 +128,8 @@ import { LoginComponent } from './login/login.component';
 import { MenuComponent } from './menu/menu.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
+import { SetUsernameComponent } from './set-username/set-username.component';
+import { RegistrationComponent } from './registration/registration.component';
 
 @NgModule({
   declarations: [
@@ -168,7 +170,9 @@ import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/
     LoginComponent,
     MenuComponent,
     ToolbarComponent,
-    ManageEnrollmentConflictComponent
+    ManageEnrollmentConflictComponent,
+    SetUsernameComponent,
+    RegistrationComponent
   ],
   imports: [
     BrowserModule,
