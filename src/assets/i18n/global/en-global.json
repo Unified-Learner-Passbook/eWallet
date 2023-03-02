@@ -211,8 +211,24 @@
     "ABOUT": "About",
     "DOCUMENTS": "Documents",
     "TERMS_AND_CONDITIONS": "Terms and Conditions",
-    "SEARCH_DOCUMENTS": "Search Documents"
+    "SEARCH_DOCUMENTS": "Search Documents",
 
-
-
+    "WELCOME_BACK":"Welcome back to Wallet",
+    "HI": "Hi",
+    "ISSUED_DOCUMENTS": "Issued documents",
+    "ACCOUNT": "Account",
+    "PRIVACY_SECURITY_OR_NUMBER": "Privacy,security or number",
+    "SECURITY": "Security",
+    "MANAGE_ACCOUNT_DETAILS": "Manage Account details",
+    "HELP": "Help",
+    "HELP_CENTER_CONTACT_US_PRIVACY_POLICY": "Help center, contact us, privacy policy",
+    "MANAGE_ENROLLMENT_CONFLICTS": "Manage enrollment conflicts",
+    "NETWORK_USAGE_AUTO_DOWNLOAD": "Network usage auto-download",
+    "GENERATE_QR_CODE": "Generate QR Code",
+    "LOGIN_USING_AADHAR": "Login using Aadhar",
+    "LOGIN_USING_USERNAME_PASSWORD": "Login using Username & Password",
+    "ENTER_AADHAAR_NO": "Enter Aadhaar no.",
+    "GET_OTP": "Get OTP",
+    "SET_USERNAME_PASSWORD": "Set Username & Password",
+    "WELCOME_TO_YOUR_ACADEMIC_WALLET": "Welcome to your academic wallet"
 }
