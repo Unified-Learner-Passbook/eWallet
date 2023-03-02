@@ -5,7 +5,7 @@
     "HOME": "होम",
     "Yes": "हां",
     "ATTESTATIONS": "प्रमाणीकरण",
-    "REGISTER": "रजिस्टर",
+    "REGISTER": "पंजीकृत करना",
     "EMAILT_NOT_VALID": "ईमेल मान्य नहीं है।",
     "ACCEPT_TERMS_CONDITIONS": "मुझे नियम और शर्तें स्वीकार हैं",
     "INSTITUTE_SETUP": "संस्थान सेटअप",
@@ -231,5 +231,14 @@
     "ENTER_AADHAAR_NO": "आधार नंबर दर्ज करें।",
     "GET_OTP": "OTP प्राप्त करें",
     "SET_USERNAME_PASSWORD": "उपयोगकर्ता नाम और पासवर्ड सेट करें",
-    "WELCOME_TO_YOUR_ACADEMIC_WALLET": "शैक्षणिक वॉलेट में आपका स्वागत है"
+    "WELCOME_TO_YOUR_ACADEMIC_WALLET": "शैक्षणिक वॉलेट में आपका स्वागत है",
+    "AADHAAR": "आधार",
+    "SCHOOL": "स्कूल",
+    "SCHOOL_ID": "स्कूल आईडी",
+    "PHONE_NO": "फोन नंबर",
+    "RECEIVE_OTP": "ओटीपी प्राप्त करें",
+    "REGISTRATION_APPROVAL": "पंजीकरण स्वीकृति",
+    "PENDING": "अनिर्णीत",
+    "CONTACT_YOUR_SCHOOL_APPROVAL": "अनुमोदन में तेज़ी लाने के लिए कृपया अपने स्कूल से संपर्क करें।",
+    "CONTACT_SCHOOL": "स्कूल से संपर्क करें"
 }

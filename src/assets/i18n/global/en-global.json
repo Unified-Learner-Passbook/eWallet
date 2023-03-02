@@ -230,5 +230,16 @@
     "ENTER_AADHAAR_NO": "Enter Aadhaar no.",
     "GET_OTP": "Get OTP",
     "SET_USERNAME_PASSWORD": "Set Username & Password",
-    "WELCOME_TO_YOUR_ACADEMIC_WALLET": "Welcome to your academic wallet"
+    "WELCOME_TO_YOUR_ACADEMIC_WALLET": "Welcome to your academic wallet",
+    "AADHAAR": "Aadhaar",
+    "SCHOOL": "School",
+    "SCHOOL_ID": "School Id",
+    "PHONE_NO": "Phone no.",
+    "RECEIVE_OTP": "Receive OTP",
+    "REGISTRATION_APPROVAL": "Registration Approval",
+    "PENDING": "Pending",
+    "CONTACT_YOUR_SCHOOL_APPROVAL": "Please contact your school to <br>expedite approval.",
+    "CONTACT_SCHOOL": "Contact School"
+
+
 }
