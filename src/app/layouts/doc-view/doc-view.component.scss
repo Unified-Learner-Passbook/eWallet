@@ -1,5 +1,5 @@
 .img-mb {
-    margin-top: 20%;
+    margin-top: 8px;
 }
 
 footer {
@@ -10,4 +10,8 @@ footer {
 
 .bg-header {
     background: var(--cardBackground) !important;
+}
+.btn-rounded {
+    border-radius: 10rem !important;
+    background-color: #fff;
 }
