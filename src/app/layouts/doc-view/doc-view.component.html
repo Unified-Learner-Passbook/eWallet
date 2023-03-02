@@ -1,67 +1,95 @@
-<header class="header">
+<!-- <header class="header">
     <nav class="navbar navbar-expand-lg navbar-light bg-header nav-b navbar-inverse">
 
         <div class="navbar-brand d-contents" id="navbarExample01">
             <h6 class="font-weight-bold mt-2"><i (click)="goBack()" class="fas fa-chevron-left mr-2" aria-hidden="true"></i>
                 <ng-template [ngIf]="docName"> {{docName}}</ng-template>
-            </h6>
+            </h6> -->
 
-            <!-- <div class="col-2 col-lg-1">
+<!-- <div class="col-2 col-lg-1">
                 <ol class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a class="nav-link" href="" onClick="history.go(-1); return false;"><span class="p14 font-weight-bold"><i class="fa fa-close"></i></span> </a>
                     </li>
                 </ol>
             </div> -->
-        </div>
+<!-- </div>
     </nav>
+</header> -->
+<div class="mt-3 pb-3">
+  <h6 class="ml-3">
+    <i
+      onClick="history.go(-1); return false;"
+      class="fas fa-arrow-left mr-2"
+      aria-hidden="true"
+    ></i>
+  </h6>
 
-</header>
-<div class="container mt-2">
-    <!-- <h6 class="font-weight-bold mt-3 position-fixed"><i (click)="goBack()" class="fas fa-chevron-left mr-2" aria-hidden="true"></i>
+  <div class="text-center pb-0">
+    <div>
+      <img src="assets/images/headerlogo.png" class="img-fluid" alt="..." />
+    </div>
+  </div>
+  <div class="text-center">
+    <h5 class="card-title fs-14 font-600">
+      <span class="text-gray-0 fs-12">DEPARTMENT OF</span> <br />
+      <span class="fs-16"> Basic Education</span><br />
+      <span class="text-orange fs-10">GOVERNMENT OF UTTAR PRADESH</span>
+    </h5>
+  </div>
+  <!-- <h6 class="font-weight-bold mt-3 position-fixed"><i (click)="goBack()" class="fas fa-chevron-left mr-2" aria-hidden="true"></i>
         <ng-template [ngIf]="docName"> {{docName}}</ng-template>
     </h6> -->
-    <!-- <div class="text-center text-uppercase font-weight-bold">
+  <!-- <div class="text-center text-uppercase font-weight-bold">
         <h4>Document</h4>
     </div> -->
-    <ng-template [ngIf]="loader">
-        <br>
-        <div class="d-flex justify-content-center">
-            <div class="spinner-border" style="width: 5rem; height: 5rem;" role="status">
-                <span class="sr-only">{{'LOADING'|translate}}</span>
-            </div>
+  <ng-template [ngIf]="loader">
+    <br />
+    <div class="d-flex justify-content-center">
+      <div
+        class="spinner-border"
+        style="width: 5rem; height: 5rem"
+        role="status"
+      >
+        <span class="sr-only">{{ "LOADING" | translate }}</span>
+      </div>
+    </div>
+  </ng-template>
+
+  <ng-template
+    [ngIf]="extension === 'jpg' || extension === 'png' || extension === 'jpeg'"
+  >
+    <div class="text-center img-mb">
+      <img class="img-fluid" [src]="docUrl | authImage : extension | async" />
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="extension === 'pdf'">
+    <div class="text-center img-mb">
+      <!-- <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer> -->
+      <ngx-extended-pdf-viewer
+        [showToolbar]="false"
+        [src]="docUrl"
+      ></ngx-extended-pdf-viewer>
+    </div>
+  </ng-template>
+
+  <ng-template [ngIf]="docDetails" class="mt-4">
+    <div style="text-align: center; margin-top: 100px">
+      <img
+        style="height: 100px; width: 100px"
+        src="assets/images/success.png"
+      />
+    </div>
+    <div class="col-md-6 offset-md-3 mt-5">
+      <div *ngFor="let item of document" class="row mb-2">
+        <div class="col-4">
+          <label>{{ item.title | uppercase }}</label>
         </div>
-    </ng-template>
-
-
-
-    <ng-template [ngIf]="extension === 'jpg' || extension === 'png' || extension === 'jpeg'">
-        <div class="text-center img-mb">
-            <img class="img-fluid " [src]="docUrl | authImage: extension | async" />
-        </div>
-    </ng-template>
-
-    <ng-template [ngIf]="extension === 'pdf'">
-        <div class="text-center img-mb">
-            <!-- <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer> -->
-            <ngx-extended-pdf-viewer [src]="docUrl"></ngx-extended-pdf-viewer>
-        </div>
-    </ng-template>
-
-
-
-    <ng-template [ngIf]="docDetails" class="mt-4">
-        <div style="text-align: center; margin-top: 100px; " >
-            <img style="height: 100px;  
-            width: 100px;   " src="assets/images/success.png" />
-        </div>
-        <div class=" col-md-6 offset-md-3 mt-5">
-            <div *ngFor="let item of document" class="row mb-2">
-                <div class="col-4"><label>{{item.title | uppercase}}</label></div>
-                <div class="col-8 font-weight-bold primary-text">{{item.value}}</div>
-            </div>
-            <hr class="hr-0">
-            <!-- <div class="row mb-2">
+        <div class="col-8 font-weight-bold primary-text">{{ item.value }}</div>
+      </div>
+      <hr class="hr-0" />
+      <!-- <div class="row mb-2">
                 <div class="col-8">
                     <label>Issued By</label>
                     <div class="font-weight-bold primary-text">Government of Sri Lanka</div>
@@ -71,10 +99,14 @@
             <div class="mt-5 text-center">
                 <button class="btn btn-primary min-220">Download Certificate</button>
             </div> -->
-        </div>
-    </ng-template>
+    </div>
+  </ng-template>
+
+  <div class="text-center mt-4" *ngIf="!loader">
+    <button class="btn btn-rounded" type="button"><i class="fas fa-qrcode"></i>&nbsp;&nbsp;Generate QR Code</button>
+  </div>
 </div>
-<footer>
+<!-- <footer>
     <div class="row mb-2">
         <div *ngIf="document[0]?.type == 'attestation-SELF'; else elseBlock" class="col-8 text ml-4">
             <i class="fas fa-check primarybgColor fs-12 mr-1"></i> {{'SELF_ATTTESTED'|translate}}
@@ -86,4 +118,4 @@
         </ng-template>
 
     </div>
-</footer>
+</footer> -->
