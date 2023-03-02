@@ -319,6 +319,7 @@ body {
     color: rgb(0, 0, 0);
     background: var(--bodyBackgroundd) !important;
     background-repeat: no-repeat;
+    overflow-x: hidden;
 }
 
 .fs-7 {
@@ -842,6 +843,8 @@ label {
         width: 50px;
         text-align: center;
         overflow: hidden;
+        margin-right: 10px;
+        background-color: lightgray;
         img {
             object-fit: cover;
             // padding: 8px;
@@ -1014,4 +1017,7 @@ label {
 }
 .h-62{
     height: 62px;
+}
+ngx-extended-pdf-viewer .pdfViewer .page {
+    border: unset !important;
 }

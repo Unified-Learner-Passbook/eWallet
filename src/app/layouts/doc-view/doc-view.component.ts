@@ -23,7 +23,7 @@ import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
 @Component({
     selector: 'app-doc-view',
     templateUrl: './doc-view.component.html',
-    styleUrls: ['./doc-view.component.css']
+    styleUrls: ['./doc-view.component.scss']
 })
 export class DocViewComponent implements OnInit {
     docUrl: string;
@@ -163,11 +163,11 @@ export class DocViewComponent implements OnInit {
         });
     }
 
-    getSchema(id: string = 'did:ulpschema:8b8eda70-6dfb-43e6-8a8a-6084188ce516'): Observable<any> {
+    getSchema(id: string = 'did:ulpschema:8b8eda70-6dfb-43e6-8a8a-6084188ce516'): Observable<any> { 
         return this.generalService.getData(`https://ulp.uniteframework.io/cred-schema/schema/jsonld?id=${id}`, true);
     }
 
-    getTemplate(id: string = 'cleenrrni0000tj15s2y1o2vr'): Observable<any> {
+    getTemplate(id: string = 'clepswdx30000tj15nokg4q46'): Observable<any> { // 'cleenrrni0000tj15s2y1o2vr'
         return this.generalService.getData(`https://ulp.uniteframework.io/cred-schema/rendering-template?id=${id}`, true)
     }
 
