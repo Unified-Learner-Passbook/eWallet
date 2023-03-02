@@ -25,6 +25,8 @@ import { FaqComponent } from './custom-components/faq/faq.component';
 import { OnBoardingComponent } from './on-boarding/on-boarding.component';
 import { LoginComponent } from './login/login.component';
 import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
+import { SetUsernameComponent } from './set-username/set-username.component';
+import { RegistrationComponent } from './registration/registration.component';
 const routes: Routes = [
 
 
@@ -109,7 +111,12 @@ const routes: Routes = [
   // Custom
   { path: 'faq', component: FaqComponent },
 
-  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } }
+  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
+
+  { path: 'set-username', component:SetUsernameComponent},
+
+  { path: 'register', component:RegistrationComponent}
+
 ];
 
 @NgModule({

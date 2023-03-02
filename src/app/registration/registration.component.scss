@@ -1,0 +1,26 @@
+.h3{
+    font-size: 20px;
+    font-weight: 500;
+    color: #1E2060;
+    text-align: center;
+    padding: 10px 0;
+    text-decoration: underline;
+}
+.message{
+    font-size: 16px;
+    color: #494949
+}
+.modal-title{
+    font-size: 24px;
+}
+.border-none{
+    border: none;
+}
+.otp-verify{
+    top: 30%;
+    border-radius: 46px;
+    padding: 10px;
+    .modal-content{
+        border-radius: 17px
+    }
+}
