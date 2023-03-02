@@ -1,7 +1,7 @@
 export const THEMES = {
 
   default: {
-    primaryColor: "#F07D00",
+    primaryColor: "#060461",
     secondaryColor: "#4A227C",
     bodyBackground: "#F6F8FC",
     cardBackground: "#FFFFFF",
@@ -13,7 +13,7 @@ export const THEMES = {
     secondaryTextColor: "#8D9091",
   },
   dark: {
-    primaryColor: "#F07D00",
+    primaryColor: "#060461",
     secondaryColor: "#F07D00",
     bodyBackground: "#080808",
     cardBackground: "#323232",
