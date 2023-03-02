@@ -36,7 +36,7 @@
     // SL
     --primaryColor: #060461;
     --secondaryColor: #4A227C;
-    --bodyBackgroundd: url(assets/images/background.png) no-repeat center center/cover;
+    --bodyBackgroundd: url(assets/images/background.png) no-repeat center center/cover fixed;
     --cardBackground: #FFFFFF;
     --tagsBackground: #F4ECFF;
     --navLabelColor: #B275FF;
@@ -1014,4 +1014,9 @@ label {
 }
 .h-62{
     height: 62px;
+}
+.eye-icon{
+    position: absolute;
+    right: 20px;
+    top: 20px;
 }
