@@ -23,18 +23,18 @@
             UlP Learner Wallet
         </div>
         <div class="pb-20">
-          Welcome to your academic wallet
+          {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
         </div>
      </div>
      <div class="mb-3 pb-10">
-      <label for="exampleFormControlInput1">Enter Aadhaar no.</label>
+      <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>
         <div class="input-group mb-2">
           <input type="text" class="form-control p-4" id="exampleFormControlInput1" placeholder="3456*****">
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
     </div>
      <div class="pb-10">
-        <button type="button" class="login-btn bg-blue-dark mt-4"  data-toggle="modal" data-target="#exampleModal">Get OTP</button>
+        <button type="button" class="login-btn bg-blue-dark mt-4"  data-toggle="modal" data-target="#exampleModal">{{'GET_OTP' | translate}}</button>
      </div>
   </div>
 
@@ -47,22 +47,22 @@
           <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <h5 class="modal-title text-center text-primary-color pb-4">Enter OTP</h5>
+          <h5 class="modal-title text-center text-primary-color pb-4">{{'ENTER_OTP' | translate}}</h5>
             <div class="input-group pb-40">
-                <input type="text" class="form-control p-4" placeholder="ENTER OTP" aria-label="Recipient's username" aria-describedby="basic-addon2">
+                <input type="text" class="form-control p-4" placeholder="{{'ENTER_OTP' | translate}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
                 <div class="input-group-append">
-                  <span class="input-group-text bg-blue-dark text-white px-30 font-700" id="basic-addon2">Verify</span>
+                  <span class="input-group-text bg-blue-dark text-white px-30 font-700" id="basic-addon2">{{'VERIFY' | translate}}</span>
                 </div>
               </div>
             <div class="form-check pl-4">
                 <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
                 <label class="form-check-label" for="defaultCheck1">
-                  Set Username & Password
+                  {{'SET_USERNAME_PASSWORD' | translate}}
                 </label>
               </div>
         </div>
         <div class="modal-footer justify-content-space-evenly">
-          <button type="button" class="login-btn bg-blue-dark mt-4" data-dismiss="modal" [routerLink]="['/User/documents/browse']">Login</button>
+          <button type="button" class="login-btn bg-blue-dark mt-4" data-dismiss="modal" [routerLink]="['/User/documents/browse']">{{'LOGIN' | translate}}</button>
         </div>
       </div>
     </div>
