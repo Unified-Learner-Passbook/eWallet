@@ -51,12 +51,22 @@ export class LoginComponent implements OnInit {
         "password": this.loginForm.value.password
       }
       this.authService.signIn(payload).subscribe((res: any) => {
-        if (res.statusCode === 200 && res.success) {
-          this.toastMessage.success("", "Logged In Successfully!");
-          // this.authService.currentUser = res.data[0];
-          localStorage.setItem('access_token', res.token);
-          localStorage.setItem('currentUser', JSON.stringify(res.data[0]));
-          this.router.navigate(['/User/documents/browse']);
+        if (res.statusCode === 200) {
+          if (res.success) {
+            this.toastMessage.success("", "Logged In Successfully!");
+            // this.authService.currentUser = res.data[0];
+
+            if (res?.token) {
+              localStorage.setItem('access_token', res.token);
+            }
+
+            if (res?.data[0]) {
+              localStorage.setItem('currentUser', JSON.stringify(res.data[0]));
+            }
+            this.router.navigate(['/User/documents/browse']);
+          } else {
+            this.toastMessage.error("", "Invalid Username or Password");
+          }
         }
       }, (error) => {
         this.toastMessage.error('', error);
