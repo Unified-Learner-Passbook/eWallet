@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data-request.service';
@@ -62,10 +62,14 @@ export class BrowseDocumentsComponent implements OnInit {
     }
     this.credentials$ = this.dataService.get(payload)
       .pipe(map((credentials) => {
-        credentials.credential.forEach(element => {
-          element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
-        });
-        return credentials.credential;
+        if (credentials.statusCode === 200 && credentials.success) {
+          credentials.credential.forEach(element => {
+            element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
+          });
+          return credentials.credential;
+        } else {
+          this.authService.doLogout();
+        }
       }));
   }
 
