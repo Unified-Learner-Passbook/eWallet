@@ -3,6 +3,7 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
@@ -18,7 +19,8 @@ export class BrowseDocumentsComponent implements OnInit {
   constructor(
     private router: Router,
     public generalService: GeneralService,
-    public authService: AuthService
+    public authService: AuthService,
+    private dataService: DataService
   ) { }
 
   ngOnInit(): void {
@@ -45,17 +47,25 @@ export class BrowseDocumentsComponent implements OnInit {
   }
 
   fetchCredentials() {
+    // const payload = {
+    //   // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
+    //   // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
+    //   subjectId: this.authService.currentUser.did
+    // }
+    // this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
     const payload = {
-      // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
-      // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
-      subjectId: this.authService.currentUser.did
+      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials',
+      header: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + this.authService.getToken()
+      }
     }
-    this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
-      .pipe(tap((credentials) => {
-        credentials.forEach(element => {
+    this.credentials$ = this.dataService.get(payload)
+      .pipe(map((credentials) => {
+        credentials.credential.forEach(element => {
           element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
         });
-        return credentials;
+        return credentials.credential;
       }));
   }
 

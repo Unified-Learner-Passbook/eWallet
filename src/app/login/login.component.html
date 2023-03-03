@@ -46,20 +46,20 @@
         <div class="input-group mb-2">
           <input type="text" class="form-control p-4" id="userName" name="userName" formControlName="userName"  placeholder="">
         </div>
-        <p style="color: red" class="text-left" *ngIf="userName.invalid && userName.touched">Enter valid Username</p>
+        <p class="text-left text-red" *ngIf="userName.invalid && userName.touched">Enter valid Username</p>
         <label for="password">{{'PASSWORD' | translate}}</label>
         <div class="input-group mb-2">
           <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"  placeholder="">
         </div>
-        <p style="color: red" class="text-left" *ngIf="password.invalid && password.touched">Password is required</p>
+        <p class="text-left text-red" *ngIf="password.invalid && password.touched">Password is required</p>
       </div>
 
-      <p style="color: red" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
+      <p class="text-red" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
       <div class="pb-10">
-        <button type="submit" class="login-btn bg-blue-dark mt-4" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
+        <button type="submit" class="login-btn bg-blue-dark mt-2" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
       </div>
     </form>
-    <a class="pb-10" style="color: red" [routerLink]="['/register']">Not registered! Register here</a>
+    <a class="pb-10 text-red" [routerLink]="['/register']">Not registered! Register here</a>
   </div>
 
   <!-- GET OTP POPUP -->
