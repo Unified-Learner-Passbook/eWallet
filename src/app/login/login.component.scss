@@ -1,23 +1,26 @@
-.otp-verify{
+.otp-verify {
     top: 30%;
     border-radius: 46px;
     padding: 10px;
-    .modal-content{
-        border-radius: 17px
+    .modal-content {
+        border-radius: 17px;
     }
 }
-label{
+label {
     color: #494949;
     font-size: 16px;
     text-align: left;
     display: block;
 }
-.form-check-input{
+.form-check-input {
     border-color: #060461;
 }
-.font-700{
+.font-700 {
     font-weight: 700;
 }
-.form-control{
+.form-control {
     background: #ffffff;
+}
+.login-btn {
+    cursor: pointer;
 }

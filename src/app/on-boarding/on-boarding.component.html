@@ -26,7 +26,7 @@
       {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
      </div>
      <div class="pb-10">
-        <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']">{{'LOGIN_USING_AADHAR' | translate}}</button>
-        <button type="button" class="register-btn">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
+        <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']" [queryParams]="{aadharLogin: true}" >{{'LOGIN_USING_AADHAR' | translate}}</button>
+        <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{aadharLogin: false}">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
      </div>
   </div>

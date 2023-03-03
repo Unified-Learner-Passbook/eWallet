@@ -1,7 +1,7 @@
 <div class="container text-center pb-0 mt-20 pl-40">
     <div class="d-flex justify-content-between pl-25">
         <div>
-            <div class="head-title">{{'HI' | translate}} <span class="text-blue-shade0">Vivek</span></div>
+            <div class="head-title">{{'HI' | translate}} <span class="text-blue-shade0">{{authService?.currentUser?.studentName}}</span></div>
             <div class="text-gray-100">{{'WELCOME_BACK' | translate}}</div>
         </div>
         <div><img src="assets/images/notify.png" alt=""></div>
@@ -145,16 +145,17 @@
                     <div class="card height-100" (click)="renderCertificate(item)">
                         <div class="card-body">
                             <div class="card-image">
-                                <img [src]="item?.logoUrl" />
+                                <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/headerlogo.png'" />
                             </div>
                             <div class="card-intro-info">
-                                <div class="mb-2 fs-14">{{item?.subject?.programme}}
+                                <div class="mb-2 fs-14">School Enrollment Certificate
                                 </div>
-                                <div class="text-grey fs-12">{{item?.subject?.evaluatingInstitute}}</div>
+                                <div class="text-grey fs-12">{{item?.subject?.schoolName}}</div>
                             </div>
                         </div>
                     </div>
                 </div>
+                <div *ngIf="(credentials$ | async)?.length==0" class="text-center">No records found.</div>
             </div>
         </div>
         <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
