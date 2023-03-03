@@ -63,10 +63,14 @@ export class BrowseDocumentsComponent implements OnInit {
     this.credentials$ = this.dataService.get(payload)
       .pipe(map((credentials) => {
         if (credentials.statusCode === 200 && credentials.message !== "cred_search_error") {
-          credentials.credential.forEach(element => {
-            element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
-          });
-          return credentials.credential;
+          if (credentials?.credential?.length) {
+            credentials?.credential.forEach(element => {
+              element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
+            });
+            return credentials.credential;
+          } else {
+            return [];
+          }
         } else {
           this.authService.doLogout();
         }
