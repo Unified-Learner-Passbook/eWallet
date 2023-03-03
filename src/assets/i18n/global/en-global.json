@@ -239,7 +239,9 @@
     "REGISTRATION_APPROVAL": "Registration Approval",
     "PENDING": "Pending",
     "CONTACT_YOUR_SCHOOL_APPROVAL": "Please contact your school to <br>expedite approval.",
-    "CONTACT_SCHOOL": "Contact School"
+    "CONTACT_SCHOOL": "Contact School",
+    "USERNAME": "Username",
+    "PASSWORD": "Password"
 
 
 }

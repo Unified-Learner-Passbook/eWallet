@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
@@ -14,7 +15,11 @@ export class BrowseDocumentsComponent implements OnInit {
   showFetchedDocuments = false;
   documentTypes: any;
   credentials$: Observable<any>;
-  constructor(private router: Router, public generalService: GeneralService) { }
+  constructor(
+    private router: Router,
+    public generalService: GeneralService,
+    public authService: AuthService
+  ) { }
 
   ngOnInit(): void {
     var search = {
@@ -42,14 +47,16 @@ export class BrowseDocumentsComponent implements OnInit {
   fetchCredentials() {
     const payload = {
       // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
-      "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
+      // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
+      subjectId: this.authService.currentUser.did
     }
-    this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload).pipe(tap((credentials) => {
-      credentials.forEach(element => {
-        element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
-      });
-      return credentials;
-    }));
+    this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
+      .pipe(tap((credentials) => {
+        credentials.forEach(element => {
+          element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
+        });
+        return credentials;
+      }));
   }
 
   renderCertificate(credential: any) {

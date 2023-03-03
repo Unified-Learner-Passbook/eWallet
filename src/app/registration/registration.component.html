@@ -20,36 +20,47 @@
         </div>
     <div>
         <div class="heading2 pb-10 text-center">
-            UlP Learner Wallet
+            ULP Learner Wallet
         </div>
         <div class="pb-20 text-center">
         {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
         </div>
         <div class="h3 mb-3">{{'REGISTER' | translate}}</div>
-        <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">{{'AADHAAR' | translate}}</label>
-            <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">{{'NAME' | translate}}</label>
-            <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">{{'SCHOOL' | translate}}</label>
-            <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">{{'SCHOOL_ID' | translate}}</label>
-            <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
-        </div>
-        <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">{{'PHONE_NO' | translate}}</label>
-            <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
-        </div>
-        
-        <div class="pb-10 text-center">
-            <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button>
-        </div>
+        <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3 pb-10">
+                <label for="aadhar">{{'AADHAAR' | translate}}</label>
+                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"  placeholder="">
+                <p style="color: red" *ngIf="aadhar.invalid && aadhar.touched">Incorrect aadhar Number</p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="name">{{'NAME' | translate}}</label>
+                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder="">
+                <p style="color: red" *ngIf="name.invalid && name.touched">Name is required</p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="school">{{'SCHOOL' | translate}}</label>
+                <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder="">
+                <p style="color: red" *ngIf="school.invalid && school.touched">School is required</p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
+                <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId" placeholder="">
+                <p style="color: red" *ngIf="schoolId.invalid && schoolId.touched">Enter valid School Id</p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="phone">{{'PHONE_NO' | translate}}</label>
+                <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone" placeholder="">
+                <p style="color: red" *ngIf="phone.invalid && phone.touched">Enter valid phone number</p>
+                <!-- <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">  
+                    <p>Enter a valid Mobile</p>
+                </div>   -->
+            </div>
+            
+            <div class="pb-10 text-center">
+                <button type="submit" class="login-btn bg-blue-dark font-600 mt-4" [disabled]="registrationForm.invalid">{{'REGISTER' | translate}}</button>
+                <!-- <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button> -->
+            </div>
+    </form>
     </div>
 </div>
 

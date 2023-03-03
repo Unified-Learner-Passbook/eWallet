@@ -20,22 +20,45 @@
      </div>
      <div>
           <div class="heading2 pb-10">
-            UlP Learner Wallet
+            ULP Learner Wallet
         </div>
         <div class="pb-20">
           {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
         </div>
      </div>
-     <div class="mb-3 pb-10">
-      <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>
+     <form *ngIf="aadharLogin">
+      <div class="mb-3 pb-10">
+        <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>
         <div class="input-group mb-2">
           <input type="text" class="form-control p-4" id="exampleFormControlInput1" placeholder="3456*****">
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
-    </div>
-     <div class="pb-10">
-        <button type="button" class="login-btn bg-blue-dark mt-4"  data-toggle="modal" data-target="#exampleModal">{{'GET_OTP' | translate}}</button>
-     </div>
+      </div>
+      <div class="pb-10">
+        <button type="button" class="login-btn bg-blue-dark mt-4" data-toggle="modal" data-target="#exampleModal">{{'GET_OTP'| translate}}</button>
+      </div>
+    </form>
+
+    <form *ngIf="!aadharLogin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3 pb-10" >
+        <label for="userName">{{'USERNAME' | translate}}</label>
+        <div class="input-group mb-2">
+          <input type="text" class="form-control p-4" id="userName" name="userName" formControlName="userName"  placeholder="">
+        </div>
+        <p style="color: red" class="text-left" *ngIf="userName.invalid && userName.touched">Enter valid Username</p>
+        <label for="password">{{'PASSWORD' | translate}}</label>
+        <div class="input-group mb-2">
+          <input type="password" class="form-control p-4" id="password" name="password" formControlName="password"  placeholder="">
+        </div>
+        <p style="color: red" class="text-left" *ngIf="password.invalid && password.touched">Password is required</p>
+      </div>
+
+      <p style="color: red" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
+      <div class="pb-10">
+        <button type="submit" class="login-btn bg-blue-dark mt-4" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
+      </div>
+    </form>
+    <a class="pb-10" style="color: red" [routerLink]="['/register']">Not registered! Register here</a>
   </div>
 
   <!-- GET OTP POPUP -->

@@ -240,5 +240,7 @@
     "REGISTRATION_APPROVAL": "पंजीकरण स्वीकृति",
     "PENDING": "अनिर्णीत",
     "CONTACT_YOUR_SCHOOL_APPROVAL": "अनुमोदन में तेज़ी लाने के लिए कृपया अपने स्कूल से संपर्क करें।",
-    "CONTACT_SCHOOL": "स्कूल से संपर्क करें"
+    "CONTACT_SCHOOL": "स्कूल से संपर्क करें",
+    "USERNAME": "उपयोगकर्ता नाम",
+    "PASSWORD": "पासवर्ड"
 }
