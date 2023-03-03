@@ -62,7 +62,7 @@ export class BrowseDocumentsComponent implements OnInit {
     }
     this.credentials$ = this.dataService.get(payload)
       .pipe(map((credentials) => {
-        if (credentials.statusCode === 200 && credentials.success) {
+        if (credentials.statusCode === 200 && credentials.message !== "cred_search_error") {
           credentials.credential.forEach(element => {
             element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
           });
