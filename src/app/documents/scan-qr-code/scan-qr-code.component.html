@@ -2,7 +2,9 @@
     <i onClick="history.go(-1); return false;" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
     <!-- {{'SCAN_THE_QR_CODE'|translate}} -->
 </h6>
-<app-global-header></app-global-header>
+<div class="container text-center pb-0 mt-20 wallet">
+    <app-global-header></app-global-header>
+</div>
 <div class="scanner">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
 </div>
