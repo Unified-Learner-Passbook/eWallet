@@ -1,7 +1,6 @@
 .title {
   font-weight: 500;
   font-size: 20px;
-
   margin-top: 40px;
 }
 .sub-title {
@@ -16,44 +15,10 @@
 th{
   text-align: center;
   color: #ffffff;
-  background: #1E2060;
+  background: var(--secondaryColor);
   padding: 7px;
   border: none;
 }
 td{
   padding: 7px;
 }
-// .table-property {
-//   //font-family: Poppins;
-//   border-collapse: collapse;
-
-//   color: #000000;
-//   margin-left: auto;
-//   margin-right: auto;
-//   margin-top: 40px;
-// }
-
-// td,
-// th {
-//   //border: 1px solid #dddddd;
-//   text-align: center;
-//   padding: 8px;
-//   color: #373737;
-// }
-// .register-button {
-//   height: 3rem;
-//   width: 16em;
-//   border-radius: 5px;
-//   margin-top: 4rem;
-//   font-weight: 600;
-//   background: #1e2060;
-//   font-size: 16px;
-//   color: white;
-//   margin-left: 520px;
-// }
-// .th,
-// td,
-// input {
-//   font-family: Poppins;
-//   margin-left: 5px;
-// }

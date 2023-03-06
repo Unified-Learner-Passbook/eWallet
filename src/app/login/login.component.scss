@@ -7,13 +7,13 @@
     }
 }
 label {
-    color: #494949;
+    color: var(--primaryTextColor);
     font-size: 16px;
     text-align: left;
     display: block;
 }
 .form-check-input {
-    border-color: #060461;
+    border-color: var(--primaryColor);
 }
 .font-700 {
     font-weight: 700;

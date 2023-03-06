@@ -130,6 +130,7 @@ import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
 import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { GlobalHeaderComponent } from './global-header/global-header.component';
 
 @NgModule({
   declarations: [
@@ -172,7 +173,8 @@ import { RegistrationComponent } from './registration/registration.component';
     ToolbarComponent,
     ManageEnrollmentConflictComponent,
     SetUsernameComponent,
-    RegistrationComponent
+    RegistrationComponent,
+    GlobalHeaderComponent
   ],
   imports: [
     BrowserModule,

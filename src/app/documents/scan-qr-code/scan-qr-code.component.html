@@ -2,22 +2,7 @@
     <i onClick="history.go(-1); return false;" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
     <!-- {{'SCAN_THE_QR_CODE'|translate}} -->
 </h6>
-<div class="container text-center pb-0 mt-20">
-    <div class="row">
-        <div class="col-12 col-md-2 text-center">
-            <div>
-                <img src="assets/images/headerlogo.png" class="img-fluid" alt="...">
-            </div>
-        </div>
-        <div class="col-12 col-md-10 text-center">
-            <h5 class="card-title fs-14 font-600">
-                <span class="text-gray-0 fs-12">DEPARTMENT OF</span> <br>
-                <span class="fs-16"> Basic Education</span><br>
-                <span class="text-orange fs-10">GOVERNMENT OF UTTAR PRADESH</span>
-            </h5>
-        </div>
-    </div>
-</div>
+<app-global-header></app-global-header>
 <div class="scanner">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
 </div>
