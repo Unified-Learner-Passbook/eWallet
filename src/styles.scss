@@ -22,17 +22,6 @@
 @import '~bootstrap/scss/bootstrap';
 @import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
 :root {
-    // SB-RC
-    // --primaryColor: #1987B6;
-    // --secondaryColor: #0098AB;
-    // --bodyBackground: #F6F8FC;
-    // --cardBackground: #FFFFFF;
-    // --tagsBackground: #8D9091;
-    // --navLabelColor: #1987B6;
-    // --headerColor: #FFFFFF;
-    // --headerLinkColor: #0098AB;
-    // --primaryTextColor: #000000;
-    // --secondaryTextColor: #8D9091;
     // SL
     --primaryColor: #060461;
     --secondaryColor: #4A227C;
@@ -42,7 +31,7 @@
     --navLabelColor: #B275FF;
     --headerColor: #4A227C;
     --headerLinkColor: #F4ECFF;
-    --primaryTextColor: #000000;
+    --primaryTextColor: #494949;
     --secondaryTextColor: #8D9091;
     //   dark
     // --primaryColor: #F07D00;
@@ -60,14 +49,12 @@
     --secondarybgColor: var(--secondaryColor);
     --secondarytextColor: var(--bodyBackground);
     --primarybgColor: var(--primaryColor);
-    --tagstextColor: var(--secondaryColor);
     --linkColor: var(--navLabelColor);
     --textWhite: var(--secondarytextColor);
     /*mm
   --secondarybgColor:#4A227C;
   --secondarytextColor:#F6F8FC;
   --primarybgColor:#F07D00;
-  --tagstextColor:#1987B6;
   --linkColor:#4A227C;
   --textBlack:#000000;
   --textWhite:#ffffff;*/
@@ -75,10 +62,6 @@
 
 
 /* PK changes for - theme support */
-
-.tagstextColor {
-    color: var(--primarybgColor) !important;
-}
 
 .headerTitleColor {
     color: var(--secondaryColor) !important;
@@ -514,10 +497,6 @@ formly-field {
 }
 
 // discovery page
-.selected-list .c-list .c-token {
-    background-color: #6495ed99 !important;
-}
-
 .dropdown-list.tagToBody {
     position: fixed;
     width: 400px !important;
@@ -626,28 +605,6 @@ formly-autocomplete-type .ng-select {
     color: var(--secondarytextColor) !important;
     background-color: var(--primarybgColor) !important;
     border-color: var(--primarybgColor) !important;
-}
-
-
-/* Tags */
-
-.tags-list {
-    margin-top: 10px;
-    ul {
-        margin: 0;
-        padding: 0;
-        li {
-            display: inline-block;
-            list-style: none;
-            font-size: 11px;
-            background-color: var(--secondarybgColor) !important;
-            padding: 5px 7px;
-            border-radius: 5px;
-            margin-right: 5px;
-            margin-bottom: 5px;
-            color: var(--tagstextColor) !important;
-        }
-    }
 }
 
 
@@ -964,13 +921,13 @@ label {
     font-size: 18px;
 }
 .bg-blue-dark{
-    background: #060461 !important;
+    background: var(--primaryColor) !important;
 }
 .heading2{
     font-weight: 600;
     font-size: 32.8571px;
     line-height: 49px;
-    color: #060461;
+    color: var(--primaryColor);
 }
 .heading3{
     font-family: 'Gilroy-Bold';
