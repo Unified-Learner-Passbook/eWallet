@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
       }
 
       this.authService.signUp(payload).subscribe((res) => {
-        if (res.statusCode === 200 && res.success) {
+        if (res.success) {
           this.toast.success("", "User Registered successfully!");
           this.router.navigate(['/login']);
         } else {

@@ -5,6 +5,7 @@ import { map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
   selector: 'app-browse-documents',
@@ -20,7 +21,8 @@ export class BrowseDocumentsComponent implements OnInit {
     private router: Router,
     public generalService: GeneralService,
     public authService: AuthService,
-    private dataService: DataService
+    private dataService: DataService,
+    private toastMessage: ToastMessageService
   ) { }
 
   ngOnInit(): void {
@@ -61,18 +63,25 @@ export class BrowseDocumentsComponent implements OnInit {
       }
     }
     this.credentials$ = this.dataService.get(payload)
-      .pipe(map((credentials) => {
-        if (credentials.statusCode === 200 && credentials.message !== "cred_search_error") {
-          if (credentials?.credential?.length) {
-            credentials?.credential.forEach(element => {
+      .pipe(map((res: any) => {
+        if (res.success) {
+          if (res?.credential?.length) {
+            res?.credential.forEach(element => {
               element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
             });
-            return credentials.credential;
+            return res.credential;
           } else {
+            if (res.message) {
+              this.toastMessage.error("", res.message);
+            }
             return [];
           }
-        } else {
+        } else if (res.status === 'keycloak_student_token_error' || res.status === 'student_token_no_found') {
+          this.toastMessage.error("", res.message);
           this.authService.doLogout();
+        } else {
+          this.toastMessage.error("", res.message);
+          return [];
         }
       }));
   }

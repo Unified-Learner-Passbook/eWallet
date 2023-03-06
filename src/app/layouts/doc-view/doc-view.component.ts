@@ -60,7 +60,7 @@ export class DocViewComponent implements OnInit {
             if (this.canGoBack) {
                 this.location.back();
             } else {
-                this.router.navigate(['..'], { relativeTo: this.route });
+                this.router.navigate(['/User/documents/browse']);
             }
         }
     }
@@ -341,6 +341,16 @@ export class DocViewComponent implements OnInit {
 
     goBack() {
         window.history.go(-1);
+    }
+
+    downloadCertificate(url) {
+        let link = document.createElement("a");
+        link.href = url;
+        link.download = 'certificate.pdf';
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 }
 
