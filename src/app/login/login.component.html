@@ -1,31 +1,5 @@
 <div class="container text-center pb-0 mt-20">
-    <div class="row">
-      <div class="col-12">
-        <div class="mb-3">
-          <div class="row g-0 p-4 mt-20">
-            <div class="col-3 col-md-2 px-0">
-                  <img src="assets/images/headerlogo.png" class="img-fluid pb-40" alt="...">
-            </div>
-            <div class="col-8 col-md-10 text-left px-0 br-l h-62">
-                <h5 class="card-title fs-14 font-600">
-                <div class="text-gray-0 fs-14">DEPARTMENT OF</div>
-                <div class="fs-22 heading3"> Basic Education</div>
-                 
-                 <div class="text-orange fs-12">GOVERNMENT OF UTTAR PRADESH</div> 
-                </h5>
-            </div>
-          </div>
-    </div>
-      </div>
-     </div>
-     <div>
-          <div class="heading2 pb-10">
-            AVSAR Learner Wallet
-        </div>
-        <div class="pb-20">
-          {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
-        </div>
-     </div>
+    <app-global-header></app-global-header>
      <form *ngIf="aadharLogin">
       <div class="mb-3 pb-10">
         <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>

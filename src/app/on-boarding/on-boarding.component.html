@@ -1,30 +1,8 @@
   <div class="container text-center pb-0 mt-20 wallet">
-    <div class="row">
-      <div class="col-12">
-            <div class="row g-0 px-4 mt-20">
-              <div class="col-3 col-md-2 px-0 pr-2">
-                    <img src="assets/images/headerlogo.png" class="img-fluid pb-40" alt="...">
-              </div>
-              <div class="col-8 col-md-10 text-left px-0 br-l h-62">
-                  <h5 class="card-title fs-14 font-600">
-                  <div class="text-gray-0 fs-14">DEPARTMENT OF</div>
-                  <div class="fs-22 heading3"> Basic Education</div>
-                   
-                   <div class="text-orange fs-12">GOVERNMENT OF UTTAR PRADESH</div> 
-                  </h5>
-              </div>
-            </div>
-      </div>
-     </div>
-     <div>
+   <app-global-header></app-global-header>
+   <div>
         <img src="assets/images/onboard3.png" alt="">
-     </div>
-     <div class="heading2 pb-10">
-      AVSAR Learner Wallet
-     </div>
-     <div class="pb-20">
-      {{'WELCOME_TO_YOUR_ACADEMIC_WALLET' | translate}}
-     </div>
+    </div>
      <div class="pb-10">
         <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']" [queryParams]="{aadharLogin: true}" >{{'LOGIN_USING_AADHAR' | translate}}</button>
         <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{aadharLogin: false}">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
