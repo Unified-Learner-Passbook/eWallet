@@ -242,5 +242,10 @@
     "CONTACT_YOUR_SCHOOL_APPROVAL": "अनुमोदन में तेज़ी लाने के लिए कृपया अपने स्कूल से संपर्क करें।",
     "CONTACT_SCHOOL": "स्कूल से संपर्क करें",
     "USERNAME": "उपयोगकर्ता नाम",
-    "PASSWORD": "पासवर्ड"
+    "PASSWORD": "पासवर्ड",
+    "SIGN_IN_USING_USERNAME_AND_PASSWORD": "उपयोगकर्ता नाम और पासवर्ड का उपयोग करके साइन इन करें",
+    "SIGN_IN_USING_AADHAR_AND_OTP": "आधार और ओटीपी का उपयोग करके साइन इन करें",
+    "LOGGED_IN_SUCCESSFULLY": "सफलतापूर्वक लॉग इन हो चुका है!",
+    "USER_REGISTERED_SUCCESSFULLY": "उपयोगकर्ता सफलतापूर्वक पंजीकृत हो चुका है!",
+    "STUDENT_ID": "विद्यार्थी आईडी"
 }

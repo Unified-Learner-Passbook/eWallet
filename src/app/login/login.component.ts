@@ -53,7 +53,6 @@ export class LoginComponent implements OnInit {
       this.authService.signIn(payload).subscribe((res: any) => {
         if (res.success) {
           this.toastMessage.success("", "Logged In Successfully!");
-          // this.authService.currentUser = res.data[0];
 
           if (res?.token) {
             localStorage.setItem('access_token', res.token);

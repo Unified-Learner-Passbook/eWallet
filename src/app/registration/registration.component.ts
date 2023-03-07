@@ -16,6 +16,7 @@ export class RegistrationComponent implements OnInit {
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     school: new FormControl(null, [Validators.required]),
     schoolId: new FormControl(null, [Validators.required]),
+    studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
   });
 
@@ -44,6 +45,11 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('schoolId');
   }
 
+  get studentId() {
+    return this.registrationForm.get('studentId');
+  }
+
+
   get phone() {
     return this.registrationForm.get('phone');
   }
@@ -53,10 +59,11 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
 
       const payload = {
-        "aadhaarid": this.registrationForm.value.aadhar,
+        "aadhaarid": this.registrationForm.value.aadhar, //unique
         "studentname": this.registrationForm.value.name,
         "schoolname": this.registrationForm.value.school,
-        "studentid": this.registrationForm.value.schoolId,
+        "schoolid": this.registrationForm.value.schoolId,
+        "studentid": this.registrationForm.value.studentId, // unique username abc1 alphanumeric
         "phoneno": this.registrationForm.value.phone
       }
 
