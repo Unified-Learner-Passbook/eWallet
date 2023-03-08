@@ -1,5 +1,5 @@
 <div class="container text-center pb-0 mt-20">
-    <app-global-header></app-global-header>
+    <app-global-header [showTitle]="true"></app-global-header>
      <form *ngIf="aadharLogin">
       <div class="mb-3 pb-10">
         <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>
@@ -8,6 +8,7 @@
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
       </div>
+      <p style="color: red" (click)="aadharLogin = !aadharLogin">Sign in using Username and Password</p>
       <div class="pb-10">
         <button type="button" class="login-btn bg-blue-dark mt-4" data-toggle="modal" data-target="#exampleModal">{{'GET_OTP'| translate}}</button>
       </div>

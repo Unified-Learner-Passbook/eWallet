@@ -27,6 +27,7 @@ import { LoginComponent } from './login/login.component';
 import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/manage-enrollment-conflict.component';
 import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
+import { AuthenticationGuard } from './utility/authentication.guard';
 const routes: Routes = [
 
 
@@ -91,14 +92,14 @@ const routes: Routes = [
   { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/detail/:type/:id', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/detail/:type/:id/view', component: DocViewComponent, canActivate: [AuthGuard] },
-  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false } },
+  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
   // { path: ':entity/documents/browse', component: BrowseDocumentsComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/browse', component: BrowseDocumentsComponent, data: { showToolbar: true } },
+  { path: ':entity/documents/browse', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
   { path: ':entity/documents/:type/add/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/add/:type', component: AddDocumentComponent, canActivate: [AuthGuard] },
   { path: ':entity/documents/add/:type/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/scan/vc', component: ScanQrCodeComponent, canActivate: [AuthGuard] },
-  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: false } },
+  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
   // { path: 'document/detail', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: 'document/view/:id', component: DocViewComponent, canActivate: [AuthGuard] },
   { path: 'discovery', component: SearchComponent },
