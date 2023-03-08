@@ -983,3 +983,10 @@ label {
 ngx-extended-pdf-viewer .pdfViewer .page {
     border: unset !important;
 }
+.btn-none{
+    background: #fff;
+    border: solid 1px #ccc;
+    i{
+        color: #ccc;
+    }
+}

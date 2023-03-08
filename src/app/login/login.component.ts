@@ -12,6 +12,9 @@ import { ToastMessageService } from '../services/toast-message/toast-message.ser
 export class LoginComponent implements OnInit {
 
   aadharLogin = false;
+  public showPassword: boolean = false;
+  show = false;
+
   loginForm = new FormGroup({
     userName: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     password: new FormControl(null, [Validators.required, Validators.minLength(4)])
@@ -33,6 +36,11 @@ export class LoginComponent implements OnInit {
         this.aadharLogin = false;
       }
     });
+  }
+
+  public togglePasswordVisibility(): void {
+    this.showPassword = !this.showPassword;
+    this.show = !this.show;
   }
 
   get userName() {
