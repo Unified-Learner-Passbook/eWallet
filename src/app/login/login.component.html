@@ -8,7 +8,7 @@
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
       </div>
-      <p style="color: red" (click)="aadharLogin = !aadharLogin">Sign in using Username and Password</p>
+      <p  (click)="aadharLogin = !aadharLogin">Sign in using Username and Password</p>
       <div class="pb-10">
         <button type="button" class="login-btn bg-blue-dark mt-4" data-toggle="modal" data-target="#exampleModal">{{'GET_OTP'| translate}}</button>
       </div>
@@ -32,12 +32,12 @@
         <p class="text-left text-red" *ngIf="password.invalid && password.touched">Password is required</p>
       </div>
 
-      <p class="text-red" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
+      <p class="text-secondary-color" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
       <div class="pb-10">
-        <button type="submit" class="login-btn bg-blue-dark mt-2" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
+        <button type="submit" class="login-btn bg-blue-dark" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
       </div>
     </form>
-    <a class="pb-10 text-red" [routerLink]="['/register']">Not registered! Register here</a>
+    <a class="pb-10 text-secondary-color" [routerLink]="['/register']">Not registered! <span class="text-underline">Register here</span></a>
   </div>
 
   <!-- GET OTP POPUP -->
