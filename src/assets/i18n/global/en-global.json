@@ -241,7 +241,10 @@
     "CONTACT_YOUR_SCHOOL_APPROVAL": "Please contact your school to <br>expedite approval.",
     "CONTACT_SCHOOL": "Contact School",
     "USERNAME": "Username",
-    "PASSWORD": "Password"
-
-
+    "PASSWORD": "Password",
+    "SIGN_IN_USING_USERNAME_AND_PASSWORD": "Sign in using Username and Password",
+    "SIGN_IN_USING_AADHAR_AND_OTP": "Sign in using Aadhar and OTP",
+    "LOGGED_IN_SUCCESSFULLY": "Logged In Successfully!",
+    "USER_REGISTERED_SUCCESSFULLY": "User Registered successfully!",
+    "STUDENT_ID": "Student Id"
 }

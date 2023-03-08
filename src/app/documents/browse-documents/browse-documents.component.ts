@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
   selector: 'app-browse-documents',
@@ -18,7 +20,9 @@ export class BrowseDocumentsComponent implements OnInit {
   constructor(
     private router: Router,
     public generalService: GeneralService,
-    public authService: AuthService
+    public authService: AuthService,
+    private dataService: DataService,
+    private toastMessage: ToastMessageService
   ) { }
 
   ngOnInit(): void {
@@ -45,17 +49,40 @@ export class BrowseDocumentsComponent implements OnInit {
   }
 
   fetchCredentials() {
+    // const payload = {
+    //   // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
+    //   // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
+    //   subjectId: this.authService.currentUser.did
+    // }
+    // this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
     const payload = {
-      // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
-      // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
-      subjectId: this.authService.currentUser.did
+      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials',
+      header: {
+        Accept: 'application/json',
+        Authorization: 'Bearer ' + this.authService.getToken()
+      }
     }
-    this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
-      .pipe(tap((credentials) => {
-        credentials.forEach(element => {
-          element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
-        });
-        return credentials;
+    this.credentials$ = this.dataService.get(payload)
+      .pipe(map((res: any) => {
+        if (res.success) {
+          if (res?.credential?.length) {
+            res?.credential.forEach(element => {
+              element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
+            });
+            return res.credential;
+          } else {
+            if (res.message) {
+              this.toastMessage.error("", res.message);
+            }
+            return [];
+          }
+        } else if (res.status === 'keycloak_student_token_error' || res.status === 'student_token_no_found') {
+          this.toastMessage.error("", res.message);
+          this.authService.doLogout();
+        } else {
+          this.toastMessage.error("", res.message);
+          return [];
+        }
       }));
   }
 
