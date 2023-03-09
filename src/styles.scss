@@ -790,6 +790,9 @@ label {
 }
 
 .card {
+    padding: 15px 0;
+    margin-bottom: 20px;
+
     .card-body {
         display: flex;
     }
@@ -815,7 +818,7 @@ label {
     }
 }
 .card{
-    border-radius: 1rem;
+    border-radius: 22px !important;
 }
 .img-circle{
     width: 3.4rem;
@@ -982,4 +985,17 @@ label {
 }
 ngx-extended-pdf-viewer .pdfViewer .page {
     border: unset !important;
+}
+.btn-none{
+    background: #fff;
+    border: solid 1px #ccc;
+    i{
+        color: #ccc;
+    }
+}
+.text-secondary-color{
+    color: var(--secondaryTextColor);
+}
+.text-underline{
+    text-decoration: underline;
 }
