@@ -5,8 +5,14 @@
 <!-- <div class="container text-center pb-0 mt-20 wallet">
     <app-global-header></app-global-header>
 </div> -->
+<img src="assets/images/camera.png" alt="" class="img-center">
+
 <div class="scanner">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
+</div>
+<div class="text-center mt-5">
+    <img src="assets/images/flash.png" alt="" class="pr-4">
+    <img src="assets/images/frontcamera.png" alt="">
 </div>
 <h5>{{qrString}}</h5>
 <div class="scan-result">
