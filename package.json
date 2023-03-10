@@ -14,6 +14,7 @@
     "private": true,
     "proxy": "https://elocker.xiv.in",
     "dependencies": {
+        "jquery": "^3.5.1",
         "@ajsf/bootstrap4": "^0.4.0-beta.1",
         "@altack/quar": "0.0.7",
         "@angular/animations": "^10.0.1",
@@ -44,6 +45,8 @@
         "@ngx-formly/material": "^5.10.22",
         "@ngx-translate/core": "^13.0.0",
         "@ngx-translate/http-loader": "^7.0.0",
+        "@project-sunbird/client-services": "4.9.1",
+        "@project-sunbird/telemetry-sdk": "^0.0.29",
         "@zxing/browser": "0.0.10",
         "@zxing/library": "^0.18.6",
         "@zxing/ngx-scanner": "3.3.0",
