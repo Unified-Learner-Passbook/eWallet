@@ -247,5 +247,20 @@
     "SIGN_IN_USING_AADHAR_AND_OTP": "आधार और ओटीपी का उपयोग करके साइन इन करें",
     "LOGGED_IN_SUCCESSFULLY": "सफलतापूर्वक लॉग इन हो चुका है!",
     "USER_REGISTERED_SUCCESSFULLY": "उपयोगकर्ता सफलतापूर्वक पंजीकृत हो चुका है!",
-    "STUDENT_ID": "विद्यार्थी आईडी"
+    "STUDENT_ID": "विद्यार्थी आईडी",
+
+
+    "SIGN_IN_AADHAR_OTP":"आधार और ओटीपी का उपयोग करके साइन इन करें",
+    "USER_NOT_REGISTERD":"पंजीकृत नहीं है! यहां रजिस्टर करें",
+    "SIGN_IN_USERNAME_PASSWORD":"उपयोगकर्ता नाम और पासवर्ड का उपयोग करके साइन इन करें",
+    "ENTER_VALID_USERNAME":"मान्य उपयोगकर्ता नाम दर्ज करें",
+    "PASSWORD_REQUIRED":"पासवर्ड की आवश्यकता है",
+    "INCORRECT_AADHAR":"यह 12 अंकों की संख्या होनी चाहिए",
+    "NAME_REQUIRED":"नाम आवश्यक है",
+    "SCHOOL_REQUIRED":"विद्यालय आवश्यक है",
+    "ENTER_SCHOOL_ID":"वैध स्कूल आईडी दर्ज करें",
+    "ENTER_STUDENT_ID":"वैध छात्र आईडी दर्ज करें",
+    "ENTER_PHONE_NUMBER":"यह 10 अंकों की संख्या होनी चाहिए",
+    "NOT_REGISTERED":"पंजीकृत नहीं है!",
+    "REGISTER_HERE":"यहां रजिस्टर करें"
 }

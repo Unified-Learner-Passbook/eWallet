@@ -5,13 +5,13 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 pb-10">
                 <label for="aadhar">{{'AADHAAR' | translate}}</label>
-                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"  placeholder="">
-                <p class="text-red" *ngIf="aadhar.invalid && aadhar.touched">Incorrect aadhar Number</p>
+                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"  placeholder=""  maxLength="12"  (keypress)="OnlyNumbersAllowed($event)">
+                <p class="text-red" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
-                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder="">
-                <p class="text-red" *ngIf="name.invalid && name.touched">Name is required</p>
+                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder=""  (keypress)="OnlyAlphabetsAllowed($event)">
+                <p class="text-red" *ngIf="name.invalid && name.touched">{{'NAME_REQUIRED' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}</label>
@@ -22,22 +22,22 @@
                     <option>VITS</option>
                   </select>
                 <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
-                <p class="text-red" *ngIf="school.invalid && school.touched">School is required</p>
+                <p class="text-red" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId" placeholder="">
-                <p class="text-red" *ngIf="schoolId.invalid && schoolId.touched">Enter valid School Id</p>
+                <p class="text-red" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="studentId">{{'STUDENT_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId" placeholder="">
-                <p class="text-red" *ngIf="studentId.invalid && studentId.touched">Enter valid Student Id</p>
+                <p class="text-red" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="phone">{{'PHONE_NO' | translate}}</label>
-                <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone" placeholder="">
-                <p class="text-red" *ngIf="phone.invalid && phone.touched">Enter valid phone number</p>
+                <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone" placeholder=""  maxLength="10" (keypress)="OnlyNumbersAllowed($event)">
+                <p class="text-red" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate }}</p>
                 <!-- <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">  
                     <p>Enter a valid Mobile</p>
                 </div>   -->
