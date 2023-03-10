@@ -74,7 +74,7 @@ export class DocViewComponent implements OnInit {
         // });
 
         this.getTemplate().subscribe((res) => {//clf16wnze0002tj14mv1smo1w
-            this.getPDF(res?.template);
+            this.getPDF(res?.api_response?.template);
         });
     }
 
@@ -83,7 +83,7 @@ export class DocViewComponent implements OnInit {
     }
 
     getTemplate(id: string = 'clepswdx30000tj15nokg4q46'): Observable<any> { // 'cleenrrni0000tj15s2y1o2vr'
-        return this.generalService.getData(`https://ulp.uniteframework.io/cred-schema/rendering-template?id=${id}`, true)
+        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplate/${id}`, true)
     }
 
     getPDF(template) {
