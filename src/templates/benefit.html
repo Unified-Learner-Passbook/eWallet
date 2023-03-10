@@ -1,0 +1,98 @@
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Benefit Certificate</title>
+    <style>
+      * {
+        margin: 1px;
+        padding: 0;
+        box-sizing: border-box
+      }
+
+      .fs-20 {
+        font-size: 20px
+      }
+
+      .py-20 {
+        padding: 20px 0
+      }
+
+      .title {
+        font-style: normal;
+        font-weight: 700;
+        font-size: 15px;
+        line-height: 18px;
+        padding: 12px 0
+      }
+
+      table {
+        width: 100%;
+        border: 1px solid #100e30;
+        border-radius: 7px
+      }
+
+      th {
+        background: #100e30;
+        text-align: center;
+        border-bottom: solid 8px #4239ca;
+        color: #fff;
+        border-radius: 3px
+      }
+
+      td {
+        padding: 10px 5px;
+        border-bottom: solid 1px #ccc
+      }
+
+      td:first-child {
+        color: #464646
+      }
+
+      td:last-child {
+        color: #0e0d0d
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="center">
+      <table cellspacing="0" cellpadding="0">
+        <tr>
+          <th class="title" colspan="2">Benefit Certificate</th>
+        </tr>
+        <tr>
+          <td>Student Name</td>
+          <td>{{studentName}}</td>
+        </tr>
+        <tr>
+          <td>Student ID</td>
+          <td>{{studentId}}</td>
+        </tr>
+        <tr>
+          <td>Benefit Provider</td>
+          <td>{{benefitProvider}}</td>
+        </tr>
+        <tr>
+          <td>Scheme Name</td>
+          <td>{{schemeName}}</td>
+        </tr>
+        <tr>
+          <td>Scheme ID</td>
+          <td>{{schemeId}}</td>
+        </tr>
+        <tr>
+          <td>Transaction Amount</td>
+          <td>{{transactionAmount}}</td>
+        </tr>
+        <tr>
+          <td>Transaction ID</td>
+          <td>{{transactionId}}</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+
+</html>

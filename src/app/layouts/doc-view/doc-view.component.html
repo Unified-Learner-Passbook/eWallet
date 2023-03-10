@@ -64,7 +64,7 @@
     </div>
   </ng-template>
 
-  <ng-template [ngIf]="extension === 'pdf'">
+  <ng-container *ngIf="extension === 'pdf'">
     <div class="text-center img-mb">
       <!-- <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer> -->
       <ngx-extended-pdf-viewer
@@ -72,7 +72,11 @@
         [src]="docUrl"
       ></ngx-extended-pdf-viewer>
     </div>
-  </ng-template>
+  </ng-container>
+
+  <div class="mt-5 text-center" *ngIf="docUrl">
+    <button class="btn btn-primary min-220" (click)="downloadCertificate(docUrl)">Download Certificate</button>
+</div>
 
   <ng-template [ngIf]="docDetails" class="mt-4">
     <div style="text-align: center; margin-top: 100px">
