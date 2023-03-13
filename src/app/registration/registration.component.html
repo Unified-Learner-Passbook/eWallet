@@ -15,7 +15,7 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}</label>
-                <select class="form-control" id="school" formControlName="school">
+                <select class="form-select p-2" id="school" formControlName="school">
                     <option>SNVM</option>
                     <option>CCEM</option>
                     <option>BIT</option>
@@ -24,7 +24,7 @@
                 <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
                 <p class="text-red" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate }}</p>
             </div>
-            <div class="mb-3 pb-10">
+                 <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId" placeholder="">
                 <p class="text-red" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' | translate }}</p>
