@@ -716,7 +716,7 @@ label {
 }
 
 .search-area .fa-search {
-    color: var(--primaryTextColor) !important;
+    color: #a39f9f !important;
 }
 
 .header-fixed-height{
@@ -820,11 +820,12 @@ label {
     border-radius: 22px !important;
 }
 .img-circle{
-    width: 3.4rem;
-    height: 3.4rem;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     background: #F7F6FC;
     line-height: 3.4rem;
+    text-align: center;
 }
 .text-circle{
     width: 1.5rem;
@@ -855,7 +856,7 @@ label {
     font-size: 10px;
 }
 .fs-16{
-    font-size: 16px;
+    font-size: 15px;
 }
 .pb-0{
     padding-bottom: 0 !important;
@@ -878,18 +879,19 @@ label {
     text-align: left;
 }
 .card-title{
-    padding-left: 10px !important;
+    padding-left: 21px !important;
+    text-align: left;
 }
 .float-left{
     float: left;
 }
 .nav-item{
-    padding: 35px 15px 10px;
+    padding: 30px 39px 10px;
 }
 .ham-menu{
     position: absolute;
-    top: 23px;
-    left: 12px;
+    top: -4px;
+    left: 0px;
     z-index: 9;
     border-radius: 14px;
     background: #f6f8fc;
@@ -912,6 +914,8 @@ label {
     color: #fff;
     padding: 10px 15px;
     font-size: 18px;
+    border: none;
+    cursor: pointer;
 }
 .register-btn{
     background: #FFFFFF;
@@ -921,6 +925,7 @@ label {
     margin-top: 19px;
     padding: 10px 15px;
     font-size: 18px;
+    border: none;
 }
 .bg-blue-dark{
     background: var(--primaryColor) !important;
