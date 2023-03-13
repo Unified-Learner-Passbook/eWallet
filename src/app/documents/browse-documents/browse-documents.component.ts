@@ -67,7 +67,8 @@ export class BrowseDocumentsComponent implements OnInit {
         if (res.success) {
           if (res?.credential?.length) {
             res?.credential.forEach(element => {
-              element.subject = element.subject ? JSON.parse(element.subject) : element.subject;
+              element.subject = element.subject ? JSON.parse(element.subject) : '';
+              element.credential_schema = element.credential_schema ? JSON.parse(element.credential_schema) : ''
             });
             return res.credential;
           } else {
@@ -89,6 +90,7 @@ export class BrowseDocumentsComponent implements OnInit {
   renderCertificate(credential: any) {
     const certCred = { ...credential };
     certCred.subject = JSON.stringify(certCred.subject);
+    certCred.credential_schema = JSON.stringify(certCred.credential_schema);
     const navigationExtras: NavigationExtras = {
       state: certCred
     };

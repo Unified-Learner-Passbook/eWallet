@@ -130,9 +130,9 @@
                                 <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/headerlogo.png'" />
                             </div>
                             <div class="card-intro-info">
-                                <div class="mb-2 fs-14">School Enrollment Certificate
+                                <div class="mb-2 fs-14">{{item?.credential_schema?.name}}
                                 </div>
-                                <div class="text-grey fs-12">{{item?.subject?.schoolName}}</div>
+                                <div class="text-grey fs-12">{{item?.credential_schema?.schema?.description}}</div>
                             </div>
                         </div>
                     </div>
