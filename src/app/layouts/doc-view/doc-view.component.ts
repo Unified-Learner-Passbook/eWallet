@@ -73,7 +73,7 @@ export class DocViewComponent implements OnInit {
         //     this.getPDF(res?.schema, res.template?.template);
         // });
 
-        this.getTemplate().subscribe((res) => {//clf16wnze0002tj14mv1smo1w
+        this.getTemplate('clf16wnze0002tj14mv1smo1w').subscribe((res) => {//clf16wnze0002tj14mv1smo1w
             this.getPDF(res?.api_response?.template);
         });
     }

@@ -157,7 +157,7 @@
                 <div *ngFor="let docs of documents; index as i;" class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2">
                     <!-- {{docs[i].osid}} -->
                     <a [routerLink]="['detail',docs[0].type,docs[0].osid]">
-                        <div class="card height-100">
+                        <div class="card">
                             <div class="card-body">
                                 <!-- <div class="row">
                                     <div class="col-sm-6"> -->
@@ -257,7 +257,7 @@
                         <ng-template ngFor let-item [ngForOf]="documentTypes" let-i="index">
                             <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2">
                                 <a [routerLink]="['browse','add',item.osid]">
-                                    <div class="card height-100">
+                                    <div class="card">
                                         <div class="card-body">
                                             <div class="card-intro-info">
                                                 <div class="card-title mb-2 fs-14">{{item.title}}
