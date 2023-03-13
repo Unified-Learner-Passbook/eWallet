@@ -1,7 +1,8 @@
 <div class="container text-center pb-0 mt-20 pl-40">
     <div class="d-flex justify-content-between pl-25">
         <div>
-            <div class="head-title">{{'HI' | translate}} <span class="text-blue-shade0">{{authService?.currentUser?.studentName}}</span></div>
+            <div class="head-title">{{'HI' | translate}} <span
+                    class="text-blue-shade0">{{authService?.currentUser?.studentName}}</span></div>
             <div class="text-gray-100">{{'WELCOME_BACK' | translate}}</div>
         </div>
         <div><img src="assets/images/notify.png" alt=""></div>
@@ -75,19 +76,6 @@
     </div>
 </div>
 <div class="container mt-2" *ngIf="showFetchedDocuments">
-    <!-- <h6 class="font-weight-bold mt-3"><i onClick="history.go(-1); return false;" class="fas fa-chevron-left mr-2" aria-hidden="true"></i>{{'BROWSE_ISSUED_DOCUMENTS'|translate}}</h6>
-     <p class="p14 mt-3 mb-2">{{'SELECT_AND_DOWNLOAD_ISSUED_DOCUMENTS'|translate}}</p>
-    <ul class="nav nav-tabs mb-3 fs-14" id="myTab" role="tablist">
-        <li class="nav-item" role="presentation">
-            <button class="nav-link active fs-14" id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">{{'BY_DOCUMENT'|translate}}</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link fs-14" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button" role="tab" aria-controls="profile" aria-selected="false">{{'BY_ISSUER'|translate}}</button>
-        </li>
-        <li class="nav-item" role="presentation">
-            <button class="nav-link fs-14" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact" type="button" role="tab" aria-controls="contact" aria-selected="false">{{'BY_CATEGORY'|translate}}</button>
-        </li>
-    </ul> -->
     <div class="row">
         <div class="col-6 font-600">{{'ISSUED_DOCUMENTS' | translate}}</div>
         <div class="col-6 text-right"><a href="#" class="text-blue-shade0 font-600">{{'VIEW_ALL' | translate}}</a></div>
@@ -104,43 +92,32 @@
                 </div>
             </div>
             <div class="row">
-                <!-- <ng-template ngFor let-item [ngForOf]="documentTypes" let-i="index">
-                    <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2">
-                        <a [routerLink]="['add',item.osid]">
-                        <a [routerLink]="['/User/documents/detail',item?.policyName, item.osid]">
-                            <div class="card height-100">
-                                <div class="card-body">
-                                    <div class="card-intro-info">
-                                        <div class="card-title mb-2 fs-14">{{item.title}}
-                                        </div>
-                                        <div class="text-grey fs-12">{{item.issuer}}</div>
-                                    </div>
-                                    <div class="card-image">
-                                        <img src="{{item.logoUrl}}" />
-                                    </div>
+                <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2"
+                    *ngIf="credentials$ | async as credentialList; else loading">
+                    <ng-container *ngFor="let item of credentialList; else noItems">
+                        <div class="card" (click)="renderCertificate(item)">
+                            <div class="card-body">
+                                <div class="card-image">
+                                    <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/headerlogo.png'" />
                                 </div>
-                            </div>
-                        </a>
-                    </div>
-                </ng-template> -->
-                <div div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2" *ngFor="let item of credentials$ | async">
-                    <div class="card" (click)="renderCertificate(item)">
-                        <div class="card-body">
-                            <div class="card-image">
-                                <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/headerlogo.png'" />
-                            </div>
-                            <div class="card-intro-info">
-                                <div class="mb-2 fs-14">School Enrollment Certificate
+                                <div class="card-intro-info">
+                                    <div class="mb-2 fs-14">{{item?.credential_schema?.name}}
+                                    </div>
+                                    <div class="text-grey fs-12">{{item?.credential_schema?.schema?.description}}</div>
                                 </div>
-                                <div class="text-grey fs-12">{{item?.subject?.schoolName}}</div>
                             </div>
                         </div>
-                    </div>
+                    </ng-container>
+                    <ng-template #noItem class="text-center">No records found!</ng-template>
                 </div>
-                <div *ngIf="(credentials$ | async)?.length==0" class="text-center">No records found.</div>
+                <ng-template #loading class="text-center">
+                    <div class="d-flex justify-content-center">
+                        <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
+                            <span class="sr-only">{{ "LOADING" | translate }}</span>
+                        </div>
+                    </div>
+                </ng-template>
             </div>
         </div>
-        <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">...</div>
-        <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">...</div>
     </div>
 </div>

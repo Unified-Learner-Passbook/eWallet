@@ -29,24 +29,18 @@ export class AuthService {
       .pipe(tap((res: any) => {
         console.log("res", res);
 
-        if (res.statusCode === 200 && !res.success) {
+        if (!res.success) {
           throwError('Incorrect username or password')
         }
-        // localStorage.setItem('access_token', res.token);
-        // this.router.navigate(['/User/documents/browse']);
-        // this.getUserProfile(res._id).subscribe((res) => {
-        //   this.currentUser = res;
-        //   this.router.navigate(['user-profile/' + res.msg._id]);
-        // });
       }));
   }
 
   getToken() {
-    return localStorage.getItem('access_token');
+    return localStorage.getItem('accessToken');
   }
 
   get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
+    let authToken = localStorage.getItem('accessToken');
     return authToken !== null ? true : false;
   }
 
@@ -59,7 +53,7 @@ export class AuthService {
   }
 
   doLogout() {
-    let removeToken = localStorage.removeItem('access_token');
+    localStorage.removeItem('accessToken');
     localStorage.removeItem('currentUser');
     this.router.navigate(['/login']);
   }
