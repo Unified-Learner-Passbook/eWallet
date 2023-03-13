@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { Observable, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
@@ -26,20 +26,6 @@ export class BrowseDocumentsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    var search = {
-      "entityType": [
-        "Issuer"
-      ],
-      "filters": {}
-    }
-    this.generalService.postData('/Issuer/search', search).subscribe((res) => {
-      console.log('pub res', res);
-      this.documentTypes = res;
-    }, (err) => {
-      // this.toastMsg.error('error', err.error.params.errmsg)
-      console.log('error', err)
-    });
-
     this.fetchCredentials();
   }
 
@@ -49,28 +35,18 @@ export class BrowseDocumentsComponent implements OnInit {
   }
 
   fetchCredentials() {
-    // const payload = {
-    //   // "subjectId": "did:ulp:1a3e761b-65ff-4291-8504-67794c131b57"
-    //   // "subjectId": "did:ulp:0ba1c732-bf5e-4f0d-bbd0-1668b8f603bb"
-    //   subjectId: this.authService.currentUser.did
-    // }
-    // this.credentials$ = this.generalService.postData('https://ulp.uniteframework.io/cred-base/credentials', payload)
     const payload = {
-      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials',
-      header: {
-        Accept: 'application/json',
-        Authorization: 'Bearer ' + this.authService.getToken()
-      }
+      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials'
     }
     this.credentials$ = this.dataService.get(payload)
       .pipe(map((res: any) => {
         if (res.success) {
-          if (res?.credential?.length) {
-            res?.credential.forEach(element => {
+          if (res?.result?.length) {
+            res?.result.forEach(element => {
               element.subject = element.subject ? JSON.parse(element.subject) : '';
               element.credential_schema = element.credential_schema ? JSON.parse(element.credential_schema) : ''
             });
-            return res.credential;
+            return res.result;
           } else {
             if (res.message) {
               this.toastMessage.error("", res.message);

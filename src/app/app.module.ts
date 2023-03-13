@@ -1,4 +1,4 @@
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -131,6 +131,7 @@ import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/
 import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { GlobalHeaderComponent } from './global-header/global-header.component';
+import { AuthInterceptor } from './authentication/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -269,7 +270,8 @@ import { GlobalHeaderComponent } from './global-header/global-header.component';
       useFactory: initLang,
       deps: [HttpClient, TranslateService],
       multi: true
-    }]
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true }]
 })
 
 
