@@ -11,13 +11,33 @@ import { ToastMessageService } from "../services/toast-message/toast-message.ser
 })
 export class RegistrationComponent implements OnInit {
 
+  OnlyNumbersAllowed(event):boolean{
+    const charCode = (event.which)?event.which: event.keycode;
+    if(charCode > 31 && (charCode < 48 || charCode > 57)){
+      // console.log('charcode restricted is' +charCode)
+      return false;
+    }
+    return true;
+  }
+
+  OnlyAlphabetsAllowed(event):boolean{
+    const charCode = (event.which)?event.which: event.keycode;
+    if(charCode > 31 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)){
+      // console.log('charcode restricted is' +charCode)
+      return false;
+    }
+    return true;
+  }
+
+
+
   registrationForm = new FormGroup({
-    aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12)]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-    school: new FormControl(null, [Validators.required]),
+    aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
+    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('/^[^\s]+(\s+[^\s]+){0,2}$/')]),
+    school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
     schoolId: new FormControl(null, [Validators.required]),
     studentId: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10)])
+    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]*$')])
   });
 
   constructor(

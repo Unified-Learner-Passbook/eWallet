@@ -8,7 +8,7 @@
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
       </div>
-      <p  class="text-secondary-color" (click)="aadharLogin = !aadharLogin">Sign in using Username and Password</p>
+      <p  class="text-secondary-color" (click)="aadharLogin = !aadharLogin">{{'SIGN_IN_AADHAR_OTP' | translate }}</p>
       <div class="pb-10">
         <button type="button" class="login-btn bg-blue-dark mt-4" data-toggle="modal" data-target="#exampleModal">{{'GET_OTP'| translate}}</button>
       </div>
@@ -20,7 +20,7 @@
         <div class="input-group mb-2">
           <input type="text" class="form-control p-4" id="userName" name="userName" formControlName="userName"  placeholder="">
         </div>
-        <p class="text-left text-red" *ngIf="userName.invalid && userName.touched">Enter valid Username</p>
+        <p class="text-left text-red" *ngIf="userName.invalid && userName.touched">{{'ENTER_VALID_USERNAME' | translate }}</p>
         <label for="password">{{'PASSWORD' | translate}}</label>
         <div class="input-group mb-2">
           <input  [type]="showPassword ? 'text' : 'password'" class="form-control p-4" id="password" name="password" formControlName="password"  placeholder="">
@@ -29,15 +29,15 @@
             <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
           </button>
         </div>
-        <p class="text-left text-red" *ngIf="password.invalid && password.touched">Password is required</p>
+        <p class="text-left text-red" *ngIf="password.invalid && password.touched">{{'PASSWORD_REQUIRED' | translate }}</p>
       </div>
 
-      <p class="text-secondary-color" (click)="aadharLogin = !aadharLogin">Sign in using Aadhar and OTP</p>
+      <p class="text-secondary-color" (click)="aadharLogin = !aadharLogin">{{'SIGN_IN_USERNAME_PASSWORD' | translate }}</p>
       <div class="pb-10">
         <button type="submit" class="login-btn bg-blue-dark" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
       </div>
     </form>
-    <a class="pb-10 text-secondary-color" [routerLink]="['/register']">Not registered! <span class="text-underline">Register here</span></a>
+    <a class="pb-10 text-secondary-color" [routerLink]="['/register']">{{'NOT_REGISTERED' | translate }} <span class="text-underline">{{'REGISTER_HERE' | translate }}</span></a>
   </div>
 
   <!-- GET OTP POPUP -->
