@@ -33,11 +33,11 @@ export class RegistrationComponent implements OnInit {
 
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('/^[^\s]+(\s+[^\s]+){0,2}$/')]),
+    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z]+$')]),
     school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
     schoolId: new FormControl(null, [Validators.required]),
     studentId: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('/^\d{10}$/')])
+    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')])
   });
 
   constructor(
@@ -68,7 +68,6 @@ export class RegistrationComponent implements OnInit {
   get studentId() {
     return this.registrationForm.get('studentId');
   }
-
 
   get phone() {
     return this.registrationForm.get('phone');
