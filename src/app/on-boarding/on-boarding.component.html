@@ -1,10 +1,12 @@
-  <div class="container text-center pb-0 mt-20 wallet">
+<div class="container text-center pb-0 mt-20 wallet">
    <app-global-header [showTitle]="true"></app-global-header>
    <div>
-        <img src="assets/images/onboard3.png" alt="">
-    </div>
-     <div class="pb-10">
-        <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']" [queryParams]="{aadharLogin: true}" >{{'LOGIN_USING_AADHAR' | translate}}</button>
-        <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{aadharLogin: false}">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
-     </div>
-  </div>
+      <img src="assets/images/onboard3.png" alt="">
+   </div>
+   <div class="pb-10">
+      <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']"
+         [queryParams]="{aadharLogin: true}">{{'LOGIN_USING_AADHAR' | translate}}</button>
+      <button type="button" class="register-btn" [routerLink]="['login']"
+         [queryParams]="{aadharLogin: false}">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
+   </div>
+</div>
