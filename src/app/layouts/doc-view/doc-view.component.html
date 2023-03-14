@@ -38,26 +38,23 @@
       <ngx-extended-pdf-viewer [showToolbar]="false" [src]="docUrl"></ngx-extended-pdf-viewer>
     </div>
   </ng-container>
-<div class="pt-2">
-  <div class="mt-1 text-center" *ngIf="docUrl">
-    <button class="btn btn-primary min-220" (click)="downloadCertificate(docUrl)">Download Certificate</button>
-  </div>
 
-  <ng-template [ngIf]="docDetails" class="mt-4">
-    <div style="text-align: center; margin-top: 100px">
-      <img style="height: 100px; width: 100px" src="assets/images/success.png" />
+  <div class="pt-2">
+    <ng-template [ngIf]="docDetails" class="mt-4">
+      <div style="text-align: center; margin-top: 100px">
+        <img style="height: 100px; width: 100px" src="assets/images/success.png" />
+      </div>
+    </ng-template>
+
+    <div class="text-center mt-4" *ngIf="!loader">
+      <button class="btn btn-rounded" type="button"><i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' |
+        translate}}</button>
     </div>
-  </ng-template>
-
-  <div class="text-center mt-4" *ngIf="!loader">
-    <button class="btn btn-rounded" type="button"><i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' |
-      translate}}</button>
+    <div class="text-center mt-4" *ngIf="docUrl">
+      <a href=""><img src="assets/images/share.png" class="pr-3"></a>
+      <a href=""><img src="assets/images/download.png" (click)="downloadCertificate(docUrl)"></a>
+    </div>
   </div>
-  <div class="text-center mt-4">
-    <a href=""><img src="assets/images/share.png" class="pr-3"></a>
-    <a href="" *ngIf="docUrl"><img src="assets/images/download.png" (click)="downloadCertificate(docUrl)"></a>
-  </div>
-</div>
 </div>
 <!-- <footer>
     <div class="row mb-2">

@@ -43,7 +43,7 @@ export class DocViewComponent implements OnInit {
             if (this.canGoBack) {
                 this.location.back();
             } else {
-                this.router.navigate(['/User/documents/browse']);
+                this.router.navigate(['/home']);
             }
         }
     }
