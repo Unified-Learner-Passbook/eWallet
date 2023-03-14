@@ -62,12 +62,12 @@ export class LoginComponent implements OnInit {
         if (res.success) {
           this.toastMessage.success("", "Logged In Successfully!");
 
-          if (res?.token) {
-            localStorage.setItem('access_token', res.token);
+          if (res?.result?.token) {
+            localStorage.setItem('accessToken', res.result.token);
           }
 
-          if (res?.data[0]) {
-            localStorage.setItem('currentUser', JSON.stringify(res.data[0]));
+          if (res?.result?.userData[0]) {
+            localStorage.setItem('currentUser', JSON.stringify(res.result.userData[0]));
           }
           this.router.navigate(['/User/documents/browse']);
         } else {

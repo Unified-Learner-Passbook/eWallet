@@ -1,26 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { environment } from 'src/environments/environment';
 
 import {
     Pipe,
-    PipeTransform,
-    OnDestroy,
-    WrappedValue,
-    ChangeDetectorRef
+    PipeTransform
 } from '@angular/core';
 
-import { DomSanitizer, SafeUrl } from '@angular/platform-browser';
-import { GeneralService } from 'src/app/services/general/general.service';
-import { BehaviorSubject, forkJoin, Observable, Subscription } from 'rxjs';
-import { KeycloakService } from 'keycloak-angular';
-import { AppConfig } from 'src/app/app.config';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { distinctUntilChanged, filter, map, switchMap } from 'rxjs/operators';
-import { pdfDefaultOptions } from 'ngx-extended-pdf-viewer';
 import { Location } from '@angular/common';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { KeycloakService } from 'keycloak-angular';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+import { GeneralService } from 'src/app/services/general/general.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -29,12 +21,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 })
 export class DocViewComponent implements OnInit {
     docUrl: string;
-    baseUrl = this.config.getEnv('baseUrl');
     extension;
-    token
-    public bearerToken: string | undefined = undefined;
-    id: any;
-    excludedFields: any = ['osid', 'id', 'type', 'fileUrl', 'otp', 'transactionId'];
     document = [];
     loader: boolean = true;
     docName: any;
@@ -42,18 +29,12 @@ export class DocViewComponent implements OnInit {
     credential: any;
     private readonly canGoBack: boolean;
     constructor(
-        private route: ActivatedRoute,
         public generalService: GeneralService,
-        private keycloakService: KeycloakService,
-        private config: AppConfig,
         private router: Router,
         private http: HttpClient,
         private location: Location,
         private authService: AuthService
     ) {
-        this.token = this.keycloakService.getToken();
-        pdfDefaultOptions.renderInteractiveForms = false;
-
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
         this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
@@ -68,28 +49,27 @@ export class DocViewComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        // forkJoin({ schema: this.getSchema(), template: this.getTemplate() }).subscribe((res) => {
-        //     console.log("res", res);
-        //     this.getPDF(res?.schema, res.template?.template);
-        // });
-
-        this.getTemplate().subscribe((res) => {//clf16wnze0002tj14mv1smo1w
-            this.getPDF(res?.api_response?.template);
-        });
+        if (this.credential?.credential_schema) {
+            const schemaId = JSON.parse(this.credential.credential_schema)?.id;
+            this.getTemplate(schemaId).subscribe((res) => {//clf16wnze0002tj14mv1smo1w
+                this.getPDF(res?.result?.[0]?.template);
+            });
+        } else {
+            console.error("Something went wrong!");
+        }
     }
 
-    getSchema(id: string = 'did:ulpschema:8b8eda70-6dfb-43e6-8a8a-6084188ce516'): Observable<any> {
+    getSchema(id): Observable<any> {
         return this.generalService.getData(`https://ulp.uniteframework.io/cred-schema/schema/jsonld?id=${id}`, true);
     }
 
-    getTemplate(id: string = 'clepswdx30000tj15nokg4q46'): Observable<any> { // 'cleenrrni0000tj15s2y1o2vr'
-        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplate/${id}`, true)
+    getTemplate(id: string): Observable<any> {
+        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplateschema/${id}`, true)
     }
 
     getPDF(template) {
         let headerOptions = new HttpHeaders({
-            'Accept': 'application/pdf',
-            Authorization: 'Bearer ' + this.authService.getToken()
+            'Accept': 'application/pdf'
         });
         let requestOptions = { headers: headerOptions, responseType: 'blob' as 'json' };
         const request = {
@@ -98,12 +78,10 @@ export class DocViewComponent implements OnInit {
             template: template,
             output: "HTML"
         }
-        // post or get depending on your requirement
         this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
 
             let blob = new Blob([data], {
                 type: 'application/pdf' // must match the Accept type
-                // type: 'application/octet-stream' // for excel 
             });
 
             this.docUrl = window.URL.createObjectURL(blob);
