@@ -69,7 +69,7 @@ export class LoginComponent implements OnInit {
           if (res?.result?.userData[0]) {
             localStorage.setItem('currentUser', JSON.stringify(res.result.userData[0]));
           }
-          this.router.navigate(['/User/documents/browse']);
+          this.router.navigate(['/home']);
         } else {
           this.toastMessage.error("", res.message);
         }

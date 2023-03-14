@@ -28,95 +28,88 @@ import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/
 import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationGuard } from './utility/authentication.guard';
+
 const routes: Routes = [
-
-
+  { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
+  // { path: 'home', component: HomeComponent, data: { showToolbar: false } },
+  { path: 'login', component: LoginComponent, data: { showToolbar: false } },
+  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
+  { path: 'set-username', component: SetUsernameComponent },
+  { path: 'register', component: RegistrationComponent },
+  { path: 'home', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
+  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+  
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
-  { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
-  { path: 'logout', component: LogoutComponent },
-
-  // Home
-  { path: 'home', component: HomeComponent, data: { showToolbar: false } },
-  { path: 'onboard', component: OnBoardingComponent, data: { showToolbar: false } },
-  { path: 'login', component: LoginComponent, data: { showToolbar: false } },
-
-
-
-  // Forms
-  { path: 'form/:form', component: FormsComponent },
-  { path: 'form/:form/:id', component: FormsComponent, canActivate: [AuthGuard] },
-
-
+  // { path: 'logout', component: LogoutComponent },
+  // // Forms
+  // { path: 'form/:form', component: FormsComponent },
+  // { path: 'form/:form/:id', component: FormsComponent, canActivate: [AuthGuard] },
   // Layouts
   // { path: ':layout', component: LayoutsComponent, canActivate: [AuthGuard] },
-  {
-    path: 'profile/:layout', component: LayoutsComponent,
-    canActivate: [AuthGuard],
-    children: [
-      {
-        path: 'edit',
-        component: PanelsComponent,
-        outlet: 'claim',
-        children: [
-          {
-            path: ':form',
-            component: EditPanelComponent
-          },
-          {
-            path: ':form/:id',
-            component: EditPanelComponent
-          }
-        ]
-      },
-      {
-        path: 'add',
-        component: PanelsComponent,
-        outlet: 'claim',
-        children: [
-          {
-            path: ':form',
-            component: AddPanelComponent
-          }
-        ]
-      }
-    ]
-  },
+  // {
+  //   path: 'profile/:layout', component: LayoutsComponent,
+  //   canActivate: [AuthGuard],
+  //   children: [
+  //     {
+  //       path: 'edit',
+  //       component: PanelsComponent,
+  //       outlet: 'claim',
+  //       children: [
+  //         {
+  //           path: ':form',
+  //           component: EditPanelComponent
+  //         },
+  //         {
+  //           path: ':form/:id',
+  //           component: EditPanelComponent
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: 'add',
+  //       component: PanelsComponent,
+  //       outlet: 'claim',
+  //       children: [
+  //         {
+  //           path: ':form',
+  //           component: AddPanelComponent
+  //         }
+  //       ]
+  //     }
+  //   ]
+  // },
 
   // Pages
-  { path: 'page/:page', component: PagesComponent },
+  // { path: 'page/:page', component: PagesComponent },
 
   // Tables
-  { path: ':entity/attestation/:table', component: TablesComponent, canActivate: [AuthGuard] },
-  { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/detail/:type/:id', component: DocDetailViewComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/attestation/:table', component: TablesComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/attestation/:table/:id', component: AttestationComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/documents', component: DocumentsComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/documents/detail/:type/:id', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/detail/:type/:id/view', component: DocViewComponent, canActivate: [AuthGuard] },
-  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
+  // { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
   // { path: ':entity/documents/browse', component: BrowseDocumentsComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/browse', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  { path: ':entity/documents/:type/add/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/add/:type', component: AddDocumentComponent, canActivate: [AuthGuard] },
-  { path: ':entity/documents/add/:type/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/documents/browse', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+  // { path: ':entity/documents/:type/add/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/documents/add/:type', component: AddDocumentComponent, canActivate: [AuthGuard] },
+  // { path: ':entity/documents/add/:type/:id', component: AddDocumentComponent, canActivate: [AuthGuard] },
   // { path: ':entity/documents/scan/vc', component: ScanQrCodeComponent, canActivate: [AuthGuard] },
-  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
+  // { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
   // { path: 'document/detail', component: DocDetailViewComponent, canActivate: [AuthGuard] },
   // { path: 'document/view/:id', component: DocViewComponent, canActivate: [AuthGuard] },
-  { path: 'discovery', component: SearchComponent },
-  { path: 'template', component: CreateCertificateComponent },
+  // { path: 'discovery', component: SearchComponent },
+  // { path: 'template', component: CreateCertificateComponent },
 
 
   // Installation
-  { path: 'install', component: InstallComponent },
+  // { path: 'install', component: InstallComponent },
 
   // Custom
-  { path: 'faq', component: FaqComponent },
+  // { path: 'faq', component: FaqComponent },
 
-  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
-
-  { path: 'set-username', component:SetUsernameComponent},
-
-  { path: 'register', component:RegistrationComponent}
 
 ];
 
