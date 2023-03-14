@@ -17,6 +17,14 @@ export class BrowseDocumentsComponent implements OnInit {
   showFetchedDocuments = false;
   documentTypes: any;
   credentials$: Observable<any>;
+
+  certificatesDetails=[
+     {name:'Academic Certificates', image:'assets/images/acadmic.png'},
+     {name:'Enrollement Certificates', image:'assets/images/enroll.png'},
+     {name:'Benefit Records', image:'assets/images/benefit.png'},
+  ];
+
+
   constructor(
     private router: Router,
     public generalService: GeneralService,
