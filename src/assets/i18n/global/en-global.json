@@ -213,7 +213,7 @@
     "TERMS_AND_CONDITIONS": "Terms and Conditions",
     "SEARCH_DOCUMENTS": "Search Documents",
 
-    "WELCOME_BACK":"Welcome back to Wallet",
+    "WELCOME_BACK":"Welcome back to Avsar",
     "HI": "Hi",
     "ISSUED_DOCUMENTS": "Issued documents",
     "ACCOUNT": "Account",
@@ -261,5 +261,7 @@
     "ENTER_STUDENT_ID":"Enter valid Student Id",
     "ENTER_PHONE_NUMBER":"It should be 10 digit number",
     "NOT_REGISTERED":"Not registered!",
-    "REGISTER_HERE":"Register here"
+    "REGISTER_HERE":"Register here",
+    "CHANGE_PASSWORD":"Change Password",
+
 }

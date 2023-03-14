@@ -28,6 +28,7 @@ import { ManageEnrollmentConflictComponent } from './manage-enrollment-conflict/
 import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationGuard } from './utility/authentication.guard';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
   { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
@@ -39,7 +40,8 @@ const routes: Routes = [
   { path: 'home', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
   { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
   { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  
+  { path: 'change-password', component: ChangePasswordComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
   // { path: 'logout', component: LogoutComponent },

@@ -214,7 +214,7 @@
     "TERMS_AND_CONDITIONS": "नियम और शर्तें",
     "SEARCH_DOCUMENTS": "दस्तावेज़ खोजें",
 
-    "WELCOME_BACK":"वॉलेट में वापस स्वागत है",
+    "WELCOME_BACK":"अवसर में आपका फिर से स्वागत है",
     "HI": "नमस्ते",
     "ISSUED_DOCUMENTS": "जारी किए गए दस्तावेज़",
     "ACCOUNT": "खाता",
@@ -262,5 +262,8 @@
     "ENTER_STUDENT_ID":"वैध छात्र आईडी दर्ज करें",
     "ENTER_PHONE_NUMBER":"यह 10 अंकों की संख्या होनी चाहिए",
     "NOT_REGISTERED":"पंजीकृत नहीं है!",
-    "REGISTER_HERE":"यहां रजिस्टर करें"
+    "REGISTER_HERE":"यहां रजिस्टर करें",
+    "CHANGE_PASSWORD":"पासवर्ड बदलें",
+    "SET_USERNAME_PASSWORD":"उपयोगकर्ता नाम और पासवर्ड सेट करें"
+    
 }
