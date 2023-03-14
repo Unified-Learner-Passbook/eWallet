@@ -132,6 +132,7 @@ import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { GlobalHeaderComponent } from './global-header/global-header.component';
 import { AuthInterceptor } from './authentication/auth.interceptor';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -175,7 +176,8 @@ import { AuthInterceptor } from './authentication/auth.interceptor';
     ManageEnrollmentConflictComponent,
     SetUsernameComponent,
     RegistrationComponent,
-    GlobalHeaderComponent
+    GlobalHeaderComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
