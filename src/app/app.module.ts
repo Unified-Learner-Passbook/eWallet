@@ -134,6 +134,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { GlobalHeaderComponent } from './global-header/global-header.component';
 import { AuthInterceptor } from './authentication/auth.interceptor';
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
+import { ChangePasswordComponent } from './change-password/change-password.component';
 
 @NgModule({
   declarations: [
@@ -178,7 +179,8 @@ import { SearchCertificatesComponent } from './search-certificates/search-certif
     SetUsernameComponent,
     RegistrationComponent,
     GlobalHeaderComponent,
-    SearchCertificatesComponent
+    SearchCertificatesComponent,
+    ChangePasswordComponent
   ],
   imports: [
     BrowserModule,
