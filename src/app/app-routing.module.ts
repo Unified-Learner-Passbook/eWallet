@@ -32,14 +32,53 @@ import { AuthenticationGuard } from './utility/authentication.guard';
 const routes: Routes = [
   { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
   // { path: 'home', component: HomeComponent, data: { showToolbar: false } },
-  { path: 'login', component: LoginComponent, data: { showToolbar: false } },
-  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  // { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
   { path: 'set-username', component: SetUsernameComponent },
   { path: 'register', component: RegistrationComponent },
-  { path: 'home', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
-  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  
+  {
+    path: 'home',
+    component: BrowseDocumentsComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
+      },
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'doc-view',
+    component: DocViewComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'doc-view', pageid: 'doc-view', type: 'view', subtype: 'scroll'
+      }
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'scan-code',
+    component: ScanQrCodeComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'scan certificate', pageid: 'scan-code', type: 'view', subtype: 'scroll'
+      }
+    },
+    canActivate: [AuthenticationGuard]
+  },
+
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
   // { path: 'logout', component: LogoutComponent },

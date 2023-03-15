@@ -14,7 +14,6 @@
     "private": true,
     "proxy": "https://elocker.xiv.in",
     "dependencies": {
-        "jquery": "^3.5.1",
         "@ajsf/bootstrap4": "^0.4.0-beta.1",
         "@altack/quar": "0.0.7",
         "@angular/animations": "^10.0.1",
@@ -61,6 +60,7 @@
         "iso-639-1": "^2.1.11",
         "iv-viewer": "^2.0.1",
         "jexl": "^2.3.0",
+        "jquery": "^3.5.1",
         "json-refs": "^3.0.4",
         "keycloak-angular": "^8.1.0",
         "keycloak-js": "^11.0.3",
@@ -71,6 +71,7 @@
         "ng2-image-viewer": "^3.0.5",
         "ng2-semantic-ui": "^0.9.7",
         "ngx-color-picker": "^11.0.0",
+        "ngx-device-detector": "1.4.5",
         "ngx-doc-viewer": "^2.1.2",
         "ngx-extended-pdf-viewer": "^10.1.0",
         "ngx-pagination": "^5.1.1",
@@ -83,6 +84,7 @@
         "rxjs": "^6.5.4",
         "tslib": "^2.0.0",
         "typescript": "3.9.5",
+        "uuid": "^9.0.0",
         "write-json-file": "^5.0.0",
         "z-schema": "^5.0.0",
         "zone.js": "~0.10.3"

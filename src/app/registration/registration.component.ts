@@ -90,6 +90,9 @@ export class RegistrationComponent implements OnInit {
         if (res.success) {
           this.toast.success("", "User Registered successfully!");
           this.router.navigate(['/login']);
+
+          // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
+          // this.telemetryService.audit()
         } else {
           this.toast.error("", res.message);
         }
