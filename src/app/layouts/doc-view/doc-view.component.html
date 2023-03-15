@@ -47,8 +47,9 @@
     </ng-template>
 
     <div class="text-center mt-4" *ngIf="!loader">
-      <button class="btn btn-rounded" type="button"><i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' |
-        translate}}</button>
+      <button class="btn btn-rounded" type="button" (click)="raiseInteractEvent('generate-qr-code')">
+        <i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' | translate}}
+      </button>
     </div>
     <div class="text-center mt-4" *ngIf="docUrl">
       <a href=""><img src="assets/images/share.png" class="pr-3"></a>

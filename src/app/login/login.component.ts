@@ -108,7 +108,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.telemetryService.impression(telemetryImpression);
   }
 
-  raiseInteractEvent(id: string, type: string = 'CLICK') {
+  raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
     const telemetryInteract: IInteractEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,
@@ -116,8 +116,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       },
       edata: {
         id,
-        type: 'CLICK',
-        subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+        type,
+        subtype,
         pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
       }
     };

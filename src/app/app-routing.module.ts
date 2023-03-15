@@ -31,8 +31,13 @@ import { AuthenticationGuard } from './utility/authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 
 const routes: Routes = [
-  { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
-  // { path: 'home', component: HomeComponent, data: { showToolbar: false } },
+  {
+    path: '',
+    component: OnBoardingComponent,
+    data: {
+      showToolbar: false
+    }
+  },
   {
     path: 'login',
     component: LoginComponent,
@@ -44,8 +49,26 @@ const routes: Routes = [
     }
   },
   // { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
-  { path: 'set-username', component: SetUsernameComponent },
-  { path: 'register', component: RegistrationComponent },
+  {
+    path: 'set-username',
+    component: SetUsernameComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'registration', pageid: 'set-username', type: 'view', subtype: 'scroll'
+      },
+    }
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'registration', pageid: 'register', type: 'view', subtype: 'scroll'
+      },
+    }
+  },
   {
     path: 'home',
     component: BrowseDocumentsComponent,
@@ -79,7 +102,14 @@ const routes: Routes = [
     },
     canActivate: [AuthenticationGuard]
   },
-  { path: 'change-password', component: ChangePasswordComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    data: {
+      showToolbar: true
+    },
+    canActivate: [AuthenticationGuard]
+  },
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
