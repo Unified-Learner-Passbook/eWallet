@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { GeneralService } from '../services/general/general.service';
 
 @Component({
   selector: 'app-on-boarding',
@@ -9,7 +10,11 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class OnBoardingComponent implements OnInit {
 
-  constructor(private readonly authService: AuthService, private readonly router: Router) { }
+  constructor(
+    private readonly authService: AuthService, 
+    private readonly router: Router,
+    private readonly generalService: GeneralService
+    ) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
@@ -17,5 +22,10 @@ export class OnBoardingComponent implements OnInit {
     }
   }
 
+  openSSO() {
+    this.generalService.getData('https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/authorize', true).subscribe((res) => {
+      console.log("Response", res);
+    });
+  }
 
 }
