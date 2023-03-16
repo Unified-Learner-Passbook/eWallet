@@ -29,6 +29,7 @@ import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationGuard } from './utility/authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 
 const routes: Routes = [
   {
@@ -109,6 +110,10 @@ const routes: Routes = [
       showToolbar: true
     },
     canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'digilocker-callback',
+    component: OauthCallbackComponent
   },
 
   // Auth
