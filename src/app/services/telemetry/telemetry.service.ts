@@ -70,51 +70,63 @@ export class TelemetryService {
   }
 
   public start(startEventInput: IStartEventInput) {
-    const eventData: ITelemetryEvent = this.getEventData(startEventInput);
-    this.telemetryInstance.telemetryService.raiseStartTelemetry({
-      options: eventData.options,
-      edata: eventData.edata
-    });
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(startEventInput);
+      this.telemetryInstance.telemetryService.raiseStartTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
   }
 
   public interact(interactEventInput: IInteractEventInput) {
-    const eventData: ITelemetryEvent = this.getEventData(interactEventInput);
-    this.telemetryInstance.telemetryService.raiseInteractTelemetry({
-      options: eventData.options,
-      edata: eventData.edata
-    });
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(interactEventInput);
+      this.telemetryInstance.telemetryService.raiseInteractTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
   }
 
   public impression(impressionEventInput: IImpressionEventInput) {
-    const eventData: ITelemetryEvent = this.getEventData(impressionEventInput);
-    this.telemetryInstance.telemetryService.raiseImpressionTelemetry({
-      options: eventData.options,
-      edata: eventData.edata
-    });
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(impressionEventInput);
+      this.telemetryInstance.telemetryService.raiseImpressionTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
   }
 
   public audit(auditEventInput: IAuditEventInput) {
-    const eventData: ITelemetryEvent = this.getEventData(auditEventInput);
-    this.telemetryInstance.telemetryService.raiseAuditTelemetry({
-      edata: eventData.edata,
-      options: eventData.options
-    });
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(auditEventInput);
+      this.telemetryInstance.telemetryService.raiseAuditTelemetry({
+        edata: eventData.edata,
+        options: eventData.options
+      });
+    }
   }
 
   public share(shareEventInput: IShareEventInput) {
+    if (this.telemetryInstance.isInitialised) {
       const eventData: ITelemetryEvent = this.getEventData(shareEventInput);
       this.telemetryInstance.telemetryService.raiseShareTelemetry({
         edata: eventData.edata,
         options: eventData.options
       });
+    }
   }
 
   public end(endEventInput: IEndEventInput) {
+    if (this.telemetryInstance.isInitialised) {
       const eventData: ITelemetryEvent = this.getEventData(endEventInput);
       this.telemetryInstance.telemetryService.raiseEndTelemetry({
         edata: eventData.edata,
         options: eventData.options
       });
+    }
   }
 
   private getDeviceType(): string {
