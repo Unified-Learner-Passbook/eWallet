@@ -1,41 +1,39 @@
 import { EventEmitter, Injectable } from '@angular/core';
 import { CsTelemetryModule } from '@project-sunbird/client-services/telemetry';
-import { Context } from './telemetry-interface';
+import { Cdata, Context, IAuditEventInput, IEndEventInput, IImpressionEventInput, IInteractEventInput, ImpressionEData, InteractEData, IShareEventInput, IStartEventInput, ITelemetryContextData, ITelemetryEvent, TelemetryObject } from './telemetry-interface';
+import { v4 as uuidv4 } from 'uuid';
+import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TelemetryService {
-
-  duration: number;
-  channel: string;
-  config: any;
-  telemetryEvent = new EventEmitter<any>();
+  uid: string = 'anonymous';
+  did: string;
+  deviceType: string;
+  telemetryInstance: CsTelemetryModule;
   private context: Context;
-  private telemetryObject: any;
-  private pdata: any;
-  private sid: string;
-  private uid: string;
 
-  constructor() { }
+  constructor() {
+    this.telemetryInstance = CsTelemetryModule.instance;
+  }
 
-   initializeTelemetry() {
-    this.duration = new Date().getTime();
+  public initializeTelemetry() {
+    this.deviceType = this.getDeviceType();
     this.context = {
-      mode: "string",
-      //threshold?: number;
-      //authToken?: string; authservice
-      sid: "string",
-      did: "string",
-      uid: "string",
-      channel: "string",
+      mode: "",
+      sid: uuidv4(),
+      did: this.did,
+      uid: this.uid,
+      channel: "default",
+      env: 'avasar-wallet',
       pdata: {
-        id: "string",
-        pid: "string",
-        ver: "string"
+        id: "avasar.wallet",
+        pid: "0.0.1",
+        ver: "avasar.wallet"
       },
       contextRollup: {},
-      tags: ["1","2"],
+      tags: [],
       host: 'http://localhost:9001',
       endpoint: '/v1/telemetry',
       // userData?: {
@@ -43,102 +41,159 @@ export class TelemetryService {
       //     lastName: string;
       // }
     };
-    
-    
-    this.channel = this.context.channel || '';
-    this.pdata = this.context.pdata;
-    this.sid = this.context.sid;
-    this.uid = this.context.uid;
-    
 
-    if (!CsTelemetryModule.instance.isInitialised) {
+    if (!this.telemetryInstance.isInitialised) {
       const telemetryConfig = {
         apislug: '',
         pdata: this.context.pdata,
-        env: 'eWallet',
+        env: 'avasar-wallet',
         channel: this.context.channel,
         did: this.context.did,
         authtoken: this.context.authToken || '',
         uid: this.context.uid || '',
         sid: this.context.sid,
-        batchsize: 1,
+        batchsize: 1,// 20
         mode: this.context.mode,
         host: this.context.host || 'http://localhost:9001',
         endpoint: this.context.endpoint || '/v1/telemetry',
-        tags: this.context.tags
+        tags: this.context.tags,
+        enableValidation: true
       };
-      CsTelemetryModule.instance.init({});
-      CsTelemetryModule.instance.telemetryService.initTelemetry(
+      this.telemetryInstance.init({});
+      this.telemetryInstance.telemetryService.initTelemetry(
         {
           config: telemetryConfig,
           userOrgDetails: {}
         }
       );
     }
+  }
 
-    this.telemetryObject = {
-      id: "123",
-      type: 'Content',
-      ver: '1.0',
-      rollup: {}
+  public start(startEventInput: IStartEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(startEventInput);
+      this.telemetryInstance.telemetryService.raiseStartTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
+  }
+
+  public interact(interactEventInput: IInteractEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(interactEventInput);
+      this.telemetryInstance.telemetryService.raiseInteractTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
+  }
+
+  public impression(impressionEventInput: IImpressionEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(impressionEventInput);
+      this.telemetryInstance.telemetryService.raiseImpressionTelemetry({
+        options: eventData.options,
+        edata: eventData.edata
+      });
+    }
+  }
+
+  public audit(auditEventInput: IAuditEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(auditEventInput);
+      this.telemetryInstance.telemetryService.raiseAuditTelemetry({
+        edata: eventData.edata,
+        options: eventData.options
+      });
+    }
+  }
+
+  public share(shareEventInput: IShareEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(shareEventInput);
+      this.telemetryInstance.telemetryService.raiseShareTelemetry({
+        edata: eventData.edata,
+        options: eventData.options
+      });
+    }
+  }
+
+  public end(endEventInput: IEndEventInput) {
+    if (this.telemetryInstance.isInitialised) {
+      const eventData: ITelemetryEvent = this.getEventData(endEventInput);
+      this.telemetryInstance.telemetryService.raiseEndTelemetry({
+        edata: eventData.edata,
+        options: eventData.options
+      });
+    }
+  }
+
+  private getDeviceType(): string {
+    const deviceDetectorService = new DeviceDetectorService('browser');
+    let device = '';
+    if (deviceDetectorService.isMobile()) {
+      device = 'Mobile';
+    } else if (deviceDetectorService.isTablet()) {
+      device = 'Tab';
+    } else if (deviceDetectorService.isDesktop()) {
+      device = 'Desktop';
+    }
+    return device;
+  }
+
+  private getEventData(eventInput: any) {
+    const event: ITelemetryEvent = {
+      edata: eventInput.edata,
+      options: {
+        context: this.getEventContext(eventInput),
+        object: this.getEventObject(eventInput),
+        tags: []
+      }
     };
+    return event;
   }
 
-  public startAssesEvent(assesEvent) {
-    CsTelemetryModule.instance.telemetryService.raiseAssesTelemetry(
-      assesEvent,
-      this.getEventOptions()
-    );
+  private getEventObject(eventInput: any) {
+    if (eventInput.object) {
+      const eventObjectData: TelemetryObject = {
+        id: eventInput.object.id || '',
+        type: eventInput.object.type || '',
+        ver: eventInput.object.ver || '',
+        rollup: eventInput.object.rollup || {}
+      };
+      return eventObjectData;
+    } else {
+      return {};
+    }
   }
 
-  public start(duration) {
-    CsTelemetryModule.instance.telemetryService.raiseStartTelemetry(
-      {
-        options: this.getEventOptions(),
-        edata: { type: 'content', mode: 'play', pageid: '', duration: Number((duration / 1e3).toFixed(2)) }
-      }
-    );
-  }
-
-
-  public interact(id, currentPage) {
-    CsTelemetryModule.instance.telemetryService.raiseInteractTelemetry({
-      options: this.getEventOptions(),
-      edata: { type: 'TOUCH', subtype: '', id, pageid: currentPage + '' }
-    });
-  }
-
-
-  public impression(currentPage) {
-    CsTelemetryModule.instance.telemetryService.raiseImpressionTelemetry({
-      options: this.getEventOptions(),
-      edata: { type: 'workflow', subtype: '', pageid: currentPage + '', uri: '' }
-    });
-  }
-
-  public error(error: Error, edata?: { err: string, errtype: string }) {
-    CsTelemetryModule.instance.telemetryService.raiseErrorTelemetry({
-      options: this.getEventOptions(),
-      edata: {
-        err: 'LOAD',
-        errtype: 'content',
-        stacktrace: (error && error.toString()) || ''
-      }
-    });
-  }
-
-  public getEventOptions() {
-    const options = {
-      object: this.telemetryObject,
-      context: {
-        channel: this.channel || '',
-        pdata: this.pdata,
-        env: 'eWallet',
-        sid: this.sid,
-        uid: this.uid
-      }
+  private getEventContext(eventInput: any) {
+    const eventContextData: ITelemetryContextData = {
+      channel: eventInput.edata.channel || this.context.channel,
+      pdata: eventInput.context.pdata || this.context.pdata,
+      env: eventInput.context.env || this.context.env,
+      sid: eventInput.sid || this.context.sid,
+      uid: this.uid,
+      cdata: eventInput.context.cdata || [],
+      // rollup: this.getRollUpData(this.context.userOrgDetails.organisationIds)
     };
+    if (this.context.sid) {
+      eventContextData.cdata.push({
+        id: this.context.sid,
+        type: 'UserSession'
+      });
+    }
+    eventContextData.cdata.push({
+      id: this.deviceType,
+      type: 'Device'
+    });
+    return eventContextData;
+  }
 
-    return options;
+  public getRollUpData(data: Array<string> = []) {
+    const rollUp = {};
+    data.forEach((element, index) => rollUp['l' + (index + 1)] = element);
+    return rollUp;
   }
 }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ThemeService } from "../app/services/theme/theme.service";
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { filter } from 'rxjs/operators';
+import { TelemetryService } from './services/telemetry/telemetry.service';
+import { AuthService } from './services/auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -14,7 +16,10 @@ export class AppComponent implements OnInit {
   constructor(
     private themeService: ThemeService,
     private activatedRoute: ActivatedRoute,
-    private router: Router) {
+    private router: Router,
+    private telemetryService: TelemetryService,
+    private authService: AuthService
+  ) {
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
 
     if (this.ELOCKER_THEME) {
@@ -24,6 +29,14 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRouteData();
+    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
+    if (EkTelemetry) {
+      EkTelemetry.getFingerPrint((deviceId, components, version) => {
+        console.log("deviceId", deviceId);
+        this.telemetryService.did = deviceId;
+        // this.telemetryService.initializeTelemetry();
+      });
+    }
   }
 
   getRouteData() {

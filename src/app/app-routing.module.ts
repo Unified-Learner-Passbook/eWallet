@@ -29,18 +29,92 @@ import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationGuard } from './utility/authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 
 const routes: Routes = [
-  { path: '', component: OnBoardingComponent, data: { showToolbar: false } },
-  // { path: 'home', component: HomeComponent, data: { showToolbar: false } },
-  { path: 'login', component: LoginComponent, data: { showToolbar: false } },
-  { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
-  { path: 'set-username', component: SetUsernameComponent },
-  { path: 'register', component: RegistrationComponent },
-  { path: 'home', component: BrowseDocumentsComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  { path: 'doc-view', component: DocViewComponent, data: { showToolbar: false }, canActivate: [AuthenticationGuard] },
-  { path: 'scan-code', component: ScanQrCodeComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
-  { path: 'change-password', component: ChangePasswordComponent, data: { showToolbar: true }, canActivate: [AuthenticationGuard] },
+  {
+    path: '',
+    component: OnBoardingComponent,
+    data: {
+      showToolbar: false
+    }
+  },
+  {
+    path: 'login',
+    component: LoginComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  // { path: 'manage-enrollment', component: ManageEnrollmentConflictComponent, data: { showToolbar: false } },
+  {
+    path: 'set-username',
+    component: SetUsernameComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'registration', pageid: 'set-username', type: 'view', subtype: 'scroll'
+      },
+    }
+  },
+  {
+    path: 'register',
+    component: RegistrationComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'registration', pageid: 'register', type: 'view', subtype: 'scroll'
+      },
+    }
+  },
+  {
+    path: 'home',
+    component: BrowseDocumentsComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'home', pageid: 'home', type: 'list', subtype: 'scroll'
+      },
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'doc-view',
+    component: DocViewComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'doc-view', pageid: 'doc-view', type: 'view', subtype: 'scroll'
+      }
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'scan-code',
+    component: ScanQrCodeComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'scan certificate', pageid: 'scan-code', type: 'view', subtype: 'scroll'
+      }
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'change-password',
+    component: ChangePasswordComponent,
+    data: {
+      showToolbar: true
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
+    path: 'digilocker-callback',
+    component: OauthCallbackComponent
+  },
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
