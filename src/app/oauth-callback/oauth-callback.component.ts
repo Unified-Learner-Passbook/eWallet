@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { GeneralService } from '../services/general/general.service';
+import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 
 @Component({
@@ -14,7 +15,8 @@ export class OauthCallbackComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private generalService: GeneralService,
     private toastMessage: ToastMessageService,
-    private router: Router
+    private router: Router,
+    private telemetryService: TelemetryService
   ) {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log("params", params);
@@ -39,7 +41,16 @@ export class OauthCallbackComponent implements OnInit {
 
       if (res.success) {
         if (res.user === 'FOUND') {
+          if (res.token) {
+            localStorage.setItem('accessToken', res.token);
+          }
 
+          if (res?.userData?.student) {
+            localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
+            // this.telemetryService.uid = res.userData.student.meripehchanLoginId;
+            // this.telemetryService.start();
+          }
+          this.router.navigate(['/home']);
         }
 
         if (res.user === 'NO_FOUND' && res.result) {

@@ -10,7 +10,7 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
-                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder=""  (keypress)="OnlyAlphabetsAllowed($event)">
+                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder="">
                 <p class="text-red" *ngIf="name.invalid && name.touched">{{'NAME_REQUIRED' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">

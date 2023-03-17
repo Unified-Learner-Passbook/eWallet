@@ -38,6 +38,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    if (!this.authService.currentUser.did) {
+      window.alert("Approval Required");
+    }
     this.fetchCredentialCategories();
     this.fetchCredentials();
   }
@@ -56,7 +59,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         if (res?.result?.length) {
           console.log("res", res.result);
 
-          let credNameList = res.result.map((cred: any) => JSON.parse(cred.credential_schema).name);
+          // let credNameList = res.result.map((cred: any) => JSON.parse(cred.credential_schema).name);
+          let credNameList = res.result.map((cred: any) => cred.name);
           const countedNames = credNameList.reduce((allNames, currentName) => {
             const currCount = allNames[currentName] ?? 0;
             return {
@@ -70,6 +74,10 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     });
   }
 
+  getSchema(schemaId: string) {
+    return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/credentials/getSchema/${schemaId}`, true);
+  }
+
   fetchCredentials() {
     const payload = {
       url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials'
@@ -78,10 +86,10 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       .pipe(map((res: any) => {
         if (res.success) {
           if (res?.result?.length) {
-            res?.result.forEach(element => {
-              element.subject = element.subject ? JSON.parse(element.subject) : '';
-              element.credential_schema = element.credential_schema ? JSON.parse(element.credential_schema) : ''
-            });
+            // res?.result.forEach(element => {
+            //   element.subject = element.subject ? JSON.parse(element.subject) : '';
+            //   element.credential_schema = element.credential_schema ? JSON.parse(element.credential_schema) : ''
+            // });
             return res.result;
           } else {
             if (res.message) {
@@ -101,8 +109,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   renderCertificate(credential: any) {
     const certCred = { ...credential };
-    certCred.subject = JSON.stringify(certCred.subject);
-    certCred.credential_schema = JSON.stringify(certCred.credential_schema);
+    // certCred.subject = JSON.stringify(certCred.subject);
+    // certCred.credential_schema = JSON.stringify(certCred.credential_schema);
     const navigationExtras: NavigationExtras = {
       state: certCred
     };

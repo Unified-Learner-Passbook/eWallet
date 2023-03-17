@@ -16,7 +16,7 @@ export class RegistrationComponent implements OnInit {
   registrationDetails: any;
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z]+$')]),
+    name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
     schoolId: new FormControl(null, [Validators.required]),
     // studentId: new FormControl(null, [Validators.required]),
@@ -117,8 +117,19 @@ export class RegistrationComponent implements OnInit {
 
       this.authService.ssoSignUp(payload).subscribe((res: any) => {
         console.log("result register", res);
-        this.router.navigate(['/home']);
-        if (res.success) {
+        if (res.success && res.user === 'FOUND') {
+          
+          if(res.token) {
+            localStorage.setItem('accessToken', res.token);
+          }
+          
+          if (res?.userData?.student) {
+            localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
+            this.telemetryService.uid = res.userData.student.meripehchanLoginId;
+            // this.telemetryService.start();
+          }
+          this.router.navigate(['/home']);
+
           this.toast.success("", "User Registered successfully!");
           // this.router.navigate(['/login']);
 
