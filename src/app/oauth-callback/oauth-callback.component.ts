@@ -15,7 +15,7 @@ export class OauthCallbackComponent implements OnInit {
     private generalService: GeneralService,
     private toastMessage: ToastMessageService,
     private router: Router
-    ) {
+  ) {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log("params", params);
       if (params.code) {
@@ -31,20 +31,20 @@ export class OauthCallbackComponent implements OnInit {
 
   getUserData(code: string) {
     const request = {
-      digiacc:"ewallet",
+      digiacc: "ewallet",
       auth_code: code
     }
-    this.generalService.postData('https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/token', request).subscribe((res) => {
+    this.generalService.postData('https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/token', request).subscribe((res: any) => {
       console.log("Result", res);
 
       if (res.success) {
         if (res.user === 'FOUND') {
-          
+
         }
 
-        if (res.user === 'NO_FOUND') {
+        if (res.user === 'NO_FOUND' && res.result) {
           const navigationExtras: NavigationExtras = {
-            state: res
+            state: res.result
           };
           this.router.navigate(['/register'], navigationExtras)
         }
