@@ -98,21 +98,21 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
 
       const payload = {
-        "digiacc": "ewallet",
-        "userdata": {
-          "student": {
-            "did": "",
-            "meripehchanLoginId": this.registrationDetails.meripehchanid,
-            "aadhaarID": "adhar 123",
-            "studentName": this.registrationForm.value.name,
-            "schoolName": this.registrationForm.value.school,
-            "studentSchoolID": this.registrationForm.value.schoolId,
-            "phoneNo": this.registrationForm.value.phone,
-            "grade": "grade 8",
-            "username": this.registrationDetails.meripehchanid,
+        digiacc: "ewallet",
+        userdata: {
+          student: {
+            did: "",
+            meripehchanLoginId: this.registrationDetails.meripehchanid,
+            aadhaarID: this.registrationForm.value.aadhar,
+            studentName: this.registrationForm.value.name,
+            schoolName: this.registrationForm.value.school,
+            studentSchoolID: this.registrationForm.value.schoolId,
+            phoneNo: this.registrationForm.value.phone,
+            grade: "grade 8",
+            username: this.registrationDetails.meripehchanid,
           }
         },
-        "digimpid": this.registrationDetails.meripehchanid
+        digimpid: this.registrationDetails.meripehchanid
       }
 
       this.authService.ssoSignUp(payload).subscribe((res: any) => {
