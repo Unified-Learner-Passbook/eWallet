@@ -45,8 +45,8 @@ export class OauthCallbackComponent implements OnInit {
             localStorage.setItem('accessToken', res.token);
           }
 
-          if (res?.userData?.student) {
-            localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
+          if (res?.userData?.length) {
+            localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
             // this.telemetryService.uid = res.userData.student.meripehchanLoginId;
             // this.telemetryService.start();
           }
