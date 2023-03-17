@@ -1,7 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
+import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 
 @Component({
@@ -9,7 +11,7 @@ import { ToastMessageService } from '../services/toast-message/toast-message.ser
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent implements OnInit, AfterViewInit {
 
   aadharLogin = false;
   public showPassword: boolean = false;
@@ -24,7 +26,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService,
     private toastMessage: ToastMessageService,
     private router: Router,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
+    private telemetryService: TelemetryService
   ) { }
 
   ngOnInit(): void {
@@ -68,15 +71,58 @@ export class LoginComponent implements OnInit {
 
           if (res?.result?.userData[0]) {
             localStorage.setItem('currentUser', JSON.stringify(res.result.userData[0]));
+            this.telemetryService.uid = res.result.userData[0].did;
+            // this.telemetryService.start();
           }
           this.router.navigate(['/home']);
         } else {
-          this.toastMessage.error("", res.message);
+          const message = res.message ? res.message : 'Incorrect Username or password';
+          this.toastMessage.error("", message);
         }
       }, (error) => {
-        this.toastMessage.error('', error);
+        const message = error?.error?.message ? error.error.message : 'Incorrect Username or password';
+        this.toastMessage.error('', message);
       });
     }
   }
+
+  ngAfterViewInit(): void {
+    this.raiseImpressionEvent();
+  }
+
+
+  raiseImpressionEvent() {
+    const telemetryImpression: IImpressionEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        type: this.activatedRoute.snapshot?.data?.telemetry?.type,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+        uri: this.router.url,
+        subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+        // duration: this.navigationhelperService.getPageLoadTime() // Duration to load the page
+      }
+    };
+    this.telemetryService.impression(telemetryImpression);
+  }
+
+  raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
+    const telemetryInteract: IInteractEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        id,
+        type,
+        subtype,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+      }
+    };
+    this.telemetryService.interact(telemetryInteract);
+  }
+
 
 }

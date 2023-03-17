@@ -13,6 +13,7 @@ import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { AngularMultiSelectModule } from 'angular2-multiselect-dropdown';
+import { DeviceDetectorModule } from 'ngx-device-detector';
 // formly
 import { FormlyModule, FormlyFieldConfig } from '@ngx-formly/core';
 import { FormlyBootstrapModule } from '@ngx-formly/bootstrap';
@@ -132,7 +133,9 @@ import { SetUsernameComponent } from './set-username/set-username.component';
 import { RegistrationComponent } from './registration/registration.component';
 import { GlobalHeaderComponent } from './global-header/global-header.component';
 import { AuthInterceptor } from './authentication/auth.interceptor';
+import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
+import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 
 @NgModule({
   declarations: [
@@ -177,7 +180,9 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     SetUsernameComponent,
     RegistrationComponent,
     GlobalHeaderComponent,
-    ChangePasswordComponent
+    SearchCertificatesComponent,
+    ChangePasswordComponent,
+    OauthCallbackComponent
   ],
   imports: [
     BrowserModule,
@@ -193,6 +198,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
     Bootstrap4FrameworkModule,
     AngularMultiSelectModule,
     NgSelectModule,
+    DeviceDetectorModule.forRoot(),
 
     HttpClientModule,
     TranslateModule.forRoot(),

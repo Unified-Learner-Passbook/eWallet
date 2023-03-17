@@ -13,6 +13,8 @@ import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
+import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -27,13 +29,17 @@ export class DocViewComponent implements OnInit {
     docName: any;
     docDetails: any;
     credential: any;
+    schemaId: string;
+    templateId: string;
     private readonly canGoBack: boolean;
     constructor(
         public generalService: GeneralService,
         private router: Router,
         private http: HttpClient,
         private location: Location,
-        private authService: AuthService
+        private authService: AuthService,
+        private activatedRoute: ActivatedRoute,
+        private telemetryService: TelemetryService
     ) {
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
@@ -50,8 +56,9 @@ export class DocViewComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.credential?.credential_schema) {
-            const schemaId = JSON.parse(this.credential.credential_schema)?.id;
-            this.getTemplate(schemaId).subscribe((res) => {//clf16wnze0002tj14mv1smo1w
+            this.schemaId = JSON.parse(this.credential.credential_schema)?.id;
+            this.getTemplate(this.schemaId).subscribe((res) => {//clf16wnze0002tj14mv1smo1w
+                this.templateId = res?.result?.[0]?.id;
                 this.getPDF(res?.result?.[0]?.template);
             });
         } else {
@@ -108,6 +115,53 @@ export class DocViewComponent implements OnInit {
         document.body.appendChild(link);
         link.click();
         document.body.removeChild(link);
+        this.raiseInteractEvent('download-certificate');
+    }
+
+    raiseImpressionEvent() {
+        const telemetryImpression: IImpressionEventInput = {
+            context: {
+                env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+                cdata: [{
+                    id: this.schemaId,
+                    type: 'schema'
+                }]
+            },
+            object: {
+                id: this.templateId,
+                type: 'template'
+            },
+            edata: {
+                type: this.activatedRoute.snapshot?.data?.telemetry?.type,
+                pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+                uri: this.router.url,
+                subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+            }
+        };
+        this.telemetryService.impression(telemetryImpression);
+    }
+
+    raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
+        const telemetryInteract: IInteractEventInput = {
+            context: {
+                env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+                cdata: [{
+                    id: this.schemaId,
+                    type: 'schema'
+                }]
+            },
+            object: {
+                id: this.templateId,
+                type: 'template'
+            },
+            edata: {
+                id,
+                type,
+                subtype,
+                pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+            }
+        };
+        this.telemetryService.interact(telemetryInteract);
     }
 }
 

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as JSZip from 'jszip';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { IImpressionEventInput } from 'src/app/services/telemetry/telemetry-interface';
+import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 
 @Component({
   selector: 'app-scan-qr-code',
@@ -14,7 +16,12 @@ export class ScanQrCodeComponent implements OnInit {
   qrString: string;
   entity: any;
   model;
-  constructor(public generalService: GeneralService, private route: ActivatedRoute, public router: Router) { }
+  constructor(
+    public generalService: GeneralService,
+    private route: ActivatedRoute,
+    public router: Router,
+    private telemetryService: TelemetryService
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe(params => {
@@ -83,6 +90,7 @@ export class ScanQrCodeComponent implements OnInit {
   onError(error) {
     console.error(error)
   }
+
   postData(url, data) {
     this.generalService.postData(url, data).subscribe((res) => {
       console.log('pub res', res);
@@ -92,6 +100,22 @@ export class ScanQrCodeComponent implements OnInit {
       // this.toastMsg.error('error', err.error.params.errmsg)
       console.log('error', err)
     });
+  }
+
+  raiseImpressionEvent() {
+    const telemetryImpression: IImpressionEventInput = {
+      context: {
+        env: this.route.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        type: this.route.snapshot?.data?.telemetry?.type,
+        pageid: this.route.snapshot?.data?.telemetry?.pageid,
+        uri: this.router.url,
+        subtype: this.route.snapshot?.data?.telemetry?.subtype,
+      }
+    };
+    this.telemetryService.impression(telemetryImpression);
   }
 
 }

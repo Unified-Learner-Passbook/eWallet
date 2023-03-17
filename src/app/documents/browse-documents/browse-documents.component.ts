@@ -1,10 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { NavigationExtras, Router } from '@angular/router';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
+import { IImpressionEventInput } from 'src/app/services/telemetry/telemetry-interface';
+import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
@@ -12,16 +14,16 @@ import { ToastMessageService } from 'src/app/services/toast-message/toast-messag
   templateUrl: './browse-documents.component.html',
   styleUrls: ['./browse-documents.component.scss']
 })
-export class BrowseDocumentsComponent implements OnInit {
+export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   showIssuers = true;
   showFetchedDocuments = false;
   documentTypes: any;
   credentials$: Observable<any>;
 
-  certificatesDetails=[
-     {name:'Academic Certificates', image:'assets/images/acadmic.png'},
-     {name:'Enrollement Certificates', image:'assets/images/enroll.png'},
-     {name:'Benefit Records', image:'assets/images/benefit.png'},
+  certificatesDetails = [
+    { name: 'Academic Certificates', image: 'assets/images/acadmic.png' },
+    { name: 'Enrollement Certificates', image: 'assets/images/enroll.png' },
+    { name: 'Benefit Records', image: 'assets/images/benefit.png' },
   ];
 
 
@@ -30,16 +32,42 @@ export class BrowseDocumentsComponent implements OnInit {
     public generalService: GeneralService,
     public authService: AuthService,
     private dataService: DataService,
-    private toastMessage: ToastMessageService
+    private toastMessage: ToastMessageService,
+    private activatedRoute: ActivatedRoute,
+    private telemetryService: TelemetryService
   ) { }
 
   ngOnInit(): void {
+    this.fetchCredentialCategories();
     this.fetchCredentials();
   }
 
   toggleResults() {
     this.showFetchedDocuments = !this.showFetchedDocuments;
     this.showIssuers = !this.showIssuers;
+  }
+
+  fetchCredentialCategories() {
+    const payload = {
+      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials'
+    }
+    this.dataService.get(payload).subscribe((res: any) => {
+      if (res.success) {
+        if (res?.result?.length) {
+          console.log("res", res.result);
+
+          let credNameList = res.result.map((cred: any) => JSON.parse(cred.credential_schema).name);
+          const countedNames = credNameList.reduce((allNames, currentName) => {
+            const currCount = allNames[currentName] ?? 0;
+            return {
+              ...allNames,
+              [currentName]: currCount + 1,
+            };
+          }, {});
+          console.log("countent", countedNames);
+        }
+      }
+    });
   }
 
   fetchCredentials() {
@@ -79,6 +107,28 @@ export class BrowseDocumentsComponent implements OnInit {
       state: certCred
     };
     this.router.navigate(['/doc-view'], navigationExtras);
+  }
+
+  ngAfterViewInit() {
+    this.raiseImpressionEvent();
+  }
+
+  raiseImpressionEvent() {
+    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
+    const telemetryImpression: IImpressionEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        type: this.activatedRoute.snapshot?.data?.telemetry?.type,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+        uri: this.router.url,
+        subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+        // duration: this.navigationhelperService.getPageLoadTime()
+      }
+    };
+    this.telemetryService.impression(telemetryImpression);
   }
 
 }
