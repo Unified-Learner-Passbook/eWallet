@@ -119,7 +119,7 @@ export class RegistrationComponent implements OnInit {
             schoolName: this.registrationForm.value.school,
             studentSchoolID: this.registrationForm.value.schoolId,
             phoneNo: this.registrationForm.value.phone,
-            grade: "grade 8",
+            grade: "grade 8", //TODO: Check if needs to be added in the form
             username: this.registrationDetails.meripehchanid,
           }
         },

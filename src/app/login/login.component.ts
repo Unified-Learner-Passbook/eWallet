@@ -13,7 +13,7 @@ import { ToastMessageService } from '../services/toast-message/toast-message.ser
 })
 export class LoginComponent implements OnInit, AfterViewInit {
 
-  aadharLogin = false;
+  ssoLogin = false;
   public showPassword: boolean = false;
   show = false;
 
@@ -33,11 +33,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       console.log(params);
-      if (params['aadharLogin'] === 'true') {
-        this.aadharLogin = true;
-      } else {
-        this.aadharLogin = false;
-      }
+      this.ssoLogin = params['ssoLogin'] === 'true';
     });
   }
 
