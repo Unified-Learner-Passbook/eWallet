@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class ChangePasswordComponent implements OnInit {
 
   public showPassword: boolean = false;
+  public showPasswordtwo: boolean = false;
   show = false;
   
  constructor() { }
@@ -17,6 +18,10 @@ export class ChangePasswordComponent implements OnInit {
 
   public togglePasswordVisibility(): void {
     this.showPassword = !this.showPassword;
+    this.show = !this.show;
+  }
+  public togglePasswordtwoVisibility(): void {
+    this.showPasswordtwo = !this.showPasswordtwo;
     this.show = !this.show;
   }
 
