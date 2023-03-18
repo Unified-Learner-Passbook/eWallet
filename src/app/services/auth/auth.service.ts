@@ -22,6 +22,12 @@ export class AuthService {
     return this.http.post(api, user).pipe(catchError(this.handleError));
   }
 
+
+  ssoSignUp(user: any) {
+    const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/register`;
+    return this.http.post(api, user).pipe(catchError(this.handleError));
+  }
+
   // Sign-in
   signIn(user) {
     return this.http

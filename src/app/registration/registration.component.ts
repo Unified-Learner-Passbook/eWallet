@@ -13,12 +13,13 @@ import { ToastMessageService } from "../services/toast-message/toast-message.ser
 })
 export class RegistrationComponent implements OnInit {
 
+  registrationDetails: any;
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.pattern('[a-zA-Z]+$')]),
+    name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
     schoolId: new FormControl(null, [Validators.required]),
-    studentId: new FormControl(null, [Validators.required]),
+    // studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')])
   });
 
@@ -28,7 +29,10 @@ export class RegistrationComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private telemetryService: TelemetryService
-    ) { }
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.registrationDetails = navigation.extras.state;
+  }
 
   ngOnInit(): void {
   }
@@ -57,18 +61,30 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('phone');
   }
 
-  OnlyNumbersAllowed(event):boolean{
-    const charCode = (event.which)?event.which: event.keycode;
-    if(charCode > 31 && (charCode < 48 || charCode > 57)){
+  ngAfterViewInit() {
+    if (this.registrationDetails) {
+      if (this.registrationDetails?.name) {
+        this.registrationForm.get('name').setValue(this.registrationDetails.name);
+      }
+
+      if (this.registrationDetails?.mobile) {
+        this.registrationForm.get('phone').setValue(this.registrationDetails.mobile);
+      }
+    }
+  }
+
+  OnlyNumbersAllowed(event): boolean {
+    const charCode = (event.which) ? event.which : event.keycode;
+    if (charCode > 31 && (charCode < 48 || charCode > 57)) {
       // console.log('charcode restricted is' +charCode)
       return false;
     }
     return true;
   }
 
-  OnlyAlphabetsAllowed(event):boolean{
-    const charCode = (event.which)?event.which: event.keycode;
-    if(charCode > 31 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)){
+  OnlyAlphabetsAllowed(event): boolean {
+    const charCode = (event.which) ? event.which : event.keycode;
+    if (charCode > 31 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
       // console.log('charcode restricted is' +charCode)
       return false;
     }
@@ -82,18 +98,40 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
 
       const payload = {
-        "aadhaarId": this.registrationForm.value.aadhar, //unique
-        "studentName": this.registrationForm.value.name,
-        "schoolName": this.registrationForm.value.school,
-        "schoolId": this.registrationForm.value.schoolId,
-        "studentId": this.registrationForm.value.studentId, // unique username abc1 alphanumeric
-        "phoneNo": this.registrationForm.value.phone
+        digiacc: "ewallet",
+        userdata: {
+          student: {
+            did: "",
+            meripehchanLoginId: this.registrationDetails.meripehchanid,
+            aadhaarID: this.registrationForm.value.aadhar,
+            studentName: this.registrationForm.value.name,
+            schoolName: this.registrationForm.value.school,
+            studentSchoolID: this.registrationForm.value.schoolId,
+            phoneNo: this.registrationForm.value.phone,
+            grade: "grade 8",
+            username: this.registrationDetails.meripehchanid,
+          }
+        },
+        digimpid: this.registrationDetails.meripehchanid
       }
 
-      this.authService.signUp(payload).subscribe((res) => {
-        if (res.success) {
+      this.authService.ssoSignUp(payload).subscribe((res: any) => {
+        console.log("result register", res);
+        if (res.success && res.user === 'FOUND') {
+          
+          if(res.token) {
+            localStorage.setItem('accessToken', res.token);
+          }
+          
+          if (res?.userData?.student) {
+            localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
+            this.telemetryService.uid = res.userData.student.meripehchanLoginId;
+            // this.telemetryService.start();
+          }
+          this.router.navigate(['/home']);
+
           this.toast.success("", "User Registered successfully!");
-          this.router.navigate(['/login']);
+          // this.router.navigate(['/login']);
 
           // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
           // this.telemetryService.audit()

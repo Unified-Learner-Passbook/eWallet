@@ -66,7 +66,7 @@ export class DataService {
         if (data.responseCode && data.responseCode !== 'OK') {
           return throwError(data);
         }
-        return of(data);
+        return data;
       }));
   }
 
