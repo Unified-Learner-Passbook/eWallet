@@ -107,7 +107,7 @@ const routes: Routes = [
     path: 'change-password',
     component: ChangePasswordComponent,
     data: {
-      showToolbar: true
+      showToolbar: false,
     },
     canActivate: [AuthenticationGuard]
   },
