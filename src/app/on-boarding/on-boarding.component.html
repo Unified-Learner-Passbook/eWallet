@@ -4,12 +4,10 @@
       <img src="assets/images/onboard3.png" alt="">
    </div>
    <div class="pb-10">
-      <button type="button" class="login-btn bg-blue-dark w-100" [routerLink]="['login']"
-         [queryParams]="{aadharLogin: true}" (click)="raiseInteractEvent('login-sso')">{{'LOGIN_USING_AADHAR' |
+      <button type="button" class="login-btn bg-blue-dark w-100"
+         (click)="openSSO();raiseInteractEvent('login-sso')">{{'LOGIN_USING_SSO' |
          translate}}</button>
       <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{aadharLogin: false}"
          (click)="raiseInteractEvent('login-auth')">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
-
-      <button type="button" class="register-btn" (click)="openSSO()">Login with SSO</button>
    </div>
 </div>

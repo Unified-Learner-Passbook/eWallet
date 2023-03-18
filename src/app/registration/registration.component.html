@@ -5,12 +5,14 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 pb-10">
                 <label for="aadhar">{{'AADHAAR' | translate}}</label>
-                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"  placeholder=""  maxLength="12"  (keypress)="OnlyNumbersAllowed($event)">
+                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
+                    placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)">
                 <p class="text-red" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
-                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name" placeholder="">
+                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name"
+                    placeholder="">
                 <p class="text-red" *ngIf="name.invalid && name.touched">{{'NAME_REQUIRED' | translate }}</p>
             </div>
             <div class="mb-3 pb-10">
@@ -20,13 +22,14 @@
                     <option>CCEM</option>
                     <option>BIT</option>
                     <option>VITS</option>
-                  </select>
+                </select>
                 <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
                 <p class="text-red" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate }}</p>
             </div>
-                 <div class="mb-3 pb-10">
+            <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
-                <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId" placeholder="">
+                <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId"
+                    placeholder="">
                 <p class="text-red" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' | translate }}</p>
             </div>
             <!-- <div class="mb-3 pb-10">
@@ -36,55 +39,41 @@
             </div> -->
             <div class="mb-3 pb-10">
                 <label for="phone">{{'PHONE_NO' | translate}}</label>
-                <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone" placeholder=""  maxLength="10" (keypress)="OnlyNumbersAllowed($event)">
+                <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone"
+                    placeholder="" maxLength="10" (keypress)="OnlyNumbersAllowed($event)">
                 <p class="text-red" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate }}</p>
                 <!-- <div *ngIf="phone.touched && phone.invalid" class="alert alert-danger">  
                     <p>Enter a valid Mobile</p>
                 </div>   -->
             </div>
-            
+
             <div class="pb-10 text-center">
-                <button type="submit" class="login-btn bg-blue-dark font-600 mt-4" [disabled]="registrationForm.invalid">{{'REGISTER' | translate}}</button>
+                <button type="submit" class="login-btn bg-blue-dark font-600 mt-4"
+                    [disabled]="registrationForm.invalid">{{'REGISTER' | translate}}</button>
                 <!-- <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button> -->
             </div>
-    </form>
+        </form>
     </div>
 </div>
 
 <!-- GET OTP POPUP -->
-<div class="modal" tabindex="-1"  id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal" tabindex="-1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog otp-verify">
-    <div class="modal-content">
-        <div class="text-right">
-            <button type="button" class="btn-close text-right p-2" data-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <h5 class="modal-title text-center text-primary-color pb-4">{{'ENTER_OTP' | translate}}</h5>
-            <div class="input-group pb-40">
-                <input type="text" class="form-control p-4" placeholder="{{'ENTER_OTP' | translate}}" aria-label="Recipient's username" aria-describedby="basic-addon2">
+        <div class="modal-content">
+            <div class="text-right">
+                <button type="button" class="btn-close text-right p-2" data-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <h5 class="modal-title text-center text-primary-color pb-4">{{'ENTER_OTP' | translate}}</h5>
+                <div class="input-group pb-40">
+                    <input type="text" class="form-control p-4" placeholder="{{'ENTER_OTP' | translate}}"
+                        aria-label="Recipient's username" aria-describedby="basic-addon2">
+                </div>
+            </div>
+            <div class="modal-footer justify-content-space-evenly">
+                <button type="button" class="btn btn-secondary bg-blue-dark btn-padding" data-toggle="modal"
+                    data-target="#exampleModal1">{{'REGISTER' | translate}}</button>
             </div>
         </div>
-        <div class="modal-footer justify-content-space-evenly">
-        <button type="button" class="btn btn-secondary bg-blue-dark btn-padding" data-toggle="modal" data-target="#exampleModal1">{{'REGISTER' | translate}}</button>
-        </div>
-    </div>
-    </div>
-</div>
-
-<!-- GET Approval POPUP -->
-<div class="modal" tabindex="-1"  id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog otp-verify">
-    <div class="modal-content">
-        <div class="modal-body message">
-        <h5 class="modal-title text-center text-primary-color pb-4">{{'REGISTRATION_APPROVAL' | translate}} <br>{{'PENDING' | translate}} !</h5>
-           <div class="text-center">
-            {{'CONTACT_YOUR_SCHOOL_APPROVAL' | translate}}<br><br>
-            {{'PHONE_NO' | translate}} : <a href=“tel:+918953389654” class="text-primary-color">+91 8953389654</a>
-           </div>
-        </div>
-        <div class="modal-footer justify-content-space-evenly border-none">
-        <button type="button" class="btn btn-secondary bg-blue-dark btn-padding my-2" data-dismiss="modal">{{'CONTACT_SCHOOL' | translate}}</button>
-        </div>
-    </div>
     </div>
 </div>

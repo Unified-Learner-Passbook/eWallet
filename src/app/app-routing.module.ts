@@ -115,6 +115,10 @@ const routes: Routes = [
     path: 'digilocker-callback',
     component: OauthCallbackComponent
   },
+  {
+    path: '**',
+    redirectTo: ''
+  }
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},

@@ -264,6 +264,5 @@
     "NOT_REGISTERED":"पंजीकृत नहीं है!",
     "REGISTER_HERE":"यहां रजिस्टर करें",
     "CHANGE_PASSWORD":"पासवर्ड बदलें",
-    "SET_USERNAME_PASSWORD":"उपयोगकर्ता नाम और पासवर्ड सेट करें"
-    
+    "LOGIN_USING_SSO": "मेरी पहचान का उपयोग कर लॉग इन करें" 
 }
