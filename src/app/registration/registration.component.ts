@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -28,10 +29,20 @@ export class RegistrationComponent implements OnInit {
     private toast: ToastMessageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private telemetryService: TelemetryService
+    private telemetryService: TelemetryService,
+    private readonly location: Location
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.registrationDetails = navigation.extras.state;
+    const canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
+
+    if (!this.registrationDetails) {
+      if (canGoBack) {
+        this.location.back();
+      } else {
+        this.router.navigate(['']);
+      }
+    }
   }
 
   ngOnInit(): void {
@@ -118,18 +129,17 @@ export class RegistrationComponent implements OnInit {
       this.authService.ssoSignUp(payload).subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {
-          
-          if(res.token) {
+
+          if (res.token) {
             localStorage.setItem('accessToken', res.token);
           }
-          
+
           if (res?.userData?.student) {
             localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
             this.telemetryService.uid = res.userData.student.meripehchanLoginId;
             // this.telemetryService.start();
           }
           this.router.navigate(['/home']);
-
           this.toast.success("", "User Registered successfully!");
           // this.router.navigate(['/login']);
 

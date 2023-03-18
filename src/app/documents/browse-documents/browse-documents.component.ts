@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -20,6 +21,8 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   documentTypes: any;
   credentials$: Observable<any>;
 
+  @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
+
   certificatesDetails = [
     { name: 'Academic Certificates', image: 'assets/images/acadmic.png' },
     { name: 'Enrollement Certificates', image: 'assets/images/enroll.png' },
@@ -34,13 +37,11 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     private dataService: DataService,
     private toastMessage: ToastMessageService,
     private activatedRoute: ActivatedRoute,
+    private readonly modalService: NgbModal,
     private telemetryService: TelemetryService
   ) { }
 
   ngOnInit(): void {
-    if (!this.authService.currentUser.did) {
-      window.alert("Approval Required");
-    }
     this.fetchCredentialCategories();
     this.fetchCredentials();
   }
@@ -118,6 +119,14 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
+    if (!this.authService.currentUser.did) {
+      const options: NgbModalOptions = {
+        backdrop: 'static',
+        animation: true,
+        centered: true,
+      };
+      this.modalService.open(this.approvalModal, options);
+    }
     this.raiseImpressionEvent();
   }
 

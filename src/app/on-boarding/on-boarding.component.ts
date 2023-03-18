@@ -10,15 +10,14 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
   templateUrl: './on-boarding.component.html',
   styleUrls: ['./on-boarding.component.scss']
 })
-export class OnBoardingComponent implements OnInit, AfterViewInit{
-
+export class OnBoardingComponent implements OnInit, AfterViewInit {
   constructor(
-    private readonly authService: AuthService, 
+    private readonly authService: AuthService,
     private readonly router: Router,
     private readonly generalService: GeneralService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService
-    ) { }
+  ) { }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
@@ -34,7 +33,7 @@ export class OnBoardingComponent implements OnInit, AfterViewInit{
   }
 
   ngAfterViewInit(): void {
-      this.raiseImpressionEvent();
+    this.raiseImpressionEvent();
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {

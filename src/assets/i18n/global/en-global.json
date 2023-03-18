@@ -263,5 +263,6 @@
     "NOT_REGISTERED":"Not registered!",
     "REGISTER_HERE":"Register here",
     "CHANGE_PASSWORD":"Change Password",
+    "LOGIN_USING_SSO": "Login Using Meri Pehchaan"
 
 }
