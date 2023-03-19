@@ -248,7 +248,6 @@
     "USER_REGISTERED_SUCCESSFULLY": "User Registered successfully!",
     "STUDENT_ID": "Student Id",
 
-
     "SIGN_IN_AADHAR_OTP":"Sign in using Aadhar and OTP",
     "USER_NOT_REGISTERD":"Not registered! Register here",
     "SIGN_IN_USERNAME_PASSWORD":"Sign in using Username and Password",
@@ -266,5 +265,4 @@
     "LOGIN_USING_SSO": "Login Using Meri Pehchaan",
     "DOB": "Date of Birth",
     "ENTER_VALID_DOB": "Enter valid Birth date"
-
 }
