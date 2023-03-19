@@ -1,6 +1,6 @@
 <div class="container text-center pb-0 mt-20">
     <app-global-header [showTitle]="true"></app-global-header>
-     <form *ngIf="aadharLogin">
+     <form *ngIf="ssoLogin">
       <div class="mb-3 pb-10">
         <label for="exampleFormControlInput1">{{'ENTER_AADHAAR_NO' | translate}}</label>
         <div class="input-group mb-2">
@@ -8,13 +8,13 @@
           <i class="fa fa-eye-slash eye-icon" aria-hidden="true"></i>
         </div>
       </div>
-      <p  class="text-secondary-color" (click)="aadharLogin = !aadharLogin">{{'SIGN_IN_AADHAR_OTP' | translate }}</p>
+      <p  class="text-secondary-color" (click)="ssoLogin = !ssoLogin">{{'SIGN_IN_AADHAR_OTP' | translate }}</p>
       <div class="pb-10">
         <button type="button" class="login-btn bg-blue-dark mt-4" data-toggle="modal" data-target="#exampleModal">{{'GET_OTP'| translate}}</button>
       </div>
     </form>
 
-    <form *ngIf="!aadharLogin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <form *ngIf="!ssoLogin" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="mb-3 pb-10" >
         <label for="userName">{{'USERNAME' | translate}}</label>
         <div class="input-group mb-2">
@@ -32,7 +32,7 @@
         <p class="text-left text-red" *ngIf="password.invalid && password.touched">{{'PASSWORD_REQUIRED' | translate }}</p>
       </div>
 
-      <p class="text-secondary-color" (click)="aadharLogin = !aadharLogin">{{'SIGN_IN_USERNAME_PASSWORD' | translate }}</p>
+      <p class="text-secondary-color" (click)="ssoLogin = !ssoLogin">{{'SIGN_IN_USERNAME_PASSWORD' | translate }}</p>
       <div class="pb-10">
         <button type="submit" class="login-btn bg-blue-dark" [disabled]="loginForm.invalid">{{'LOGIN'| translate}}</button>
       </div>

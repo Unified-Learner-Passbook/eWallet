@@ -21,7 +21,9 @@ export class RegistrationComponent implements OnInit {
     school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
     schoolId: new FormControl(null, [Validators.required]),
     // studentId: new FormControl(null, [Validators.required]),
-    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')])
+    phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
+    username: new FormControl(null, [Validators.required]),
+    dob: new FormControl(null, [Validators.required])
   });
 
   constructor(
@@ -72,14 +74,30 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('phone');
   }
 
+  get username() {
+    return this.registrationForm.get('username');
+  }
+
+  get dob() {
+    return this.registrationForm.get('dob');
+  }
+
   ngAfterViewInit() {
     if (this.registrationDetails) {
-      if (this.registrationDetails?.name) {
+      if (this.registrationDetails.name) {
         this.registrationForm.get('name').setValue(this.registrationDetails.name);
       }
 
-      if (this.registrationDetails?.mobile) {
+      if (this.registrationDetails.mobile) {
         this.registrationForm.get('phone').setValue(this.registrationDetails.mobile);
+      }
+
+      if (this.registrationDetails.username) {
+        this.registrationForm.get('username').setValue(this.registrationDetails.username);
+      }
+
+      if (this.registrationDetails.dob) {
+        this.registrationForm.get('dob').setValue(this.registrationDetails.dob);
       }
     }
   }
@@ -119,8 +137,9 @@ export class RegistrationComponent implements OnInit {
             schoolName: this.registrationForm.value.school,
             studentSchoolID: this.registrationForm.value.schoolId,
             phoneNo: this.registrationForm.value.phone,
-            grade: "grade 8",
-            username: this.registrationDetails.meripehchanid,
+            grade: "grade 8", //TODO: Check if needs to be added in the form
+            username: this.registrationDetails.username, //TODO add on html
+            dob: this.registrationDetails.dob
           }
         },
         digimpid: this.registrationDetails.meripehchanid

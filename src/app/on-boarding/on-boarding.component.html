@@ -7,7 +7,7 @@
       <button type="button" class="login-btn bg-blue-dark w-100"
          (click)="openSSO();raiseInteractEvent('login-sso')">{{'LOGIN_USING_SSO' |
          translate}}</button>
-      <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{aadharLogin: false}"
+      <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{ssoLogin: false}"
          (click)="raiseInteractEvent('login-auth')">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
    </div>
 </div>
