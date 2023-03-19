@@ -263,6 +263,8 @@
     "NOT_REGISTERED":"Not registered!",
     "REGISTER_HERE":"Register here",
     "CHANGE_PASSWORD":"Change Password",
-    "LOGIN_USING_SSO": "Login Using Meri Pehchaan"
+    "LOGIN_USING_SSO": "Login Using Meri Pehchaan",
+    "DOB": "Date of Birth",
+    "ENTER_VALID_DOB": "Enter valid Birth date"
 
 }
