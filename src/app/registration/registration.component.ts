@@ -19,7 +19,7 @@ export class RegistrationComponent implements OnInit {
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-    school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
+    school: new FormControl(null, [Validators.required]),
     schoolUdise: new FormControl(null, [Validators.required]),
     schoolId: new FormControl(null, [Validators.required]),
     // studentId: new FormControl(null, [Validators.required]),
