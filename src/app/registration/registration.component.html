@@ -26,15 +26,19 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}</label>
-                <select class="form-select p-2" id="school" formControlName="school">
-                    <option>SNVM</option>
-                    <option>CCEM</option>
-                    <option>BIT</option>
-                    <option>VITS</option>
+                <select class="form-select p-2" id="school" formControlName="school" (change)="onSchoolChange($event.target.value)">
+                    <option *ngFor="let item of schoolList" [value]="item?.schoolName">{{item?.schoolName}}</option>
                 </select>
                 <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
                 <p class="text-red pt-2 mb-0" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate}}
                 </p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="schoolUdise">{{'SCHOOL_UDISE' | translate}}</label>
+                <input type="text" class="form-control p-4" id="schoolUdise" name="schoolUdise" formControlName="schoolUdise"
+                    placeholder="" disabled="true">
+                <p class="text-red pt-2 mb-0" *ngIf="schoolUdise.invalid && schoolUdise.touched">{{'ENTER_SCHOOL_ID' |
+                    translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
