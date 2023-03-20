@@ -221,7 +221,7 @@ export class RegistrationComponent implements OnInit {
             grade: this.registrationForm.value.grade,
             username: this.registrationDetails.username,
             dob: this.registrationDetails.dob,
-            schoolUdise: "1234",
+            schoolUdise: this.registrationForm.value.schoolUdise,
             academicYear: this.registrationForm.value.academicYear,
             gaurdianName: this.registrationForm.value.guardianName
           }
