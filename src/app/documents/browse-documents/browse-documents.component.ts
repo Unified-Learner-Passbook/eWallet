@@ -1,9 +1,10 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { CredentialService } from 'src/app/services/credential/credential.service';
 import { DataService } from 'src/app/services/data/data-request.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput } from 'src/app/services/telemetry/telemetry-interface';
@@ -38,12 +39,14 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     private toastMessage: ToastMessageService,
     private activatedRoute: ActivatedRoute,
     private readonly modalService: NgbModal,
-    private telemetryService: TelemetryService
+    private telemetryService: TelemetryService,
+    private readonly credentialService: CredentialService
   ) { }
 
   ngOnInit(): void {
-    this.fetchCredentialCategories();
-    this.fetchCredentials();
+    // this.fetchCredentialCategories();
+    // this.fetchCredentials();
+    this.loadCredentials();
   }
 
   toggleResults() {
@@ -75,9 +78,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     });
   }
 
-  getSchema(schemaId: string) {
-    return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/credentials/getSchema/${schemaId}`, true);
-  }
+  // getSchema(schemaId: string) {
+  //   return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/credentials/getSchema/${schemaId}`, true);
+  // }
 
   fetchCredentials() {
     const payload = {
@@ -106,6 +109,32 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
           return [];
         }
       }));
+  }
+
+  loadCredentials() {
+    this.credentials$ = this.credentialService.getCredentials().pipe(
+      switchMap((credentials: any) => {
+        if (credentials.length) {
+          return forkJoin(
+            credentials.map((cred: any) => {
+              return this.credentialService.getCredentialSchema(cred.id).pipe(
+                concatMap((res: any) => {
+                  console.log("res", res);
+                  cred.schemaId = res.credential_schema;
+                  return this.credentialService.getSchema(res.credential_schema).pipe(
+                    map((schema: any) => {
+                      cred.credential_schema = schema;
+                      return cred;
+                    })
+                  )
+                })
+              )
+            })
+          );
+        }
+        return of([]);
+      })
+    )
   }
 
   renderCertificate(credential: any) {

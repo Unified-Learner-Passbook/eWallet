@@ -56,7 +56,8 @@ export class DocViewComponent implements OnInit {
 
     ngOnInit(): void {
         if (this.credential?.credential_schema) {
-            this.schemaId = JSON.parse(this.credential.credential_schema)?.id;
+            // this.schemaId = JSON.parse(this.credential.credential_schema)?.id;
+            this.schemaId = this.credential.schemaId;
             this.getTemplate(this.schemaId).subscribe((res) => {//clf16wnze0002tj14mv1smo1w
                 this.templateId = res?.result?.[0]?.id;
                 this.getPDF(res?.result?.[0]?.template);
@@ -79,12 +80,16 @@ export class DocViewComponent implements OnInit {
             'Accept': 'application/pdf'
         });
         let requestOptions = { headers: headerOptions, responseType: 'blob' as 'json' };
+        const credential_schema = this.credential.credential_schema;
+        delete this.credential.credential_schema;
+        delete this.credential.schemaId;
         const request = {
-            credential: this.credential,
-            schema: this.credential.credential_schema,
+            credential: { ...this.credential, subject: JSON.stringify(this.credential.credentialSubject) },
+            schema: credential_schema,
             template: template,
             output: "HTML"
         }
+        delete request.credential.credentialSubject;
         this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
 
             let blob = new Blob([data], {
