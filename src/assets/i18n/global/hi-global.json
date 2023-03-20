@@ -266,5 +266,7 @@
     "CHANGE_PASSWORD":"पासवर्ड बदलें",
     "LOGIN_USING_SSO": "मेरी पहचान का उपयोग कर लॉग इन करें",
     "DOB": "जन्म की तारीख",
-    "ENTER_VALID_DOB": "मान्य जन्म तिथि दर्ज करें"
+    "ENTER_VALID_DOB": "मान्य जन्म तिथि दर्ज करें",
+    "SELECT_YEAR": "Select Year",
+    "SELECT_GRADE": "Select Grade"
 }

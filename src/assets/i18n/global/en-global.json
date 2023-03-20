@@ -264,5 +264,13 @@
     "CHANGE_PASSWORD":"Change Password",
     "LOGIN_USING_SSO": "Login Using Meri Pehchaan",
     "DOB": "Date of Birth",
-    "ENTER_VALID_DOB": "Enter valid Birth date"
+    "ENTER_VALID_DOB": "Enter valid Birth date",
+    "GUARDIAN_NAME": "Guardian Name",
+    "GUARDIAN_NAME_REQUIRED": "Guardian Name Required",
+    "GRADE": "Grade",
+    "GRADE_REQUIRED": "Grade is Required",
+    "ACADEMIC_YEAR": "Academic Year",
+    "ACADEMIC_YEAR_REQUIRED": "Academic Year Required",
+    "SELECT_YEAR": "Select Year",
+    "SELECT_GRADE": "Select Grade"
 }
