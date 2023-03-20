@@ -23,8 +23,56 @@ export class RegistrationComponent implements OnInit {
     // studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl(null, [Validators.required]),
-    dob: new FormControl(null, [Validators.required])
+    dob: new FormControl(null, [Validators.required]),
+    grade: new FormControl(null, [Validators.required]),
+    academicYear: new FormControl(null, [Validators.required]),
+    guardianName: new FormControl(null, [Validators.required])
   });
+  grades = [
+    {
+      label: '1st',
+      value: 'class-1'
+    },
+    {
+      label: '2nd',
+      value: 'class-2'
+    },
+    {
+      label: '3rd',
+      value: 'class-3'
+    },
+    {
+      label: '4th',
+      value: 'class-4'
+    },
+    {
+      label: '5th',
+      value: 'class-5'
+    },
+    {
+      label: '6th',
+      value: 'class-6'
+    },
+    {
+      label: '7th',
+      value: 'class-7'
+    },
+    {
+      label: '8th',
+      value: 'class-8'
+    },
+    {
+      label: '9th',
+      value: 'class-9'
+    },
+    {
+      label: '10th',
+      value: 'class-10'
+    },
+  ];
+  startYear = 2000;
+  currentYear = new Date().getFullYear();
+  academicYearRange: string[] = [];
 
   constructor(
     private authService: AuthService,
@@ -48,6 +96,13 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setAcademicYear();
+  }
+
+  setAcademicYear() {
+    for (let fromYear = this.startYear; fromYear < this.currentYear; fromYear++) {
+      this.academicYearRange.push(`${fromYear}-${fromYear + 1}`);
+    }
   }
 
   get aadhar() {
@@ -66,10 +121,6 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('schoolId');
   }
 
-  get studentId() {
-    return this.registrationForm.get('studentId');
-  }
-
   get phone() {
     return this.registrationForm.get('phone');
   }
@@ -80,6 +131,18 @@ export class RegistrationComponent implements OnInit {
 
   get dob() {
     return this.registrationForm.get('dob');
+  }
+
+  get grade() {
+    return this.registrationForm.get('grade');
+  }
+
+  get academicYear() {
+    return this.registrationForm.get('academicYear');
+  }
+
+  get guardianName() {
+    return this.registrationForm.get('guardianName');
   }
 
   ngAfterViewInit() {
@@ -139,7 +202,10 @@ export class RegistrationComponent implements OnInit {
             phoneNo: this.registrationForm.value.phone,
             grade: "grade 8", //TODO: Check if needs to be added in the form
             username: this.registrationDetails.username, //TODO add on html
-            dob: this.registrationDetails.dob
+            dob: this.registrationDetails.dob,
+            "schoolUdise": "1234",
+            "academicYear": "2021-22",
+            "gaurdianName": "vivek-guradian",
           }
         },
         digimpid: this.registrationDetails.meripehchanid
