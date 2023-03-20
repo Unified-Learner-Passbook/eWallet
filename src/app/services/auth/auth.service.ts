@@ -14,6 +14,7 @@ export class AuthService {
   endpoint: string = 'https://ulp.uniteframework.io';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
+  _digilockerAccessToken: string;
   constructor(private http: HttpClient, public router: Router) { }
 
   // Sign-up
@@ -56,6 +57,14 @@ export class AuthService {
       user = JSON.parse(user);
     }
     return user;
+  }
+
+  set digilockerAccessToken(token: string) {
+    localStorage.setItem('digilockerAccessToken', token);
+  }
+
+  get digilockerAccessToken() {
+    return localStorage.getItem('digilockerAccessToken');
   }
 
   doLogout() {

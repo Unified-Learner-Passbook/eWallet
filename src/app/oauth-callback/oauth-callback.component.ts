@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
@@ -16,7 +17,8 @@ export class OauthCallbackComponent implements OnInit {
     private generalService: GeneralService,
     private toastMessage: ToastMessageService,
     private router: Router,
-    private telemetryService: TelemetryService
+    private telemetryService: TelemetryService,
+    private authService: AuthService
   ) {
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log("params", params);
@@ -40,6 +42,10 @@ export class OauthCallbackComponent implements OnInit {
       console.log("Result", res);
 
       if (res.success) {
+        if(res?.digi?.access_token) {
+          this.authService.digilockerAccessToken = res.digi.access_token;
+        }
+
         if (res.user === 'FOUND') {
           if (res.token) {
             localStorage.setItem('accessToken', res.token);
