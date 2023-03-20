@@ -265,12 +265,12 @@
     "LOGIN_USING_SSO": "Login Using Meri Pehchaan",
     "DOB": "Date of Birth",
     "ENTER_VALID_DOB": "Enter valid Birth date",
-    "GUARDIAN_NAME": "Guardian Name",
-    "GUARDIAN_NAME_REQUIRED": "Guardian Name Required",
-    "GRADE": "Grade",
-    "GRADE_REQUIRED": "Grade is Required",
-    "ACADEMIC_YEAR": "Academic Year",
-    "ACADEMIC_YEAR_REQUIRED": "Academic Year Required",
-    "SELECT_YEAR": "Select Year",
-    "SELECT_GRADE": "Select Grade"
+    "GUARDIAN_NAME": "पालक का नाम",
+    "GUARDIAN_NAME_REQUIRED": "पालक का नाम आवश्यक है",
+    "GRADE": "वर्ग",
+    "GRADE_REQUIRED": "वर्ग आवश्यक है",
+    "ACADEMIC_YEAR": "शैक्षिक वर्ष",
+    "ACADEMIC_YEAR_REQUIRED": "शैक्षणिक वर्ष आवश्यक है",
+    "SELECT_YEAR": "वर्ष का चयन करें",
+    "SELECT_GRADE": "वर्ग का चयन करें"
 }

@@ -267,6 +267,12 @@
     "LOGIN_USING_SSO": "मेरी पहचान का उपयोग कर लॉग इन करें",
     "DOB": "जन्म की तारीख",
     "ENTER_VALID_DOB": "मान्य जन्म तिथि दर्ज करें",
+    "GUARDIAN_NAME": "Guardian Name",
+    "GUARDIAN_NAME_REQUIRED": "Guardian Name Required",
+    "GRADE": "Grade",
+    "GRADE_REQUIRED": "Grade is Required",
+    "ACADEMIC_YEAR": "Academic Year",
+    "ACADEMIC_YEAR_REQUIRED": "Academic Year Required",
     "SELECT_YEAR": "Select Year",
     "SELECT_GRADE": "Select Grade"
 }
