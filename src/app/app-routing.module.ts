@@ -115,6 +115,7 @@ const routes: Routes = [
     path: 'digilocker-callback',
     component: OauthCallbackComponent
   },
+  { path: 'logout', component: LogoutComponent },
   {
     path: '**',
     redirectTo: ''
