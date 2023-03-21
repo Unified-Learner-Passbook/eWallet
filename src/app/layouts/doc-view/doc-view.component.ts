@@ -84,7 +84,8 @@ export class DocViewComponent implements OnInit {
         delete this.credential.credential_schema;
         delete this.credential.schemaId;
         const request = {
-            credential: { ...this.credential, subject: JSON.stringify(this.credential.credentialSubject) },
+            // credential: { ...this.credential, subject: JSON.stringify(this.credential.credentialSubject) },
+            credential: this.credential,
             schema: credential_schema,
             template: template,
             output: "HTML"
