@@ -90,7 +90,7 @@ export class DocViewComponent implements OnInit {
             template: template,
             output: "HTML"
         }
-        delete request.credential.credentialSubject;
+        // delete request.credential.credentialSubject;
         this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
 
             let blob = new Blob([data], {
