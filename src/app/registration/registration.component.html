@@ -7,31 +7,65 @@
                 <label for="aadhar">{{'AADHAAR' | translate}}</label>
                 <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
                     placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)">
-                <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate }}</p>
+                <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate
+                    }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
-                <input type="text" class="form-control p-4" id="name" name="aadhar" formControlName="name"
-                    placeholder="" disabled="true">
+                <input type="text" class="form-control p-4" id="name" name="name" formControlName="name" placeholder=""
+                    disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="name.invalid && name.touched">{{'NAME_REQUIRED' | translate }}</p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="guardianName">{{'GUARDIAN_NAME' | translate}}</label>
+                <input type="text" class="form-control p-4" id="guardianName" name="guardianName"
+                    formControlName="guardianName" placeholder="">
+                <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">{{'GRADE_REQUIRED' |
+                    translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}</label>
-                <select class="form-select p-2" id="school" formControlName="school">
-                    <option>SNVM</option>
-                    <option>CCEM</option>
-                    <option>BIT</option>
-                    <option>VITS</option>
+                <select class="form-select p-2" id="school" formControlName="school" (change)="onSchoolChange($event.target.value)">
+                    <option *ngFor="let item of schoolList" [value]="item?.schoolName">{{item?.schoolName}}</option>
                 </select>
                 <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
-                <p class="text-red pt-2 mb-0" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate }}</p>
+                <p class="text-red pt-2 mb-0" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate}}
+                </p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="schoolUdise">{{'SCHOOL_UDISE' | translate}}</label>
+                <input type="text" class="form-control p-4" id="schoolUdise" name="schoolUdise" formControlName="schoolUdise"
+                    placeholder="" disabled="true">
+                <p class="text-red pt-2 mb-0" *ngIf="schoolUdise.invalid && schoolUdise.touched">{{'ENTER_SCHOOL_ID' |
+                    translate }}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId"
                     placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' | translate }}</p>
+                <p class="text-red pt-2 mb-0" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' |
+                    translate }}</p>
             </div>
+            <div class="mb-3 pb-10">
+                <label for="academicYear">{{'ACADEMIC_YEAR' | translate}}</label>
+                <select class="form-select p-2" id="academicYear" formControlName="academicYear">
+                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_YEAR' | translate }}</option>
+                    <option *ngFor="let year of academicYearRange" [value]="year">{{year}}</option>
+                </select>
+                <p class="text-red pt-2 mb-0" *ngIf="academicYear.invalid && academicYear.touched">
+                    {{'ACADEMIC_YEAR_REQUIRED' | translate}}</p>
+            </div>
+            <div class="mb-3 pb-10">
+                <label for="grade">{{'GRADE' | translate}}</label>
+                <select class="form-select p-2" id="grade" formControlName="grade">
+                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_GRADE' | translate}}</option>
+                    <option *ngFor="let grade of grades" [value]="grade.value">{{grade.label}}</option>
+                </select>
+                <p class="text-red pt-2 mb-0" *ngIf="grade.invalid && grade.touched">{{'GRADE_REQUIRED' | translate}}
+                </p>
+            </div>
+
             <!-- <div class="mb-3 pb-10">
                 <label for="studentId">{{'STUDENT_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId" placeholder="">
@@ -41,20 +75,22 @@
                 <label for="phone">{{'PHONE_NO' | translate}}</label>
                 <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone"
                     placeholder="" maxLength="10" (keypress)="OnlyNumbersAllowed($event)" disabled="true">
-                <p class="text-red pt-2 mb-0" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate }}</p>
+                <p class="text-red pt-2 mb-0" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate
+                    }}</p>
             </div>
 
             <div class="mb-3 pb-10">
                 <label for="username">{{'USERNAME' | translate}}</label>
                 <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
                     placeholder="" disabled="true">
-                <p class="text-red pt-2 mb-0" *ngIf="username.invalid && username.touched">{{'ENTER_VALID_USERNAME' | translate }}</p>
+                <p class="text-red pt-2 mb-0" *ngIf="username.invalid && username.touched">{{'ENTER_VALID_USERNAME' |
+                    translate }}</p>
             </div>
 
             <div class="mb-3 pb-10">
                 <label for="dob">{{'DOB' | translate}}</label>
-                <input type="text" class="form-control p-4" id="dob" name="dob" formControlName="dob"
-                    placeholder="" disabled="true">
+                <input type="text" class="form-control p-4" id="dob" name="dob" formControlName="dob" placeholder=""
+                    disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="dob.invalid && dob.touched">{{'ENTER_VALID_DOB' | translate }}</p>
             </div>
 

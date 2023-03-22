@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
+import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput, IStartEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from "../services/toast-message/toast-message.service";
@@ -18,13 +19,63 @@ export class RegistrationComponent implements OnInit {
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
-    school: new FormControl(null, [Validators.required, Validators.pattern('[a-zA-Z]+$')]),
+    school: new FormControl(null, [Validators.required]),
+    schoolUdise: new FormControl(null, [Validators.required]),
     schoolId: new FormControl(null, [Validators.required]),
     // studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl(null, [Validators.required]),
-    dob: new FormControl(null, [Validators.required])
+    dob: new FormControl(null, [Validators.required]),
+    grade: new FormControl(null, [Validators.required]),
+    academicYear: new FormControl(null, [Validators.required]),
+    guardianName: new FormControl(null, [Validators.required])
   });
+  grades = [
+    {
+      label: '1st',
+      value: 'class-1'
+    },
+    {
+      label: '2nd',
+      value: 'class-2'
+    },
+    {
+      label: '3rd',
+      value: 'class-3'
+    },
+    {
+      label: '4th',
+      value: 'class-4'
+    },
+    {
+      label: '5th',
+      value: 'class-5'
+    },
+    {
+      label: '6th',
+      value: 'class-6'
+    },
+    {
+      label: '7th',
+      value: 'class-7'
+    },
+    {
+      label: '8th',
+      value: 'class-8'
+    },
+    {
+      label: '9th',
+      value: 'class-9'
+    },
+    {
+      label: '10th',
+      value: 'class-10'
+    },
+  ];
+  startYear = 2000;
+  currentYear = new Date().getFullYear();
+  academicYearRange: string[] = [];
+  schoolList: any[] = [];
 
   constructor(
     private authService: AuthService,
@@ -32,7 +83,8 @@ export class RegistrationComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private telemetryService: TelemetryService,
-    private readonly location: Location
+    private readonly location: Location,
+    private readonly generalService: GeneralService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.registrationDetails = navigation.extras.state;
@@ -48,6 +100,20 @@ export class RegistrationComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.setAcademicYear();
+    this.getSchools();
+  }
+
+  setAcademicYear() {
+    for (let fromYear = this.startYear; fromYear < this.currentYear; fromYear++) {
+      this.academicYearRange.push(`${fromYear}-${fromYear + 1}`);
+    }
+  }
+
+  getSchools() {
+    this.generalService.getData('https://ulp.uniteframework.io/ulp-bff/v1/sso/udise/school/list', true).subscribe((res) => {
+      this.schoolList = res;
+    });
   }
 
   get aadhar() {
@@ -62,12 +128,12 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('school');
   }
 
-  get schoolId() {
-    return this.registrationForm.get('schoolId');
+  get schoolUdise() {
+    return this.registrationForm.get('schoolUdise');
   }
 
-  get studentId() {
-    return this.registrationForm.get('studentId');
+  get schoolId() {
+    return this.registrationForm.get('schoolId');
   }
 
   get phone() {
@@ -80,6 +146,18 @@ export class RegistrationComponent implements OnInit {
 
   get dob() {
     return this.registrationForm.get('dob');
+  }
+
+  get grade() {
+    return this.registrationForm.get('grade');
+  }
+
+  get academicYear() {
+    return this.registrationForm.get('academicYear');
+  }
+
+  get guardianName() {
+    return this.registrationForm.get('guardianName');
   }
 
   ngAfterViewInit() {
@@ -120,7 +198,10 @@ export class RegistrationComponent implements OnInit {
     return true;
   }
 
-
+  onSchoolChange(school: string) {
+    const udise = this.schoolList.find(item =>  item.schoolName === school)?.udiseCode;
+    this.registrationForm.get('schoolUdise').setValue(udise);
+  }
 
   onSubmit() {
     console.log(this.registrationForm.value);
@@ -137,9 +218,12 @@ export class RegistrationComponent implements OnInit {
             schoolName: this.registrationForm.value.school,
             studentSchoolID: this.registrationForm.value.schoolId,
             phoneNo: this.registrationForm.value.phone,
-            grade: "grade 8", //TODO: Check if needs to be added in the form
-            username: this.registrationDetails.username, //TODO add on html
-            dob: this.registrationDetails.dob
+            grade: this.registrationForm.value.grade,
+            username: this.registrationDetails.username,
+            dob: this.registrationDetails.dob,
+            schoolUdise: this.registrationForm.value.schoolUdise,
+            academicYear: this.registrationForm.value.academicYear,
+            gaurdianName: this.registrationForm.value.guardianName
           }
         },
         digimpid: this.registrationDetails.meripehchanid
