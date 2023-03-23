@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
 
@@ -22,7 +22,7 @@ export class CredentialService {
     return false;
   }
 
-  getCredentialSchema(credentialId: string): Observable<any> {
+  getCredentialSchemaId(credentialId: string): Observable<any> {
     const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/${credentialId}` };
     return this.dataService.get(payload).pipe(map((res: any) => res.result));
   }
@@ -39,10 +39,10 @@ export class CredentialService {
   }
 
   getSchema(schemaId: string): Observable<any> {
-    // schemaId = 'did:ulpschema:098765';
-    if (this.findSchema(schemaId)) {
-      console.log("saved schemas", this.schemas);
-      return this.schemas[schemaId];
+    const schema = this.findSchema(schemaId);
+    console.log("saved schemas", this.schemas);
+    if (schema) {
+      return of(schema);
     }
 
     const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/json/${schemaId}` };
@@ -50,5 +50,32 @@ export class CredentialService {
       this.schemas.push(res.result);
       return res.result;
     }));
+  }
+
+  getAllCredentials(): Observable<any> {
+    return this.getCredentials().pipe(
+      switchMap((credentials: any) => {
+        if (credentials.length) {
+          return forkJoin(
+            credentials.map((cred: any) => {
+              return this.getCredentialSchemaId(cred.id).pipe(
+                concatMap((res: any) => {
+                  console.log("res", res);
+                  cred.schemaId = res.credential_schema;
+                  return this.getSchema(res.credential_schema).pipe(
+                    map((schema: any) => {
+                      cred.credential_schema = schema;
+                      // this.updateCategoryList(schema);
+                      return cred;
+                    })
+                  );
+                })
+              );
+            })
+          );
+        }
+        return of([]);
+      })
+    );
   }
 }
