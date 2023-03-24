@@ -15,6 +15,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
   ssoLogin = false;
   public showPassword: boolean = false;
+  isLoading = false
   show = false;
 
   loginForm = new FormGroup({
@@ -53,11 +54,13 @@ export class LoginComponent implements OnInit, AfterViewInit {
   onSubmit() {
     console.log(this.loginForm.value);
     if (this.loginForm.valid) {
+      this.isLoading = true;
       const payload = {
         "username": this.loginForm.value.userName,
         "password": this.loginForm.value.password
       }
       this.authService.signIn(payload).subscribe((res: any) => {
+        this.isLoading = false;
         if (res.success) {
           this.toastMessage.success("", "Logged In Successfully!");
 
@@ -76,6 +79,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
           this.toastMessage.error("", message);
         }
       }, (error) => {
+        this.isLoading = false;
         const message = error?.error?.message ? error.error.message : 'Incorrect Username or password';
         this.toastMessage.error('', message);
       });

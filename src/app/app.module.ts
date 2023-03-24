@@ -118,7 +118,6 @@ import { PagesComponent } from './pages/pages.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { AuthImagePipe } from '../app/layouts/doc-view/doc-view.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
 import { FaqComponent } from './custom-components/faq/faq.component';
@@ -167,7 +166,6 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
     ScanDocumentComponent,
     ScanQrCodeComponent,
     BrowseDocumentsComponent,
-    AuthImagePipe,
     CreateCertificateComponent,
     FaqComponent,
     SafeHtmlPipe,
@@ -266,7 +264,6 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
   bootstrap: [AppComponent],
   providers: [
     AppConfig,
-    AuthImagePipe,
     { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true },
     {
       provide: APP_INITIALIZER,
