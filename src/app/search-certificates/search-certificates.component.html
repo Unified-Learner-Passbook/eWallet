@@ -19,7 +19,8 @@
 
 <div class="container mt-2">
   <div class="row">
-    <div class="col-6 font-600">{{ "ISSUED_DOCUMENTS" | translate }}</div>
+    <div class="col-6 font-600" *ngIf="schema?.name?.length">{{schema?.name}}</div>
+    <div class="col-6 font-600" *ngIf="!schema">{{ "ISSUED_DOCUMENTS" | translate }}</div>
     <!-- <div class="col-6 text-right">
           <a href="#" class="text-blue-shade0 font-600">{{"VIEW_ALL" | translate}}</a>
       </div> -->
@@ -29,7 +30,8 @@
       <div class="row">
         <div class="col search-area mb-3">
           <div class="input-append">
-            <input class="w-100" type="text" [ngModel]="searchKey" (ngModelChange)="onChange($event)" placeholder="{{ 'SEARCH_DOCUMENTS' | translate }}" aria-label="Search" />
+            <input class="w-100" type="text" [(ngModel)]="searchKey" placeholder="{{ 'SEARCH_DOCUMENTS' | translate }}"
+              aria-label="Search" />
             <i class="fas fa-search" aria-hidden="true"></i>
           </div>
         </div>
@@ -37,8 +39,8 @@
       <div class="row">
         <div class="mb-3 col-sm-12 col-md-6 col-lg-4 col-xs-2"
           *ngIf="credentials$ | async as credentialList; else loading">
-          <ng-container *ngIf="credentialList; else: noItems">
-            <div class="card" *ngFor="let item of credentialList" (click)="renderCertificate(item)">
+          <ng-container *ngIf="(credentialList | filterCertificate:searchKey) as filteredList; else: noItems">
+            <div class="card" *ngFor="let item of filteredList" (click)="renderCertificate(item)">
               <div class="card-body">
                 <div class="card-image">
                   <img [src]="item?.logoUrl ? item.logoUrl : 'assets/images/headerlogo.png'" />
@@ -53,6 +55,7 @@
                 </div>
               </div>
             </div>
+            <p *ngIf="!filteredList.length" class="text-center">{{'NO_RECORDS_FOUND' | translate}}</p>
           </ng-container>
           <ng-template #noItems class="text-center">{{'NO_RECORDS_FOUND' | translate}}</ng-template>
         </div>

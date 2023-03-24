@@ -136,6 +136,7 @@ import { AuthInterceptor } from './authentication/auth.interceptor';
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
+import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certificate.pipe';
 
 @NgModule({
   declarations: [
@@ -182,7 +183,8 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
     GlobalHeaderComponent,
     SearchCertificatesComponent,
     ChangePasswordComponent,
-    OauthCallbackComponent
+    OauthCallbackComponent,
+    FilterCertificatePipe
   ],
   imports: [
     BrowserModule,

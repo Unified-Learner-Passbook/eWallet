@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { Observable, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, of, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { CredentialService } from '../services/credential/credential.service';
 
@@ -14,7 +14,6 @@ export class SearchCertificatesComponent implements OnInit {
 
   credentials$: Observable<any>;
   searchKey: string = '';
-  searchQuery$: Observable<string>;
   schema: any;
   constructor(
     private readonly credentialService: CredentialService,
@@ -43,10 +42,5 @@ export class SearchCertificatesComponent implements OnInit {
       state: credential
     };
     this.router.navigate(['/doc-view'], navigationExtras);
-  }
-
-  onChange(event) {
-    this.searchQuery$ = of(this.searchKey);
-    console.log("vent", event);
   }
 }
