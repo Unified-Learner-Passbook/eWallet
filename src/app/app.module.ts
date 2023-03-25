@@ -118,7 +118,6 @@ import { PagesComponent } from './pages/pages.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-import { AuthImagePipe } from '../app/layouts/doc-view/doc-view.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { DocDetailViewComponent } from './documents/doc-detail-view/doc-detail-view.component';
 import { FaqComponent } from './custom-components/faq/faq.component';
@@ -136,6 +135,7 @@ import { AuthInterceptor } from './authentication/auth.interceptor';
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
+import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certificate.pipe';
 
 @NgModule({
   declarations: [
@@ -166,7 +166,6 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
     ScanDocumentComponent,
     ScanQrCodeComponent,
     BrowseDocumentsComponent,
-    AuthImagePipe,
     CreateCertificateComponent,
     FaqComponent,
     SafeHtmlPipe,
@@ -182,7 +181,8 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
     GlobalHeaderComponent,
     SearchCertificatesComponent,
     ChangePasswordComponent,
-    OauthCallbackComponent
+    OauthCallbackComponent,
+    FilterCertificatePipe
   ],
   imports: [
     BrowserModule,
@@ -264,7 +264,6 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
   bootstrap: [AppComponent],
   providers: [
     AppConfig,
-    AuthImagePipe,
     { provide: APP_INITIALIZER, useFactory: initConfig, deps: [AppConfig], multi: true },
     {
       provide: APP_INITIALIZER,

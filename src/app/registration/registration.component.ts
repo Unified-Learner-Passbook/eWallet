@@ -16,6 +16,7 @@ import { ToastMessageService } from "../services/toast-message/toast-message.ser
 export class RegistrationComponent implements OnInit {
 
   registrationDetails: any;
+  isLoading = false;
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -206,7 +207,7 @@ export class RegistrationComponent implements OnInit {
   onSubmit() {
     console.log(this.registrationForm.value);
     if (this.registrationForm.valid) {
-
+      this.isLoading = true;
       const payload = {
         digiacc: "ewallet",
         userdata: {
@@ -232,6 +233,7 @@ export class RegistrationComponent implements OnInit {
       this.authService.ssoSignUp(payload).subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {
+          this.isLoading = false;
 
           if (res.token) {
             localStorage.setItem('accessToken', res.token);
@@ -249,9 +251,11 @@ export class RegistrationComponent implements OnInit {
           // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
           // this.telemetryService.audit()
         } else {
+          this.isLoading = false;
           this.toast.error("", res.message);
         }
       }, (error) => {
+        this.isLoading = false;
         this.toast.error("", error.message);
       });
     }

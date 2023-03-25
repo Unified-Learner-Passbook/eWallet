@@ -17,35 +17,20 @@
     </div>
   </div>
 
-  <ng-template [ngIf]="loader">
-    <br />
-    <div class="d-flex justify-content-center">
-      <div class="spinner-border" style="width: 5rem; height: 5rem" role="status">
-        <span class="sr-only">{{ "LOADING" | translate }}</span>
-      </div>
+  <div class="text-center" *ngIf="loader">
+    <div class="center-loading">
+        <div class="spinner-border">
+        </div>
     </div>
-  </ng-template>
-
-  <ng-template [ngIf]="extension === 'jpg' || extension === 'png' || extension === 'jpeg'">
-    <div class="text-center img-mb">
-      <img class="img-fluid" [src]="docUrl | authImage : extension | async" />
-    </div>
-  </ng-template>
+</div>
 
   <ng-container *ngIf="extension === 'pdf'">
     <div class="text-center img-mb">
-      <!-- <ngx-extended-pdf-viewer [src]="docUrl | authImage | async"></ngx-extended-pdf-viewer> -->
       <ngx-extended-pdf-viewer [showToolbar]="false" [src]="docUrl"></ngx-extended-pdf-viewer>
     </div>
   </ng-container>
 
   <div class="pt-2">
-    <ng-template [ngIf]="docDetails" class="mt-4">
-      <div style="text-align: center; margin-top: 100px">
-        <img style="height: 100px; width: 100px" src="assets/images/success.png" />
-      </div>
-    </ng-template>
-
     <div class="text-center mt-4" *ngIf="!loader">
       <button class="btn btn-rounded" type="button" (click)="raiseInteractEvent('generate-qr-code')">
         <i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' | translate}}
@@ -57,16 +42,3 @@
     </div>
   </div>
 </div>
-<!-- <footer>
-    <div class="row mb-2">
-        <div *ngIf="document[0]?.type == 'attestation-SELF'; else elseBlock" class="col-8 text ml-4">
-            <i class="fas fa-check primarybgColor fs-12 mr-1"></i> {{'SELF_ATTTESTED'|translate}}
-        </div>
-        <ng-template #elseBlock>
-            <div class="col-8 text ml-4">
-                <i class="fas fa-award primarybgColor fs-12 mr-1"></i> {{'DIGITALLY_VERIFIED'|translate}}
-            </div>
-        </ng-template>
-
-    </div>
-</footer> -->

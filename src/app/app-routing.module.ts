@@ -30,6 +30,7 @@ import { RegistrationComponent } from './registration/registration.component';
 import { AuthenticationGuard } from './utility/authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
+import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 
 const routes: Routes = [
   {
@@ -82,6 +83,17 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   {
+    path: 'search-certificates',
+    component: SearchCertificatesComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'search', pageid: 'search', type: 'list', subtype: 'scroll'
+      },
+    },
+    canActivate: [AuthenticationGuard]
+  },
+  {
     path: 'doc-view',
     component: DocViewComponent,
     data: {
@@ -115,6 +127,7 @@ const routes: Routes = [
     path: 'digilocker-callback',
     component: OauthCallbackComponent
   },
+  { path: 'logout', component: LogoutComponent },
   {
     path: '**',
     redirectTo: ''
