@@ -3,12 +3,12 @@
     <div>
         <div class="h3 mb-3 text-center">{{'SET_USERNAME_PASSWORD' | translate}}</div>
         <div class="mb-3 pb-10">
-            <label for="exampleFormControlInput1">Username</label>
+            <label for="exampleFormControlInput1">{{'USERNAME' | translate }}</label>
             <input type="email" class="form-control p-4" id="exampleFormControlInput1" placeholder="">
         </div>
         <div class="mb-3 pb-10">
             <div>
-                <label for="exampleFormControlInput1">Password</label>
+                <label for="exampleFormControlInput1">{{'PASSWORD' | translate }}</label>
                 <div class="input-group mb-2">
                     <input [type]="showPassword ? 'text' : 'password'" class="form-control p-4" id="inlineFormInputGroup" placeholder="">
                     <button (click)="togglePasswordVisibility()" class="btn-none">
@@ -20,11 +20,11 @@
         </div>
         <div class="form-check pl-4 text-center" [routerLink]="['/change-password']">
             <label class="form-check-label text-secondary-color" for="defaultCheck1">
-              Change Password
+              {{'CHANGE_PASSWORD' | translate }}
             </label>
         </div>
         <div class="pb-10">
-            <button type="button" class="login-btn bg-blue-dark font-600 mt-4 w-100">Sign In</button>
+            <button type="button" class="login-btn bg-blue-dark font-600 mt-4 w-100">{{'SIGN_IN' | translate }}</button>
         </div>
     </div>
 </div>
