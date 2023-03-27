@@ -53,9 +53,12 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         this.updateCategoryList(item.credential_schema.name);
       });
       console.log("this.categories", this.categories);
-      this.isLoading = false;
       return res;
-    })).subscribe();
+    })).subscribe(res => {
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
+    });
   }
 
   showCredentials(category) {
