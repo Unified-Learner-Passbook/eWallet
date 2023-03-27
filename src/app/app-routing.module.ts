@@ -198,7 +198,7 @@ const routes: Routes = [
 
 
   // Installation
-  // { path: 'install', component: InstallComponent },
+  { path: 'install', component: InstallComponent },
 
   // Custom
   // { path: 'faq', component: FaqComponent },
