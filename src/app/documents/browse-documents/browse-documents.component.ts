@@ -87,6 +87,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         centered: true,
       };
       this.modalService.open(this.approvalModal, options);
+      this.authService.getUserProfile().subscribe();
     }
     this.raiseImpressionEvent();
   }
