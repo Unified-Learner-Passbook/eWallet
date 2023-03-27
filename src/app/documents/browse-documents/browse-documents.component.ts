@@ -77,7 +77,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this.authService.currentUser.did) {
+    if (!this.authService.currentUser.DID) {
       const options: NgbModalOptions = {
         backdrop: 'static',
         animation: true,
@@ -89,7 +89,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   raiseImpressionEvent() {
-    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
+    this.telemetryService.uid = this.authService.currentUser?.DID || "anonymous";
     const telemetryImpression: IImpressionEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,
