@@ -65,7 +65,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.signIn(payload).subscribe((res: any) => {
         this.isLoading = false;
         if (res.success) {
-          // this.toastMessage.success("", "Logged In Successfully!");
            this.toastMessage.success("",  this.generalService.translateString('LOGGED_IN_SUCCESSFULLY'));
           if (res?.result?.token) {
             localStorage.setItem('accessToken', res.result.token);

@@ -34,7 +34,7 @@ export class AuthInterceptor implements HttpInterceptor {
         if (err.status !== 401) {
           return;
         }
-        // this.toastMessage.error("", "Your session has expired! Please login again")
+       
         this.toastMessage.error("",this.generalService.translateString('YOUR_SESSION_EXPIRED'))
         this.authService.doLogout();
       }

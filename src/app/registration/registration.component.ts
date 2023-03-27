@@ -245,7 +245,7 @@ export class RegistrationComponent implements OnInit {
             // this.telemetryService.start();
           }
           this.router.navigate(['/home']);
-          // this.toast.success("", "User Registered successfully!");
+         
           this.toast.success("",this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
           // this.router.navigate(['/login']);
 
