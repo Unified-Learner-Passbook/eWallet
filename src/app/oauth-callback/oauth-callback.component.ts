@@ -20,6 +20,7 @@ export class OauthCallbackComponent implements OnInit {
     private telemetryService: TelemetryService,
     private authService: AuthService
   ) {
+    console.log("in oauth11");
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log("params-------->", params);
       if (params.code) {

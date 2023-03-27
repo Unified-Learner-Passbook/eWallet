@@ -34,6 +34,10 @@ import { SearchCertificatesComponent } from './search-certificates/search-certif
 
 const routes: Routes = [
   {
+    path: 'digilocker-callback',
+    component: OauthCallbackComponent
+  },
+  {
     path: '',
     component: OnBoardingComponent,
     data: {
@@ -122,10 +126,6 @@ const routes: Routes = [
       showToolbar: false,
     },
     canActivate: [AuthenticationGuard]
-  },
-  {
-    path: 'digilocker-callback',
-    component: OauthCallbackComponent
   },
   { path: 'logout', component: LogoutComponent },
   {
