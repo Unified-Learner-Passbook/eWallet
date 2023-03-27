@@ -22,8 +22,8 @@ export class RegistrationComponent implements OnInit {
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
     school: new FormControl(null, [Validators.required]),
     schoolUdise: new FormControl(null, [Validators.required]),
-    schoolId: new FormControl(null, [Validators.required]),
-    // studentId: new FormControl(null, [Validators.required]),
+    // schoolId: new FormControl(null, [Validators.required]),
+    studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl(null, [Validators.required]),
     dob: new FormControl(null, [Validators.required]),
@@ -208,7 +208,39 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm.value);
     if (this.registrationForm.valid) {
       this.isLoading = true;
+      
       const payload = {
+        digiacc: "ewallet",
+        userdata: {
+          student: {
+            "student_id": "1234",
+            "DID": "",
+            "reference_id": "ULP_1234",
+            "aadhar_token": this.registrationForm.value.aadhar,
+            "student_name": this.registrationForm.value.name,
+            "dob": this.registrationDetails.dob,
+            "school_type": "private",
+            "meripehchan_id": this.registrationDetails.meripehchanid,
+            "username":this.registrationDetails.username
+          },
+          studentdetail: {
+            "student_detail_id": "",
+            "student_id": "",
+            "mobile": this.registrationForm.value.phone,
+            "gaurdian_name": this.registrationForm.value.guardianName,
+            "school_udise": this.registrationForm.value.schoolUdise,
+            "school_name": this.registrationForm.value.school,
+            "grade": this.registrationForm.value.grade,
+            "acdemic_year": this.registrationForm.value.academicYear,
+            "start_date": "",
+            "end_date": "",
+            "claim_status": "pending"
+          }
+        },
+        digimpid: this.registrationDetails.meripehchanid
+      }
+
+      const payload1 = {
         digiacc: "ewallet",
         userdata: {
           student: {
@@ -239,8 +271,10 @@ export class RegistrationComponent implements OnInit {
             localStorage.setItem('accessToken', res.token);
           }
 
-          if (res?.userData?.student) {
-            localStorage.setItem('currentUser', JSON.stringify(res.userData.student));
+          if (res?.userData?.length) {
+            const currentUser = res.userData[0];
+            // currentUser.detail = res.detail;
+            localStorage.setItem('currentUser', JSON.stringify(currentUser));
             this.telemetryService.uid = res.userData.student.meripehchanLoginId;
             // this.telemetryService.start();
           }

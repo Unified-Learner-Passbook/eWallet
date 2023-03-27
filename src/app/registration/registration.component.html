@@ -42,12 +42,17 @@
                     translate }}</p>
             </div>
             <div class="mb-3 pb-10">
+                <label for="studentId">{{'STUDENT_ID' | translate}}</label>
+                <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId" placeholder="">
+                <p class="text-red pt-2 mb-0" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' | translate }}</p>
+            </div>
+            <!-- <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
                 <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId"
                     placeholder="">
                 <p class="text-red pt-2 mb-0" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' |
                     translate }}</p>
-            </div>
+            </div> -->
             <div class="mb-3 pb-10">
                 <label for="academicYear">{{'ACADEMIC_YEAR' | translate}}</label>
                 <select class="form-select p-2" id="academicYear" formControlName="academicYear">
@@ -67,11 +72,6 @@
                 </p>
             </div>
 
-            <!-- <div class="mb-3 pb-10">
-                <label for="studentId">{{'STUDENT_ID' | translate}}</label>
-                <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId" placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' | translate }}</p>
-            </div> -->
             <div class="mb-3 pb-10">
                 <label for="phone">{{'PHONE_NO' | translate}}</label>
                 <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone"
