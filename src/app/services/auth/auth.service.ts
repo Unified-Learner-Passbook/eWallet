@@ -84,7 +84,7 @@ export class AuthService {
       map((res: any) => {
         console.log("profile res", res);
         if (res?.result?.DID) {
-          localStorage.setItem('currentUser', res.result);
+          localStorage.setItem('currentUser', JSON.stringify(res.result));
         }
         return res.result;
       })
