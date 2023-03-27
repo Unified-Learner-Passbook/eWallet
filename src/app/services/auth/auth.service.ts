@@ -78,11 +78,15 @@ export class AuthService {
   }
 
   // User profile
-  getUserProfile(id: any): Observable<any> {
-    let api = `${this.endpoint}/user-profile/${id}`;
+  getUserProfile(): Observable<any> {
+    let api = `${this.endpoint}/ulp-bff/v1/sso/user/ewallet`;
     return this.http.get(api, { headers: this.headers }).pipe(
-      map((res) => {
-        return res || {};
+      map((res: any) => {
+        console.log("profile res", res);
+        if (res?.result?.DID) {
+          localStorage.setItem('currentUser', JSON.stringify(res.result));
+        }
+        return res.result;
       })
     );
   }
