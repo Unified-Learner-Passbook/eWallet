@@ -128,10 +128,10 @@ const routes: Routes = [
     component: OauthCallbackComponent
   },
   { path: 'logout', component: LogoutComponent },
-  {
-    path: '**',
-    redirectTo: ''
-  }
+  // {
+  //   path: '**',
+  //   redirectTo: ''
+  // }
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
