@@ -137,6 +137,10 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('schoolId');
   }
 
+  get studentId() {
+    return this.registrationForm.get('studentId');
+  }
+
   get phone() {
     return this.registrationForm.get('phone');
   }
