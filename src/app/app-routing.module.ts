@@ -123,10 +123,10 @@ const routes: Routes = [
     },
     canActivate: [AuthenticationGuard]
   },
-  {
-    path: 'digilocker-callback',
-    component: OauthCallbackComponent
-  },
+  // {
+  //   path: 'digilocker-callback',
+  //   component: OauthCallbackComponent
+  // },
   { path: 'logout', component: LogoutComponent },
   {
     path: '**',
