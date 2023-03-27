@@ -279,7 +279,14 @@
     "NEW_PASSWORD": "New Password",
     "CONFIRM_PASSWORD":"Confirm Password",
     "RESET_PASSWORD":"Reset Password",
-    "SIGN_IN":"Sign In"
+    "SIGN_IN":"Sign In",
 
+    "USER_REGISTER_SUCCESSFULLY":"User Registered successfully!",
+    "ERROR_WHILE_LOGIN":"Error while login",
+    "YOUR_SESSION_EXPIRED":"Your session has expired! Please login again"
+
+    
+
+    
 
 }
