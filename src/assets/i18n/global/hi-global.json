@@ -281,5 +281,10 @@
     "NEW_PASSWORD": "नया पासवर्ड",
     "CONFIRM_PASSWORD":"पासवर्ड की पुष्टि कीजिये",
     "RESET_PASSWORD":"पासवर्ड रीसेट",
-    "SIGN_IN":"दाखिल करना"
+    "SIGN_IN":"दाखिल करना",
+
+    "USER_REGISTER_SUCCESSFULLY":"उपयोगकर्ता सफलतापूर्वक पंजीकृत!",
+    "ERROR_WHILE_LOGIN":"लॉग इन करते समय त्रुटि",
+    "YOUR_SESSION_EXPIRED":"आपका सत्र समाप्त हो गया है! कृपया फिर भाग लें"
+
 }

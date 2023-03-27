@@ -5,6 +5,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
+import { GeneralService } from '../services/general/general.service';
+
 
 @Component({
   selector: 'app-login',
@@ -28,7 +30,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
     private toastMessage: ToastMessageService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
-    private telemetryService: TelemetryService
+    private telemetryService: TelemetryService,
+    private readonly generalService: GeneralService
   ) { }
 
   ngOnInit(): void {
@@ -62,8 +65,8 @@ export class LoginComponent implements OnInit, AfterViewInit {
       this.authService.signIn(payload).subscribe((res: any) => {
         this.isLoading = false;
         if (res.success) {
-          this.toastMessage.success("", "Logged In Successfully!");
-
+          // this.toastMessage.success("", "Logged In Successfully!");
+           this.toastMessage.success("",  this.generalService.translateString('LOGGED_IN_SUCCESSFULLY'));
           if (res?.result?.token) {
             localStorage.setItem('accessToken', res.result.token);
           }
