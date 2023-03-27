@@ -128,10 +128,10 @@ const routes: Routes = [
     canActivate: [AuthenticationGuard]
   },
   { path: 'logout', component: LogoutComponent },
-  // {
-  //   path: '**',
-  //   redirectTo: ''
-  // }
+  {
+    path: '**',
+    redirectTo: ''
+  }
 
   // Auth
   // { path: '', component: KeycloakloginComponent ,  canActivate: [AuthGuard]},
@@ -198,7 +198,7 @@ const routes: Routes = [
 
 
   // Installation
-  { path: 'install', component: InstallComponent },
+  // { path: 'install', component: InstallComponent },
 
   // Custom
   // { path: 'faq', component: FaqComponent },
