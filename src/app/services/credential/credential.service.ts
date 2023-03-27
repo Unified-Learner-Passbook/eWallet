@@ -31,7 +31,7 @@ export class CredentialService {
     const payload = {
       url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/search',
       data: {
-        subjectId: this.authService.currentUser.did
+        subject: { id: this.authService.currentUser.did }
       }
     };
 
