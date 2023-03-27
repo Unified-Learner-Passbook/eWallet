@@ -275,8 +275,8 @@ export class RegistrationComponent implements OnInit {
             localStorage.setItem('accessToken', res.token);
           }
 
-          if (res?.userData?.length) {
-            const currentUser = res.userData[0];
+          if (res?.userData?.student) {
+            const currentUser = res.userData.student;
             // currentUser.detail = res.detail;
             localStorage.setItem('currentUser', JSON.stringify(currentUser));
             this.telemetryService.uid = res.userData.student.meripehchanLoginId;
@@ -291,11 +291,11 @@ export class RegistrationComponent implements OnInit {
           // this.telemetryService.audit()
         } else {
           this.isLoading = false;
-          this.toast.error("", res.message);
+          this.toast.error("", "Error while login registration");
         }
       }, (error) => {
         this.isLoading = false;
-        this.toast.error("", error.message);
+        this.toast.error("", "Error while login registration");
       });
     }
   }
