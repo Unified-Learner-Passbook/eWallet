@@ -3,7 +3,7 @@
     <i class="fa fa-home fs-20" [routerLink]="['/home']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></i>
   </div>
   <div (click)="raiseInteractEvent('search-tab')">
-    <i class="fa fa-search fs-20" ></i>
+    <i class="fa fa-search fs-20" [routerLink]="['/search-certificates']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></i>
   </div>
   <div (click)="raiseInteractEvent('scan-code-tab')">
     <i class="fa fa-qrcode fs-20" [routerLink]="['/scan-code']" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}"></i>

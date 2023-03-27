@@ -17,10 +17,8 @@ import { ToastMessageService } from 'src/app/services/toast-message/toast-messag
   styleUrls: ['./browse-documents.component.scss']
 })
 export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
-  showIssuers = true;
-  showFetchedDocuments = false;
-  documentTypes: any;
-  credentials$: Observable<any>;
+  categories = [];
+  isLoading = false;
 
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
@@ -29,7 +27,6 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
     { name: 'Enrollement Certificates', image: 'assets/images/enroll.png' },
     { name: 'Benefit Records', image: 'assets/images/benefit.png' },
   ];
-
 
   constructor(
     private router: Router,
@@ -44,107 +41,39 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
-    // this.fetchCredentialCategories();
-    // this.fetchCredentials();
-    this.loadCredentials();
-  }
-
-  toggleResults() {
-    this.showFetchedDocuments = !this.showFetchedDocuments;
-    this.showIssuers = !this.showIssuers;
+    this.fetchCredentialCategories();
   }
 
   fetchCredentialCategories() {
-    const payload = {
-      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials'
-    }
-    this.dataService.get(payload).subscribe((res: any) => {
-      if (res.success) {
-        if (res?.result?.length) {
-          console.log("res", res.result);
+    this.isLoading = true;
+    this.credentialService.getAllCredentials().pipe(map((res: any) => {
+      console.log("result", res);
 
-          // let credNameList = res.result.map((cred: any) => JSON.parse(cred.credential_schema).name);
-          let credNameList = res.result.map((cred: any) => cred.name);
-          const countedNames = credNameList.reduce((allNames, currentName) => {
-            const currCount = allNames[currentName] ?? 0;
-            return {
-              ...allNames,
-              [currentName]: currCount + 1,
-            };
-          }, {});
-          console.log("countent", countedNames);
-        }
-      }
-    });
+      res.map((item: any) => {
+        this.updateCategoryList(item.credential_schema.name);
+      });
+      console.log("this.categories", this.categories);
+      this.isLoading = false;
+      return res;
+    })).subscribe();
   }
 
-  // getSchema(schemaId: string) {
-  //   return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/credentials/getSchema/${schemaId}`, true);
-  // }
-
-  fetchCredentials() {
-    const payload = {
-      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials'
-    }
-    this.credentials$ = this.dataService.get(payload)
-      .pipe(map((res: any) => {
-        if (res.success) {
-          if (res?.result?.length) {
-            // res?.result.forEach(element => {
-            //   element.subject = element.subject ? JSON.parse(element.subject) : '';
-            //   element.credential_schema = element.credential_schema ? JSON.parse(element.credential_schema) : ''
-            // });
-            return res.result;
-          } else {
-            if (res.message) {
-              this.toastMessage.error("", res.message);
-            }
-            return [];
-          }
-        } else if (res.status === 'keycloak_student_token_error' || res.status === 'student_token_no_found') {
-          this.toastMessage.error("", res.message);
-          this.authService.doLogout();
-        } else {
-          this.toastMessage.error("", res.message);
-          return [];
-        }
-      }));
-  }
-
-  loadCredentials() {
-    this.credentials$ = this.credentialService.getCredentials().pipe(
-      switchMap((credentials: any) => {
-        if (credentials.length) {
-          return forkJoin(
-            credentials.map((cred: any) => {
-              return this.credentialService.getCredentialSchema(cred.id).pipe(
-                concatMap((res: any) => {
-                  console.log("res", res);
-                  cred.schemaId = res.credential_schema;
-                  return this.credentialService.getSchema(res.credential_schema).pipe(
-                    map((schema: any) => {
-                      cred.credential_schema = schema;
-                      return cred;
-                    })
-                  )
-                })
-              )
-            })
-          );
-        }
-        return of([]);
-      })
-    )
-  }
-
-  renderCertificate(credential: any) {
-    const certCred = { ...credential };
-    // certCred.subject = JSON.stringify(certCred.subject);
-    // certCred.credential_schema = JSON.stringify(certCred.credential_schema);
+  showCredentials(category) {
     const navigationExtras: NavigationExtras = {
-      state: certCred
-    };
-    this.router.navigate(['/doc-view'], navigationExtras);
+      state: category
+    }
+    this.router.navigate(['/search-certificates'], navigationExtras);
+  }
+
+  updateCategoryList(name: string) {
+    if (name) {
+      const category = this.categories.find((item: any) => item.name === name);
+      if (category) {
+        category.count++;
+      } else {
+        this.categories.push({ name: name, count: 1, image: 'assets/images/enroll.png' });
+      }
+    }
   }
 
   ngAfterViewInit() {

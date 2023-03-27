@@ -20,13 +20,13 @@ export class AuthService {
   // Sign-up
   signUp(user): Observable<any> {
     const api = `${this.endpoint}/ulp-bff/v1/sso/student/register`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
+    return this.http.post(api, user);
   }
 
 
   ssoSignUp(user: any) {
     const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/register`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
+    return this.http.post(api, user);
   }
 
   // Sign-in
@@ -79,8 +79,7 @@ export class AuthService {
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res) => {
         return res || {};
-      }),
-      catchError(this.handleError)
+      })
     );
   }
 

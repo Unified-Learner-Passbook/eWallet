@@ -273,5 +273,13 @@
     "ACADEMIC_YEAR_REQUIRED": "Academic Year Required",
     "SELECT_YEAR": "Select Year",
     "SELECT_GRADE": "Select Grade",
-    "SCHOOL_UDISE": "School UDISE ID"
+    "SCHOOL_UDISE": "School UDISE ID",
+
+    
+    "NEW_PASSWORD": "New Password",
+    "CONFIRM_PASSWORD":"Confirm Password",
+    "RESET_PASSWORD":"Reset Password",
+    "SIGN_IN":"Sign In"
+
+
 }

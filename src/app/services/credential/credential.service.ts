@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin, Observable, of } from 'rxjs';
+import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
 
@@ -9,12 +9,20 @@ import { DataService } from '../data/data-request.service';
 })
 export class CredentialService {
 
+  private schemas: any[] = [];
   constructor(
     private readonly dataService: DataService,
     private readonly authService: AuthService
   ) { }
 
-  getCredentialSchema(credentialId: string): Observable<any> {
+  private findSchema(schemaId: string) {
+    if (this.schemas.length) {
+      return this.schemas.find((schema: any) => schema.id === schemaId);
+    }
+    return false;
+  }
+
+  getCredentialSchemaId(credentialId: string): Observable<any> {
     const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/${credentialId}` };
     return this.dataService.get(payload).pipe(map((res: any) => res.result));
   }
@@ -23,8 +31,7 @@ export class CredentialService {
     const payload = {
       url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/search',
       data: {
-        // "subjectId": "did:ulp:test"
-        "subjectId": this.authService.currentUser.did
+        subjectId: this.authService.currentUser.did
       }
     };
 
@@ -32,9 +39,43 @@ export class CredentialService {
   }
 
   getSchema(schemaId: string): Observable<any> {
-    // schemaId = 'did:ulpschema:098765';
+    const schema = this.findSchema(schemaId);
+    console.log("saved schemas", this.schemas);
+    if (schema) {
+      return of(schema);
+    }
+
     const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/json/${schemaId}` };
-    return this.dataService.get(payload).pipe(map((res: any) => res.result));
+    return this.dataService.get(payload).pipe(map((res: any) => {
+      this.schemas.push(res.result);
+      return res.result;
+    }));
   }
 
+  getAllCredentials(): Observable<any> {
+    return this.getCredentials().pipe(
+      switchMap((credentials: any) => {
+        if (credentials.length) {
+          return forkJoin(
+            credentials.map((cred: any) => {
+              return this.getCredentialSchemaId(cred.id).pipe(
+                concatMap((res: any) => {
+                  console.log("res", res);
+                  cred.schemaId = res.credential_schema;
+                  return this.getSchema(res.credential_schema).pipe(
+                    map((schema: any) => {
+                      cred.credential_schema = schema;
+                      // this.updateCategoryList(schema);
+                      return cred;
+                    })
+                  );
+                })
+              );
+            })
+          );
+        }
+        return of([]);
+      })
+    );
+  }
 }
