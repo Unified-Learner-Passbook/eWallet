@@ -42,6 +42,10 @@ export class AuthService {
       }));
   }
 
+  authorizeSSO() {
+    //TODO https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/authorize/ewallet
+  }
+
   getToken() {
     return localStorage.getItem('accessToken');
   }

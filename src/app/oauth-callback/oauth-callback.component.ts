@@ -21,7 +21,7 @@ export class OauthCallbackComponent implements OnInit {
     private authService: AuthService
   ) {
     this.activatedRoute.queryParams.subscribe((params: any) => {
-      console.log("params", params);
+      console.log("params-------->", params);
       if (params.code) {
         this.getUserData(params.code);
       }
@@ -29,6 +29,7 @@ export class OauthCallbackComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    console.log("in oauth callback");
     const redirectUrl = this.activatedRoute.snapshot.queryParamMap.get('code');
     console.log("redirectUrl", redirectUrl);
   }
