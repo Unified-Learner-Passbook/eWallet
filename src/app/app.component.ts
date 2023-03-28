@@ -29,7 +29,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.getRouteData();
-    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
+    this.telemetryService.uid = this.authService.currentUser?.DID || "anonymous";
     if (EkTelemetry) {
       EkTelemetry.getFingerPrint((deviceId, components, version) => {
         console.log("deviceId", deviceId);

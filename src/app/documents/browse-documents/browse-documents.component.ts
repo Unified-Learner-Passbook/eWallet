@@ -53,9 +53,12 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         this.updateCategoryList(item.credential_schema.name);
       });
       console.log("this.categories", this.categories);
-      this.isLoading = false;
       return res;
-    })).subscribe();
+    })).subscribe(res => {
+      this.isLoading = false;
+    }, error => {
+      this.isLoading = false;
+    });
   }
 
   showCredentials(category) {
@@ -77,19 +80,20 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   ngAfterViewInit() {
-    if (!this.authService.currentUser.did) {
+    if (!this.authService.currentUser.DID) {
       const options: NgbModalOptions = {
         backdrop: 'static',
         animation: true,
         centered: true,
       };
       this.modalService.open(this.approvalModal, options);
+      this.authService.getUserProfile().subscribe();
     }
     this.raiseImpressionEvent();
   }
 
   raiseImpressionEvent() {
-    this.telemetryService.uid = this.authService.currentUser?.did || "anonymous";
+    this.telemetryService.uid = this.authService.currentUser?.DID || "anonymous";
     const telemetryImpression: IImpressionEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,
