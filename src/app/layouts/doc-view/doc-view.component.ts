@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
+import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -34,7 +35,8 @@ export class DocViewComponent implements OnInit {
         private location: Location,
         private authService: AuthService,
         private activatedRoute: ActivatedRoute,
-        private telemetryService: TelemetryService
+        private telemetryService: TelemetryService,
+        private readonly toastMessage: ToastMessageService
     ) {
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
@@ -124,15 +126,15 @@ export class DocViewComponent implements OnInit {
         const shareData = {
             title: "Certificate",
             text: "Enrollment certificate",
-            // url: "https://developer.mozilla.org",
             files: [pdf]
         };
 
         if (navigator.share) {
             navigator.share(shareData).then((res: any) => {
-                console.log("MDN shared successfully");
+                console.log("File shared successfully!");
             }).catch((error: any) => {
-                console.log("MDN shared failed");
+                this.toastMessage.error("", "Shared operation failed!");
+                console.error("Shared operation failed!", error);
             })
         } else {
             console.log("Share not supported");
