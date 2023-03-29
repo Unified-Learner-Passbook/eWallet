@@ -8,7 +8,7 @@
                 <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
                     placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)">
                 <button type="button" *ngIf="!isAadharVerified && aadhar.valid" (click)="verifyAadhar()">Verify</button>
-                <i class="fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i>
+                <i class="fa fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i>
                 <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate}}</p>
             </div>
             <div class="mb-3 pb-10">
