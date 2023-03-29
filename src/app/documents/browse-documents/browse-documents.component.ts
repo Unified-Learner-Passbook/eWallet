@@ -45,8 +45,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   fetchCredentialCategories() {
-    this.isLoading = true;
     if (this.authService?.currentUser?.DID) {
+      console.log("DID", this.authService.currentUser.DID);
+      this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(map((res: any) => {
         console.log("result", res);
 
