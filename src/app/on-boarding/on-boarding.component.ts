@@ -11,6 +11,7 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
   styleUrls: ['./on-boarding.component.scss']
 })
 export class OnBoardingComponent implements OnInit, AfterViewInit {
+  canShare = navigator.canShare;
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
