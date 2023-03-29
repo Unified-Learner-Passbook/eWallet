@@ -45,20 +45,23 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   }
 
   fetchCredentialCategories() {
-    this.isLoading = true;
-    this.credentialService.getAllCredentials().pipe(map((res: any) => {
-      console.log("result", res);
+    if (this.authService?.currentUser?.DID) {
+      console.log("DID", this.authService.currentUser.DID);
+      this.isLoading = true;
+      this.credentialService.getAllCredentials().pipe(map((res: any) => {
+        console.log("result", res);
 
-      res.map((item: any) => {
-        this.updateCategoryList(item.credential_schema.name);
+        res.map((item: any) => {
+          this.updateCategoryList(item.credential_schema.name);
+        });
+        console.log("this.categories", this.categories);
+        return res;
+      })).subscribe(res => {
+        this.isLoading = false;
+      }, error => {
+        this.isLoading = false;
       });
-      console.log("this.categories", this.categories);
-      return res;
-    })).subscribe(res => {
-      this.isLoading = false;
-    }, error => {
-      this.isLoading = false;
-    });
+    }
   }
 
   showCredentials(category) {
@@ -87,7 +90,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         centered: true,
       };
       this.modalService.open(this.approvalModal, options);
-      this.authService.getUserProfile().subscribe();
+      this.authService.getUserProfile().subscribe((res) => {
+        this.fetchCredentialCategories();
+      });
     }
     this.raiseImpressionEvent();
   }

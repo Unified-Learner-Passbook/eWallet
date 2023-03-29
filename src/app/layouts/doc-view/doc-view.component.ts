@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
+import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 
 @Component({
     selector: 'app-doc-view',
@@ -24,6 +25,8 @@ export class DocViewComponent implements OnInit {
     credential: any;
     schemaId: string;
     templateId: string;
+    blob: Blob;
+    canShareFile = !!navigator.share;
     private readonly canGoBack: boolean;
     constructor(
         public generalService: GeneralService,
@@ -32,7 +35,8 @@ export class DocViewComponent implements OnInit {
         private location: Location,
         private authService: AuthService,
         private activatedRoute: ActivatedRoute,
-        private telemetryService: TelemetryService
+        private telemetryService: TelemetryService,
+        private readonly toastMessage: ToastMessageService
     ) {
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
@@ -84,11 +88,13 @@ export class DocViewComponent implements OnInit {
         // delete request.credential.credentialSubject;
         this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
 
-            let blob = new Blob([data], {
+            this.blob = new Blob([data], {
                 type: 'application/pdf' // must match the Accept type
             });
 
-            this.docUrl = window.URL.createObjectURL(blob);
+
+
+            this.docUrl = window.URL.createObjectURL(this.blob);
             // this.pdfResponse2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfResponse);
             // console.log(this.pdfResponse2);
             // this.pdfResponse = this.readBlob(blob);
@@ -113,6 +119,26 @@ export class DocViewComponent implements OnInit {
         link.click();
         document.body.removeChild(link);
         this.raiseInteractEvent('download-certificate');
+    }
+
+    shareFile() {
+        const pdf = new File([this.blob], "certificate.pdf", { type: "application/pdf" });
+        const shareData = {
+            title: "Certificate",
+            text: "Enrollment certificate",
+            files: [pdf]
+        };
+
+        if (navigator.share) {
+            navigator.share(shareData).then((res: any) => {
+                console.log("File shared successfully!");
+            }).catch((error: any) => {
+                this.toastMessage.error("", "Shared operation failed!");
+                console.error("Shared operation failed!", error);
+            })
+        } else {
+            console.log("Share not supported");
+        }
     }
 
     raiseImpressionEvent() {

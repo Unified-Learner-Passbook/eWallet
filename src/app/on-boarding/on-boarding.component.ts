@@ -67,5 +67,4 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     };
     this.telemetryService.impression(telemetryImpression);
   }
-
 }
