@@ -68,4 +68,24 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
     this.telemetryService.impression(telemetryImpression);
   }
 
+  share() {
+    const shareData = {
+      title: "MDN",
+      text: "Learn web development on MDN!",
+      url: "https://developer.mozilla.org",
+    };
+
+    if (navigator.share) {
+      navigator.share(shareData).then((res: any) => {
+        console.log("MDN shared successfully");
+  
+      }).catch((error: any) => {
+        console.log("MDN shared failed");
+      })
+    } else {
+      console.log("Share not supported");
+    }
+
+  }
+
 }

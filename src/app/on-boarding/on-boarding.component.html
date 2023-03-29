@@ -9,5 +9,6 @@
          translate}}</button>
       <button type="button" class="register-btn" [routerLink]="['login']" [queryParams]="{ssoLogin: false}"
          (click)="raiseInteractEvent('login-auth')">{{'LOGIN_USING_USERNAME_PASSWORD' | translate}}</button>
+      <button type="button" class="register-btn" (click)="share()">Share me</button>
    </div>
 </div>
