@@ -17,6 +17,8 @@ export class RegistrationComponent implements OnInit {
 
   registrationDetails: any;
   isLoading = false;
+  isAadharVerified = false;
+  aadhaarToken: string;
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -204,7 +206,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSchoolChange(school: string) {
-    const udise = this.schoolList.find(item =>  item.schoolName === school)?.udiseCode;
+    const udise = this.schoolList.find(item => item.schoolName === school)?.udiseCode;
     this.registrationForm.get('schoolUdise').setValue(udise);
   }
 
@@ -212,7 +214,7 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm.value);
     if (this.registrationForm.valid) {
       this.isLoading = true;
-      
+
       const payload = {
         digiacc: "ewallet",
         userdata: {
@@ -225,7 +227,7 @@ export class RegistrationComponent implements OnInit {
             "dob": this.registrationDetails.dob,
             "school_type": "private",
             "meripehchan_id": this.registrationDetails.meripehchanid,
-            "username":this.registrationDetails.username
+            "username": this.registrationDetails.username
           },
           studentdetail: {
             "student_detail_id": "",
@@ -283,8 +285,8 @@ export class RegistrationComponent implements OnInit {
             // this.telemetryService.start();
           }
           this.router.navigate(['/home']);
-         
-          this.toast.success("",this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
+
+          this.toast.success("", this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
           // this.router.navigate(['/login']);
 
           // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
@@ -298,6 +300,19 @@ export class RegistrationComponent implements OnInit {
         this.toast.error("", "Error while login registration");
       });
     }
+  }
+
+  verifyAadhar() {
+    this.authService.verifyAadhar(this.registrationForm.value.aadhar).subscribe((res: any) => {
+      this.isAadharVerified = true;
+      if (res.success && res?.result?.aadhaar_token) {
+        this.aadhaarToken = res.result.aadhaar_token;
+      }
+    }, (error) => {
+      this.isAadharVerified = false;
+      this.toast.error("", "Error verifying Aadhar Id");
+      console.error(error);
+    });
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
