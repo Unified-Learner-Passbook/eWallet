@@ -19,10 +19,10 @@
 
   <div class="text-center" *ngIf="loader">
     <div class="center-loading">
-        <div class="spinner-border">
-        </div>
+      <div class="spinner-border">
+      </div>
     </div>
-</div>
+  </div>
 
   <ng-container *ngIf="extension === 'pdf'">
     <div class="text-center img-mb">
@@ -37,8 +37,8 @@
       </button>
     </div>
     <div class="text-center mt-4" *ngIf="docUrl">
-      <a href=""><img src="assets/images/share.png" *ngIf="canShareFile" (click)="shareFile()" class="pr-3"></a>
-      <a href=""><img src="assets/images/download.png" (click)="downloadCertificate(docUrl)"></a>
+      <img src="assets/images/share.png" *ngIf="canShareFile" (click)="shareFile()" class="pr-3">
+      <img src="assets/images/download.png" (click)="downloadCertificate(docUrl)">
     </div>
   </div>
 </div>
