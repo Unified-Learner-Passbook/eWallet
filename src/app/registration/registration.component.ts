@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
+import { catchError, concatMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput, IStartEventInput } from '../services/telemetry/telemetry-interface';
@@ -246,7 +248,22 @@ export class RegistrationComponent implements OnInit {
         digimpid: this.registrationDetails.meripehchanid
       }
 
-      this.authService.ssoSignUp(payload).subscribe((res: any) => {
+      this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
+        concatMap((res: any) => {
+          if (res.success && res?.result?.aadhaar_token) {
+            payload.userdata.student.aadhar_token = res.result.aadhaar_token;
+            return this.authService.ssoSignUp(payload);
+          } else {
+            return throwError('Aadhar Verification Failed');  
+          }
+        }),
+        catchError((error: any) => {
+          console.error("Error:", error);
+          return throwError('Error while Registration');
+        })
+      )
+      // this.authService.ssoSignUp(payload).
+      .subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {
           this.isLoading = false;
