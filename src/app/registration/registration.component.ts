@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { of, throwError } from 'rxjs';
+import { catchError, concatMap } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput, IStartEventInput } from '../services/telemetry/telemetry-interface';
@@ -17,6 +19,8 @@ export class RegistrationComponent implements OnInit {
 
   registrationDetails: any;
   isLoading = false;
+  isAadharVerified = false;
+  aadhaarToken: string;
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
     name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
@@ -204,7 +208,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   onSchoolChange(school: string) {
-    const udise = this.schoolList.find(item =>  item.schoolName === school)?.udiseCode;
+    const udise = this.schoolList.find(item => item.schoolName === school)?.udiseCode;
     this.registrationForm.get('schoolUdise').setValue(udise);
   }
 
@@ -212,7 +216,7 @@ export class RegistrationComponent implements OnInit {
     console.log(this.registrationForm.value);
     if (this.registrationForm.valid) {
       this.isLoading = true;
-      
+
       const payload = {
         digiacc: "ewallet",
         userdata: {
@@ -225,7 +229,7 @@ export class RegistrationComponent implements OnInit {
             "dob": this.registrationDetails.dob,
             "school_type": "private",
             "meripehchan_id": this.registrationDetails.meripehchanid,
-            "username":this.registrationDetails.username
+            "username": this.registrationDetails.username
           },
           studentdetail: {
             "student_detail_id": "",
@@ -244,29 +248,22 @@ export class RegistrationComponent implements OnInit {
         digimpid: this.registrationDetails.meripehchanid
       }
 
-      const payload1 = {
-        digiacc: "ewallet",
-        userdata: {
-          student: {
-            did: "",
-            meripehchanLoginId: this.registrationDetails.meripehchanid,
-            aadhaarID: this.registrationForm.value.aadhar,
-            studentName: this.registrationForm.value.name,
-            schoolName: this.registrationForm.value.school,
-            studentSchoolID: this.registrationForm.value.schoolId,
-            phoneNo: this.registrationForm.value.phone,
-            grade: this.registrationForm.value.grade,
-            username: this.registrationDetails.username,
-            dob: this.registrationDetails.dob,
-            schoolUdise: this.registrationForm.value.schoolUdise,
-            academicYear: this.registrationForm.value.academicYear,
-            gaurdianName: this.registrationForm.value.guardianName
+      this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
+        concatMap((res: any) => {
+          if (res.success && res?.result?.aadhaar_token) {
+            payload.userdata.student.aadhar_token = res.result.aadhaar_token;
+            return this.authService.ssoSignUp(payload);
+          } else {
+            return throwError('Aadhar Verification Failed');  
           }
-        },
-        digimpid: this.registrationDetails.meripehchanid
-      }
-
-      this.authService.ssoSignUp(payload).subscribe((res: any) => {
+        }),
+        catchError((error: any) => {
+          console.error("Error:", error);
+          return throwError('Error while Registration');
+        })
+      )
+      // this.authService.ssoSignUp(payload).
+      .subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {
           this.isLoading = false;
@@ -283,8 +280,8 @@ export class RegistrationComponent implements OnInit {
             // this.telemetryService.start();
           }
           this.router.navigate(['/home']);
-         
-          this.toast.success("",this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
+
+          this.toast.success("", this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
           // this.router.navigate(['/login']);
 
           // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
@@ -298,6 +295,19 @@ export class RegistrationComponent implements OnInit {
         this.toast.error("", "Error while login registration");
       });
     }
+  }
+
+  verifyAadhar() {
+    this.authService.verifyAadhar(this.registrationForm.value.aadhar).subscribe((res: any) => {
+      this.isAadharVerified = true;
+      if (res.success && res?.result?.aadhaar_token) {
+        this.aadhaarToken = res.result.aadhaar_token;
+      }
+    }, (error) => {
+      this.isAadharVerified = false;
+      this.toast.error("", "Error verifying Aadhar Id");
+      console.error(error);
+    });
   }
 
   raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {

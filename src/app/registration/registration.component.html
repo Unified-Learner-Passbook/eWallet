@@ -5,10 +5,20 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <div class="mb-3 pb-10">
                 <label for="aadhar">{{'AADHAAR' | translate}}</label>
+                <!-- <div class="input-group mb-2"> -->
                 <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
                     placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)">
-                <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' | translate
-                    }}</p>
+                <!-- <button type="button" *ngIf="!isAadharVerified && aadhar.valid"
+                        (click)="verifyAadhar()">Verify</button> -->
+                <!-- <i class="fa fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i> -->
+                <!-- <svg *ngIf="isAadharVerified && aadhar.valid" class="checkmark" xmlns="http://www.w3.org/2000/svg"
+                        viewBox="0 0 52 52">
+                        <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                        <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                    </svg> -->
+                <!-- </div> -->
+                <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' |
+                    translate}}</p>
             </div>
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
@@ -43,8 +53,10 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="studentId">{{'STUDENT_ID' | translate}}</label>
-                <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId" placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' | translate }}</p>
+                <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId"
+                    placeholder="">
+                <p class="text-red pt-2 mb-0" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' |
+                    translate }}</p>
             </div>
             <!-- <div class="mb-3 pb-10">
                 <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
