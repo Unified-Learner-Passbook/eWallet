@@ -288,11 +288,11 @@ export class RegistrationComponent implements OnInit {
           // this.telemetryService.audit()
         } else {
           this.isLoading = false;
-          this.toast.error("", "Error while login registration");
+          this.toast.error("", this.generalService.translateString('ERROR_WHILE_LOGIN_REGISTRATION'));
         }
       }, (error) => {
         this.isLoading = false;
-        this.toast.error("", "Error while login registration");
+        this.toast.error("",this.generalService.translateString('ERROR_WHILE_LOGIN_REGISTRATION') );
       });
     }
   }
@@ -305,7 +305,7 @@ export class RegistrationComponent implements OnInit {
       }
     }, (error) => {
       this.isAadharVerified = false;
-      this.toast.error("", "Error verifying Aadhar Id");
+      this.toast.error("", this.generalService.translateString('ERROR_VERIFYING_AADHAR_ID'));
       console.error(error);
     });
   }

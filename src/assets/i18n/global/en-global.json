@@ -283,7 +283,14 @@
 
     "USER_REGISTER_SUCCESSFULLY":"User Registered successfully!",
     "ERROR_WHILE_LOGIN":"Error while login",
-    "YOUR_SESSION_EXPIRED":"Your session has expired! Please login again"
+    "YOUR_SESSION_EXPIRED":"Your session has expired! Please login again",
+
+    "LOADING_PLEASE_WAIT":"Loading... Please Wait",
+    "INCORRECT_USERNAME_OR_PASSWORD":"Incorrect Username or password",
+    "ERROR_WHILE_LOGIN_REGISTRATION":"Error while login registration",
+    "ERROR_VERIFYING_AADHAR_ID":"Error verifying Aadhar Id",
+    "SHARED_OPERATION_FAILED":"Shared operation failed!",
+    
 
     
 
