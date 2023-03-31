@@ -288,11 +288,11 @@ export class RegistrationComponent implements OnInit {
           // this.telemetryService.audit()
         } else {
           this.isLoading = false;
-          this.toast.error("", this.generalService.translateString('ERROR_WHILE_LOGIN_REGISTRATION'));
+          this.toast.error("", this.generalService.translateString('ERROR_WHILE_REGISTRATION'));
         }
       }, (error) => {
         this.isLoading = false;
-        this.toast.error("",this.generalService.translateString('ERROR_WHILE_LOGIN_REGISTRATION') );
+        this.toast.error("",this.generalService.translateString('ERROR_WHILE_REGISTRATION') );
       });
     }
   }

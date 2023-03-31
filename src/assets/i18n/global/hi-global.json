@@ -289,7 +289,7 @@
 
     "LOADING_PLEASE_WAIT":"लोड हो रहा है कृपया प्रतीक्षा करें",
     "INCORRECT_USERNAME_OR_PASSWORD":"गलत उपयोगकर्ता नाम या पासवर्ड",
-    "ERROR_WHILE_LOGIN_REGISTRATION":"लॉगिन पंजीकरण के दौरान त्रुटि",
+    "ERROR_WHILE_REGISTRATION":"पंजीकरण करते समय त्रुटि",
     "ERROR_VERIFYING_AADHAR_ID":"आधार आईडी सत्यापित करने में त्रुटि",
     "SHARED_OPERATION_FAILED":"साझा कार्रवाई विफल!"
 
