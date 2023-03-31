@@ -285,6 +285,17 @@
 
     "USER_REGISTER_SUCCESSFULLY":"उपयोगकर्ता सफलतापूर्वक पंजीकृत!",
     "ERROR_WHILE_LOGIN":"लॉग इन करते समय त्रुटि",
-    "YOUR_SESSION_EXPIRED":"आपका सत्र समाप्त हो गया है! कृपया फिर भाग लें"
+    "YOUR_SESSION_EXPIRED":"आपका सत्र समाप्त हो गया है! कृपया फिर भाग लें",
+
+    "LOADING_PLEASE_WAIT":"लोड हो रहा है कृपया प्रतीक्षा करें",
+    "INCORRECT_USERNAME_OR_PASSWORD":"गलत उपयोगकर्ता नाम या पासवर्ड",
+    "ERROR_WHILE_REGISTRATION":"पंजीकरण करते समय त्रुटि",
+    "ERROR_VERIFYING_AADHAR_ID":"आधार आईडी सत्यापित करने में त्रुटि",
+    "SHARED_OPERATION_FAILED":"साझा कार्रवाई विफल!"
+
+
+
+
+
 
 }
