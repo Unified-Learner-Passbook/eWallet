@@ -12,3 +12,11 @@ select.form-control:focus{
     outline: 0;
     box-shadow: none;
 }
+.langauge-bx{
+    border: solid 1px var(--primaryColor);
+    padding: 5px 30px;
+    border-radius: 7px;
+    .fs-16{
+        color: var(--primaryColor);
+    }
+}
