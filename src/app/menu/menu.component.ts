@@ -14,7 +14,6 @@ export class MenuComponent implements OnInit {
 
   languageSwitchRef: NgbModalRef;
   languages = [];
-  selectedLanguage = '';
   @ViewChild('languageSwitchModal') languageSwitchModal: TemplateRef<any>;
   constructor(
     private readonly authService: AuthService,
@@ -29,14 +28,10 @@ export class MenuComponent implements OnInit {
 
   getAllLanguages() {
     const languages = localStorage.getItem('languages');
-    const selectedLang = localStorage.getItem('setLanguage');
     if (languages) {
       this.languages = JSON.parse(languages);
     }
 
-    if (selectedLang) {
-      this.selectedLanguage = selectedLang;
-    }
   }
 
   showLanguageModal() {
@@ -48,8 +43,11 @@ export class MenuComponent implements OnInit {
     this.languageSwitchRef = this.modalService.open(this.languageSwitchModal, options);
   }
 
-  changeLanguage() {
-    this.generalService.setLanguage(this.selectedLanguage);
+  changeLanguage(selectedLanguage) {
+    const selectedLang = localStorage.getItem('setLanguage');
+    if (selectedLang !== selectedLanguage) {
+      this.generalService.setLanguage(selectedLanguage);
+    }
   }
 
   logOut() {

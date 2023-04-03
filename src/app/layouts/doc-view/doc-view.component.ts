@@ -110,10 +110,19 @@ export class DocViewComponent implements OnInit {
         window.history.go(-1);
     }
 
-    downloadCertificate(url) {
-        let link = document.createElement("a");
-        link.href = url;
-        link.download = 'certificate.pdf';
+    downloadCertificate(asJSON?: boolean) {
+        let link: any;
+        if (asJSON) {
+            const blob = new Blob([JSON.stringify(this.credential)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            link = document.createElement("a");
+            link.href = url;
+            link.download = 'certificate.json';
+        } else {
+            link = document.createElement("a");
+            link.href = this.docUrl;
+            link.download = 'certificate.pdf';
+        }
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
         link.click();
