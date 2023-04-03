@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrModule } from 'ngx-toastr';
 import { APP_INITIALIZER } from '@angular/core';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
@@ -192,7 +191,6 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgbAccordionModule,
     FormlyBootstrapModule,
     KeycloakAngularModule,
     Bootstrap4FrameworkModule,

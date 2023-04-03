@@ -120,5 +120,10 @@ export class GeneralService {
     return this.translatedString;
   }
 
+  setLanguage(langKey: string) {
+    localStorage.setItem('setLanguage', langKey);
+    window.location.reload();
+  }
+
 }
 

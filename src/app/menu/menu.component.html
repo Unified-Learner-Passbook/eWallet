@@ -21,15 +21,10 @@
           <div class="fs-14 text-gray-100">{{'MANAGE_ACCOUNT_DETAILS' | translate}}</div>
         </div>
       </li>
-      <li class="nav-item dropdown">
-        <div class="form-group">
-          <i class="fa fa-globe float-left fs-26" aria-hidden="true"></i>
-          <select class="form-control language-btn" id="exampleFormControlSelect1">
-            <option>भाषा</option>
-            <option><i class="flag-united-kingdom flag m-0"></i> अंग्रेज़ी</option>
-            <option>हिंदी</option>
-            
-          </select>
+      <li class="nav-item dropdown" (click)="showLanguageModal()">
+        <div class="float-left pr-10"><img src="assets/images/logout.png" alt=""></div> <!--TODO: change logo-->
+        <div class="pl-10">
+          <div class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</div>
         </div>
       </li>
       <!-- <li class="nav-item" [routerLink]="['set-username']">
@@ -62,3 +57,17 @@
     </ul>
   </div>
 </div>
+
+<ng-template #languageSwitchModal>
+  <div class="modal-content">
+    <div class="modal-body fs-14">
+      <div class="text-center form-group">
+        <label for="language">{{'CHOOSE_LANGUAGE' | translate}}</label>
+        <select class="form-select" *ngIf="languages?.length" id="langauage" [(ngModel)]="selectedLanguage"
+          (ngModelChange)="changeLanguage()">
+          <option *ngFor="let language of languages" [value]="language.code">{{language.name}}</option>
+        </select>
+      </div>
+    </div>
+  </div>
+</ng-template>

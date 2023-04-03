@@ -31,11 +31,6 @@
   </ng-container>
 
   <div class="pt-2">
-    <div class="text-center mt-4" *ngIf="!loader">
-      <button class="btn btn-rounded" type="button" (click)="raiseInteractEvent('generate-qr-code')">
-        <i class="fas fa-qrcode"></i>&nbsp;&nbsp;{{'GENERATE_QR_CODE' | translate}}
-      </button>
-    </div>
     <div class="text-center mt-4" *ngIf="docUrl">
       <img src="assets/images/share.png" *ngIf="canShareFile" (click)="shareFile()" class="pr-3">
       <img src="assets/images/download.png" (click)="downloadCertificate(docUrl)">
