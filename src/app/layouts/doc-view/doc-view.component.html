@@ -38,7 +38,7 @@
       </div>
       <div class="p-2" *ngIf="canShareFile">
         <img src="assets/images/share.png" (click)="shareFile()" class="pr-3">
-        <div>Share</div>
+        <div>{{'SHARE' | translate}}</div>
       </div>
       <div class="p-2">
         <img src="assets/images/download.png" (click)="downloadCertificate(true)">

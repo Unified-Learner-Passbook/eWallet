@@ -292,5 +292,6 @@
     "SHARED_OPERATION_FAILED":"Shared operation failed!",
     "CHOOSE_LANGUAGE": "Choose Language",
     "DOWNLOAD_PDF": "Download as PDF",
-    "DOWNLOAD_JSON": "Download as JSON"
+    "DOWNLOAD_JSON": "Download as JSON",
+    "SHARE": "Share"
 }

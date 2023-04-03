@@ -294,5 +294,6 @@
     "SHARED_OPERATION_FAILED":"साझा कार्रवाई विफल!",
     "CHOOSE_LANGUAGE": "भाषा चुनें",
     "DOWNLOAD_PDF": "पीडीएफ के रूप में डाउनलोड करें",
-    "DOWNLOAD_JSON": "JSON के रूप में डाउनलोड करें"
+    "DOWNLOAD_JSON": "JSON के रूप में डाउनलोड करें",
+    "SHARE": "शेयर करना"
 }
