@@ -77,12 +77,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
           }
           this.router.navigate(['/home']);
         } else {
-          const message = res.message ? res.message : 'Incorrect Username or password';
+          const message = res.message ? res.message :  this.generalService.translateString('INCORRECT_USERNAME_OR_PASSWORD');
           this.toastMessage.error("", message);
         }
       }, (error) => {
         this.isLoading = false;
-        const message = error?.error?.message ? error.error.message : 'Incorrect Username or password';
+        const message = error?.error?.message ? error.error.message : this.generalService.translateString('INCORRECT_USERNAME_OR_PASSWORD');
         this.toastMessage.error('', message);
       });
     }

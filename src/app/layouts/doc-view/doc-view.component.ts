@@ -110,10 +110,19 @@ export class DocViewComponent implements OnInit {
         window.history.go(-1);
     }
 
-    downloadCertificate(url) {
-        let link = document.createElement("a");
-        link.href = url;
-        link.download = 'certificate.pdf';
+    downloadCertificate(asJSON?: boolean) {
+        let link: any;
+        if (asJSON) {
+            const blob = new Blob([JSON.stringify(this.credential)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            link = document.createElement("a");
+            link.href = url;
+            link.download = 'certificate.json';
+        } else {
+            link = document.createElement("a");
+            link.href = this.docUrl;
+            link.download = 'certificate.pdf';
+        }
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
         link.click();
@@ -133,7 +142,7 @@ export class DocViewComponent implements OnInit {
             navigator.share(shareData).then((res: any) => {
                 console.log("File shared successfully!");
             }).catch((error: any) => {
-                this.toastMessage.error("", "Shared operation failed!");
+                this.toastMessage.error("", this.generalService.translateString('SHARED_OPERATION_FAILED'));
                 console.error("Shared operation failed!", error);
             })
         } else {

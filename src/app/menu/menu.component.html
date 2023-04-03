@@ -21,6 +21,13 @@
           <div class="fs-14 text-gray-100">{{'MANAGE_ACCOUNT_DETAILS' | translate}}</div>
         </div>
       </li>
+      <li class="nav-item dropdown" (click)="showLanguageModal()">
+        <div class="float-left pr-10"><i class="fa fa-globe float-left fs-26" aria-hidden="true"></i></div>
+        <div class="pl-10">
+          <div class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</div>
+          <div class="fs-14 text-gray-100">Select Langugae</div>
+        </div>
+      </li>
       <!-- <li class="nav-item" [routerLink]="['set-username']">
         <div class="float-left pr-10"><img src="assets/images/account.png" alt="Security"></div>
         <div class="pl-10">
@@ -51,3 +58,26 @@
     </ul>
   </div>
 </div>
+
+<ng-template #languageSwitchModal>
+  <div class="modal-content">
+    <div class="modal-body fs-14">
+      <div class="text-center form-group fs-20">
+        <label for="language" class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</label>
+        <div class="d-flex justify-content-space-evenly pt-3">
+          <a class="langauge-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)">
+            <div class="fs-16">
+              {{language.name}}
+            </div>
+          </a>
+        </div>
+
+        <!-- <label for="language">{{'CHOOSE_LANGUAGE' | translate}}</label> -->
+        <!-- <select class="form-select" *ngIf="languages?.length" id="langauage" [(ngModel)]="selectedLanguage"
+          (ngModelChange)="changeLanguage()">
+          <option *ngFor="let language of languages" [value]="language.code">{{language.name}}</option>
+        </select> -->
+      </div>
+    </div>
+  </div>
+</ng-template>
