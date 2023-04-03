@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Location } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { GeneralService } from 'src/app/services/general/general.service';
@@ -55,8 +55,8 @@ export class DocViewComponent implements OnInit {
         if (this.credential?.credential_schema) {
             this.schemaId = this.credential.schemaId;
             this.getTemplate(this.schemaId).subscribe((res) => {
-                this.templateId = res?.result?.[0]?.id;
-                this.getPDF(res?.result?.[0]?.template);
+                this.templateId = res?.id;
+                this.getPDF(res?.template);
             });
         } else {
             console.error("Something went wrong!");
@@ -68,7 +68,33 @@ export class DocViewComponent implements OnInit {
     }
 
     getTemplate(id: string): Observable<any> {
-        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplateschema/${id}`, true)
+        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplateschema/${id}`, true).pipe(
+            map((res: any) => {
+                if (res.result.length > 1) {
+                    const selectedLangKey = localStorage.getItem('setLanguage');
+                    const certExpireTime = new Date(this.credential.expirationDate).getTime();
+                    const currentDateTime = new Date().getTime();
+                    const isExpired = certExpireTime < currentDateTime;
+
+                    const type = isExpired ? `inactive-${selectedLangKey}` : `active-${selectedLangKey}`;
+                    const template = res.result.find((item: any) => item.type === type);
+
+                    if (template) {
+                        return template;
+                    } else {
+                        const genericTemplate = res.result.find((item: any) => item.type === 'Handlebar');
+                        if (genericTemplate) {
+                            return genericTemplate;
+                        } else {
+                            return res.result[0];
+                        }
+                    }
+                } else if (res.result.length === 1) {
+                    return res.result[0];
+                }
+                throwError('Template not attached to schema');
+            })
+        )
     }
 
     getPDF(template) {
