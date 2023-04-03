@@ -109,7 +109,7 @@
 
             <div class="pb-10 text-center">
                 <button type="submit" class="login-btn bg-blue-dark font-600 mt-4"
-                    [disabled]="registrationForm.invalid">{{'REGISTER' | translate}}</button>
+                    [disabled]="registrationForm.invalid" (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
                 <!-- <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button> -->
             </div>
         </form>
@@ -132,7 +132,7 @@
             </div>
             <div class="modal-footer justify-content-space-evenly">
                 <button type="button" class="btn btn-secondary bg-blue-dark btn-padding" data-toggle="modal"
-                    data-target="#exampleModal1">{{'REGISTER' | translate}}</button>
+                    data-target="#exampleModal1" (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
             </div>
         </div>
     </div>
