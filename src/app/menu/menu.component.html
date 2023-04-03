@@ -22,7 +22,7 @@
         </div>
       </li>
       <li class="nav-item dropdown" (click)="showLanguageModal()">
-        <div class="float-left pr-10"><i class="fa fa-globe float-left fs-26" aria-hidden="true"></i></div> <!--TODO: change logo-->
+        <div class="float-left pr-10"><i class="fa fa-globe float-left fs-26" aria-hidden="true"></i></div>
         <div class="pl-10">
           <div class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</div>
           <div class="fs-14 text-gray-100">Select Langugae</div>
@@ -65,18 +65,13 @@
       <div class="text-center form-group fs-20">
         <label for="language" class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</label>
         <div class="d-flex justify-content-space-evenly pt-3">
-          <a class="langauge-bx">
+          <a class="langauge-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)">
             <div class="fs-16">
-              English
-            </div>
-          </a>
-          <a class="langauge-bx">
-            <div class="fs-16">
-              Hindi
+              {{language.name}}
             </div>
           </a>
         </div>
-        
+
         <!-- <label for="language">{{'CHOOSE_LANGUAGE' | translate}}</label> -->
         <!-- <select class="form-select" *ngIf="languages?.length" id="langauage" [(ngModel)]="selectedLanguage"
           (ngModelChange)="changeLanguage()">
