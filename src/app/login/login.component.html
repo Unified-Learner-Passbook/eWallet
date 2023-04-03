@@ -28,7 +28,7 @@
       <div class="input-group mb-2">
         <input [type]="showPassword ? 'text' : 'password'" class="form-control p-4" id="password" name="password"
           formControlName="password" placeholder="">
-        <button (click)="togglePasswordVisibility()" type="button" class="btn-none">
+        <button (click)="togglePasswordVisibility()" type="button" class="btn-none" (click)="raiseInteractEvent('login-user-pass')">
           <i class="fa fa-eye" aria-hidden="true" *ngIf="!show"></i>
           <i class="fa fa-eye-slash" aria-hidden="true" *ngIf="show"></i>
         </button>
@@ -39,12 +39,12 @@
 
     <p class="text-secondary-color" (click)="ssoLogin = !ssoLogin">{{'SIGN_IN_USERNAME_PASSWORD' | translate }}</p>
     <div class="pb-10">
-      <button type="submit" class="login-btn bg-blue-dark" [disabled]="loginForm.invalid">{{'LOGIN'|
+      <button type="submit" class="login-btn bg-blue-dark" [disabled]="loginForm.invalid" (click)="raiseInteractEvent('login-auth')">{{'LOGIN'|
         translate}}</button>
     </div>
   </form>
   <a class="pb-10 text-secondary-color" [routerLink]="['/register']">{{'NOT_REGISTERED' | translate }} <span
-      class="text-underline">{{'REGISTER_HERE' | translate }}</span></a>
+      class="text-underline" (click)="raiseInteractEvent('register')">{{'REGISTER_HERE' | translate }}</span></a>
 </div>
 
 <!-- GET OTP POPUP -->
