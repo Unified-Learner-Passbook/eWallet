@@ -25,6 +25,7 @@
         <div class="float-left pr-10"><img src="assets/images/logout.png" alt=""></div> <!--TODO: change logo-->
         <div class="pl-10">
           <div class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</div>
+          <div class="fs-14 text-gray-100">Select Langugae</div>
         </div>
       </li>
       <!-- <li class="nav-item" [routerLink]="['set-username']">
@@ -61,12 +62,26 @@
 <ng-template #languageSwitchModal>
   <div class="modal-content">
     <div class="modal-body fs-14">
-      <div class="text-center form-group">
-        <label for="language">{{'CHOOSE_LANGUAGE' | translate}}</label>
-        <select class="form-select" *ngIf="languages?.length" id="langauage" [(ngModel)]="selectedLanguage"
+      <div class="text-center form-group fs-20">
+        <label for="language" class="fs-16">{{'CHOOSE_LANGUAGE' | translate}}</label>
+        <div class="d-flex justify-content-space-evenly pt-3">
+          <a class="langauge-bx">
+            <div class="fs-16">
+              English
+            </div>
+          </a>
+          <a class="langauge-bx">
+            <div class="fs-16">
+              Hindi
+            </div>
+          </a>
+        </div>
+        
+        <!-- <label for="language">{{'CHOOSE_LANGUAGE' | translate}}</label> -->
+        <!-- <select class="form-select" *ngIf="languages?.length" id="langauage" [(ngModel)]="selectedLanguage"
           (ngModelChange)="changeLanguage()">
           <option *ngFor="let language of languages" [value]="language.code">{{language.name}}</option>
-        </select>
+        </select> -->
       </div>
     </div>
   </div>
