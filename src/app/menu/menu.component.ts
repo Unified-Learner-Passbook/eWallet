@@ -42,8 +42,8 @@ export class MenuComponent implements OnInit {
   showLanguageModal() {
     const options: NgbModalOptions = {
       animation: true,
-      centered: true,
-      size: 'sm'
+      centered: false,
+      size: 'sm',
     }
     this.languageSwitchRef = this.modalService.open(this.languageSwitchModal, options);
   }
