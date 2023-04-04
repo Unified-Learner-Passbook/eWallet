@@ -113,19 +113,10 @@ export class DocViewComponent implements OnInit {
         }
         // delete request.credential.credentialSubject;
         this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
-
             this.blob = new Blob([data], {
                 type: 'application/pdf' // must match the Accept type
             });
-
-
-
             this.docUrl = window.URL.createObjectURL(this.blob);
-            // this.pdfResponse2 = this.sanitizer.bypassSecurityTrustResourceUrl(this.pdfResponse);
-            // console.log(this.pdfResponse2);
-            // this.pdfResponse = this.readBlob(blob);
-            // console.log(this.pdfResponse);
-
         })).subscribe((result: any) => {
             this.loader = false;
             this.extension = 'pdf';
