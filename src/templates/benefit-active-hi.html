@@ -78,7 +78,9 @@
       padding: 0 5px;
       text-align: left
     }
-
+    .hide {
+      display: none;
+    }
     .text-center {
       margin: 0 auto;
       display: table
@@ -108,6 +110,10 @@
         <div class='w-45'>
           <p>छात्र का नाम:</p>
           <div class='font-600'>{{student_name}}</div>
+        </div>
+        <div class='w-45 hide'>
+          <p>Student ID:</p>
+          <div class='font-600'>{{student_id}}</div>
         </div>
         <div class='w-45'>
           <p>लेन-देन आईडी:</p>
