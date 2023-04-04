@@ -32,15 +32,17 @@
 
   <div class="pt-2">
     <div class="text-center mt-4 d-flex justify-content-space-evenly text-center" *ngIf="docUrl">
-     
-      <div>
-        <img src="assets/images/download.png" (click)="downloadCertificate(docUrl)"><div>Download PDF</div>
+      <div class="p-2">
+        <img src="assets/images/download.png" (click)="downloadCertificate()">
+        <div>{{'DOWNLOAD_PDF' | translate}}</div>
       </div>
-      <div>
-        <img src="assets/images/share.png" *ngIf="canShareFile" (click)="shareFile()" class="pr-3"><div>Share</div>
+      <div class="p-2" *ngIf="canShareFile">
+        <img src="assets/images/share.png" (click)="shareFile()" class="pr-3">
+        <div>{{'SHARE' | translate}}</div>
       </div>
-      <div>
-        <img src="assets/images/download.png" (click)="downloadCertificate(docUrl)"><div>Download text</div>
+      <div class="p-2">
+        <img src="assets/images/download.png" (click)="downloadCertificate(true)">
+        <div>{{'DOWNLOAD_JSON' | translate}}</div>
       </div>
     </div>
   </div>

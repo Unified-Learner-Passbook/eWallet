@@ -281,14 +281,32 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
 
 
 export class AppModule {
-
+  languages;
   constructor(translate: TranslateService, authConfig: AuthConfigService) {
 
-    if (localStorage.getItem('ELOCKER_LANGUAGE')) {
-      translate.use(localStorage.getItem('ELOCKER_LANGUAGE'));
-    } else {
-      translate.use('en');
-    }
+    authConfig.getConfig().subscribe((config) => {
+      this.languages = config.languages;
+      let installedLanguages = [];
+
+      for (let i = 0; i < this.languages.length; i++) {
+        installedLanguages.push({
+          "code": this.languages[i],
+          "name": ISO6391.getNativeName(this.languages[i])
+        });
+      }
+
+      localStorage.setItem('languages', JSON.stringify(installedLanguages));
+      translate.addLangs(this.languages);
+
+      if (localStorage.getItem('setLanguage') && this.languages.includes(localStorage.getItem('setLanguage'))) {
+        translate.use(localStorage.getItem('setLanguage'));
+      } else {
+        const browserLang = translate.getBrowserLang();
+        let lang = this.languages.includes(browserLang) ? browserLang : 'en';
+        translate.use(lang);
+        localStorage.setItem('setLanguage', lang);
+      }
+    });
 
   }
 }
