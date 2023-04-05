@@ -134,11 +134,11 @@ export class DocViewComponent implements OnInit {
             const url = window.URL.createObjectURL(blob);
             link = document.createElement("a");
             link.href = url;
-            link.download = 'certificate.json';
+            link.download = `${this.authService.currentUser?.student_name}_certificate.json`.replace(/\s+/g, '_');;
         } else {
             link = document.createElement("a");
             link.href = this.docUrl;
-            link.download = 'certificate.pdf';
+            link.download = `${this.authService.currentUser?.student_name}_certificate.pdf`.replace(/\s+/g, '_');;
         }
         link.style.visibility = 'hidden';
         document.body.appendChild(link);
