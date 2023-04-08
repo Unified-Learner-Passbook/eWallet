@@ -70,6 +70,13 @@ export class RegistrationComponent implements OnInit {
     this.setAcademicYear();
     this.setGrades();
     this.getSchools();
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.registrationForm.valueChanges.subscribe(val => {
+      console.log("value", val)
+    });
   }
 
   setGrades() {
