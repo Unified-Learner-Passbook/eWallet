@@ -213,7 +213,7 @@ export class RegistrationComponent implements OnInit {
             "dob": this.registrationDetails.dob,
             "school_type": "private",
             "meripehchan_id": this.registrationDetails.meripehchanid,
-            "username": this.registrationDetails.username
+            "username": this.registrationForm.value.username
           },
           studentdetail: {
             "student_detail_id": "",
