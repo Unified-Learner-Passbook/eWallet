@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
 import { AuthService } from '../services/auth/auth.service';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
@@ -107,19 +107,31 @@ export class EkycComponent implements OnInit, AfterViewInit {
     this.isLoading = true;
 
     const payload = {
-      "digiacc":"ewallet",
-      "aadhaar_id": this.aadharForm.value.aadhardId, //user input
-      "aadhaar_name":this.userInfo?.result?.name, // digilocker
+      "digiacc": "ewallet",
+      "aadhaar_id": this.aadharForm.value.aadharId, //user input
+      "aadhaar_name": this.userInfo?.result?.name, // digilocker
       "digilocker_id": this.userInfo?.result?.meripehchanid // meripehchan
     }
     this.authService.verifyAccountAadharLink(payload).subscribe((res: any) => {
       this.isLoading = false;
       console.log("Aadharlink Res", res);
 
+      if (res.user === 'FOUND') {
+        if (res.token) {
+          localStorage.setItem('accessToken', res.token);
+        }
+
+        if (res?.userData?.length) {
+          localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
+        }
+        this.router.navigate(['/home']);
+      }
       if (res?.user === 'NO_FOUND') {
         // redirect to registration
-      } else {
-        // redirect to home
+        const navigationExtras: NavigationExtras = {
+          state: res.result
+        };
+        this.router.navigate(['/register'], navigationExtras)
       }
     }, error => {
       console.error();
