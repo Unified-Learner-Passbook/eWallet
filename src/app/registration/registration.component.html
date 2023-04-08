@@ -3,11 +3,11 @@
     <div>
         <div class="h3 mb-3 text-center">{{'REGISTER' | translate}}</div>
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
-            <div class="mb-3 pb-10">
-                <label for="aadhar">{{'AADHAAR' | translate}}</label>
+            <!-- <div class="mb-3 pb-10">
+                <label for="aadhar">{{'AADHAAR' | translate}}</label> -->
                 <!-- <div class="input-group mb-2"> -->
-                <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
-                    placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)">
+                <!-- <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
+                    placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)"> -->
                 <!-- <button type="button" *ngIf="!isAadharVerified && aadhar.valid"
                         (click)="verifyAadhar()">Verify</button> -->
                 <!-- <i class="fa fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i> -->
@@ -17,9 +17,9 @@
                         <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                     </svg> -->
                 <!-- </div> -->
-                <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' |
+                <!-- <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' |
                     translate}}</p>
-            </div>
+            </div> -->
             <div class="mb-3 pb-10">
                 <label for="name">{{'NAME' | translate}}</label>
                 <input type="text" class="form-control p-4" id="name" name="name" formControlName="name" placeholder=""
@@ -99,13 +99,13 @@
                 </p>
             </div>
 
-            <div class="mb-3 pb-10">
+            <!-- <div class="mb-3 pb-10">
                 <label for="username">{{'USERNAME' | translate}}</label>
                 <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
                     placeholder="" disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="username.invalid && username.touched">{{'ENTER_VALID_USERNAME' |
                     translate }}</p>
-            </div> 
+            </div>  -->
 
             <div class="pb-10 text-center">
                 <button type="submit" class="login-btn bg-blue-dark font-600 mt-4"

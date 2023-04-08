@@ -153,11 +153,15 @@ export class RegistrationComponent implements OnInit {
       }
 
       if (this.registrationDetails.username) {
-        this.registrationForm.get('username').setValue(this.registrationDetails.username);
+        this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
       }
 
       if (this.registrationDetails.dob) {
         this.registrationForm.get('dob').setValue(this.registrationDetails.dob);
+      }
+
+      if (this.registrationDetails.uuid) {
+        this.registrationForm.get('aadhar').setValue(this.registrationDetails.uuid);
       }
     }
   }
@@ -221,21 +225,21 @@ export class RegistrationComponent implements OnInit {
         digimpid: this.registrationDetails.meripehchanid
       }
 
-      this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
-        concatMap((res: any) => {
-          if (res.success && res?.result?.aadhaar_token) {
-            payload.userdata.student.aadhar_token = res.result.aadhaar_token;
-            return this.authService.ssoSignUp(payload);
-          } else {
-            return throwError('Aadhar Verification Failed');  
-          }
-        }),
-        catchError((error: any) => {
-          console.error("Error:", error);
-          return throwError('Error while Registration');
-        })
-      )
-      // this.authService.ssoSignUp(payload).
+      // this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
+      //   concatMap((res: any) => {
+      //     if (res.success && res?.result?.aadhaar_token) {
+      //       payload.userdata.student.aadhar_token = res.result.aadhaar_token;
+      //       return this.authService.ssoSignUp(payload);
+      //     } else {
+      //       return throwError('Aadhar Verification Failed');  
+      //     }
+      //   }),
+      //   catchError((error: any) => {
+      //     console.error("Error:", error);
+      //     return throwError('Error while Registration');
+      //   })
+      // )
+      this.authService.ssoSignUp(payload)
       .subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {

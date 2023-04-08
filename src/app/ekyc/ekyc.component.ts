@@ -129,7 +129,7 @@ export class EkycComponent implements OnInit, AfterViewInit {
       if (res?.user === 'NO_FOUND') {
         // redirect to registration
         const navigationExtras: NavigationExtras = {
-          state: res.result
+          state: {...this.userInfo.result, uuid: res.result.uuid}
         };
         this.router.navigate(['/register'], navigationExtras)
       }
