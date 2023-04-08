@@ -159,15 +159,12 @@ export class RegistrationComponent implements OnInit {
         this.registrationForm.get('phone').setValue(this.registrationDetails.mobile);
       }
 
-      if (this.registrationDetails.username) {
-        this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
-      }
-
       if (this.registrationDetails.dob) {
         this.registrationForm.get('dob').setValue(this.registrationDetails.dob);
       }
-
+      
       if (this.registrationDetails.uuid) {
+        this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
         this.registrationForm.get('aadhar').setValue(this.registrationDetails.uuid);
       }
     }
