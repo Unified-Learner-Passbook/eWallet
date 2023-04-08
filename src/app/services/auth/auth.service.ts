@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {
   HttpClient,
@@ -34,6 +34,11 @@ export class AuthService {
     return this.http.post(api, { aadhaar_id: aadharId });
   }
 
+  verifyKYC(aadharId: number | string) {
+    // const api = `${this.endpoint}/ulp-bff/v1/aadhaar/verify/kyc`;
+    // return this.http.post(api, { aadhar_id: aadharId });
+    return of({});
+  }
 
   getOTP(aadharId: number): Observable<any> {
     const api = `${this.endpoint}/ulp-bff/v1/aadhaar/otp`;

@@ -7,6 +7,7 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { GeneralService } from '../services/general/general.service';
 import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-ekyc',
@@ -15,13 +16,16 @@ import { NgbModal, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 })
 export class EkycComponent implements OnInit, AfterViewInit {
 
+  userInfo: any;
   isLoading = false
   otp: number;
 
+  canGoBack = false;
   otpModalRef: NgbModalRef;
   @ViewChild('otpModal') otpModal: TemplateRef<any>;
 
   aadharForm = new FormGroup({
+    name: new FormControl('', [Validators.required]),
     aadharId: new FormControl('', [Validators.minLength(12), Validators.minLength(12), Validators.required, Validators.pattern('^[0-9]*$')])
   });
 
@@ -31,8 +35,23 @@ export class EkycComponent implements OnInit, AfterViewInit {
     private readonly router: Router,
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService,
-    private readonly modalService: NgbModal
-  ) { }
+    private readonly modalService: NgbModal,
+    private readonly location: Location,
+  ) {
+    const navigation = this.router.getCurrentNavigation();
+    this.userInfo = navigation.extras.state;
+    this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
+
+    this.userInfo = { name: 'Vivek Kasture' }
+
+    if (!this.userInfo) {
+      if (this.canGoBack) {
+        this.location.back();
+      } else {
+        this.router.navigate(['']);
+      }
+    }
+  }
 
   ngOnInit(): void {
   }
@@ -81,10 +100,25 @@ export class EkycComponent implements OnInit, AfterViewInit {
 
   }
 
-  ngAfterViewInit(): void {
-    this.raiseImpressionEvent();
+  verifyAadhar() {
+    this.aadharForm.controls['aadharId'].markAsTouched()
+    if (!this.aadharForm.valid) {
+      return;
+    }
+    this.isLoading = true;
+    this.authService.verifyKYC(this.aadharForm.value.aadhardId).subscribe((res: any) => {
+      this.isLoading = false;
+    });
   }
 
+  ngAfterViewInit(): void {
+    this.raiseImpressionEvent();
+    if (this.userInfo) {
+      if (this.userInfo.name) {
+        this.aadharForm.get('name').setValue(this.userInfo.name);
+      }
+    }
+  }
 
   raiseImpressionEvent() {
     const telemetryImpression: IImpressionEventInput = {

@@ -2,7 +2,14 @@
   <app-global-header [showTitle]="true"></app-global-header>
 
   <p class="text-danger">It seems you have not completed your KYC. Please complete your one time KYC here</p>
-  <form [formGroup]="aadharForm" (ngSubmit)="getOTP()">
+  <form [formGroup]="aadharForm" (ngSubmit)="verifyAadhar()">
+    <div class="mb-3 pb-10">
+      <label for="name">{{'NAME' | translate}}</label>
+      <div class="input-group mb-2">
+        <input type="text" class="form-control p-4" id="name" name="name" placeholder="Enter your name"
+          formControlName="name" disabled="true">
+      </div>
+    </div>
     <div class="mb-3 pb-10">
       <label for="aadharId">{{'ENTER_AADHAAR_NO' | translate}}</label>
       <div class="input-group mb-2">
@@ -13,7 +20,7 @@
       <p class="text-danger" *ngIf="aadharId.invalid && aadharId.touched">{{'INCORRECT_AADHAR' | translate}}</p>
     </div>
     <div class="pb-10">
-      <button type="submit" class="login-btn bg-blue-dark mt-4">{{'GET_OTP'| translate}}</button>
+      <button type="submit" class="login-btn bg-blue-dark mt-4">{{'VERIFY'| translate}}</button>
     </div>
   </form>
 </div>
@@ -36,7 +43,8 @@
             id="basic-addon2">{{'VERIFY' | translate}}</span>
         </div>
       </div>
-      <p class="text-center pt-4 text-underline cursor-pointer" role="button" (click)="resendOTP()">{{'RESEND_OTP' | translate}}</p>
+      <p class="text-center pt-4 text-underline cursor-pointer" role="button" (click)="resendOTP()">{{'RESEND_OTP' |
+        translate}}</p>
     </div>
   </div>
 </ng-template>
