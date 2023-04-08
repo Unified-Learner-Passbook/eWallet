@@ -31,6 +31,7 @@ import { AuthenticationGuard } from './utility/authentication.guard';
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
+import { EkycComponent } from './ekyc/ekyc.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,16 @@ const routes: Routes = [
       showToolbar: false,
       telemetry: {
         env: 'login', pageid: 'login', type: 'edit', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'ekyc',
+    component: EkycComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'login', pageid: 'kyc', type: 'edit', subtype: 'scroll'
       }
     }
   },
