@@ -34,10 +34,9 @@ export class AuthService {
     return this.http.post(api, { aadhaar_id: aadharId });
   }
 
-  verifyKYC(aadharId: number | string) {
-    // const api = `${this.endpoint}/ulp-bff/v1/aadhaar/verify/kyc`;
-    // return this.http.post(api, { aadhar_id: aadharId });
-    return of({});
+  verifyAccountAadharLink(payload: any) {
+    const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/aadhaar`;
+    return this.http.post(api, payload);
   }
 
   getOTP(aadharId: number): Observable<any> {

@@ -44,31 +44,41 @@ export class OauthCallbackComponent implements OnInit {
       console.log("Result", res);
 
       if (res.success) {
-        if(res?.digi?.access_token) {
+        if (res?.needaadhaar === 'YES') {
+          const navigationExtras: NavigationExtras = {
+            state: res
+          }
+          this.router.navigate(['/ekyc'], navigationExtras);
+        } else {
+          if (res.user === 'FOUND') {
+            if (res.token) {
+              localStorage.setItem('accessToken', res.token);
+            }
+
+            if (res?.userData?.length) {
+              localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
+            }
+            this.router.navigate(['/home']);
+          } else {
+            const navigationExtras: NavigationExtras = {
+              state: res
+            }
+            this.router.navigate(['/ekyc'], navigationExtras);
+          }
+
+          // if (res.user === 'NO_FOUND' && res.result) {
+          //   const navigationExtras: NavigationExtras = {
+          //     state: res.result
+          //   };
+          //   this.router.navigate(['/register'], navigationExtras)
+          // }
+        }
+
+        if (res?.digi?.access_token) {
           this.authService.digilockerAccessToken = res.digi.access_token;
         }
-
-        if (res.user === 'FOUND') {
-          if (res.token) {
-            localStorage.setItem('accessToken', res.token);
-          }
-
-          if (res?.userData?.length) {
-            localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
-            // this.telemetryService.uid = res.userData.student.meripehchanLoginId;
-            // this.telemetryService.start();
-          }
-          this.router.navigate(['/home']);
-        }
-
-        if (res.user === 'NO_FOUND' && res.result) {
-          const navigationExtras: NavigationExtras = {
-            state: res.result
-          };
-          this.router.navigate(['/register'], navigationExtras)
-        }
       } else {
-        this.toastMessage.error('',this.generalService.translateString('ERROR_WHILE_LOGIN'));
+        this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_LOGIN'));
       }
 
 

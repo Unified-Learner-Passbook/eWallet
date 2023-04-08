@@ -42,8 +42,7 @@ export class EkycComponent implements OnInit, AfterViewInit {
     this.userInfo = navigation.extras.state;
     this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
 
-    this.userInfo = { name: 'Vivek Kasture' }
-
+    console.log("userInfo", this.userInfo);
     if (!this.userInfo) {
       if (this.canGoBack) {
         this.location.back();
@@ -106,16 +105,34 @@ export class EkycComponent implements OnInit, AfterViewInit {
       return;
     }
     this.isLoading = true;
-    this.authService.verifyKYC(this.aadharForm.value.aadhardId).subscribe((res: any) => {
+
+    const payload = {
+      "digiacc":"ewallet",
+      "aadhaar_id": this.aadharForm.value.aadhardId, //user input
+      "aadhaar_name":this.userInfo?.result?.name, // digilocker
+      "digilocker_id": this.userInfo?.result?.meripehchanid // meripehchan
+    }
+    this.authService.verifyAccountAadharLink(payload).subscribe((res: any) => {
       this.isLoading = false;
+      console.log("Aadharlink Res", res);
+
+      if (res?.user === 'NO_FOUND') {
+        // redirect to registration
+      } else {
+        // redirect to home
+      }
+    }, error => {
+      console.error();
+      this.isLoading = false;
+      this.toastMessage.error('', 'Error while verifying Aadhar');
     });
   }
 
   ngAfterViewInit(): void {
     this.raiseImpressionEvent();
     if (this.userInfo) {
-      if (this.userInfo.name) {
-        this.aadharForm.get('name').setValue(this.userInfo.name);
+      if (this.userInfo?.result?.name) {
+        this.aadharForm.get('name').setValue(this.userInfo.result.name);
       }
     }
   }
