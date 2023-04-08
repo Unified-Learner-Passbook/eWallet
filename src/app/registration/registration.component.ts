@@ -24,8 +24,8 @@ export class RegistrationComponent implements OnInit {
   aadhaarToken: string;
 
   registrationForm = new FormGroup({
-    aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+    aadhar: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [Validators.required]),
     school: new FormControl(null, [Validators.required]),
     schoolUdise: new FormControl(null, [Validators.required]),
     studentId: new FormControl(null, [Validators.required]),
