@@ -1076,6 +1076,18 @@ img[alt] {
     width: 30%;
 }
 //langugae select popup
-ngb-modal-window .modal-dialog{
+ngb-modal-window .modal-dialog {
     margin-top: 65px;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+    -moz-appearance: textfield;
 }
