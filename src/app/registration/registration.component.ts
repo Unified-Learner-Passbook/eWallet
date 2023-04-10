@@ -10,6 +10,8 @@ import { IImpressionEventInput, IInteractEventInput, IStartEventInput } from '..
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from "../services/toast-message/toast-message.service";
 import { UtilService } from '../services/util/util.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-registration',
@@ -17,6 +19,7 @@ import { UtilService } from '../services/util/util.service';
   styleUrls: ['./registration.component.scss']
 })
 export class RegistrationComponent implements OnInit {
+  baseUrl: string;
 
   registrationDetails: any;
   isLoading = false;
@@ -53,6 +56,8 @@ export class RegistrationComponent implements OnInit {
     private readonly generalService: GeneralService,
     private readonly utilService: UtilService
   ) {
+    this.baseUrl = environment.baseUrl;
+
     const navigation = this.router.getCurrentNavigation();
     this.registrationDetails = navigation.extras.state;
     const canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
@@ -96,7 +101,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getSchools() {
-    this.generalService.getData('https://ulp.uniteframework.io/ulp-bff/v1/sso/udise/school/list', true).subscribe((res) => {
+    this.generalService.getData('${this.baseUrl}/v1/sso/udise/school/list', true).subscribe((res) => {
       this.schoolList = res;
     });
   }

@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-on-boarding',
@@ -11,13 +13,17 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
   styleUrls: ['./on-boarding.component.scss']
 })
 export class OnBoardingComponent implements OnInit, AfterViewInit {
+  baseUrl: string;
+
   constructor(
     private readonly authService: AuthService,
     private readonly router: Router,
     private readonly generalService: GeneralService,
     private readonly activatedRoute: ActivatedRoute,
     private readonly telemetryService: TelemetryService
-  ) { }
+  ) {         
+    this.baseUrl = environment.baseUrl;
+  }
 
   ngOnInit(): void {
     if (this.authService.isLoggedIn) {
@@ -26,7 +32,7 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
   }
 
   openSSO() {
-    this.generalService.getData('https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/authorize/ewallet', true).subscribe((res) => {
+    this.generalService.getData('${this.baseUrl}/v1/sso/digilocker/authorize/ewallet', true).subscribe((res) => {
       console.log("Response", res);
       window.open(res.digiauthurl, "_self");
     });
