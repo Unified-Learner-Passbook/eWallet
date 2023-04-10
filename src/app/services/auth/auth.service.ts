@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+
 import {
   HttpClient,
   HttpHeaders,
@@ -11,11 +13,16 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class AuthService {
+  baseUrl: string;
   endpoint: string = 'https://ulp.uniteframework.io';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
   _digilockerAccessToken: string;
-  constructor(private http: HttpClient, public router: Router) { }
+  constructor(private http: HttpClient, public router: Router) 
+  { 
+    this.baseUrl = environment.baseUrl;
+
+  }
 
   // Sign-up
   signUp(user): Observable<any> {
@@ -63,7 +70,7 @@ export class AuthService {
   }
 
   authorizeSSO() {
-    //TODO https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/authorize/ewallet
+    //TODO ${this.baseUrl}/v1/sso/digilocker/authorize/ewallet
   }
 
   getToken() {

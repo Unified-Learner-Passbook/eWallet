@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
+import { environment } from 'src/environments/environment';
+
 
 @Component({
   selector: 'app-oauth-callback',
@@ -11,7 +13,7 @@ import { ToastMessageService } from '../services/toast-message/toast-message.ser
   styleUrls: ['./oauth-callback.component.scss']
 })
 export class OauthCallbackComponent implements OnInit {
-
+  baseUrl: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private generalService: GeneralService,
@@ -20,6 +22,8 @@ export class OauthCallbackComponent implements OnInit {
     private telemetryService: TelemetryService,
     private authService: AuthService
   ) {
+    this.baseUrl = environment.baseUrl;
+
     console.log("in oauth11");
     this.activatedRoute.queryParams.subscribe((params: any) => {
       console.log("params-------->", params);
@@ -40,7 +44,7 @@ export class OauthCallbackComponent implements OnInit {
       digiacc: "ewallet",
       auth_code: code
     }
-    this.generalService.postData('https://ulp.uniteframework.io/ulp-bff/v1/sso/digilocker/token', request).subscribe((res: any) => {
+    this.generalService.postData(`${this.baseUrl}/v1/sso/digilocker/token`, request).subscribe((res: any) => {
       console.log("Result", res);
 
       if (res.success) {
