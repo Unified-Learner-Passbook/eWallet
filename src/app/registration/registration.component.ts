@@ -101,7 +101,7 @@ export class RegistrationComponent implements OnInit {
   }
 
   getSchools() {
-    this.generalService.getData('${this.baseUrl}/v1/sso/udise/school/list', true).subscribe((res) => {
+    this.generalService.getData(`${this.baseUrl}/v1/sso/udise/school/list`, true).subscribe((res) => {
       this.schoolList = res;
     });
   }
