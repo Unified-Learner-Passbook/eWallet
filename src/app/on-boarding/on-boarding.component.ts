@@ -32,7 +32,7 @@ export class OnBoardingComponent implements OnInit, AfterViewInit {
   }
 
   openSSO() {
-    this.generalService.getData('${this.baseUrl}/v1/sso/digilocker/authorize/ewallet', true).subscribe((res) => {
+    this.generalService.getData(`${this.baseUrl}/v1/sso/digilocker/authorize/ewallet`, true).subscribe((res) => {
       console.log("Response", res);
       window.open(res.digiauthurl, "_self");
     });
