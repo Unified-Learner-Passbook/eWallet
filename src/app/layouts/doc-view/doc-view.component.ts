@@ -9,6 +9,7 @@ import { GeneralService } from 'src/app/services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput } from 'src/app/services/telemetry/telemetry-interface';
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-doc-view',
@@ -16,6 +17,7 @@ import { ToastMessageService } from 'src/app/services/toast-message/toast-messag
     styleUrls: ['./doc-view.component.scss']
 })
 export class DocViewComponent implements OnInit {
+    baseUrl: string;
     docUrl: string;
     extension;
     document = [];
@@ -37,7 +39,10 @@ export class DocViewComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private telemetryService: TelemetryService,
         private readonly toastMessage: ToastMessageService
-    ) {
+    ) 
+    
+    {
+        this.baseUrl = environment.baseUrl;
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
         this.canGoBack = !!(this.router.getCurrentNavigation()?.previousNavigation);
@@ -68,7 +73,7 @@ export class DocViewComponent implements OnInit {
     }
 
     getTemplate(id: string): Observable<any> {
-        return this.generalService.getData(`https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/rendertemplateschema/${id}`, true).pipe(
+        return this.generalService.getData(`${this.baseUrl}/v1/sso/student/credentials/rendertemplateschema/${id}`, true).pipe(
             map((res: any) => {
                 if (res.result.length > 1) {
                     const selectedLangKey = localStorage.getItem('setLanguage');
@@ -112,7 +117,7 @@ export class DocViewComponent implements OnInit {
             output: "HTML"
         }
         // delete request.credential.credentialSubject;
-        this.http.post('https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/render', request, requestOptions).pipe(map((data: any) => {
+        this.http.post(`${this.baseUrl}/v1/sso/student/credentials/render`, request, requestOptions).pipe(map((data: any) => {
             this.blob = new Blob([data], {
                 type: 'application/pdf' // must match the Accept type
             });
