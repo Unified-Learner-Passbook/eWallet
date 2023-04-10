@@ -9,6 +9,7 @@ import { GeneralService } from '../services/general/general.service';
 import { IImpressionEventInput, IInteractEventInput, IStartEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from "../services/toast-message/toast-message.service";
+import { UtilService } from '../services/util/util.service';
 
 @Component({
   selector: 'app-registration',
@@ -21,12 +22,12 @@ export class RegistrationComponent implements OnInit {
   isLoading = false;
   isAadharVerified = false;
   aadhaarToken: string;
+
   registrationForm = new FormGroup({
-    aadhar: new FormControl(null, [Validators.required, Validators.minLength(12), Validators.maxLength(12), Validators.pattern('^[0-9]*$')]),
-    name: new FormControl(null, [Validators.required, Validators.minLength(2)]),
+    aadhar: new FormControl(null, [Validators.required]),
+    name: new FormControl(null, [Validators.required]),
     school: new FormControl(null, [Validators.required]),
     schoolUdise: new FormControl(null, [Validators.required]),
-    // schoolId: new FormControl(null, [Validators.required]),
     studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl(null, [Validators.required]),
@@ -35,61 +36,22 @@ export class RegistrationComponent implements OnInit {
     academicYear: new FormControl(null, [Validators.required]),
     guardianName: new FormControl(null, [Validators.required])
   });
-  grades = [
-    {
-      label: '1st',
-      value: 'class-1'
-    },
-    {
-      label: '2nd',
-      value: 'class-2'
-    },
-    {
-      label: '3rd',
-      value: 'class-3'
-    },
-    {
-      label: '4th',
-      value: 'class-4'
-    },
-    {
-      label: '5th',
-      value: 'class-5'
-    },
-    {
-      label: '6th',
-      value: 'class-6'
-    },
-    {
-      label: '7th',
-      value: 'class-7'
-    },
-    {
-      label: '8th',
-      value: 'class-8'
-    },
-    {
-      label: '9th',
-      value: 'class-9'
-    },
-    {
-      label: '10th',
-      value: 'class-10'
-    },
-  ];
-  startYear = 2000;
+
+  grades: any;
+  startYear = 2015;
   currentYear = new Date().getFullYear();
   academicYearRange: string[] = [];
   schoolList: any[] = [];
 
   constructor(
-    private authService: AuthService,
-    private toast: ToastMessageService,
-    private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private telemetryService: TelemetryService,
+    private readonly authService: AuthService,
+    private readonly toast: ToastMessageService,
+    private readonly router: Router,
+    private readonly activatedRoute: ActivatedRoute,
+    private readonly telemetryService: TelemetryService,
     private readonly location: Location,
-    private readonly generalService: GeneralService
+    private readonly generalService: GeneralService,
+    private readonly utilService: UtilService
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.registrationDetails = navigation.extras.state;
@@ -106,7 +68,25 @@ export class RegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.setAcademicYear();
+    this.setGrades();
     this.getSchools();
+    this.onChanges();
+  }
+
+  onChanges(): void {
+    this.registrationForm.valueChanges.subscribe(val => {
+      console.log("value", val)
+    });
+  }
+
+  setGrades() {
+    const ordinals = this.utilService.getNumberOrdinals(1, 10);
+    this.grades = ordinals.map((item: string, index: number) => {
+      return {
+        label: item,
+        value: `class-${index + 1}`
+      }
+    });
   }
 
   setAcademicYear() {
@@ -179,12 +159,13 @@ export class RegistrationComponent implements OnInit {
         this.registrationForm.get('phone').setValue(this.registrationDetails.mobile);
       }
 
-      if (this.registrationDetails.username) {
-        this.registrationForm.get('username').setValue(this.registrationDetails.username);
-      }
-
       if (this.registrationDetails.dob) {
         this.registrationForm.get('dob').setValue(this.registrationDetails.dob);
+      }
+      
+      if (this.registrationDetails.uuid) {
+        this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
+        this.registrationForm.get('aadhar').setValue(this.registrationDetails.uuid);
       }
     }
   }
@@ -229,7 +210,7 @@ export class RegistrationComponent implements OnInit {
             "dob": this.registrationDetails.dob,
             "school_type": "private",
             "meripehchan_id": this.registrationDetails.meripehchanid,
-            "username": this.registrationDetails.username
+            "username": this.registrationForm.value.username
           },
           studentdetail: {
             "student_detail_id": "",
@@ -248,21 +229,21 @@ export class RegistrationComponent implements OnInit {
         digimpid: this.registrationDetails.meripehchanid
       }
 
-      this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
-        concatMap((res: any) => {
-          if (res.success && res?.result?.aadhaar_token) {
-            payload.userdata.student.aadhar_token = res.result.aadhaar_token;
-            return this.authService.ssoSignUp(payload);
-          } else {
-            return throwError('Aadhar Verification Failed');  
-          }
-        }),
-        catchError((error: any) => {
-          console.error("Error:", error);
-          return throwError('Error while Registration');
-        })
-      )
-      // this.authService.ssoSignUp(payload).
+      // this.authService.verifyAadhar(this.registrationForm.value.aadhar).pipe(
+      //   concatMap((res: any) => {
+      //     if (res.success && res?.result?.aadhaar_token) {
+      //       payload.userdata.student.aadhar_token = res.result.aadhaar_token;
+      //       return this.authService.ssoSignUp(payload);
+      //     } else {
+      //       return throwError('Aadhar Verification Failed');  
+      //     }
+      //   }),
+      //   catchError((error: any) => {
+      //     console.error("Error:", error);
+      //     return throwError('Error while Registration');
+      //   })
+      // )
+      this.authService.ssoSignUp(payload)
       .subscribe((res: any) => {
         console.log("result register", res);
         if (res.success && res.user === 'FOUND') {

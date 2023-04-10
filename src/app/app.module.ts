@@ -135,6 +135,7 @@ import { SearchCertificatesComponent } from './search-certificates/search-certif
 import { ChangePasswordComponent } from './change-password/change-password.component';
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certificate.pipe';
+import { EkycComponent } from './ekyc/ekyc.component';
 
 @NgModule({
   declarations: [
@@ -181,7 +182,8 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
     SearchCertificatesComponent,
     ChangePasswordComponent,
     OauthCallbackComponent,
-    FilterCertificatePipe
+    FilterCertificatePipe,
+    EkycComponent
   ],
   imports: [
     BrowserModule,

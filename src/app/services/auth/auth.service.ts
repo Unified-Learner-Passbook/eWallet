@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, of, throwError } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 import {
   HttpClient,
@@ -24,18 +24,33 @@ export class AuthService {
   }
 
 
-  ssoSignUp(user: any) {
+  ssoSignUp(user: any): Observable<any> {
     const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/register`;
     return this.http.post(api, user);
   }
 
   verifyAadhar(aadharId: number | string) {
     const api = `${this.endpoint}/ulp-bff/v1/aadhaar/verify`;
-    return this.http.post(api, { aadhaar_id: aadharId});
+    return this.http.post(api, { aadhaar_id: aadharId });
+  }
+
+  verifyAccountAadharLink(payload: any) {
+    const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/aadhaar`;
+    return this.http.post(api, payload);
+  }
+
+  getOTP(aadharId: number): Observable<any> {
+    const api = `${this.endpoint}/ulp-bff/v1/aadhaar/otp`;
+    return this.http.post(api, { aadhaar_id: aadharId });
+  }
+
+  submitOTP(otp: number): Observable<any> {
+    const api = `${this.endpoint}/ulp-bff/v1/aadhaar/otp`;
+    return this.http.post(api, { otp });
   }
 
   // Sign-in
-  signIn(user) {
+  signIn(user): Observable<any> {
     return this.http
       .post<any>(`${this.endpoint}/ulp-bff/v1/sso/student/login`, user)
       .pipe(tap((res: any) => {

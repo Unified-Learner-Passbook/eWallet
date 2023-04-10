@@ -1,5 +1,4 @@
 {
-
     "LOGIN": "लॉग इन",
     "LOGOUT": "लॉगआउट",
     "HOME": "होम",
@@ -178,15 +177,12 @@
     "ONLY_BY_CONSENT": "केवल सहमति से",
     "ONLY_BY_ME": "केवल मेरे द्वारा",
     "ANYONE": "कोई भी",
-    "SOMETHING_WENT_WRONG": "फ़ाइल अपलोड करते समय कुछ गलत हुआ, कृपया पुनः प्रयास करें"
-
-
-    ,
+    "SOMETHING_WENT_WRONG": "फ़ाइल अपलोड करते समय कुछ गलत हुआ, कृपया पुनः प्रयास करें",
     "VERIFY": "सत्यापित करें",
     "CONFIRM_OTP": "OTP की पुष्टि करें",
     "ENTER_THE_CODE_SENT_TO_MOBILE_NUMBER": "मोबाइल नंबर पर भेजा गया कोड दर्ज करें",
     "ENTER_OTP": "OTP दर्ज करें",
-    "RESEND_OTP": "OTP फिर से भेजें?",
+    "RESEND_OTP": "OTP फिर से भेजें",
     "BY_DOCUMENT": "दस्तावेज़ द्वारा",
     "BY_ISSUER": "जारीकर्ता द्वारा",
     "CAPTURE": "कैप्चर",
@@ -213,7 +209,6 @@
     "DOCUMENTS": "दस्तावेज़",
     "TERMS_AND_CONDITIONS": "नियम और शर्तें",
     "SEARCH_DOCUMENTS": "दस्तावेज़ खोजें",
-
     "WELCOME_BACK":"अवसर में आपका फिर से स्वागत है",
     "HI": "नमस्ते",
     "ISSUED_DOCUMENTS": "जारी किए गए दस्तावेज़",
@@ -248,8 +243,6 @@
     "LOGGED_IN_SUCCESSFULLY": "सफलतापूर्वक लॉग इन हो चुका है!",
     "USER_REGISTERED_SUCCESSFULLY": "उपयोगकर्ता सफलतापूर्वक पंजीकृत हो चुका है!",
     "STUDENT_ID": "विद्यार्थी आईडी",
-
-
     "SIGN_IN_AADHAR_OTP":"आधार और ओटीपी का उपयोग करके साइन इन करें",
     "USER_NOT_REGISTERD":"पंजीकृत नहीं है! यहां रजिस्टर करें",
     "SIGN_IN_USERNAME_PASSWORD":"उपयोगकर्ता नाम और पासवर्ड का उपयोग करके साइन इन करें",
@@ -276,17 +269,13 @@
     "SELECT_YEAR": "वर्ष का चयन करें",
     "SELECT_GRADE": "वर्ग का चयन करें",
     "SCHOOL_UDISE": "स्कूल यूडीआईएसई आईडी",
-
-
     "NEW_PASSWORD": "नया पासवर्ड",
     "CONFIRM_PASSWORD":"पासवर्ड की पुष्टि कीजिये",
     "RESET_PASSWORD":"पासवर्ड रीसेट",
     "SIGN_IN":"दाखिल करना",
-
     "USER_REGISTER_SUCCESSFULLY":"उपयोगकर्ता सफलतापूर्वक पंजीकृत!",
     "ERROR_WHILE_LOGIN":"लॉग इन करते समय त्रुटि",
     "YOUR_SESSION_EXPIRED":"आपका सत्र समाप्त हो गया है! कृपया फिर भाग लें",
-
     "LOADING_PLEASE_WAIT":"लोड हो रहा है कृपया प्रतीक्षा करें",
     "INCORRECT_USERNAME_OR_PASSWORD":"गलत उपयोगकर्ता नाम या पासवर्ड",
     "ERROR_WHILE_REGISTRATION":"पंजीकरण करते समय त्रुटि",
