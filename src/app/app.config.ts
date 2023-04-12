@@ -10,7 +10,7 @@ import { Title } from '@angular/platform-browser';
 export class AppConfig {
 
     private config: Object = null;
-    private environment:    Object = null;
+    private environment: Object = null;
 
     constructor(private http: HttpClient, public router: Router, private titleService: Title) {
 
@@ -30,10 +30,10 @@ export class AppConfig {
         try {
             return this.environment[key];
         }
-        catch(err) {
+        catch (err) {
             // this.router.navigate(['install'])
-            
-          }
+
+        }
     }
 
     /**
@@ -44,8 +44,8 @@ export class AppConfig {
     public load() {
         return new Promise((resolve, reject) => {
             this.http.get('/assets/config/config.json').subscribe((envResponse) => {
-                this.environment= envResponse;
-                let request:any = null;
+                this.environment = envResponse;
+                let request: any = null;
 
                 switch (envResponse['environment']) {
                     case 'production': {
@@ -61,7 +61,7 @@ export class AppConfig {
                     case 'default': {
                         console.error('environment is not set or invalid in config.json file');
                         // this.router.navigate(['install'])
-                        
+
                         resolve(true);
                     } break;
                 }
@@ -72,25 +72,27 @@ export class AppConfig {
                             this.config = responseData;
                             this.titleService.setTitle(responseData.title);
                             resolve(true);
-                        }, err => {console.log('Error reading config.json configuration file', err);
-                        this.titleService.setTitle("Sunbird RC");
-                        // this.router.navigate(['install'])
-                    });
+                        }, err => {
+                            console.log('Error reading config.json configuration file', err);
+                            this.titleService.setTitle("Sunbird RC");
+                            // this.router.navigate(['install'])
+                        });
                 } else {
                     console.error('config.json file is not valid');
                     this.titleService.setTitle("Sunbird RC");
                     // this.router.navigate(['install'])
-                    
+
                     resolve(true);
                 }
-            }, 
-            
-            err => {console.log('Error reading config.json configuration file', err);
+            },
+
+                err => {
+                    console.log('Error reading config.json configuration file', err);
                     this.titleService.setTitle("Sunbird RC");
                     // this.router.navigate(['install'])
-                    
+
                     resolve(true);
-                    }
+                }
             );
 
         });
