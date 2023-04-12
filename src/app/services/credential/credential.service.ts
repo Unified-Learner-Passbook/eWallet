@@ -3,17 +3,24 @@ import { forkJoin, Observable, of } from 'rxjs';
 import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from '../auth/auth.service';
 import { DataService } from '../data/data-request.service';
+import { environment } from 'src/environments/environment';
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class CredentialService {
+  baseUrl: string;
+
 
   private schemas: any[] = [];
   constructor(
     private readonly dataService: DataService,
     private readonly authService: AuthService
-  ) { }
+  ) { 
+    this.baseUrl = environment.baseUrl;
+
+  }
 
   private findSchema(schemaId: string) {
     if (this.schemas.length) {
@@ -23,13 +30,13 @@ export class CredentialService {
   }
 
   getCredentialSchemaId(credentialId: string): Observable<any> {
-    const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/${credentialId}` };
+    const payload = { url: `${this.baseUrl}/v1/sso/student/credentials/schema/${credentialId}` };
     return this.dataService.get(payload).pipe(map((res: any) => res.result));
   }
 
   getCredentials(): Observable<any> {
     const payload = {
-      url: 'https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/search',
+      url: `${this.baseUrl}/v1/sso/student/credentials/search`,
       data: {
         subject: { id: this.authService.currentUser.DID }
       }
@@ -45,7 +52,7 @@ export class CredentialService {
       return of(schema);
     }
 
-    const payload = { url: `https://ulp.uniteframework.io/ulp-bff/v1/sso/student/credentials/schema/json/${schemaId}` };
+    const payload = { url: `${this.baseUrl}/v1/sso/student/credentials/schema/json/${schemaId}` };
     return this.dataService.get(payload).pipe(map((res: any) => {
       this.schemas.push(res.result);
       return res.result;
