@@ -70,7 +70,7 @@ export class OauthCallbackComponent implements OnInit {
               localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
             }
             // telemery impression event
-            this.raiseImpressionEvent()
+            this.raiseInteractEvent('login-success')
             this.router.navigate(['/home']);
           } else {
             const navigationExtras: NavigationExtras = {
