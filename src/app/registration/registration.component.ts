@@ -267,7 +267,7 @@ export class RegistrationComponent implements OnInit {
           }
           this.router.navigate(['/home']);
           // telemetry claim approval
-          this.raiseImpressionEvent()
+          this.raiseInteractEvent('registration-success')
           this.toast.success("", this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
           // this.router.navigate(['/login']);
 
