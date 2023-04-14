@@ -5,6 +5,7 @@ import { GeneralService } from '../services/general/general.service';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from '../services/toast-message/toast-message.service';
 import { environment } from 'src/environments/environment';
+import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
 
 
 @Component({
@@ -62,6 +63,8 @@ export class OauthCallbackComponent implements OnInit {
             if (res?.userData?.length) {
               localStorage.setItem('currentUser', JSON.stringify(res.userData[0]));
             }
+            // telemery impression event
+            this.raiseImpressionEvent()
             this.router.navigate(['/home']);
           } else {
             const navigationExtras: NavigationExtras = {
@@ -87,5 +90,43 @@ export class OauthCallbackComponent implements OnInit {
 
 
     });
+  }
+
+  ngAfterViewInit(): void {
+    this.raiseImpressionEvent();
+  }
+
+
+  raiseImpressionEvent() {
+    const telemetryImpression: IImpressionEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        type: this.activatedRoute.snapshot?.data?.telemetry?.type,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+        uri: this.router.url,
+        subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
+        // duration: this.navigationhelperService.getPageLoadTime() // Duration to load the page
+      }
+    };
+    this.telemetryService.impression(telemetryImpression);
+  }
+
+  raiseInteractEvent(id: string, type: string = 'CLICK', subtype?: string) {
+    const telemetryInteract: IInteractEventInput = {
+      context: {
+        env: this.activatedRoute.snapshot?.data?.telemetry?.env,
+        cdata: []
+      },
+      edata: {
+        id,
+        type,
+        subtype,
+        pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
+      }
+    };
+    this.telemetryService.interact(telemetryInteract);
   }
 }
