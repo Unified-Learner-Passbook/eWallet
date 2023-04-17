@@ -31,6 +31,13 @@
     --headerLinkColor: #f4ecff;
     --primaryTextColor: #494949;
     --secondaryTextColor: #8d9091;
+    --toggleColor:#5526f5;
+    --titleColor:#5526f5;
+    --logoPrimaryTextColor:#1b1818;
+    --logoHeadlineColor:#79787c;
+    --logoSecondaryTextColor:#ee8908;
+    --btnPrimaryColor:"#060461";
+
     //   dark
     // --primaryColor: #F07D00;
     // --secondaryColor: #F07D00;
@@ -180,8 +187,9 @@ body {
 body {
     margin: 0;
     font-family: "Lato", sans-serif !important;
-    color: rgb(0, 0, 0);
-    background: var(--bodyBackgroundd) !important;
+    //   color: rgb(0, 0, 0);
+   
+    background: var(--bodyBackground) !important;
     background-repeat: no-repeat;
     overflow-x: hidden;
 }
@@ -566,21 +574,30 @@ label {
     background: linear-gradient(90deg, rgba(255, 193, 234, 0.48) 0%, rgba(164, 168, 255, 0.21) 100%);
 }
 .text-gray-0 {
-    color: #79787c;
+    // color: #79787c;
+    color: var(--logoHeadlineColor) !important;
+    
+   
 }
 .text-gray-100 {
     color: #a3a3a3;
+    
 }
 .text-orange {
-    color: #ee8908;
+    //  color: #ee8908;
+    color: var(--logoSecondaryTextColor) !important;
+
 }
 .text-blue-shade0 {
-    color: #5526f5 !important;
+    // color: #5526f5 !important;
+    color: var(--titleColor) !important;
 }
 .head-title {
     font-size: 20px;
     font-weight: 600;
     text-align: left;
+    // color:var(--textColor) !important; 
+    
 }
 .card-title {
     padding-left: 21px !important;
@@ -607,7 +624,8 @@ label {
     top: 25px;
     z-index: 9999;
     .fa-bars {
-        color: #5526f5;
+        // color: #5526f5;
+        color: var(--toggleColor) !important;
     }
 }
 .login-btn {
@@ -631,7 +649,8 @@ label {
     border: none;
 }
 .bg-blue-dark {
-    background: var(--primaryColor) !important;
+    //  background: var(--primaryColor) !important;
+    background: var(--btnPrimaryColor) !important;
 }
 .heading2 {
     font-weight: 600;
@@ -643,7 +662,8 @@ label {
     font-family: "Gilroy-Bold";
     font-size: 28px;
     line-height: 38px;
-    color: #1b1818;
+    // color: #1b1818;
+    color: var(--logoPrimaryTextColor) !important;
     font-weight: 500;
 }
 .pb-10 {
