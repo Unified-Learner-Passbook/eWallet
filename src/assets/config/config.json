@@ -1,12 +1,74 @@
 {
   "environment": "development",
   "appType": "digital_wallet",
+  "keycloak": {
+    "clientId": "registry-frontend",
+    "realm": "sunbird-rc",
+    "url": "https://elocker.xiv.in/auth"
+  },
+  "default_theme": {
+    "primaryColor": "#050C44",
+    "secondaryColor": "#1987B6",
+    "bodyBackground": "#F6F8FC",
+    "cardBackground": "#FFFFFF",
+    "tagsBackground": "#F4ECFF",
+    "navLabelColor": "#0098AB",
+    "headerColor": "#FFFFFF",
+    "primaryTextColor": "#494949",
+    "secondaryTextColor": "#79787c",
+    "headerLinkColor": "#000000",
+    "linkColor": "#443DF6",
+    "secondaryBtnBgColor": "#e0edf5",
+    "button-error-text":"#C5292A",
+    "button-error-bg":"#f3c2c24f",
+
+
+    "titleColor":"#5526f5",
+    "toggleColor": "#5526f5",
+    "logoPrimaryTextColor":"#1b1818",
+    "logoHeadlineColor":"#79787c",
+    "logoSecondaryTextColor":"#ee8908",
+    "btnPrimaryColor":"#060461"
+    
+
+   
+},
+"dark_theme": {
+    "primaryColor": "#1987B6",
+    "secondaryColor": "#1987B6",
+    "bodyBackground": "#080808",
+    "cardBackground": "#323232",
+    "tagsBackground": "#505050",
+    "navLabelColor": "#0098AB",
+    "headerColor": "#313131",
+    "primaryTextColor": "#FFFFFF",
+    
+    "secondaryTextColor": "#79787c",
+    "headerLinkColor": "#0098AB",
+    "linkColor": "#443DF6",
+    "secondaryBtnBgColor": "#e0edf5",
+    "button-error-text":"#C5292A",
+    "button-error-bg":"#f3c2c24f",
+
+    "titleColor":"#fbfbfb",
+    "toggleColor": "#ffffff",
+    "logoPrimaryTextColor":"#ffffff",
+    "logoHeadlineColor":"#ffffff",
+    "logoSecondaryTextColor":"#c3c3c3",
+    "btnPrimaryColor":"#f07d00"
+
+
+
+
+
+    
+},
   "configFolder": "/assets/config/ui-config",
   "logoPath": "/assets/images/logo.svg",
-  "title": "AVSAR Learner Wallet",
-  "baseUrl": "https://ulp.uniteframework.io/ulp-bff",
-  "schemaUrl": "https://ulp.uniteframework.io/registry/api/docs/swagger.json",
-  "footerText": "AVSAR Learner Wallet",
+  "title": "Sunbird RC ELocker",
+  "baseUrl": "https://elocker.xiv.in/elocker/api/v1",
+  "schemaUrl": "https://elocker.xiv.in/elocker/api/docs/swagger.json",
+  "footerText": "Sunbird RC",
   "languages": [
     "en",
     "hi"
