@@ -1,5 +1,5 @@
 import { Location } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
@@ -54,7 +54,8 @@ export class RegistrationComponent implements OnInit {
     private readonly telemetryService: TelemetryService,
     private readonly location: Location,
     private readonly generalService: GeneralService,
-    private readonly utilService: UtilService
+    private readonly utilService: UtilService,
+    private readonly cdr: ChangeDetectorRef
   ) {
     this.baseUrl = environment.baseUrl;
 
@@ -162,6 +163,8 @@ export class RegistrationComponent implements OnInit {
 
       if (this.registrationDetails.mobile) {
         this.registrationForm.get('phone').setValue(this.registrationDetails.mobile);
+        this.registrationForm.controls.phone.disable();
+        this.cdr.detectChanges();
       }
 
       if (this.registrationDetails.dob) {
