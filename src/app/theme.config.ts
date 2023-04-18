@@ -19,7 +19,18 @@ export const THEMES = {
     logoHeadlineColor:"#79787c",
     logoSecondaryTextColor:"#ee8908",
     toggleColor: "#5526f5",
-    btnPrimaryColor:"#060461"
+    btnPrimaryColor:"#060461",
+    headingColor:"#060461",
+    subheadingColor:"#212529",
+    searchBoxBorder:"#efefef",
+    filedBackground:"#fff",
+    hamBackground:"#f6f8fc",
+    menuLogoColor:"#212529"
+
+
+
+
+
 
 
 
@@ -40,8 +51,23 @@ export const THEMES = {
     logoPrimaryTextColor:"#ffffff",
     logoHeadlineColor:"#ffffff",
     logoSecondaryTextColor:"#c3c3c3",
-    toggleColor: "#ffffff",
-    btnPrimaryColor:"#f07d00"
+    toggleColor: "#c3c3c3",
+    btnPrimaryColor:"#323232",
+    headingColor:"#ffffff",
+    subheadingColor:"#c3c3c3",
+    searchBoxBorder:"#212529",
+    filedBackground:"#323232",
+    hamBackground:"#080808",
+    menuLogoColor:"#79787c"
+
+
+
+
+
+
+
+
+
 
 
 

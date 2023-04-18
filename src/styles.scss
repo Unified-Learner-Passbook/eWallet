@@ -36,7 +36,17 @@
     --logoPrimaryTextColor:#1b1818;
     --logoHeadlineColor:#79787c;
     --logoSecondaryTextColor:#ee8908;
-    --btnPrimaryColor:"#060461";
+    --btnPrimaryColor:#060461;
+    --headingColor:#060461;
+    --subheadingColor:#212529;
+    --searchBoxBorder:#efefef;
+    --filedBackground:#fff;
+    --hamBackground:#f6f8fc;
+
+
+
+
+
 
     //   dark
     // --primaryColor: #F07D00;
@@ -95,7 +105,7 @@ textarea.form-control {
 }
 
 .btn-primary {
-    background-color: var(--primaryColor) !important;
+     background-color: var(--primaryColor) !important;
     border-color: var(--primaryColor) !important;
     border: 0 !important;
 }
@@ -121,6 +131,8 @@ formly-autocomplete-type,
 .form-group,
 .form-control {
     font-size: 14px !important;
+    background: var(--filedBackground) !important;
+    border: 1px solid var(--searchBoxBorder) !important;;
 }
 
 
@@ -188,7 +200,7 @@ body {
     margin: 0;
     font-family: "Lato", sans-serif !important;
     //   color: rgb(0, 0, 0);
-   
+   color: var(--subheadingColor) !important;
     background: var(--bodyBackground) !important;
     background-repeat: no-repeat;
     overflow-x: hidden;
@@ -254,6 +266,8 @@ a {
 
 formly-field {
     display: block;
+    
+    
 }
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
@@ -440,6 +454,7 @@ label {
 
 .search-area .fa-search {
     color: #a39f9f !important;
+  
 }
 
 
@@ -475,7 +490,9 @@ label {
     left: 0px;
     right: 0px;
     bottom: -12px;
-     background: linear-gradient(217.32deg, #fcfcfd -0.01%, rgba(252, 252, 253, 0.6) 100%);
+    //  background: linear-gradient(217.32deg, #fcfcfd -0.01%, rgba(252, 252, 253, 0.6) 100%);
+    //  background: linear-gradient(217.32deg, #323232 -0.01%, rgba(252, 252, 253, 0.6) 100%); 
+     background: var(--cardBackground) !important;
     backdrop-filter: blur(16.768px);
 }
 /* new CSS */
@@ -489,7 +506,8 @@ label {
             // color: var(--gray2) !important;
         }
         input {
-            border: 1px solid #efefef;
+            // border: 1px solid #efefef;
+            border: 1px solid  var(--searchBoxBorder) !important;
             box-sizing: border-box;
             border-radius: 4px;
             padding: 11px 35px 11px 15px;
@@ -615,7 +633,10 @@ label {
     left: 0px;
     z-index: 9;
     border-radius: 14px;
-    background: #f6f8fc;
+    // background: #f6f8fc;
+        //  background: #323232;
+         background: var(--hamBackground) !important;
+
     width: 100%;
 }
 .custom-toggler {
@@ -656,7 +677,7 @@ label {
     font-weight: 600;
     font-size: 32.8571px;
     line-height: 49px;
-    color: var(--primaryColor);
+    color: var(--headingColor);
 }
 .heading3 {
     font-family: "Gilroy-Bold";
@@ -720,14 +741,16 @@ ngx-extended-pdf-viewer .pdfViewer .page {
     border: unset !important;
 }
 .btn-none {
-    background: #fff;
-    border: solid 1px #ccc;
+    // background: #fff;
+    background: var(--filedBackground) !important;
+    // border: solid 1px #ccc;
+    border: 1px solid var(--searchBoxBorder) !important;;
     i {
         color: #ccc;
     }
 }
 .text-secondary-color {
-    color: var(--secondaryTextColor);
+    color: var(--subheadingColor) !important;
 }
 .text-underline {
     text-decoration: underline;

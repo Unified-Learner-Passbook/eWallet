@@ -28,7 +28,14 @@
     "logoPrimaryTextColor":"#1b1818",
     "logoHeadlineColor":"#79787c",
     "logoSecondaryTextColor":"#ee8908",
-    "btnPrimaryColor":"#060461"
+    "btnPrimaryColor":"#060461",
+    "headingColor":"#060461",
+    "subheadingColor":"#212529",
+    "searchBoxBorder":"#efefef",
+    "filedBackground":"#fff",
+    "hamBackground":"#f6f8fc",
+    "menuLogoColor":"#212529"
+    
     
 
    
@@ -51,11 +58,21 @@
     "button-error-bg":"#f3c2c24f",
 
     "titleColor":"#fbfbfb",
-    "toggleColor": "#ffffff",
+    "toggleColor": "#c3c3c3",
     "logoPrimaryTextColor":"#ffffff",
     "logoHeadlineColor":"#ffffff",
     "logoSecondaryTextColor":"#c3c3c3",
-    "btnPrimaryColor":"#f07d00"
+    "btnPrimaryColor":"#323232",
+    "headingColor":"#ffffff",
+    "subheadingColor":"#c3c3c3",
+    "searchBoxBorder":"#212529",
+    "filedBackground":"#323232",
+    "hamBackground":"#080808",
+    "menuLogoColor":"#79787c"
+
+
+
+
 
 
 
