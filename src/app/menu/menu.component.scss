@@ -19,10 +19,9 @@ select.form-control:focus{
     padding: 5px 30px;
     border-radius: 7px;
     .fs-16{
-        color: var(--titleColor);
+         color: var(--btnNameColor);
     }
     cursor: pointer;
 }
-.logoimg{
-    filter : brightness(4) var(--menuLogoColor) !important;
-}
+
+

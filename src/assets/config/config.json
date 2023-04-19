@@ -21,25 +21,18 @@
     "secondaryBtnBgColor": "#e0edf5",
     "button-error-text":"#C5292A",
     "button-error-bg":"#f3c2c24f",
-
-
-    "titleColor":"#5526f5",
-    "toggleColor": "#5526f5",
-    "logoPrimaryTextColor":"#1b1818",
+    "btnNameColor":"#5526f5",
+    "menuiconcolor": "#5526f5",
+    "headerPrimaryColor":"#1b1818",
     "logoHeadlineColor":"#79787c",
     "logoSecondaryTextColor":"#ee8908",
     "btnPrimaryColor":"#060461",
     "headingColor":"#060461",
     "subheadingColor":"#212529",
     "searchBoxBorder":"#efefef",
-    "filedBackground":"#fff",
-    "hamBackground":"#f6f8fc",
-    "menuLogoColor":"#212529"
-    
-    
+    "hamBackground":"#f6f8fc"
+  },
 
-   
-},
 "dark_theme": {
     "primaryColor": "#1987B6",
     "secondaryColor": "#1987B6",
@@ -49,36 +42,22 @@
     "navLabelColor": "#0098AB",
     "headerColor": "#313131",
     "primaryTextColor": "#FFFFFF",
-    
     "secondaryTextColor": "#79787c",
     "headerLinkColor": "#0098AB",
     "linkColor": "#443DF6",
     "secondaryBtnBgColor": "#e0edf5",
     "button-error-text":"#C5292A",
     "button-error-bg":"#f3c2c24f",
-
-    "titleColor":"#fbfbfb",
-    "toggleColor": "#c3c3c3",
-    "logoPrimaryTextColor":"#ffffff",
+    "btnNameColor":"#fbfbfb",
+    "menuiconcolor": "#c3c3c3",
+    "headerPrimaryColor":"#ffffff",
     "logoHeadlineColor":"#ffffff",
     "logoSecondaryTextColor":"#c3c3c3",
     "btnPrimaryColor":"#323232",
     "headingColor":"#ffffff",
     "subheadingColor":"#c3c3c3",
     "searchBoxBorder":"#212529",
-    "filedBackground":"#323232",
-    "hamBackground":"#080808",
-    "menuLogoColor":"#79787c"
-
-
-
-
-
-
-
-
-
-    
+    "hamBackground":"#080808"
 },
   "configFolder": "/assets/config/ui-config",
   "logoPath": "/assets/images/logo.svg",

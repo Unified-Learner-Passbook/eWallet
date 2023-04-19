@@ -11,30 +11,18 @@ export const THEMES = {
     headerLinkColor: "#F4ECFF",
     primaryTextColor: "#494949",
     secondaryTextColor: "#8D9091",
-    
-
-
-    titleColor:"#5526f5",
-    logoPrimaryTextColor:"#1b1818",
+    btnNameColor:"#5526f5",
+    headerPrimaryColor:"#1b1818",
     logoHeadlineColor:"#79787c",
     logoSecondaryTextColor:"#ee8908",
-    toggleColor: "#5526f5",
+    menuiconcolor: "#5526f5",
     btnPrimaryColor:"#060461",
     headingColor:"#060461",
     subheadingColor:"#212529",
     searchBoxBorder:"#efefef",
-    filedBackground:"#fff",
-    hamBackground:"#f6f8fc",
-    menuLogoColor:"#212529"
-
-
-
-
-
-
-
-
-  },
+    hamBackground:"#f6f8fc"
+},
+  
   dark: {
     primaryColor: "#060461",
     secondaryColor: "#F07D00",
@@ -45,32 +33,16 @@ export const THEMES = {
     headerColor: "#313131",
     primaryTextColor: "#FFFFFF",
     secondaryTextColor: "#c3c3c3",
-    
-    titleColor:"#fbfbfb",
-
-    logoPrimaryTextColor:"#ffffff",
+    btnNameColor:"#fbfbfb",
+    headerPrimaryColor:"#ffffff",
     logoHeadlineColor:"#ffffff",
     logoSecondaryTextColor:"#c3c3c3",
-    toggleColor: "#c3c3c3",
+    menuiconcolor: "#c3c3c3",
     btnPrimaryColor:"#323232",
     headingColor:"#ffffff",
     subheadingColor:"#c3c3c3",
     searchBoxBorder:"#212529",
-    filedBackground:"#323232",
-    hamBackground:"#080808",
-    menuLogoColor:"#79787c"
-
-
-
-
-
-
-
-
-
-
-
-
+    hamBackground:"#080808"
   }
 };
 
