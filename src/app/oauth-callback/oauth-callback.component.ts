@@ -91,11 +91,19 @@ export class OauthCallbackComponent implements OnInit {
           this.authService.digilockerAccessToken = res.digi.access_token;
         }
       } else {
-        this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_LOGIN'));
+        this.handleLoginError();
       }
-
-
+    }, (error) => {
+      console.error(error);
+      this.handleLoginError();
     });
+  }
+
+  handleLoginError() {
+    this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_LOGIN'));
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 100);
   }
 
   ngAfterViewInit(): void {
