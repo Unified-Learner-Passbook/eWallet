@@ -40,6 +40,7 @@
                     placeholder="" maxLength="10" (keypress)="OnlyNumbersAllowed($event)">
                 <p class="text-red pt-2 mb-0" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate
                     }}</p>
+                <div class="fs-12 text-grey-color pt-2 font-italic">Entered phone no. should be linked to Aadhar</div>
             </div>
 
             <div class="mb-3 pb-10">
