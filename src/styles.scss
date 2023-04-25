@@ -23,49 +23,7 @@
 
 @import "~bootstrap/scss/bootstrap";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
-:root {
-  // SL
-  --primaryColor: #060461;
-  --secondaryColor: #4a227c;
-  --bodyBackgroundd: url(assets/images/background.png) no-repeat center
-    center/cover fixed;
-  --cardBackground: #ffffff;
-  --tagsBackground: #f4ecff;
-  --navLabelColor: #b275ff;
-  --headerColor: #4a227c;
-  --headerLinkColor: #f4ecff;
-  --primaryTextColor: #494949;
-  --secondaryTextColor: #8d9091;
-  --menuiconcolor: #5526f5;
-  --btnNameColor: #5526f5;
-  --headerPrimaryColor: #1b1818;
-  --logoHeadlineColor: #79787c;
-  --logoSecondaryTextColor: #ee8908;
-  --btnPrimaryColor: #060461;
-  --headingColor: #060461;
-  --subheadingColor: #212529;
-  --searchBoxBorder: #efefef;
-  --hamBackground: #f6f8fc;
 
-  //   dark
-  // --primaryColor: #F07D00;
-  // --secondaryColor: #F07D00;
-  // --bodyBackground: #080808;
-  // --cardBackground: #323232;
-  // --tagsBackground: #505050;
-  // --navLabelColor: #FFB96C;
-  // --headerColor: #313131;
-  // --primaryTextColor: #FFFFFF;
-  // --secondaryTextColor:#FFFFFF;
-  --labelOnPrimary: var(--cardBackground);
-  --btnBgColor: var(--secondaryColor);
-  --headerTitle: var(--primaryColor);
-  --secondarybgColor: var(--secondaryColor);
-  --secondarytextColor: var(--bodyBackground);
-  --primarybgColor: var(--primaryColor);
-  --linkColor: var(--navLabelColor);
-  --textWhite: var(--secondarytextColor);
-}
 
 /* PK changes for - theme support */
 
@@ -177,15 +135,16 @@ $primary-color-dark: #000;
 
 html,
 body {
-  height: 100%;
+   height: 100%;
 }
 
 body {
   margin: 0;
   font-family: "Lato", sans-serif !important;
-  //   color: rgb(0, 0, 0);
+  color: rgb(0, 0, 0);
   color: var(--subheadingColor) !important;
-  background: var(--bodyBackground) !important;
+  //  background: var(--bodyBackground) !important;
+  background: linear-gradient(193deg, var(--bodyBackgroundd) 0%, var(--bodysecondaryBackground) 100%) !important;
   background-repeat: no-repeat;
   overflow-x: hidden;
 }

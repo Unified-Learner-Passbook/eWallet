@@ -4,6 +4,8 @@ import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
+import { ThemeService } from "../../app/services/theme/theme.service";
+
 
 @Component({
   selector: 'app-menu',
@@ -14,17 +16,43 @@ export class MenuComponent implements OnInit {
 
   languageSwitchRef: NgbModalRef;
   languages = [];
+
+  ELOCKER_THEME: string;
   @ViewChild('languageSwitchModal') languageSwitchModal: TemplateRef<any>;
   constructor(
     private readonly authService: AuthService,
     private readonly telemetryService: TelemetryService,
     private readonly modalService: NgbModal,
-    private readonly generalService: GeneralService
+    private readonly generalService: GeneralService,
+
+    private themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
     this.getAllLanguages();
+
+    this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
+
+    if (!this.ELOCKER_THEME) {
+      localStorage.setItem('ELOCKER_THEME', "default");
+    }
   }
+
+  changeTheme() {
+    if (this.ELOCKER_THEME == 'default') {
+      this.ELOCKER_THEME = "dark";
+    } else {
+      this.ELOCKER_THEME = "default";
+    }
+    this.themeService.setTheme(this.ELOCKER_THEME);
+    localStorage.setItem('ELOCKER_THEME', this.ELOCKER_THEME);
+  }
+
+
+
+
+
+
 
   getAllLanguages() {
     const languages = localStorage.getItem('languages');
