@@ -156,6 +156,10 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('guardianName');
   }
 
+  get enrolledOn() {
+    return this.registrationForm.get('enrolledOn');
+  }
+
   ngAfterViewInit() {
     if (this.registrationDetails) {
       if (this.registrationDetails.name) {
