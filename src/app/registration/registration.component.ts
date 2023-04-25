@@ -238,7 +238,7 @@ export class RegistrationComponent implements OnInit {
             "start_date": "",
             "end_date": "",
             "claim_status": "pending",
-            "enrollon": this.registrationForm.value.enrollon
+            "enrollon": this.registrationForm.value.enrolledOn
           }
         },
         digimpid: this.registrationDetails.meripehchanid
