@@ -289,5 +289,8 @@
     "SOMETHING_WENT_WRONG": "कुछ गलत हो गया",
     "RETRY_LOGIN": "लॉगिन पुनः प्रयास करें",
     "ENROLLED_ON": "पर नामांकित",
-    "ENTER_VALID_DATE": "मान्य तिथि दर्ज करें"
+    "AADHAAR_VERIFIED_SUCCESSFULLY": "Aadhar Verified Successfully",
+    "ERROR_WHILE_VERIFYING_AADHAAR": "Error while verifying Aadhar",
+    "ENTER_VALID_DATE": "मान्य तिथि दर्ज करें",
+    "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR" : "फोन नं. आधार से जोड़ा हुआ होना चाहिए"
 }
