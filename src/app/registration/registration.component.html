@@ -99,6 +99,15 @@
                 </p>
             </div>
 
+            <div class="mb-3 pb-10">
+                <label for="grade">{{'ENROLLED_ON' | translate}}<span class="text-danger">*</span></label>
+                <input type="date" formControlName="enrolledOn" [max]="maxDate" class="form-control" id="enrolledOn"
+                    placeholder="">
+                <p class="text-red pt-2 mb-0" *ngIf="enrolledOn.invalid && enrolledOn.touched">{{'ENTER_VALID_DATE' |
+                    translate}}</p>
+                </p>
+            </div>
+
             <!-- <div class="mb-3 pb-10">
                 <label for="username">{{'USERNAME' | translate}}</label>
                 <input type="text" class="form-control p-4" id="username" name="username" formControlName="username"
