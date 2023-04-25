@@ -32,11 +32,13 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 import { EkycComponent } from './ekyc/ekyc.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
   {
     path: 'digilocker-callback',
-    component: OauthCallbackComponent
+    // component: OauthCallbackComponent
+    component: PageNotFoundComponent
   },
   {
     path: '',
