@@ -144,7 +144,7 @@ body {
   color: rgb(0, 0, 0);
   color: var(--subheadingColor) !important;
   //  background: var(--bodyBackground) !important;
-  background: linear-gradient(193deg, var(--bodyBackgroundd) 0%, var(--bodysecondaryBackground) 100%) !important;
+  background: linear-gradient(193deg, var(--bgPrimaryColor) 0%, var(--bgSecondaryColor) 100%) !important;
   background-repeat: no-repeat;
   overflow-x: hidden;
 }
@@ -538,7 +538,8 @@ label {
 }
 .text-blue-shade0 {
   // color: #5526f5 !important;
-  color: var(--btnNameColor) !important;
+   color: var(--btnNameColor) !important;
+  // color: var(--btnPrimaryColor) !important;
 }
 .head-title {
   font-size: 20px;
@@ -575,7 +576,7 @@ label {
   z-index: 9999;
   .fa-bars {
     // color: #5526f5;
-    color: var(--menuiconcolor) !important;
+    color: var(--menuIconColor) !important;
   }
 }
 .login-btn {

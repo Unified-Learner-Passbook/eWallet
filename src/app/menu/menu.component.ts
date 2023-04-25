@@ -1,19 +1,21 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
+import {
+  NgbModal,
+  NgbModalOptions,
+  NgbModalRef,
+} from '@ng-bootstrap/ng-bootstrap';
 import { AuthService } from '../services/auth/auth.service';
 import { GeneralService } from '../services/general/general.service';
 import { IInteractEventInput } from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
-import { ThemeService } from "../../app/services/theme/theme.service";
-
+import { ThemeService } from '../../app/services/theme/theme.service';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
-  styleUrls: ['./menu.component.scss']
+  styleUrls: ['./menu.component.scss'],
 })
 export class MenuComponent implements OnInit {
-
   languageSwitchRef: NgbModalRef;
   languages = [];
 
@@ -26,7 +28,7 @@ export class MenuComponent implements OnInit {
     private readonly generalService: GeneralService,
 
     private themeService: ThemeService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.getAllLanguages();
@@ -34,32 +36,25 @@ export class MenuComponent implements OnInit {
     this.ELOCKER_THEME = localStorage.getItem('ELOCKER_THEME');
 
     if (!this.ELOCKER_THEME) {
-      localStorage.setItem('ELOCKER_THEME', "default");
+      localStorage.setItem('ELOCKER_THEME', 'default');
     }
   }
 
   changeTheme() {
     if (this.ELOCKER_THEME == 'default') {
-      this.ELOCKER_THEME = "dark";
+      this.ELOCKER_THEME = 'dark';
     } else {
-      this.ELOCKER_THEME = "default";
+      this.ELOCKER_THEME = 'default';
     }
     this.themeService.setTheme(this.ELOCKER_THEME);
     localStorage.setItem('ELOCKER_THEME', this.ELOCKER_THEME);
   }
-
-
-
-
-
-
 
   getAllLanguages() {
     const languages = localStorage.getItem('languages');
     if (languages) {
       this.languages = JSON.parse(languages);
     }
-
   }
 
   showLanguageModal() {
@@ -67,8 +62,11 @@ export class MenuComponent implements OnInit {
       animation: true,
       centered: false,
       size: 'sm',
-    }
-    this.languageSwitchRef = this.modalService.open(this.languageSwitchModal, options);
+    };
+    this.languageSwitchRef = this.modalService.open(
+      this.languageSwitchModal,
+      options
+    );
   }
 
   changeLanguage(selectedLanguage) {
@@ -87,13 +85,13 @@ export class MenuComponent implements OnInit {
     const telemetryInteract: IInteractEventInput = {
       context: {
         env: '',
-        cdata: []
+        cdata: [],
       },
       edata: {
         id,
         type,
-        subtype
-      }
+        subtype,
+      },
     };
     this.telemetryService.interact(telemetryInteract);
   }
