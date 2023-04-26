@@ -208,6 +208,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registrationForm.value);
+    this.registrationForm.controls.phone.enable();
     if (this.registrationForm.valid) {
       this.isLoading = true;
 
