@@ -216,7 +216,7 @@ export class RegistrationComponent implements OnInit {
         digiacc: "ewallet",
         userdata: {
           student: {
-            "student_id": "1234",
+            "student_id": this.registrationForm.value.studentId,
             "DID": "",
             "reference_id": "ULP_1234",
             "aadhar_token": this.registrationForm.value.aadhar,
