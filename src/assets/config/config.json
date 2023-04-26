@@ -1,12 +1,6 @@
 {
   "environment": "development",
   "appType": "digital_wallet",
-  "keycloak": {
-    "clientId": "registry-frontend",
-    "realm": "sunbird-rc",
-    "url": "https://elocker.xiv.in/auth"
-  },
-
   "configFolder": "/assets/config/ui-config",
   "logoPath": "/assets/images/logo.svg",
   "title": "AVSAR Learner Wallet",
