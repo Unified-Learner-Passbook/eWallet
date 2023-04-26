@@ -37,6 +37,8 @@ export class EkycComponent implements OnInit, AfterViewInit {
     private readonly telemetryService: TelemetryService,
     private readonly modalService: NgbModal,
     private readonly location: Location,
+    private generalService: GeneralService,
+
   ) {
     const navigation = this.router.getCurrentNavigation();
     this.userInfo = navigation.extras.state;
@@ -136,7 +138,8 @@ export class EkycComponent implements OnInit, AfterViewInit {
     }, error => {
       console.error();
       this.isLoading = false;
-      this.toastMessage.error('', 'Error while verifying Aadhar');
+      this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_VERIFYING_AADHAR'));
+
     });
   }
 
