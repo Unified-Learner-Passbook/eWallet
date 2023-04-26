@@ -136,6 +136,7 @@ import { ChangePasswordComponent } from './change-password/change-password.compo
 import { OauthCallbackComponent } from './oauth-callback/oauth-callback.component';
 import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certificate.pipe';
 import { EkycComponent } from './ekyc/ekyc.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -183,7 +184,8 @@ import { EkycComponent } from './ekyc/ekyc.component';
     ChangePasswordComponent,
     OauthCallbackComponent,
     FilterCertificatePipe,
-    EkycComponent
+    EkycComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
