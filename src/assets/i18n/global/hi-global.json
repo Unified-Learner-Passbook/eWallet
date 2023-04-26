@@ -289,8 +289,15 @@
     "SOMETHING_WENT_WRONG": "कुछ गलत हो गया",
     "RETRY_LOGIN": "लॉगिन पुनः प्रयास करें",
     "ENROLLED_ON": "पर नामांकित",
-    "AADHAAR_VERIFIED_SUCCESSFULLY": "Aadhar Verified Successfully",
-    "ERROR_WHILE_VERIFYING_AADHAAR": "Error while verifying Aadhar",
+    "AADHAAR_VERIFIED_SUCCESSFULLY": "आधार सत्यापित सफलतापूर्वक",
+    "ERROR_WHILE_VERIFYING_AADHAAR": "आधार सत्यापित करते समय त्रुटि",
     "ENTER_VALID_DATE": "मान्य तिथि दर्ज करें",
-    "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR" : "फोन नं. आधार से जोड़ा हुआ होना चाहिए"
+    "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR" : "फोन नं. आधार से जोड़ा हुआ होना चाहिए",
+    "ENTER_YOUR_NAME":"अपना नाम दर्ज करें",
+    "NOT_COMPLETED_YOUR_KYC_PLEASE_COMPLETE_YOUR_KYC_HERE":"ऐसा लगता है कि आपने अपना केवाईसी पूरा नहीं किया है। कृपया अपना एक बार का केवाईसी यहां पूरा करें",
+    "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA":"डेटा प्राप्त करते समय अमान्य QR कोड या त्रुटि"
+
+
+
+
 }
