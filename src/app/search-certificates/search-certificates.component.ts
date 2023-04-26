@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { CredentialService } from '../services/credential/credential.service';
 import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
@@ -38,7 +38,7 @@ export class SearchCertificatesComponent implements OnInit {
         return res.filter((item: any) => item.credential_schema.name === this.schema.name);
       }
       return res;
-    }));
+    }), catchError(error => of([])));
   }
 
   renderCertificate(credential: any) {

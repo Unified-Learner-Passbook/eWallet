@@ -39,9 +39,7 @@ export class DocViewComponent implements OnInit {
         private activatedRoute: ActivatedRoute,
         private telemetryService: TelemetryService,
         private readonly toastMessage: ToastMessageService
-    ) 
-    
-    {
+    ) {
         this.baseUrl = environment.baseUrl;
         const navigation = this.router.getCurrentNavigation();
         this.credential = navigation.extras.state;
@@ -171,6 +169,11 @@ export class DocViewComponent implements OnInit {
             console.log("Share not supported");
         }
     }
+
+    ngAfterViewInit(): void {
+        this.raiseImpressionEvent();
+    }
+
 
     raiseImpressionEvent() {
         const telemetryImpression: IImpressionEventInput = {
