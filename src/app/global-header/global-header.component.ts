@@ -36,6 +36,6 @@ export class GlobalHeaderComponent implements OnInit {
     this.themeService.setTheme(this.ELOCKER_THEME);
     localStorage.setItem('ELOCKER_THEME', this.ELOCKER_THEME);
   }
-
-
 }
+
+

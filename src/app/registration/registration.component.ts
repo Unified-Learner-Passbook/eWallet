@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { catchError, concatMap } from 'rxjs/operators';
@@ -26,6 +26,8 @@ export class RegistrationComponent implements OnInit {
   isAadharVerified = false;
   aadhaarToken: string;
 
+  
+
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required]),
     name: new FormControl(null, [Validators.required]),
@@ -37,7 +39,8 @@ export class RegistrationComponent implements OnInit {
     dob: new FormControl(null, [Validators.required]),
     grade: new FormControl(null, [Validators.required]),
     academicYear: new FormControl(null, [Validators.required]),
-    guardianName: new FormControl(null, [Validators.required])
+    guardianName: new FormControl(null, [Validators.required]),
+    enrolledOn: new FormControl(null, [Validators.required])
   });
 
   grades: any;
@@ -55,7 +58,8 @@ export class RegistrationComponent implements OnInit {
     private readonly location: Location,
     private readonly generalService: GeneralService,
     private readonly utilService: UtilService,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    
   ) {
     this.baseUrl = environment.baseUrl;
 
@@ -77,7 +81,7 @@ export class RegistrationComponent implements OnInit {
     this.setGrades();
     this.getSchools();
     this.onChanges();
-  }
+}
 
   onChanges(): void {
     this.registrationForm.valueChanges.subscribe(val => {
@@ -155,6 +159,10 @@ export class RegistrationComponent implements OnInit {
     return this.registrationForm.get('guardianName');
   }
 
+  get enrolledOn() {
+    return this.registrationForm.get('enrolledOn');
+  }
+
   ngAfterViewInit() {
     if (this.registrationDetails) {
       if (this.registrationDetails.name) {
@@ -170,11 +178,19 @@ export class RegistrationComponent implements OnInit {
       if (this.registrationDetails.dob) {
         this.registrationForm.get('dob').setValue(this.registrationDetails.dob);
       }
-      
+
       if (this.registrationDetails.uuid) {
         this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
         this.registrationForm.get('aadhar').setValue(this.registrationDetails.uuid);
       }
+    }
+  }
+
+
+  onlyAlphabetsAndSpaces(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 32 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
+      event.preventDefault();
     }
   }
 
@@ -203,6 +219,7 @@ export class RegistrationComponent implements OnInit {
 
   onSubmit() {
     console.log(this.registrationForm.value);
+    this.registrationForm.controls.phone.enable();
     if (this.registrationForm.valid) {
       this.isLoading = true;
 
@@ -210,7 +227,7 @@ export class RegistrationComponent implements OnInit {
         digiacc: "ewallet",
         userdata: {
           student: {
-            "student_id": "1234",
+            "student_id": this.registrationForm.value.studentId,
             "DID": "",
             "reference_id": "ULP_1234",
             "aadhar_token": this.registrationForm.value.aadhar,
@@ -218,7 +235,8 @@ export class RegistrationComponent implements OnInit {
             "dob": this.registrationDetails.dob,
             "school_type": "private",
             "meripehchan_id": this.registrationDetails.meripehchanid,
-            "username": this.registrationForm.value.username
+            "username": this.registrationForm.value.username,
+            "gender": this.registrationDetails?.gender
           },
           studentdetail: {
             "student_detail_id": "",
@@ -231,7 +249,8 @@ export class RegistrationComponent implements OnInit {
             "acdemic_year": this.registrationForm.value.academicYear,
             "start_date": "",
             "end_date": "",
-            "claim_status": "pending"
+            "claim_status": "pending",
+            "enrollon": this.registrationForm.value.enrolledOn
           }
         },
         digimpid: this.registrationDetails.meripehchanid
@@ -252,38 +271,38 @@ export class RegistrationComponent implements OnInit {
       //   })
       // )
       this.authService.ssoSignUp(payload)
-      .subscribe((res: any) => {
-        console.log("result register", res);
-        if (res.success && res.user === 'FOUND') {
-          this.isLoading = false;
+        .subscribe((res: any) => {
+          console.log("result register", res);
+          if (res.success && res.user === 'FOUND') {
+            this.isLoading = false;
 
-          if (res.token) {
-            localStorage.setItem('accessToken', res.token);
+            if (res.token) {
+              localStorage.setItem('accessToken', res.token);
+            }
+
+            if (res?.userData?.student) {
+              const currentUser = res.userData.student;
+              // currentUser.detail = res.detail;
+              localStorage.setItem('currentUser', JSON.stringify(currentUser));
+              this.telemetryService.uid = res.userData.student.meripehchanLoginId;
+              // this.telemetryService.start();
+            }
+            this.router.navigate(['/home']);
+            // telemetry claim approval
+            this.raiseInteractEvent('registration-success')
+            this.toast.success("", this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
+            // this.router.navigate(['/login']);
+
+            // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
+            // this.telemetryService.audit()
+          } else {
+            this.isLoading = false;
+            this.toast.error("", this.generalService.translateString('ERROR_WHILE_REGISTRATION'));
           }
-
-          if (res?.userData?.student) {
-            const currentUser = res.userData.student;
-            // currentUser.detail = res.detail;
-            localStorage.setItem('currentUser', JSON.stringify(currentUser));
-            this.telemetryService.uid = res.userData.student.meripehchanLoginId;
-            // this.telemetryService.start();
-          }
-          this.router.navigate(['/home']);
-          // telemetry claim approval
-          this.raiseInteractEvent('registration-success')
-          this.toast.success("", this.generalService.translateString('USER_REGISTER_SUCCESSFULLY'));
-          // this.router.navigate(['/login']);
-
-          // Add telemetry service AUDIT event http://docs.sunbird.org/latest/developer-docs/telemetry/consuming_telemetry/
-          // this.telemetryService.audit()
-        } else {
+        }, (error) => {
           this.isLoading = false;
           this.toast.error("", this.generalService.translateString('ERROR_WHILE_REGISTRATION'));
-        }
-      }, (error) => {
-        this.isLoading = false;
-        this.toast.error("",this.generalService.translateString('ERROR_WHILE_REGISTRATION') );
-      });
+        });
     }
   }
 

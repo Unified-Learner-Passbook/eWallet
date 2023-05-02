@@ -290,6 +290,14 @@
     "OAUTH_ACCESS_DENIED_WARNING": "We were unable to authenticate you with our system as you have denied access to your information. Please try logging in again and grant access to your information to proceed.",
     "SOMETHING_WENT_WRONG": "Something went wrong",
     "RETRY_LOGIN": "Retry Login",
-    "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR" : "Entered phone no. should be linked to Aadhar"
+    "ENROLLED_ON": "Enrolled On",
+    "ENTER_VALID_DATE": "Enter Valid Date",
+    "AADHAAR_VERIFIED_SUCCESSFULLY": "Aadhar Verified Successfully",
+    "ERROR_WHILE_VERIFYING_AADHAAR": "Error while verifying Aadhar",
+    "ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR" : "Entered phone no. should be linked to Aadhar",
+    "ENTER_YOUR_NAME":"Enter your name",
+    "NOT_COMPLETED_YOUR_KYC_PLEASE_COMPLETE_YOUR_KYC_HERE":"It seems you have not completed your KYC. Please complete your one time KYC here",
+    "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA":"Invalid QR code or error while fetching data"
+    
     
 }

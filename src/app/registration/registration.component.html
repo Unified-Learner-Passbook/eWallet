@@ -46,9 +46,10 @@
             <div class="mb-3 pb-10">
                 <label for="guardianName">{{'GUARDIAN_NAME' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="guardianName" name="guardianName"
-                    formControlName="guardianName" placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">{{'GRADE_REQUIRED' |
+                    formControlName="guardianName" placeholder="" (keypress)="onlyAlphabetsAndSpaces($event)">
+                <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">{{'GUARDIAN_NAME_REQUIRED' |
                     translate }}</p>
+                   
             </div>
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
@@ -98,6 +99,14 @@
                 </select>
                 <p class="text-red pt-2 mb-0" *ngIf="grade.invalid && grade.touched">{{'GRADE_REQUIRED' | translate}}
                 </p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="grade">{{'ENROLLED_ON' | translate}}<span class="text-danger">*</span></label>
+                <input type="date" formControlName="enrolledOn" class="form-control" id="enrolledOn"
+                    placeholder="">
+                <p class="text-red pt-2 mb-0" *ngIf="enrolledOn.invalid && enrolledOn.touched">{{'ENTER_VALID_DATE' |
+                    translate}}</p>
             </div>
 
             <!-- <div class="mb-3 pb-10">

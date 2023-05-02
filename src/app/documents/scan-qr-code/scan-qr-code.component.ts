@@ -65,7 +65,8 @@ export class ScanQrCodeComponent implements OnInit {
       }, (error: any) => {
         this.loader = false;
         this.notValid = true;
-        this.toastService.error("", "Invalid QR cod or error while fetching data");
+        this.toastService.error("", this.generalService.translateString('INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA'));
+
       });
     }
   }

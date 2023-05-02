@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Injectable({
   providedIn: 'root'
 })
 export class UtilService {
 
-  constructor() { }
+  constructor(
+    private readonly translateService: TranslateService
+  ) { }
 
   downloadFile(fileName: string, fileType: string, content: string) {
     const blob = new Blob([content], { type: fileType });
@@ -25,5 +28,14 @@ export class UtilService {
     }
 
     return numbers;
+  }
+
+  /**
+   * Translate a string using the application's translation service.
+   * @param constant - A string constant to translate.
+   * @returns The translated string.
+   */
+  translateString(constant: string): string {
+    return this.translateService.instant(constant);
   }
 }
