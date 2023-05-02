@@ -1,6 +1,6 @@
 import { Location } from '@angular/common';
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators} from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { of, throwError } from 'rxjs';
 import { catchError, concatMap } from 'rxjs/operators';
@@ -25,6 +25,8 @@ export class RegistrationComponent implements OnInit {
   isLoading = false;
   isAadharVerified = false;
   aadhaarToken: string;
+
+  myForm: FormGroup;
 
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required]),
@@ -55,7 +57,8 @@ export class RegistrationComponent implements OnInit {
     private readonly location: Location,
     private readonly generalService: GeneralService,
     private readonly utilService: UtilService,
-    private readonly cdr: ChangeDetectorRef
+    private readonly cdr: ChangeDetectorRef,
+    
   ) {
     this.baseUrl = environment.baseUrl;
 
@@ -77,7 +80,7 @@ export class RegistrationComponent implements OnInit {
     this.setGrades();
     this.getSchools();
     this.onChanges();
-  }
+}
 
   onChanges(): void {
     this.registrationForm.valueChanges.subscribe(val => {
@@ -175,6 +178,14 @@ export class RegistrationComponent implements OnInit {
         this.registrationForm.get('username').setValue(this.registrationDetails.uuid);
         this.registrationForm.get('aadhar').setValue(this.registrationDetails.uuid);
       }
+    }
+  }
+
+
+  onlyAlphabetsAndSpaces(event: any) {
+    const charCode = (event.which) ? event.which : event.keyCode;
+    if (charCode != 32 && (charCode < 65 || charCode > 90) && (charCode < 97 || charCode > 122)) {
+      event.preventDefault();
     }
   }
 
