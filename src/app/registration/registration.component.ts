@@ -26,7 +26,7 @@ export class RegistrationComponent implements OnInit {
   isAadharVerified = false;
   aadhaarToken: string;
 
-  myForm: FormGroup;
+  
 
   registrationForm = new FormGroup({
     aadhar: new FormControl(null, [Validators.required]),

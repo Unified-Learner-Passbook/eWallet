@@ -13,5 +13,6 @@ export class GlobalHeaderComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
+
+
