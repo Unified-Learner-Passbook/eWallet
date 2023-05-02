@@ -102,7 +102,7 @@
 
             <div class="mb-3 pb-10">
                 <label for="grade">{{'ENROLLED_ON' | translate}}<span class="text-danger">*</span></label>
-                <input type="date" formControlName="enrolledOn" class="form-control" id="enrolledOn"
+                <input type="month" formControlName="enrolledOn" class="form-control" id="enrolledOn"
                     placeholder="">
                 <p class="text-red pt-2 mb-0" *ngIf="enrolledOn.invalid && enrolledOn.touched">{{'ENTER_VALID_DATE' |
                     translate}}</p>
