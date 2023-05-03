@@ -26,6 +26,51 @@
 
 
 /* PK changes for - theme support */
+:root {
+  :default{
+      primaryColor:  #060461 ;
+      secondaryColor:  #4A227C ;
+      cardBackground:  #FFFFFF ;
+      navLabelColor:  #B275FF ;
+      headerColor:  #4A227C ;
+      headerLinkColor:  #F4ECFF ;
+      primaryTextColor:  #494949 ;
+      secondaryTextColor:  #8D9091 ;
+      btnLanguageColor:  #5526F5 ;
+      headerPrimaryColor:  #1B1818;
+      logoHeadlineColor:  #79787C    ;
+      logoSecondaryTextColor:  #EE8908    ;
+      menuIconColor:  #5526F5    ;
+      btnPrimaryColor:  #060461    ;
+      headingColor:  #060461    ;
+      subheadingColor:  #212529    ;
+      searchBoxBorder:  #EFEFEF    ;
+      hamBackground:  #F6F8FC    ;
+      bgPrimaryColor:  #a4a8ff3d    ;
+      bgSecondaryColor:  #ffa4e042    ;
+  }
+  dark{
+      primaryColor:  #060461    ;
+      secondaryColor:  #F07D00    ;
+      cardBackground:  #323232    ;
+      navLabelColor:  #FFB96C    ;
+      headerColor:  #313131    ;
+      primaryTextColor:  #FFFFFF    ;
+      secondaryTextColor:  #C3C3C3    ;
+      btnLanguageColor:  #FBFBFB    ;
+      headerPrimaryColor:  #FFFFFF    ;
+      logoHeadlineColor:  #FFFFFF    ;
+      logoSecondaryTextColor:  #C3C3C3    ;
+      menuIconColor:  #C3C3C3    ;
+      btnPrimaryColor:  #323232    ;
+      headingColor:  #FFFFFF    ;
+      subheadingColor:  #C3C3C3    ;
+      searchBoxBorder:  #212529    ;
+      hamBackground:  #080808    ;
+      bgPrimaryColor:  #000000    ;
+      bgSecondaryColor:  #000000    ;
+  }
+}
 
 .headerTitleColor {
   color: var(--secondaryColor) !important;
