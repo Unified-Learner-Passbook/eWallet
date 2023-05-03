@@ -11,7 +11,10 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from "../services/toast-message/toast-message.service";
 import { UtilService } from '../services/util/util.service';
 import { environment } from 'src/environments/environment';
+import * as dayjs from 'dayjs';
+import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 
+dayjs.extend(customParseFormat);
 
 @Component({
   selector: 'app-registration',
@@ -250,7 +253,7 @@ export class RegistrationComponent implements OnInit {
             "start_date": "",
             "end_date": "",
             "claim_status": "pending",
-            "enrollon": this.registrationForm.value.enrolledOn
+            "enrollon": dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format()
           }
         },
         digimpid: this.registrationDetails.meripehchanid
