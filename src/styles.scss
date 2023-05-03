@@ -645,8 +645,10 @@ label {
   border: none;
 }
 .bg-blue-dark {
-  //  background: var(--primaryColor) !important;
-  background: var(--btnPrimaryColor) !important;
+    // background: var(--primaryColor) !important;
+    // background: var(--btnPrimaryColor) !important;
+   background:#060461;
+
 }
 .heading2 {
   font-weight: 600;
