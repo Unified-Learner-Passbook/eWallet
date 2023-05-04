@@ -40,8 +40,6 @@ export class MenuComponent implements OnInit {
     }
   }
 
- 
-
   getAllLanguages() {
     const languages = localStorage.getItem('languages');
     if (languages) {
