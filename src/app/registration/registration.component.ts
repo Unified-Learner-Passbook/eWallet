@@ -226,6 +226,8 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.isLoading = true;
 
+      const enrolledOn = dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format('DD/MM/YYYY');
+
       const payload = {
         digiacc: "ewallet",
         userdata: {
@@ -253,7 +255,7 @@ export class RegistrationComponent implements OnInit {
             "start_date": "",
             "end_date": "",
             "claim_status": "pending",
-            "enrollon": dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format()
+            "enrollon": enrolledOn === 'Invalid Date' ? '' : enrolledOn
           }
         },
         digimpid: this.registrationDetails.meripehchanid
