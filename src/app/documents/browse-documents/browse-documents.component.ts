@@ -1,6 +1,6 @@
 import { AfterViewInit, Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { NgbModal, NgbModalOptions } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModal, NgbModalOptions, NgbModalRef } from '@ng-bootstrap/ng-bootstrap';
 import { forkJoin, Observable, of } from 'rxjs';
 import { concatMap, map, switchMap } from 'rxjs/operators';
 import { AuthService } from 'src/app/services/auth/auth.service';
@@ -19,7 +19,7 @@ import { ToastMessageService } from 'src/app/services/toast-message/toast-messag
 export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   categories = [];
   isLoading = false;
-
+  approvalModalRef: NgbModalRef;
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   certificatesDetails = [
@@ -46,6 +46,9 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   fetchCredentialCategories() {
     if (this.authService?.currentUser?.DID) {
+      if (this.approvalModalRef) {
+        this.approvalModalRef.close();
+      }
       console.log("DID", this.authService.currentUser.DID);
       this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(map((res: any) => {
@@ -89,7 +92,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         animation: true,
         centered: true,
       };
-      this.modalService.open(this.approvalModal, options);
+      this.approvalModalRef = this.modalService.open(this.approvalModal, options);
       this.authService.getUserProfile().subscribe((res) => {
         this.fetchCredentialCategories();
       });

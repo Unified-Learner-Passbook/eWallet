@@ -147,7 +147,16 @@ const routes: Routes = [
     },
     canActivate: [AuthenticationGuard]
   },
-  { path: 'logout', component: LogoutComponent },
+  {
+    path: 'logout',
+    component: LogoutComponent,
+    data: {
+      showToolbar: false,
+      telemetry: {
+        env: 'dashboard', pageid: 'sign-out', type: 'view', subtype: 'scroll'
+      }
+    }
+  },
   {
     path: '**',
     redirectTo: ''

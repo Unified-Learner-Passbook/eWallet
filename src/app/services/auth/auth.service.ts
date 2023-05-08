@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, of, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
+import { catchError, map, retry, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 
 import {
@@ -33,7 +33,7 @@ export class AuthService {
 
   ssoSignUp(user: any): Observable<any> {
     const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/register`;
-    return this.http.post(api, user);
+    return this.http.post(api, user).pipe(retry(2));
   }
 
   verifyAadhar(aadharId: number | string) {

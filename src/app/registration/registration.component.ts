@@ -11,7 +11,10 @@ import { TelemetryService } from '../services/telemetry/telemetry.service';
 import { ToastMessageService } from "../services/toast-message/toast-message.service";
 import { UtilService } from '../services/util/util.service';
 import { environment } from 'src/environments/environment';
+import * as dayjs from 'dayjs';
+import * as customParseFormat from 'dayjs/plugin/customParseFormat';
 
+dayjs.extend(customParseFormat);
 
 @Component({
   selector: 'app-registration',
@@ -223,6 +226,8 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.isLoading = true;
 
+      const enrolledOn = dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format('DD/MM/YYYY');
+
       const payload = {
         digiacc: "ewallet",
         userdata: {
@@ -250,7 +255,7 @@ export class RegistrationComponent implements OnInit {
             "start_date": "",
             "end_date": "",
             "claim_status": "pending",
-            "enrollon": this.registrationForm.value.enrolledOn
+            "enrollon": enrolledOn === 'Invalid Date' ? '' : enrolledOn
           }
         },
         digimpid: this.registrationDetails.meripehchanid
