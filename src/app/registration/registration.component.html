@@ -48,7 +48,7 @@
             <div class="mb-3 pb-10">
                 <label for="guardianName">{{'GUARDIAN_NAME' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="guardianName" name="guardianName"
-                    placeholder="{{'ENTER_GUARDIAN_NAME' | translate}}" formControlName="guardianName" placeholder=""
+                    placeholder="{{'ENTER_GUARDIAN_NAME' | translate}}" formControlName="guardianName"
                     (keypress)="onlyAlphabetsAndSpaces($event)">
                 <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">
                     {{'GUARDIAN_NAME_REQUIRED' |
@@ -72,7 +72,7 @@
                 <label for="district">{{'DISTRICT' | translate}}<span class="text-danger">*</span></label>
                 <select class="form-select p-2 text-truncate" id="district" formControlName="district"
                     (change)="onDistrictChange($event.target.value)">
-                    <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
+                    <option value="" disabled selected>{{'SELECT_DISTRICT' | translate}}</option>
                     <option *ngFor="let item of districtList" [value]="item?.districtCode">{{item?.districtName}}
                     </option>
                 </select>
@@ -86,7 +86,7 @@
                 <label for="block">{{'BLOCK' | translate}}<span class="text-danger">*</span></label>
                 <select class="form-select p-2 text-truncate" id="block" formControlName="block"
                     (change)="onBlockChange($event.target.value)">
-                    <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
+                    <option value="" disabled selected>{{'SELECT_BLOCK' | translate}}</option>
                     <option *ngFor="let item of blockList" [value]="item?.blockCode">{{item?.blockName}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0"
@@ -99,7 +99,7 @@
                 <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
                 <select class="form-select p-2 text-truncate" id="school" formControlName="school"
                     (change)="onSchoolChange($event.target.value)">
-                    <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
+                    <option value="" disabled selected>{{'SELECT_SCHOOL' | translate}}</option>
                     <option *ngFor="let item of schoolList" [value]="item?.udiseCode">{{item?.schoolName}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0"

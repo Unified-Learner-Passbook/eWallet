@@ -47,14 +47,13 @@ export class RegistrationComponent implements OnInit {
     district: new FormControl('', [Validators.required]),
     block: new FormControl('', [Validators.required]),
     school: new FormControl(null, [Validators.required]),
-    // schoolUdise: new FormControl(null, [Validators.required]), // Need to remove
     studentId: new FormControl(null, [Validators.required]),
     phone: new FormControl(null, [Validators.required, Validators.minLength(10), Validators.maxLength(10), Validators.pattern('^[0-9]{10}$')]),
     username: new FormControl(null, [Validators.required]),
     dob: new FormControl(null, [Validators.required]),
-    grade: new FormControl(null, [Validators.required]),
-    academicYear: new FormControl(null, [Validators.required]),
-    guardianName: new FormControl(null, [Validators.required]),
+    grade: new FormControl('', [Validators.required]),
+    academicYear: new FormControl('', [Validators.required]),
+    guardianName: new FormControl('', [Validators.required]),
     enrolledOn: new FormControl(null, [Validators.required])
   });
 
@@ -62,7 +61,6 @@ export class RegistrationComponent implements OnInit {
   startYear = 2015;
   currentYear = new Date().getFullYear();
   academicYearRange: string[] = [];
-  // schoolList: any[] = [];
 
   constructor(
     private readonly authService: AuthService,
