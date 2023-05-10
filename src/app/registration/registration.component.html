@@ -57,7 +57,7 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="state">{{'STATE' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="state" formControlName="state"
+                <select class="form-select p-2 text-truncate" id="state" formControlName="state"
                     (change)="onStateChange($event.target.value)">
                     <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
                     <option *ngFor="let item of stateList" [value]="item?.stateCode">{{item?.stateName}}</option>
@@ -70,7 +70,7 @@
 
             <div class="mb-3 pb-10">
                 <label for="district">{{'DISTRICT' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="district" formControlName="district"
+                <select class="form-select p-2 text-truncate" id="district" formControlName="district"
                     (change)="onDistrictChange($event.target.value)">
                     <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
                     <option *ngFor="let item of districtList" [value]="item?.districtCode">{{item?.districtName}}
@@ -84,7 +84,7 @@
 
             <div class="mb-3 pb-10">
                 <label for="block">{{'BLOCK' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="block" formControlName="block"
+                <select class="form-select p-2 text-truncate" id="block" formControlName="block"
                     (change)="onBlockChange($event.target.value)">
                     <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
                     <option *ngFor="let item of blockList" [value]="item?.blockCode">{{item?.blockName}}</option>
@@ -97,7 +97,7 @@
 
             <div class="mb-3 pb-10">
                 <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="school" formControlName="school"
+                <select class="form-select p-2 text-truncate" id="school" formControlName="school"
                     (change)="onSchoolChange($event.target.value)">
                     <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
                     <option *ngFor="let item of schoolList" [value]="item?.udiseCode">{{item?.schoolName}}</option>
@@ -133,8 +133,8 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="academicYear">{{'ACADEMIC_YEAR' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="academicYear" formControlName="academicYear">
-                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_YEAR' | translate }}</option>
+                <select class="form-select p-2 text-truncate" id="academicYear" formControlName="academicYear">
+                    <option value="" disabled selected>{{'SELECT_YEAR' | translate }}</option>
                     <option *ngFor="let year of academicYearRange" [value]="year">{{year}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0" *ngIf="academicYear.invalid && academicYear.touched">
@@ -142,8 +142,8 @@
             </div>
             <div class="mb-3 pb-10">
                 <label for="grade">{{'GRADE' | translate}}<span class="text-danger">*</span></label>
-                <select class="form-select p-2" id="grade" formControlName="grade">
-                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_GRADE' | translate}}</option>
+                <select class="form-select p-2 text-truncate" id="grade" formControlName="grade">
+                    <option value="" disabled selected>{{'SELECT_GRADE' | translate}}</option>
                     <option *ngFor="let grade of grades" [value]="grade.value">{{grade.label}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0" *ngIf="grade.invalid && grade.touched">{{'GRADE_REQUIRED' | translate}}
@@ -169,7 +169,6 @@
             <div class="pb-10 text-center">
                 <button type="submit" class="login-btn bg-blue-dark font-600 mt-4" [disabled]="registrationForm.invalid"
                     (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
-                <!-- <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button> -->
             </div>
         </form>
     </div>

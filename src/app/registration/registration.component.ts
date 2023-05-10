@@ -148,15 +148,20 @@ export class RegistrationComponent implements OnInit {
     this.schoolList = [];
     this.registrationForm.controls.school.setValue('');
 
+    this.isLoading = true;
+
     const payload = {
       "regionType": "2",
       "regionCd": this.registrationForm.controls.district.value,
       "sortBy": "schoolName"
     }
     this.authService.getSchoolList(payload).subscribe((res) => {
+      this.isLoading = false;
       if (res.status) {
         this.schoolList = res.data.pagingContent.filter(item => item.eduDistrictCode === this.registrationForm.controls.district.value);
       }
+    }, error => {
+      this.isLoading = false;
     });
   }
 
@@ -371,7 +376,6 @@ export class RegistrationComponent implements OnInit {
 
             if (res?.userData?.student) {
               const currentUser = res.userData.student;
-              // currentUser.detail = res.detail;
               localStorage.setItem('currentUser', JSON.stringify(currentUser));
               this.telemetryService.uid = res.userData.student.meripehchanLoginId;
               // this.telemetryService.start();
