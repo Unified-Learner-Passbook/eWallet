@@ -37,7 +37,7 @@ export class AppComponent implements OnInit {
       EkTelemetry.getFingerPrint((deviceId, components, version) => {
         console.log('deviceId', deviceId);
         this.telemetryService.did = deviceId;
-        // this.telemetryService.initializeTelemetry();
+        this.telemetryService.initializeTelemetry();
       });
     }
   }
