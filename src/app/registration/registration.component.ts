@@ -96,6 +96,7 @@ export class RegistrationComponent implements OnInit {
     this.setGrades();
     this.getSchools();
     this.onChanges();
+    this.getStateList();
   }
 
   getStateList() {
