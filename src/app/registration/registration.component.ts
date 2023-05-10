@@ -54,7 +54,8 @@ export class RegistrationComponent implements OnInit {
     grade: new FormControl('', [Validators.required]),
     academicYear: new FormControl('', [Validators.required]),
     guardianName: new FormControl('', [Validators.required]),
-    enrolledOn: new FormControl(null, [Validators.required])
+    // enrolledOn: new FormControl(null, [Validators.required])
+    enrolledOn: new FormControl({ year: dayjs().year(), month: (dayjs().month() + 1).toString().padStart(2, '0') }, [Validators.required]),
   });
 
   grades: any;
@@ -307,7 +308,8 @@ export class RegistrationComponent implements OnInit {
     if (this.registrationForm.valid) {
       this.isLoading = true;
 
-      const enrolledOn = dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format('DD/MM/YYYY');
+      const enrolledOn = dayjs(`${this.registrationForm.value.enrolledOn.year}-${this.registrationForm.value.enrolledOn.month}-01`).toISOString();
+      // const enrolledOn = dayjs(this.registrationForm.value.enrolledOn, 'YYYY-MM').format('DD/MM/YYYY');
 
       const payload = {
         digiacc: "ewallet",

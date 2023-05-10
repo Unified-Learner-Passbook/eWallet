@@ -152,8 +152,9 @@
 
             <div class="mb-3 pb-10">
                 <label for="grade">{{'ENROLLED_ON' | translate}}<span class="text-danger">*</span></label>
-                <input type="month" formControlName="enrolledOn" class="form-control" id="enrolledOn"
-                    placeholder="{{'ENTER_ENROLLED_ON_DATE' | translate}}">
+                <!--<input type="month" formControlName="enrolledOn" class="form-control" id="enrolledOn"
+                    placeholder="{{'ENTER_ENROLLED_ON_DATE' | translate}}"> -->
+                <month-year-picker name="enrolledOn" formControlName="enrolledOn"></month-year-picker>
                 <p class="text-red pt-2 mb-0" *ngIf="enrolledOn.invalid && enrolledOn.touched">{{'ENTER_VALID_DATE' |
                     translate}}</p>
             </div>
