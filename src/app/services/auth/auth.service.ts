@@ -14,52 +14,50 @@ import { Router } from '@angular/router';
 })
 export class AuthService {
   baseUrl: string;
-  endpoint: string = 'https://ulp.uniteframework.io';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
   _currentUser;
   _digilockerAccessToken: string;
-  constructor(private http: HttpClient, public router: Router) 
-  { 
+  constructor(private http: HttpClient, public router: Router) {
     this.baseUrl = environment.baseUrl;
 
   }
 
   // Sign-up
   signUp(user): Observable<any> {
-    const api = `${this.endpoint}/ulp-bff/v1/sso/student/register`;
+    const api = `${this.baseUrl}/v1/sso/student/register`;
     return this.http.post(api, user);
   }
 
 
   ssoSignUp(user: any): Observable<any> {
-    const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/register`;
+    const api = `${this.baseUrl}/v1/sso/digilocker/register`;
     return this.http.post(api, user).pipe(retry(2));
   }
 
   verifyAadhar(aadharId: number | string) {
-    const api = `${this.endpoint}/ulp-bff/v1/aadhaar/verify`;
+    const api = `${this.baseUrl}/v1/aadhaar/verify`;
     return this.http.post(api, { aadhaar_id: aadharId });
   }
 
   verifyAccountAadharLink(payload: any) {
-    const api = `${this.endpoint}/ulp-bff/v1/sso/digilocker/aadhaar`;
+    const api = `${this.baseUrl}/v1/sso/digilocker/aadhaar`;
     return this.http.post(api, payload);
   }
 
   getOTP(aadharId: number): Observable<any> {
-    const api = `${this.endpoint}/ulp-bff/v1/aadhaar/otp`;
+    const api = `${this.baseUrl}/v1/aadhaar/otp`;
     return this.http.post(api, { aadhaar_id: aadharId });
   }
 
   submitOTP(otp: number): Observable<any> {
-    const api = `${this.endpoint}/ulp-bff/v1/aadhaar/otp`;
+    const api = `${this.baseUrl}/v1/aadhaar/otp`;
     return this.http.post(api, { otp });
   }
 
   // Sign-in
   signIn(user): Observable<any> {
     return this.http
-      .post<any>(`${this.endpoint}/ulp-bff/v1/sso/student/login`, user)
+      .post<any>(`${this.baseUrl}/v1/sso/student/login`, user)
       .pipe(tap((res: any) => {
         console.log("res", res);
 
@@ -106,7 +104,7 @@ export class AuthService {
 
   // User profile
   getUserProfile(): Observable<any> {
-    let api = `${this.endpoint}/ulp-bff/v1/sso/user/ewallet`;
+    let api = `${this.baseUrl}/v1/sso/user/ewallet`;
     return this.http.get(api, { headers: this.headers }).pipe(
       map((res: any) => {
         console.log("profile res", res);
@@ -117,6 +115,49 @@ export class AuthService {
       })
     );
   }
+
+
+  getStateList(): Observable<any> {
+    let api = `${this.baseUrl}/v1/school/stateList`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res: any) => {
+        console.log("states res", res);
+        return res.response;
+      })
+    );
+  }
+
+
+  getDistrictList(payload: { stateCode: string }) {
+    let api = `${this.baseUrl}/v1/school/districtList`;
+    return this.http.post(api, payload, { headers: this.headers }).pipe(
+      map((res: any) => {
+        console.log("districts res", res);
+        return res.response;
+      })
+    );
+  }
+
+  getBlockList(payload: { districtCode: string }) {
+    let api = `${this.baseUrl}/v1/school/blockList`;
+    return this.http.post(api, payload, { headers: this.headers }).pipe(
+      map((res: any) => {
+        console.log("block res", res);
+        return res.response;
+      })
+    );
+  }
+
+  getSchoolList(payload: { "regionType": string, "regionCd": string, "sortBy": string }) {
+    let api = `${this.baseUrl}/v1/school/schoolList`;
+    return this.http.post(api, payload, { headers: this.headers }).pipe(
+      map((res: any) => {
+        console.log("schools res", res);
+        return res.response;
+      })
+    );
+  }
+
 
   // Error
   handleError(error: HttpErrorResponse) {
