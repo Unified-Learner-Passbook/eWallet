@@ -99,6 +99,10 @@ export class RegistrationComponent implements OnInit {
     this.getStateList();
   }
 
+  get registrationFormControl() {
+    return this.registrationForm.controls;
+  }
+
   getStateList() {
     this.authService.getStateList().subscribe((res) => {
       if (res.status) {
