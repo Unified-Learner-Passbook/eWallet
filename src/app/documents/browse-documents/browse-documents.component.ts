@@ -88,7 +88,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     if (!this.authService.currentUser.DID) {
       const options: NgbModalOptions = {
-        backdrop: 'static',
+        // backdrop: 'static',
         animation: true,
         centered: true,
       };
