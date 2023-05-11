@@ -62,10 +62,23 @@
             </div> -->
         </div>
     </div>
+
+    <div class="card">
+        <div class="card-body">
+            <div *ngIf="showApproval">
+                <h5 class="modal-title text-primary-color pb-4 pt-3">{{'REGISTRATION_APPROVAL' | translate}}
+                    <br>{{'PENDING' | translate}} !
+                </h5>
+                <div>
+                    {{'CONTACT_YOUR_SCHOOL_APPROVAL' | translate}}<br><br>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <!-- GET Approval POPUP -->
-<ng-template #approvalModal tabindex="-1" role="dialog" aria-labelledby="approvalModal">
+<!-- <ng-template #approvalModal tabindex="-1" role="dialog" aria-labelledby="approvalModal">
     <div class="modal-content">
         <div class="modal-body fs-14 text-center">
             <h5 class="modal-title text-primary-color pb-4 pt-3">{{'REGISTRATION_APPROVAL' | translate}}
@@ -76,4 +89,4 @@
             </div>
         </div>
     </div>
-</ng-template>
+</ng-template> -->
