@@ -36,7 +36,7 @@ export class CredentialService {
 
   getCredentials(): Observable<any> {
     const payload = {
-      url: `${this.baseUrl}/v1/sso/student/credentials/search/all`,
+      url: `${this.baseUrl}/v1/sso/student/credentials/search/student`,
       data: {
         subject: { id: this.authService.currentUser.DID }
       }
