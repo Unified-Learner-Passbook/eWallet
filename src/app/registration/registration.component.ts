@@ -120,11 +120,15 @@ export class RegistrationComponent implements OnInit {
     this.registrationForm.controls.district.setValue('');
     this.registrationForm.controls.block.setValue('');
     this.registrationForm.controls.school.setValue('');
+    this.isLoading = true;
 
     this.authService.getDistrictList({ stateCode: selectedStateCode }).subscribe((res) => {
+      this.isLoading = false;
       if (res.status) {
         this.districtList = res.data;
       }
+    }, error => {
+      this.isLoading = false;
     })
   }
 
@@ -134,12 +138,15 @@ export class RegistrationComponent implements OnInit {
     this.schoolList = [];
     this.registrationForm.controls.block.setValue('');
     this.registrationForm.controls.school.setValue('');
-
+    this.isLoading = true;
     this.authService.getBlockList({ districtCode: selectedDistrictCode }).subscribe((res) => {
+      this.isLoading = false;
       if (res.status) {
         this.blockList = res.data;
       }
-    })
+    }, error => {
+      this.isLoading = false;
+    });
   }
 
   onBlockChange(selectedBlockCode: string) {
