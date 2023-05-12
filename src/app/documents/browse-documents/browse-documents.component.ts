@@ -41,6 +41,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   ) { }
 
   ngOnInit(): void {
+    this.telemetryService.updateActor();
     this.fetchCredentialCategories();
   }
 
