@@ -1,6 +1,21 @@
 .toolbar {
   cursor: pointer;
 }
+
+
 i.active{
   color: #3772FF;
+}
+
+.tab {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 10px;
+}
+.tab-label {
+  margin-top: 5px;
+  text-align: center;
+  display: flex;
+  justify-content: center;
 }
