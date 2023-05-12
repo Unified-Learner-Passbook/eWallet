@@ -11,12 +11,12 @@
   </div>
   <div ngbDropdownMenu class="dropdown-menu">
     <div class="row">
-      <button class="btn btn-link col-4" (click)="addYear($event,-1)">
+      <button class="btn btn-link col-4" (click)="addYear($event,-1)" type="button">
         <span class="ngb-dp-navigation-arrow left"></span>
       </button>
-      <button *ngIf="!isyear" class="btn btn-link col-4" (click)="showYear($event,true)">{{data.year}}</button>
-      <button *ngIf="isyear" class="btn btn-link col-4" (click)="showYear($event,false)">{{incr+1}}-{{incr+10}}</button>
-      <button class="btn btn-link col-4" (click)="addYear($event,+1)">
+      <button *ngIf="!isyear" class="btn btn-link col-4" (click)="showYear($event,true)" type="button">{{data.year}}</button>
+      <button *ngIf="isyear" class="btn btn-link col-4" (click)="showYear($event,false)" type="button">{{incr+1}}-{{incr+10}}</button>
+      <button class="btn btn-link col-4" (click)="addYear($event,+1)" type="button">
         <span class="ngb-dp-navigation-arrow right"></span>
       </button>
       <div *ngFor="let month of months; let i = index; let first = first; let last = last" class="col-4"
