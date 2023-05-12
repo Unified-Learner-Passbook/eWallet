@@ -1,19 +1,21 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
-import { Observable, of, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, switchMap } from 'rxjs/operators';
+import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 import { AuthService } from '../services/auth/auth.service';
 import { CredentialService } from '../services/credential/credential.service';
-import { IImpressionEventInput, IInteractEventInput } from '../services/telemetry/telemetry-interface';
+import {
+  IImpressionEventInput,
+  IInteractEventInput,
+} from '../services/telemetry/telemetry-interface';
 import { TelemetryService } from '../services/telemetry/telemetry.service';
 
 @Component({
   selector: 'app-search-certificates',
   templateUrl: './search-certificates.component.html',
-  styleUrls: ['./search-certificates.component.scss']
+  styleUrls: ['./search-certificates.component.scss'],
 })
 export class SearchCertificatesComponent implements OnInit {
-
   credentials$: Observable<any>;
   searchKey: string = '';
   schema: any;
@@ -33,17 +35,22 @@ export class SearchCertificatesComponent implements OnInit {
   }
 
   fetchCredentials() {
-    this.credentials$ = this.credentialService.getAllCredentials().pipe(map((res: any) => {
-      if (this.schema?.name) {
-        return res.filter((item: any) => item.credential_schema.name === this.schema.name);
-      }
-      return res;
-    }));
+    this.credentials$ = this.credentialService.getAllCredentials().pipe(
+      map((res: any) => {
+        if (this.schema?.name) {
+          return res.filter(
+            (item: any) => item.credential_schema.name === this.schema.name
+          );
+        }
+        return res;
+      }),
+      catchError((error) => of([]))
+    );
   }
 
   renderCertificate(credential: any) {
     const navigationExtras: NavigationExtras = {
-      state: credential
+      state: credential,
     };
     this.router.navigate(['/doc-view'], navigationExtras);
   }
@@ -56,14 +63,14 @@ export class SearchCertificatesComponent implements OnInit {
     const telemetryInteract: IInteractEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,
-        cdata: []
+        cdata: [],
       },
       edata: {
         id,
         type,
         subtype,
         pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
-      }
+      },
     };
     this.telemetryService.interact(telemetryInteract);
   }
@@ -72,14 +79,14 @@ export class SearchCertificatesComponent implements OnInit {
     const telemetryImpression: IImpressionEventInput = {
       context: {
         env: this.activatedRoute.snapshot?.data?.telemetry?.env,
-        cdata: []
+        cdata: [],
       },
       edata: {
         type: this.activatedRoute.snapshot?.data?.telemetry?.type,
         pageid: this.activatedRoute.snapshot?.data?.telemetry?.pageid,
         uri: this.router.url,
         subtype: this.activatedRoute.snapshot?.data?.telemetry?.subtype,
-      }
+      },
     };
     this.telemetryService.impression(telemetryImpression);
   }

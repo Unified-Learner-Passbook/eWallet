@@ -34,6 +34,11 @@
                                 "glob": "**/*",
                                 "input": "node_modules/ngx-extended-pdf-viewer/assets/",
                                 "output": "/assets/"
+                            },
+                            {
+                                "glob": "_redirects",
+                                "input": "src",
+                                "output": "/"
                             }
                         ],
                         "styles": [
@@ -41,21 +46,21 @@
                             "src/mediaQuery.scss",
                             "./node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/ngx-toastr/toastr.css"
-
                         ],
                         "scripts": [
+                            "./node_modules/jquery/dist/jquery.min.js",
                             "./node_modules/bootstrap/dist/js/bootstrap.min.js",
-                            "node_modules/@project-sunbird/telemetry-sdk/index.js",
-                            "./node_modules/jquery/dist/jquery.min.js"
-
+                            "node_modules/@project-sunbird/telemetry-sdk/index.js"
                         ]
                     },
                     "configurations": {
                         "production": {
-                            "fileReplacements": [{
-                                "replace": "src/environments/environment.ts",
-                                "with": "src/environments/environment.prod.ts"
-                            }],
+                            "fileReplacements": [
+                                {
+                                    "replace": "src/environments/environment.ts",
+                                    "with": "src/environments/environment.prod.ts"
+                                }
+                            ],
                             "optimization": true,
                             "outputHashing": "all",
                             "sourceMap": false,
@@ -63,7 +68,8 @@
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": true,
-                            "budgets": [{
+                            "budgets": [
+                                {
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"

@@ -15,6 +15,8 @@ import { IImpressionEventInput, IInteractEventInput } from '../services/telemetr
 })
 export class OauthCallbackComponent implements OnInit {
   baseUrl: string;
+  isError = false;
+  errorCode: string;
   constructor(
     private activatedRoute: ActivatedRoute,
     private generalService: GeneralService,
@@ -30,6 +32,10 @@ export class OauthCallbackComponent implements OnInit {
       console.log("params-------->", params);
       if (params.code) {
         this.getUserData(params.code);
+      }
+      if (params.error) {
+        this.isError = true;
+        this.errorCode = params.error;
       }
     });
   }
@@ -86,11 +92,19 @@ export class OauthCallbackComponent implements OnInit {
           this.authService.digilockerAccessToken = res.digi.access_token;
         }
       } else {
-        this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_LOGIN'));
+        this.handleLoginError();
       }
-
-
+    }, (error) => {
+      console.error(error);
+      this.handleLoginError();
     });
+  }
+
+  handleLoginError() {
+    this.toastMessage.error('', this.generalService.translateString('ERROR_WHILE_LOGIN'));
+    setTimeout(() => {
+      this.router.navigate(['']);
+    }, 100);
   }
 
   ngAfterViewInit(): void {

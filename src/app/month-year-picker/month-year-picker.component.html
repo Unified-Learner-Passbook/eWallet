@@ -1,0 +1,32 @@
+<div class="form-group" ngbDropdown #calendarPanel="ngbDropdown">
+  <div class="input-group">
+    <input type="text" class="form-control" id="data" name="data" [(ngModel)]="dataTxt" [placeholder]="mask" #item
+      (input)="change(item.value)">
+    <div class="input-group-append">
+
+      <button class="btn btn-outline-secondary dropdown-toggle-split" ngbDropdownToggle type="button">
+        <div class="calendar" aria-hidden="true"></div>
+      </button>
+    </div>
+  </div>
+  <div ngbDropdownMenu class="dropdown-menu">
+    <div class="row">
+      <button class="btn btn-link col-4" (click)="addYear($event,-1)">
+        <span class="ngb-dp-navigation-arrow left"></span>
+      </button>
+      <button *ngIf="!isyear" class="btn btn-link col-4" (click)="showYear($event,true)">{{data.year}}</button>
+      <button *ngIf="isyear" class="btn btn-link col-4" (click)="showYear($event,false)">{{incr+1}}-{{incr+10}}</button>
+      <button class="btn btn-link col-4" (click)="addYear($event,+1)">
+        <span class="ngb-dp-navigation-arrow right"></span>
+      </button>
+      <div *ngFor="let month of months; let i = index; let first = first; let last = last" class="col-4"
+        (click)="selectYearMonth($event,i)">
+        <div [ngClass]="{'select': !isyear?(i+1)==data.month:(i+incr)==data.year,'outrange':isyear && (first || last)}"
+          class="card-body">
+          <span *ngIf="!isyear">{{month}}</span>
+          <span *ngIf="isyear">{{i+incr}}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

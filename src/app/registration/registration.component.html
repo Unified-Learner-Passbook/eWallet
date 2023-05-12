@@ -5,98 +5,158 @@
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmit()">
             <!-- <div class="mb-3 pb-10">
                 <label for="aadhar">{{'AADHAAR' | translate}}</label> -->
-                <!-- <div class="input-group mb-2"> -->
-                <!-- <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
+            <!-- <div class="input-group mb-2"> -->
+            <!-- <input type="text" class="form-control p-4" id="aadhar" name="aadhar" formControlName="aadhar"
                     placeholder="" maxLength="12" (keypress)="OnlyNumbersAllowed($event)"> -->
-                <!-- <button type="button" *ngIf="!isAadharVerified && aadhar.valid"
+            <!-- <button type="button" *ngIf="!isAadharVerified && aadhar.valid"
                         (click)="verifyAadhar()">Verify</button> -->
-                <!-- <i class="fa fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i> -->
-                <!-- <svg *ngIf="isAadharVerified && aadhar.valid" class="checkmark" xmlns="http://www.w3.org/2000/svg"
+            <!-- <i class="fa fa-solid fa-check" *ngIf="isAadharVerified && aadhar.valid"></i> -->
+            <!-- <svg *ngIf="isAadharVerified && aadhar.valid" class="checkmark" xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 52 52">
                         <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
                         <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
                     </svg> -->
-                <!-- </div> -->
-                <!-- <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' |
+            <!-- </div> -->
+            <!-- <p class="text-red pt-2 mb-0" *ngIf="aadhar.invalid && aadhar.touched">{{'INCORRECT_AADHAR' |
                     translate}}</p>
             </div> -->
             <div class="mb-3 pb-10">
-                <label for="name">{{'NAME' | translate}}</label>
+                <label for="name">{{'NAME' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="name" name="name" formControlName="name" placeholder=""
                     disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="name.invalid && name.touched">{{'NAME_REQUIRED' | translate }}</p>
             </div>
 
             <div class="mb-3 pb-10">
-                <label for="dob">{{'DOB' | translate}}</label>
+                <label for="dob">{{'DOB' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="dob" name="dob" formControlName="dob" placeholder=""
                     disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="dob.invalid && dob.touched">{{'ENTER_VALID_DOB' | translate }}</p>
             </div>
 
             <div class="mb-3 pb-10">
-                <label for="phone">{{'PHONE_NO' | translate}}</label>
+                <label for="phone">{{'PHONE_NO' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="phone" name="phone" formControlName="phone"
-                    placeholder="" maxLength="10" (keypress)="OnlyNumbersAllowed($event)" disabled="true">
+                    placeholder="{{'ENTER_PHONE_NO' | translate}}" maxLength="10"
+                    (keypress)="OnlyNumbersAllowed($event)">
+                <div class="fs-12 text-grey-color pt-2 font-italic">{{'ENTERED_PHONE_N0_SHOULD_BE_LINKED_TO_AADHAR' |
+                    translate}}</div>
                 <p class="text-red pt-2 mb-0" *ngIf="phone.invalid && phone.touched">{{'ENTER_PHONE_NUMBER' | translate
                     }}</p>
             </div>
 
             <div class="mb-3 pb-10">
-                <label for="guardianName">{{'GUARDIAN_NAME' | translate}}</label>
+                <label for="guardianName">{{'GUARDIAN_NAME' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="guardianName" name="guardianName"
-                    formControlName="guardianName" placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">{{'GRADE_REQUIRED' |
+                    placeholder="{{'ENTER_GUARDIAN_NAME' | translate}}" formControlName="guardianName"
+                    (keypress)="onlyAlphabetsAndSpaces($event)">
+                <p class="text-red pt-2 mb-0" *ngIf="guardianName.invalid && guardianName.touched">
+                    {{'GUARDIAN_NAME_REQUIRED' |
                     translate }}</p>
+
             </div>
             <div class="mb-3 pb-10">
-                <label for="school">{{'SCHOOL' | translate}}</label>
+                <label for="state">{{'STATE' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="state" formControlName="state"
+                    (change)="onStateChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_STATE' | translate}}</option>
+                    <option *ngFor="let item of stateList" [value]="item?.stateCode">{{item?.stateName}}</option>
+                </select>
+                <p class="text-red pt-2 mb-0"
+                    *ngIf="registrationFormControl.state.invalid && registrationFormControl.state.touched">
+                    {{'STATE_REQUIRED' | translate}}
+                </p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="district">{{'DISTRICT' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="district" formControlName="district"
+                    (change)="onDistrictChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_DISTRICT' | translate}}</option>
+                    <option *ngFor="let item of districtList" [value]="item?.districtCode">{{item?.districtName}}
+                    </option>
+                </select>
+                <p class="text-red pt-2 mb-0"
+                    *ngIf="registrationFormControl.district.invalid && registrationFormControl.district.touched">
+                    {{'DISTRICT_REQUIRED' | translate}}
+                </p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="block">{{'BLOCK' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="block" formControlName="block"
+                    (change)="onBlockChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_BLOCK' | translate}}</option>
+                    <option *ngFor="let item of blockList" [value]="item?.blockCode">{{item?.blockName}}</option>
+                </select>
+                <p class="text-red pt-2 mb-0"
+                    *ngIf="registrationFormControl.block.invalid && registrationFormControl.block.touched">
+                    {{'BLOCK_REQUIRED' | translate}}
+                </p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="school" formControlName="school"
+                    (change)="onSchoolChange($event.target.value)">
+                    <option value="" disabled selected>{{'SELECT_SCHOOL' | translate}}</option>
+                    <option *ngFor="let item of schoolList" [value]="item?.udiseCode">{{item?.schoolName}}</option>
+                </select>
+                <p class="text-red pt-2 mb-0"
+                    *ngIf="registrationFormControl.school.invalid && registrationFormControl.school.touched">
+                    {{'SCHOOL_REQUIRED' | translate}}
+                </p>
+            </div>
+
+            <!-- <div class="mb-3 pb-10">
+                <label for="school">{{'SCHOOL' | translate}}<span class="text-danger">*</span></label>
                 <select class="form-select p-2" id="school" formControlName="school"
                     (change)="onSchoolChange($event.target.value)">
                     <option *ngFor="let item of schoolList" [value]="item?.schoolName">{{item?.schoolName}}</option>
                 </select>
-                <!-- <input type="text" class="form-control p-4" id="school" name="school" formControlName="school" placeholder=""> -->
                 <p class="text-red pt-2 mb-0" *ngIf="school.invalid && school.touched">{{'SCHOOL_REQUIRED' | translate}}
                 </p>
             </div>
             <div class="mb-3 pb-10">
-                <label for="schoolUdise">{{'SCHOOL_UDISE' | translate}}</label>
+                <label for="schoolUdise">{{'SCHOOL_UDISE' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="schoolUdise" name="schoolUdise"
                     formControlName="schoolUdise" placeholder="" disabled="true">
                 <p class="text-red pt-2 mb-0" *ngIf="schoolUdise.invalid && schoolUdise.touched">{{'ENTER_SCHOOL_ID' |
                     translate }}</p>
-            </div>
+            </div> -->
             <div class="mb-3 pb-10">
-                <label for="studentId">{{'STUDENT_ID' | translate}}</label>
+                <label for="studentId">{{'STUDENT_ID' | translate}}<span class="text-danger">*</span></label>
                 <input type="text" class="form-control p-4" id="studentId" name="studentId" formControlName="studentId"
-                    placeholder="">
+                    placeholder="{{'ENTER_STUDENT_ID' | translate}}">
                 <p class="text-red pt-2 mb-0" *ngIf="studentId.invalid && studentId.touched">{{'ENTER_STUDENT_ID' |
                     translate }}</p>
             </div>
-            <!-- <div class="mb-3 pb-10">
-                <label for="schoolId">{{'SCHOOL_ID' | translate}}</label>
-                <input type="text" class="form-control p-4" id="schoolId" name="schoolId" formControlName="schoolId"
-                    placeholder="">
-                <p class="text-red pt-2 mb-0" *ngIf="schoolId.invalid && schoolId.touched">{{'ENTER_SCHOOL_ID' |
-                    translate }}</p>
-            </div> -->
             <div class="mb-3 pb-10">
-                <label for="academicYear">{{'ACADEMIC_YEAR' | translate}}</label>
-                <select class="form-select p-2" id="academicYear" formControlName="academicYear">
-                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_YEAR' | translate }}</option>
+                <label for="academicYear">{{'ACADEMIC_YEAR' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="academicYear" formControlName="academicYear">
+                    <option value="" disabled selected>{{'SELECT_YEAR' | translate }}</option>
                     <option *ngFor="let year of academicYearRange" [value]="year">{{year}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0" *ngIf="academicYear.invalid && academicYear.touched">
                     {{'ACADEMIC_YEAR_REQUIRED' | translate}}</p>
             </div>
             <div class="mb-3 pb-10">
-                <label for="grade">{{'GRADE' | translate}}</label>
-                <select class="form-select p-2" id="grade" formControlName="grade">
-                    <option [ngValue]="undefined" [disabled]="true">{{'SELECT_GRADE' | translate}}</option>
+                <label for="grade">{{'GRADE' | translate}}<span class="text-danger">*</span></label>
+                <select class="form-select p-2 text-truncate" id="grade" formControlName="grade">
+                    <option value="" disabled selected>{{'SELECT_GRADE' | translate}}</option>
                     <option *ngFor="let grade of grades" [value]="grade.value">{{grade.label}}</option>
                 </select>
                 <p class="text-red pt-2 mb-0" *ngIf="grade.invalid && grade.touched">{{'GRADE_REQUIRED' | translate}}
                 </p>
+            </div>
+
+            <div class="mb-3 pb-10">
+                <label for="grade">{{'ENROLLED_ON' | translate}}<span class="text-danger">*</span></label>
+                <!--<input type="month" formControlName="enrolledOn" class="form-control" id="enrolledOn"
+                    placeholder="{{'ENTER_ENROLLED_ON_DATE' | translate}}"> -->
+                <month-year-picker name="enrolledOn" formControlName="enrolledOn"></month-year-picker>
+                <p class="text-red pt-2 mb-0" *ngIf="enrolledOn.invalid && enrolledOn.touched">{{'ENTER_VALID_DATE' |
+                    translate}}</p>
             </div>
 
             <!-- <div class="mb-3 pb-10">
@@ -108,36 +168,12 @@
             </div>  -->
 
             <div class="pb-10 text-center">
-                <button type="submit" class="login-btn bg-blue-dark font-600 mt-4"
-                    [disabled]="registrationForm.invalid" (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
-                <!-- <button type="button" class="login-btn bg-blue-dark font-600 mt-4"  data-toggle="modal" data-target="#exampleModal">{{'RECEIVE_OTP' | translate}}</button> -->
+                <button type="submit" class="login-btn bg-blue-dark font-600 mt-4" [disabled]="registrationForm.invalid"
+                    (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
             </div>
         </form>
     </div>
 </div>
-
-<!-- GET OTP POPUP -->
-<div class="modal" tabindex="-1" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog otp-verify">
-        <div class="modal-content">
-            <div class="text-right">
-                <button type="button" class="btn-close text-right p-2" data-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5 class="modal-title text-center text-primary-color pb-4">{{'ENTER_OTP' | translate}}</h5>
-                <div class="input-group pb-40">
-                    <input type="text" class="form-control p-4" placeholder="{{'ENTER_OTP' | translate}}"
-                        aria-label="Recipient's username" aria-describedby="basic-addon2">
-                </div>
-            </div>
-            <div class="modal-footer justify-content-space-evenly">
-                <button type="button" class="btn btn-secondary bg-blue-dark btn-padding" data-toggle="modal"
-                    data-target="#exampleModal1" (click)="raiseInteractEvent('register')">{{'REGISTER' | translate}}</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 
 <div class="text-center" *ngIf="isLoading">
     <div class="center-loading">
