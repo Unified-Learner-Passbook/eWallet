@@ -32,5 +32,10 @@ export class ToolbarComponent implements OnInit {
       }
     };
     this.telemetryService.interact(telemetryInteract);
+    // Get the navbar collapse element
+    var navbarCollapse = document.getElementById('navbarNavAltMarkup');
+
+    // Remove the "show" class to close the navbar toggle
+    navbarCollapse.classList.remove('show');
   }
 }
