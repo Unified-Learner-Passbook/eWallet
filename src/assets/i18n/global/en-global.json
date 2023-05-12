@@ -298,12 +298,7 @@
     "ENTER_YOUR_NAME":"Enter your name",
     "NOT_COMPLETED_YOUR_KYC_PLEASE_COMPLETE_YOUR_KYC_HERE":"It seems you have not completed your KYC. Please complete your one time KYC here",
     "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA":"Invalid QR code or error while fetching data",
-    
-  
-   
     "MY_PROFILE":"My Profile",
-    
-    
     "BLOCK": "Block",
     "STATE_REQUIRED": "State is required",
     "DISTRICT_REQUIRED": "District is required",
