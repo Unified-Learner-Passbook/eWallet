@@ -298,7 +298,7 @@
     "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA":"डेटा प्राप्त करते समय अमान्य QR कोड या त्रुटि",
    
  
-    "MY_PROFILE":"मेरी प्रोफाइल"
+    "MY_PROFILE":"मेरी प्रोफाइल",
 
 
 
@@ -307,4 +307,15 @@
 
 
 
+    "BLOCK": "खंड",
+    "STATE_REQUIRED": "राज्य की आवश्यकता है",
+    "DISTRICT_REQUIRED": "जिले की आवश्यकता है",
+    "BLOCK_REQUIRED": "ब्लॉक की आवश्यकता है",
+    "SELECT_STATE": "राज्य का चयन करें",
+    "SELECT_DISTRICT": "जिला का चयन करें",
+    "SELECT_BLOCK": "ब्लॉक का चयन करें",
+    "SELECT_SCHOOL": "स्कूल का चयन करें",
+    "ENTER_PHONE_NO": "फोन नंबर दर्ज करें",
+    "ENTER_GUARDIAN_NAME": "अभिभावक का नाम दर्ज करें",
+    "ENTER_ENROLLED_ON_DATE": "पंजीकृत होने की तिथि दर्ज करें"
 }

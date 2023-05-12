@@ -20,6 +20,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   categories = [];
   isLoading = false;
   approvalModalRef: NgbModalRef;
+  showApproval = false;
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   certificatesDetails = [
@@ -46,9 +47,11 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   fetchCredentialCategories() {
     if (this.authService?.currentUser?.DID) {
-      if (this.approvalModalRef) {
-        this.approvalModalRef.close();
-      }
+      // if (this.approvalModalRef) {
+      //   this.approvalModalRef.close();
+      // }
+
+      this.showApproval = false;
       console.log("DID", this.authService.currentUser.DID);
       this.isLoading = true;
       this.credentialService.getAllCredentials().pipe(map((res: any) => {
@@ -87,12 +90,13 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
     if (!this.authService.currentUser.DID) {
-      const options: NgbModalOptions = {
-        backdrop: 'static',
-        animation: true,
-        centered: true,
-      };
-      this.approvalModalRef = this.modalService.open(this.approvalModal, options);
+      // const options: NgbModalOptions = {
+      //   // backdrop: 'static',
+      //   animation: true,
+      //   centered: true,
+      // };
+      // this.approvalModalRef = this.modalService.open(this.approvalModal, options);
+      this.showApproval = true;
       this.authService.getUserProfile().subscribe((res) => {
         this.fetchCredentialCategories();
       });

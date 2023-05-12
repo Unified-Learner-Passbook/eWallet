@@ -301,7 +301,19 @@
     
   
    
-    "MY_PROFILE":"My Profile"
+    "MY_PROFILE":"My Profile",
     
     
+    "BLOCK": "Block",
+    "STATE_REQUIRED": "State is required",
+    "DISTRICT_REQUIRED": "District is required",
+    "BLOCK_REQUIRED": "Block is required",
+    "SELECT_STATE": "Select State",
+    "SELECT_DISTRICT": "Select District",
+    "SELECT_BLOCK": "Select Block",
+    "SELECT_SCHOOL": "Select School",
+    "ENTER_PHONE_NO": "Enter Phone number",
+    "ENTER_GUARDIAN_NAME": "Enter Guardian Name",
+    "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date"
+
 }

@@ -137,6 +137,7 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
 import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certificate.pipe';
 import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.component';
 
 @NgModule({
   declarations: [
@@ -185,7 +186,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     OauthCallbackComponent,
     FilterCertificatePipe,
     EkycComponent,
-    PageNotFoundComponent
+    PageNotFoundComponent,
+    MonthYearPickerComponent
   ],
   imports: [
     BrowserModule,
