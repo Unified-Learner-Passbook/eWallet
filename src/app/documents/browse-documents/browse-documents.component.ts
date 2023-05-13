@@ -21,6 +21,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
   isLoading = false;
   approvalModalRef: NgbModalRef;
   showApproval = false;
+  isClaimRejected = false;
   @ViewChild('approvalModal') approvalModal: TemplateRef<any>;
 
   certificatesDetails = [
@@ -98,6 +99,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       // this.approvalModalRef = this.modalService.open(this.approvalModal, options);
       this.showApproval = true;
       this.authService.getUserProfile().subscribe((res) => {
+        this.isClaimRejected = res.detail.claim_status === 'rejected';
         this.fetchCredentialCategories();
       });
     }

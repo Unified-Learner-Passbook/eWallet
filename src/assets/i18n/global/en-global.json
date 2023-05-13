@@ -309,6 +309,6 @@
     "SELECT_SCHOOL": "Select School",
     "ENTER_PHONE_NO": "Enter Phone number",
     "ENTER_GUARDIAN_NAME": "Enter Guardian Name",
-    "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date"
-
+    "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date",
+    "REJECTED": "Rejected"
 }
