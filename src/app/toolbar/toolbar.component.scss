@@ -1,12 +1,9 @@
 .toolbar {
   cursor: pointer;
-
-  
 }
 
-
-.tab.active{
-  color: #3772FF;
+.tab.active {
+  color: #3772ff;
 }
 
 .tab {
@@ -17,22 +14,9 @@
   min-width: 50px;
 }
 .tab-label {
-  // margin-top: 5px;
-  // text-align: center;
-  // display: flex;
-  // justify-content: center;
-
-
-
   margin-top: 5px;
   text-align: center;
   display: flex;
   justify-content: center;
-  // white-space: nowrap;
   overflow: hidden;
-  // transition: background-color 0.1s ease-in-out;
-}
-
-.tab-label:hover {
-  background-color: #eeeeee;
 }

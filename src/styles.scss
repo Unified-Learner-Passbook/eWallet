@@ -450,36 +450,19 @@ label {
 }
 
 .toolbar {
-  // display: flex;
-  // flex-direction: row;
-  // justify-content: space-between;
-  // align-items: center;
-  // padding: 21px 41.92px 33.536px;
-  // gap: 41.92px;
-  // position: fixed;
-  // height: 79.69px;
-  // left: 0px;
-  // right: 0px;
-  // bottom: -12px;
-  // //  background: linear-gradient(217.32deg, #fcfcfd -0.01%, rgba(252, 252, 253, 0.6) 100%);
-  // //  background: linear-gradient(217.32deg, #323232 -0.01%, rgba(252, 252, 253, 0.6) 100%);
-  // background: var(--cardBackground) !important;
-  // backdrop-filter: blur(16.768px);
-
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   padding: 8px;
   box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
-  /* gap: 41.92px; */
   position: fixed;
   min-height: 60px;
-  left: 0px;
-  right: 0px;
+  left: 0;
+  right: 0;
   overflow-x: auto;
   width: 100%;
-  bottom: 0px;
+  bottom: 0;
   background: var(--cardBackground) !important;
   -webkit-backdrop-filter: blur(16.768px);
   backdrop-filter: blur(16.768px);
