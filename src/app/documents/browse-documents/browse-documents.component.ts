@@ -101,7 +101,10 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
       this.authService.getUserProfile().subscribe((res) => {
         this.isClaimRejected = res.detail.claim_status === 'rejected';
         this.showApproval = res.detail.claim_status !== 'approved';
+        this.isLoading = false;
         this.fetchCredentialCategories();
+      }, error => {
+        this.isLoading = false;
       });
     }
     this.raiseImpressionEvent();
