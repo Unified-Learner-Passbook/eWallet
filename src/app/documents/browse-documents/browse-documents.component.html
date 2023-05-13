@@ -63,17 +63,15 @@
         </div>
     </div>
 
-    <div class="card">
-        <div class="card-body justify-content-center" [ngClass]="{'alert alert-danger': isClaimRejected}" [attr.role]="isClaimRejected ? 'alert' : ''">
-            <div *ngIf="showApproval">
-                <h5 class="modal-title text-primary-color pb-4 pt-3" *ngIf="!isClaimRejected">{{'REGISTRATION_APPROVAL' | translate}}
-                    <br>
-                    <span *ngIf="!isClaimRejected">{{'PENDING' | translate}} !</span>
-                    <span *ngIf="isClaimRejected">{{'REJECTED' | translate}} !</span>
-                </h5>
-                <div>
-                    {{'CONTACT_YOUR_SCHOOL_APPROVAL' | translate}}<br><br>
-                </div>
+    <div *ngIf="showApproval" [ngClass]="isClaimRejected ? 'alert alert-danger': 'alert alert-info'" [attr.role]="isClaimRejected ? 'alert' : ''">
+        <div>
+            <h5 class="alert-heading pb-4 pt-3 ">{{'REGISTRATION_APPROVAL' | translate}}
+                <br>
+                <span *ngIf="!isClaimRejected">{{'PENDING' | translate}} !</span>
+                <span *ngIf="isClaimRejected">{{'REJECTED' | translate}} !</span>
+            </h5>
+            <div>
+                {{'CONTACT_YOUR_SCHOOL_APPROVAL' | translate}}<br><br>
             </div>
         </div>
     </div>
