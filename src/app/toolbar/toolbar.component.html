@@ -1,14 +1,17 @@
 <div class="toolbar">
-  <div (click)="raiseInteractEvent('home-tab')" class="tab" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-    <i class="fa fa-home fs-18" [routerLink]="['/home']" ></i>
+  <div (click)="raiseInteractEvent('home-tab')" class="tab" [routerLink]="['/home']" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">
+    <i class="fa fa-home fs-18"></i>
     <div class="tab-label"> {{'HOME' | translate}}</div>
   </div>
-  <div (click)="raiseInteractEvent('search-tab')" class="tab" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-    <i class="fa fa-search fs-18" [routerLink]="['/search-certificates']" ></i>
+  <div (click)="raiseInteractEvent('search-tab')" class="tab" [routerLink]="['/search-certificates']"
+    routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+    <i class="fa fa-search fs-18"></i>
     <div class="tab-label"> {{'SEARCH' | translate}}</div>
   </div>
-  <div (click)="raiseInteractEvent('scan-code-tab')" class="tab" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
-    <i class="fa fa-qrcode fs-18" [routerLink]="['/scan-code']" ></i>
+  <div (click)="raiseInteractEvent('scan-code-tab')" class="tab" [routerLink]="['/scan-code']" routerLinkActive="active"
+    [routerLinkActiveOptions]="{exact:true}">
+    <i class="fa fa-qrcode fs-18"></i>
     <div class="tab-label"> {{'SCAN_QR_CODE' | translate}}</div>
   </div>
   <div (click)="raiseInteractEvent('account-tab')" class="tab">
