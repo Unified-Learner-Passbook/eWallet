@@ -162,7 +162,7 @@
     "SAVE": "Save",
     "NO_RECORDS_FOUND": "No Records Found!",
     "VERIFY_A_CERTIFICATE": "Verify a certificate",
-    "SCAN_QR_CODE": "Scan",
+    "SCAN": "Scan",
     "SCAN_QR_CODE_SUB": "Use your device camera to scan QR code",
     "STOP_SCANNER": "StopScanner",
     "THIS_CERTIFICATE_IS_VALID": "This Certificate is valid",
@@ -312,5 +312,5 @@
     "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date",
     "REJECTED": "Rejected",
     "Invalid_QR-Code": "Invalid QR-Code",
-    "SCAN":"Scan QR Code"
+    "SCAN_QR_CODE":"Scan QR Code"
 }
