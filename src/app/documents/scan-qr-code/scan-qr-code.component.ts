@@ -40,8 +40,6 @@ export class ScanQrCodeComponent implements OnInit {
         this.entity = params['entity'];
       }
     })
-
-    this.scanSuccessHandler('http://64.227.185.154:3002/credentials/did:ulp:4fb33489-c75b-4c7sd0-b514-240f97d6ded8/verify');
   }
 
   scanSuccessHandler(event: any) {
