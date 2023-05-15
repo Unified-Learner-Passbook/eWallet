@@ -138,6 +138,7 @@ import { FilterCertificatePipe } from './pipes/filter-certificate/filter-certifi
 import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.component';
+import { SettingsComponent } from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -187,7 +188,8 @@ import { MonthYearPickerComponent } from './month-year-picker/month-year-picker.
     FilterCertificatePipe,
     EkycComponent,
     PageNotFoundComponent,
-    MonthYearPickerComponent
+    MonthYearPickerComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,

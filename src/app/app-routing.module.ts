@@ -33,6 +33,7 @@ import { OauthCallbackComponent } from './oauth-callback/oauth-callback.componen
 import { SearchCertificatesComponent } from './search-certificates/search-certificates.component';
 import { EkycComponent } from './ekyc/ekyc.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { SettingsComponent } from './settings/settings.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,16 @@ const routes: Routes = [
     data: {
       telemetry: {
         env: 'sign-in', pageid: 'digilocker-callback', type: 'view', subtype: 'scroll'
+      }
+    }
+  },
+  {
+    path: 'settings',
+    component: SettingsComponent,
+    data: {
+      showToolbar: true,
+      telemetry: {
+        env: 'settings', pageid: 'settings', type: 'view', subtype: 'scroll'
       }
     }
   },
