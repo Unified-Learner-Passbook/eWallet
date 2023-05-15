@@ -111,7 +111,7 @@ export class AuthService {
         if (res?.result?.DID) {
           localStorage.setItem('currentUser', JSON.stringify(res.result));
         }
-        return res.result;
+        return res;
       })
     );
   }

@@ -161,7 +161,7 @@
     "SAVE": "सहेजें",
     "NO_RECORDS_FOUND": "कोई रिकॉर्ड नहीं मिला!",
     "VERIFY_A_CERTIFICATE": "एक प्रमाणपत्र सत्यापित करें",
-    "SCAN_QR_CODE": "QR कोड स्कैन करें",
+    "SCAN_QR_CODE": "स्कैन",
     "SCAN_QR_CODE_SUB": "QR कोड स्कैन करने के लिए अपने डिवाइस कैमरे का उपयोग करें",
     "STOP_SCANNER": "StopScanner",
     "THIS_CERTIFICATE_IS_VALID": "यह प्रमाणपत्र मान्य है",
@@ -296,7 +296,7 @@
     "ENTER_YOUR_NAME":"अपना नाम दर्ज करें",
     "NOT_COMPLETED_YOUR_KYC_PLEASE_COMPLETE_YOUR_KYC_HERE":"ऐसा लगता है कि आपने अपना केवाईसी पूरा नहीं किया है। कृपया अपना एक बार का केवाईसी यहां पूरा करें",
     "INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA":"डेटा प्राप्त करते समय अमान्य QR कोड या त्रुटि",
-    "MY_PROFILE":"मेरी प्रोफाइल",
+    "MY_PROFILE":"प्रोफाइल",
     "BLOCK": "खंड",
     "STATE_REQUIRED": "राज्य की आवश्यकता है",
     "DISTRICT_REQUIRED": "जिले की आवश्यकता है",
@@ -307,5 +307,7 @@
     "SELECT_SCHOOL": "स्कूल का चयन करें",
     "ENTER_PHONE_NO": "फोन नंबर दर्ज करें",
     "ENTER_GUARDIAN_NAME": "अभिभावक का नाम दर्ज करें",
-    "ENTER_ENROLLED_ON_DATE": "पंजीकृत होने की तिथि दर्ज करें"
+    "ENTER_ENROLLED_ON_DATE": "पंजीकृत होने की तिथि दर्ज करें",
+    "REJECTED": "अस्वीकार कर दिया",
+    "Invalid_QR-Code": "अमान्य क्यूआर-कोड"
 }
