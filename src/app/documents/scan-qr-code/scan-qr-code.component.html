@@ -5,6 +5,7 @@
     <app-global-header></app-global-header>
 </div> -->
 <img src="assets/images/camera.png" alt="" class="img-center">
+<h1 class="text-center">{{'SCAN'|translate}}</h1>
 
 <div class="scanner">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>

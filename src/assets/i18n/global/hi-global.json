@@ -309,5 +309,7 @@
     "ENTER_GUARDIAN_NAME": "अभिभावक का नाम दर्ज करें",
     "ENTER_ENROLLED_ON_DATE": "पंजीकृत होने की तिथि दर्ज करें",
     "REJECTED": "अस्वीकार कर दिया",
-    "Invalid_QR-Code": "अमान्य क्यूआर-कोड"
+    "Invalid_QR-Code": "अमान्य क्यूआर-कोड",
+    "SCAN":"स्कैन क्यू आर कोड"
+
 }

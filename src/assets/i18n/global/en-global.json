@@ -311,5 +311,6 @@
     "ENTER_GUARDIAN_NAME": "Enter Guardian Name",
     "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date",
     "REJECTED": "Rejected",
-    "Invalid_QR-Code": "Invalid QR-Code"
+    "Invalid_QR-Code": "Invalid QR-Code",
+    "SCAN":"Scan QR Code"
 }
