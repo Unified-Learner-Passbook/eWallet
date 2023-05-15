@@ -9,14 +9,10 @@
 @font-face {
   font-family: "Gilroy-Bold";
   src: url("./assets/fonts/Gilroy-Black.ttf") format("embedded-opentype"),
-    /* Internet Explorer */ url("./assets/fonts/Gilroy-Bold.ttf")
-      format("woff2"),
-    /* Super Modern Browsers */ url("./assets/fonts/Gilroy-ExtraBold.ttf")
-      format("woff"),
-    /* Pretty Modern Browsers */ url("./assets/fonts/Gilroy-Medium.ttf")
-      format("truetype"),
-    /* Safari, Android, iOS */ url("./assets/fonts/Gilroy-Heavy.ttf")
-      format("svg"); /* Legacy iOS */
+    /* Internet Explorer */ url("./assets/fonts/Gilroy-Bold.ttf") format("woff2"),
+    /* Super Modern Browsers */ url("./assets/fonts/Gilroy-ExtraBold.ttf") format("woff"),
+    /* Pretty Modern Browsers */ url("./assets/fonts/Gilroy-Medium.ttf") format("truetype"),
+    /* Safari, Android, iOS */ url("./assets/fonts/Gilroy-Heavy.ttf") format("svg"); /* Legacy iOS */
 }
 
 /* Importing Bootstrap SCSS file. */
@@ -24,52 +20,50 @@
 @import "~bootstrap/scss/bootstrap";
 @import "~@angular/material/prebuilt-themes/deeppurple-amber.css";
 
-
 /* PK changes for - theme support */
 :root {
-  
-   :default{
-     --primaryColor:#060461;
-     --secondaryColor:#4A227C;
-      --cardBackground:#FFFFFF;
-      --navLabelColor:#B275FF ;
-     --headerColor:#4A227C;
-     --headerLinkColor:#F4ECFF;
-     --primaryTextColor:#494949;
-      --secondaryTextColor:#8D9091;
-      --btnLanguageColor:#5526F5;
-      --headerPrimaryColor:#1B1818;
-      --logoHeadlineColor:#79787C;
-      --logoSecondaryTextColor:#EE8908;
-      --menuIconColor:#5526F5;
-      --btnPrimaryColor:#060461;
-     --headingColor:#060461;
-      --subheadingColor:#212529;
-     --searchBoxBorder:#EFEFEF;
-      --hamBackground:#F6F8FC;
-      --bgPrimaryColor:#a4a8ff3d;
-      --bgSecondaryColor:#ffa4e042;
-   }
-  dark{
-      --primaryColor:#060461;
-      --secondaryColor:#F07D00;
-      --cardBackground:#323232;
-      --navLabelColor:#FFB96C;
-      --headerColor:#313131;
-      --primaryTextColor:#FFFFFF;
-      --secondaryTextColor:#C3C3C3;
-      --btnLanguageColor:#FBFBFB;
-      --headerPrimaryColor:#FFFFFF;
-      --logoHeadlineColor:#FFFFFF;
-      --logoSecondaryTextColor:#C3C3C3;
-      --menuIconColor:#C3C3C3;
-      --btnPrimaryColor:#323232;
-      --headingColor:#FFFFFF;
-      --subheadingColor:#C3C3C3;
-      --searchBoxBorder:#212529;
-      --hamBackground:#080808;
-      --bgPrimaryColor:#000000;
-      --bgSecondaryColor:#000000;
+  :default {
+    --primaryColor: #060461;
+    --secondaryColor: #4a227c;
+    --cardBackground: #ffffff;
+    --navLabelColor: #b275ff;
+    --headerColor: #4a227c;
+    --headerLinkColor: #f4ecff;
+    --primaryTextColor: #494949;
+    --secondaryTextColor: #8d9091;
+    --btnLanguageColor: #5526f5;
+    --headerPrimaryColor: #1b1818;
+    --logoHeadlineColor: #79787c;
+    --logoSecondaryTextColor: #ee8908;
+    --menuIconColor: #5526f5;
+    --btnPrimaryColor: #060461;
+    --headingColor: #060461;
+    --subheadingColor: #212529;
+    --searchBoxBorder: #efefef;
+    --hamBackground: #f6f8fc;
+    --bgPrimaryColor: #a4a8ff3d;
+    --bgSecondaryColor: #ffa4e042;
+  }
+  dark {
+    --primaryColor: #060461;
+    --secondaryColor: #f07d00;
+    --cardBackground: #323232;
+    --navLabelColor: #ffb96c;
+    --headerColor: #313131;
+    --primaryTextColor: #ffffff;
+    --secondaryTextColor: #c3c3c3;
+    --btnLanguageColor: #fbfbfb;
+    --headerPrimaryColor: #ffffff;
+    --logoHeadlineColor: #ffffff;
+    --logoSecondaryTextColor: #c3c3c3;
+    --menuIconColor: #c3c3c3;
+    --btnPrimaryColor: #323232;
+    --headingColor: #ffffff;
+    --subheadingColor: #c3c3c3;
+    --searchBoxBorder: #212529;
+    --hamBackground: #080808;
+    --bgPrimaryColor: #000000;
+    --bgSecondaryColor: #000000;
   }
 }
 
@@ -181,7 +175,7 @@ $primary-color-dark: #000;
 
 html,
 body {
-   height: 100%;
+  height: 100%;
 }
 
 body {
@@ -460,16 +454,17 @@ label {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 21px 41.92px 33.536px;
-  gap: 41.92px;
+  padding: 8px;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
   position: fixed;
-  height: 79.69px;
-  left: 0px;
-  right: 0px;
-  bottom: -12px;
-  //  background: linear-gradient(217.32deg, #fcfcfd -0.01%, rgba(252, 252, 253, 0.6) 100%);
-  //  background: linear-gradient(217.32deg, #323232 -0.01%, rgba(252, 252, 253, 0.6) 100%);
+  min-height: 60px;
+  left: 0;
+  right: 0;
+  overflow-x: auto;
+  width: 100%;
+  bottom: 0;
   background: var(--cardBackground) !important;
+  -webkit-backdrop-filter: blur(16.768px);
   backdrop-filter: blur(16.768px);
 }
 /* new CSS */
@@ -566,11 +561,7 @@ label {
   margin-top: 20px !important;
 }
 .linear-bg {
-  background: linear-gradient(
-    90deg,
-    rgba(255, 193, 234, 0.48) 0%,
-    rgba(164, 168, 255, 0.21) 100%
-  );
+  background: linear-gradient(90deg, rgba(255, 193, 234, 0.48) 0%, rgba(164, 168, 255, 0.21) 100%);
 }
 .text-gray-0 {
   // color: #79787c;
@@ -585,7 +576,7 @@ label {
 }
 .text-blue-shade0 {
   // color: #5526f5 !important;
-   color: var(--btnLanguageColor) !important;
+  color: var(--btnLanguageColor) !important;
   // color: var(--btnPrimaryColor) !important;
 }
 .head-title {
@@ -627,7 +618,7 @@ label {
   }
 }
 .login-btn {
-   background: #1e232c;
+  background: #1e232c;
   border-radius: 7.60331px;
   width: 88%;
   color: #fff;
@@ -647,9 +638,9 @@ label {
   border: none;
 }
 .bg-blue-dark {
-    // background: var(--primaryColor) !important;
-      background:var(--btnPrimaryColor) !important;
-    //  background-color:#060461;
+  // background: var(--primaryColor) !important;
+  background: var(--btnPrimaryColor) !important;
+  //  background-color:#060461;
 }
 .heading2 {
   font-weight: 600;
@@ -691,6 +682,9 @@ label {
 }
 .btn-padding {
   padding: 8px 55px !important;
+}
+.fs-18 {
+  font-size: 18px;
 }
 .fs-20 {
   font-size: 20px;
@@ -763,10 +757,7 @@ ngx-extended-pdf-viewer .pdfViewer .page {
   width: 100%;
   height: 100%;
   background: radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
-  background: -webkit-radial-gradient(
-    rgba(20, 20, 20, 0.8),
-    rgba(0, 0, 0, 0.8)
-  );
+  background: -webkit-radial-gradient(rgba(20, 20, 20, 0.8), rgba(0, 0, 0, 0.8));
 }
 .spinner-border {
   width: 5rem;
@@ -789,6 +780,10 @@ ngb-modal-window {
   .modal-content {
     border-radius: 17px;
   }
+}
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 // .display-flex {

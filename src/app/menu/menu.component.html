@@ -1,20 +1,13 @@
-<button
-  class="navbar-toggler p-0 m-0 custom-toggler mr-2"
- 
-  type="button"
-  data-toggle="collapse"
-  data-target="#navbarNavAltMarkup"
-  aria-controls="navbarNavAltMarkup"
-  aria-expanded="false"
-  aria-label="Toggle navigation"
->
+<button class="navbar-toggler p-0 m-0 custom-toggler mr-2" type="button" data-toggle="collapse"
+  data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false"
+  aria-label="Toggle navigation">
   <i class="fa fa-bars toggler"></i>
   <!-- <span class="navbar-toggler-icon"></span> -->
 </button>
 <div class="ham-menu">
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <ul class="navbar-nav nav-tabs-line mb-2 mb-lg-0">
-      <li class="nav-item">
+      <li class="nav-item cursor-pointer">
         <div class="float-left pr-10">
           <i class="fa fa-user float-left fs-26" aria-hidden="true"></i>
         </div>
@@ -25,7 +18,7 @@
           </div>
         </div>
       </li>
-      <li class="nav-item" >
+      <li class="nav-item cursor-pointer">
         <div class="float-left pr-10">
           <i class="fa fa-shield-alt float-left fs-26" aria-hidden="true"></i>
         </div>
@@ -36,7 +29,7 @@
           </div>
         </div>
       </li>
-      <li class="nav-item dropdown" (click)="showLanguageModal()">
+      <li class="nav-item dropdown cursor-pointer" (click)="showLanguageModal()">
         <div class="float-left pr-10">
           <i class="fa fa-globe float-left fs-26" aria-hidden="true"></i>
         </div>
@@ -52,7 +45,7 @@
           <div class="fs-14 text-gray-100">Set username and password</div>
         </div>
       </li> -->
-      <li class="nav-item">
+      <li class="nav-item cursor-pointer">
         <div class="float-left pr-10">
           <i class="fa fa-headset float-left fs-26" aria-hidden="true"></i>
         </div>
@@ -70,7 +63,7 @@
           <div class="fs-14 text-gray-100">{{'NETWORK_USAGE_AUTO_DOWNLOAD' | translate}}</div>
         </div>
       </li> -->
-      <li class="nav-item" (click)="logOut()">
+      <li class="nav-item cursor-pointer" (click)="logOut()">
         <div class="float-left pr-10">
           <i class="fa fa-sign-out-alt float-left fs-26" aria-hidden="true"></i>
         </div>
@@ -85,15 +78,9 @@
   <div class="modal-content">
     <div class="modal-body fs-14">
       <div class="text-center form-group fs-20">
-        <label for="language" class="fs-16">{{
-          "CHOOSE_LANGUAGE" | translate
-        }}</label>
+        <label for="language" class="fs-16">{{"CHOOSE_LANGUAGE" | translate}}</label>
         <div class="d-flex justify-content-space-evenly pt-3">
-          <a
-            class="langauge-bx"
-            *ngFor="let language of languages"
-            (click)="changeLanguage(language.code)"
-          >
+          <a class="langauge-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)">
             <div class="fs-16">
               {{ language.name }}
             </div>
