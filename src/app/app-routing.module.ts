@@ -53,7 +53,8 @@ const routes: Routes = [
       telemetry: {
         env: 'settings', pageid: 'settings', type: 'view', subtype: 'scroll'
       }
-    }
+    },
+    canActivate: [AuthenticationGuard]
   },
   {
     path: '',
