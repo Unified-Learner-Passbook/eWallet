@@ -310,5 +310,6 @@
     "ENTER_PHONE_NO": "Enter Phone number",
     "ENTER_GUARDIAN_NAME": "Enter Guardian Name",
     "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date",
-    "REJECTED": "Rejected"
+    "REJECTED": "Rejected",
+    "Invalid_QR-Code": "Invalid QR-Code"
 }
