@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import * as JSZip from 'jszip';
 import { concatMap, map } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { IImpressionEventInput } from 'src/app/services/telemetry/telemetry-inte
 import { TelemetryService } from 'src/app/services/telemetry/telemetry.service';
 import { ToastMessageService } from 'src/app/services/toast-message/toast-message.service';
 import { CredentialService } from '../../services/credential/credential.service';
+import { QuarComponent } from '@altack/quar';
 
 @Component({
   selector: 'app-scan-qr-code',
@@ -19,6 +20,7 @@ export class ScanQrCodeComponent implements OnInit {
   qrString: string;
   entity: any;
   model;
+  @ViewChild(QuarComponent) private quar: QuarComponent;
   constructor(
     private readonly generalService: GeneralService,
     private readonly route: ActivatedRoute,
@@ -67,18 +69,23 @@ export class ScanQrCodeComponent implements OnInit {
             this.loader = false;
             this.invalidQRCode = true;
             this.toastService.error("", this.generalService.translateString('INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA'));
+            this.restartScanning();
           });
         } else {
           this.loader = false;
           this.invalidQRCode = true;
+          this.restartScanning();
         }
       } catch (error) {
         this.loader = false;
         this.invalidQRCode = true;
         this.toastService.error("", this.generalService.translateString('INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA'));
+        this.restartScanning();
       }
     }
   }
+
+  restartScanning() { this.quar.resumeScanner(); }
 
   onError(error) {
     console.error(error)
