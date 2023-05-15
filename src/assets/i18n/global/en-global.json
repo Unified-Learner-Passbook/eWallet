@@ -162,7 +162,7 @@
     "SAVE": "Save",
     "NO_RECORDS_FOUND": "No Records Found!",
     "VERIFY_A_CERTIFICATE": "Verify a certificate",
-    "SCAN_QR_CODE": "Scan",
+    "SCAN": "Scan",
     "SCAN_QR_CODE_SUB": "Use your device camera to scan QR code",
     "STOP_SCANNER": "StopScanner",
     "THIS_CERTIFICATE_IS_VALID": "This Certificate is valid",
@@ -313,5 +313,6 @@
     "REJECTED": "Rejected",
     "Invalid_QR-Code": "Invalid QR-Code",
     "SELECT_APP_LANGUAGE": "Select App Language",
-    "RETRY_SCAN": "Retry Scan"
+    "RETRY_SCAN": "Retry Scan",
+    "SCAN_QR_CODE":"Scan QR Code"
 }

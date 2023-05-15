@@ -161,7 +161,7 @@
     "SAVE": "सहेजें",
     "NO_RECORDS_FOUND": "कोई रिकॉर्ड नहीं मिला!",
     "VERIFY_A_CERTIFICATE": "एक प्रमाणपत्र सत्यापित करें",
-    "SCAN_QR_CODE": "स्कैन",
+    "SCAN": "स्कैन",
     "SCAN_QR_CODE_SUB": "QR कोड स्कैन करने के लिए अपने डिवाइस कैमरे का उपयोग करें",
     "STOP_SCANNER": "StopScanner",
     "THIS_CERTIFICATE_IS_VALID": "यह प्रमाणपत्र मान्य है",
@@ -311,5 +311,7 @@
     "REJECTED": "अस्वीकार कर दिया",
     "Invalid_QR-Code": "अमान्य क्यूआर-कोड",
     "SELECT_APP_LANGUAGE": "एप्लिकेशन भाषा का चयन करें",
-    "RETRY_SCAN": "स्कैन पुन: प्रयास करें"
+    "RETRY_SCAN": "स्कैन पुन: प्रयास करें",
+    "SCAN_QR_CODE":"स्कैन क्यू आर कोड"
+
 }

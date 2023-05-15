@@ -1,4 +1,5 @@
-<img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center" />
+<img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center">
+<h1 class="text-align">{{'SCAN_QR_CODE'|translate}}</h1>
 
 <div class="scanner" *ngIf="!isScanCompleted">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
