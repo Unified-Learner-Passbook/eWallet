@@ -22,7 +22,7 @@ export class SettingsComponent implements OnInit {
   ELOCKER_THEME: string;
   @ViewChild('languageSwitchModal') languageSwitchModal: TemplateRef<any>;
   constructor(
-    private readonly authService: AuthService,
+    public readonly authService: AuthService,
     private readonly telemetryService: TelemetryService,
     private readonly modalService: NgbModal,
     private readonly generalService: GeneralService,
