@@ -19,7 +19,6 @@ export class CredentialService {
     private readonly authService: AuthService
   ) { 
     this.baseUrl = environment.baseUrl;
-
   }
 
   private findSchema(schemaId: string) {
@@ -84,5 +83,15 @@ export class CredentialService {
         return of([]);
       })
     );
+  }
+
+  /**
+   * Get Credential by credential Id
+   * @param credentialId 
+   * @returns 
+   */
+  getCredentialById(credentialId: string): Observable<any> {
+    const payload = { url: `${this.baseUrl}/v1/credentials/get/${credentialId}` };
+    return this.dataService.get(payload);
   }
 }

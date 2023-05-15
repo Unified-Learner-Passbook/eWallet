@@ -312,5 +312,6 @@
     "ENTER_ENROLLED_ON_DATE": "Enter Enrolled On date",
     "REJECTED": "Rejected",
     "Invalid_QR-Code": "Invalid QR-Code",
-    "SELECT_APP_LANGUAGE": "Select App Language"
+    "SELECT_APP_LANGUAGE": "Select App Language",
+    "RETRY_SCAN": "Retry Scan"
 }

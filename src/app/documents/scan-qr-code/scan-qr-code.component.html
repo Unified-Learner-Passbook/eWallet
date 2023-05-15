@@ -1,23 +1,26 @@
-<!-- <h6 class="font-weight-bold mt-3 ml-3">
-    <i onClick="history.go(-1); return false;" class="fas fa-arrow-left mr-2" aria-hidden="true"></i>
-</h6> -->
-<!-- <div class="container text-center pb-0 mt-20 wallet">
-    <app-global-header></app-global-header>
-</div> -->
-<img src="assets/images/camera.png" alt="" class="img-center">
+<img src="assets/images/camera.png" *ngIf="!isScanCompleted" alt="" class="img-center" />
 
-<div class="scanner">
+<div class="scanner" *ngIf="!isScanCompleted">
     <quar-scanner (scanSuccess)="scanSuccessHandler($event)" (scanError)="onError($event)"></quar-scanner>
 </div>
-<div class="text-center mt-5">
+<div class="text-center mt-5" *ngIf="false">
     <img src="assets/images/flash.png" alt="" class="pr-4">
     <img src="assets/images/frontcamera.png" alt="">
 </div>
-<!-- <h5>{{qrString}}</h5> -->
-<div class="scan-result">
-    <div *ngIf="loader" class="d-flex justify-content-center">
+<div class="scan-result" *ngIf="loader">
+    <div class="d-flex justify-content-center">
         <div class="spinner-border">
             <span class="sr-only">{{'LOADING'|translate}}</span>
         </div>
+    </div>
+</div>
+
+<div class="h-100 d-flex align-items-center justify-content-center flex-column" *ngIf="invalidQRCode">
+    <div class="alert alert-danger" role="alert">
+        <h4 class="alert-heading">{{'Invalid_QR-Code' | translate}}</h4>
+        <p>Please scan valid QR Code</p>
+    </div>
+    <div>
+        <button type="button" class="btn btn-secondary" (click)="scanAgain()">{{'RETRY_SCAN' | translate}}</button>
     </div>
 </div>
