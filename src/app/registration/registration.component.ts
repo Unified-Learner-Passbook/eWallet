@@ -29,6 +29,7 @@ export class RegistrationComponent implements OnInit {
   isLoading = false;
   isAadharVerified = false;
   aadhaarToken: string;
+  schoolCount: number = 1;
 
   stateList: IState[];
   districtList: IDistrict[];
@@ -156,15 +157,37 @@ export class RegistrationComponent implements OnInit {
 
     this.isLoading = true;
 
+    // const payload = {
+    //   "regionType": "2",
+    //   "regionCd": this.registrationForm.controls.district.value,
+    //   "sortBy": "schoolName"
+    // }
+    // this.authService.getSchoolList(payload).subscribe((res) => {
+    //   this.isLoading = false;
+    //   if (res.status) {
+    //     this.schoolList = res.data.pagingContent.filter(item => item.eduBlockCode === this.registrationForm.controls.block.value);
+    //   }
+    // }, error => {
+    //   this.isLoading = false;
+    // });
+    this.getSchools();
+  }
+
+  getSchools() {
     const payload = {
       "regionType": "2",
       "regionCd": this.registrationForm.controls.district.value,
-      "sortBy": "schoolName"
+      "sortBy": "schoolName",
+      "pageSize": "500",
+      "pageNo": this.schoolCount
     }
     this.authService.getSchoolList(payload).subscribe((res) => {
-      this.isLoading = false;
       if (res.status) {
-        this.schoolList = res.data.pagingContent.filter(item => item.eduBlockCode === this.registrationForm.controls.block.value);
+        this.schoolList = [...this.schoolList, ...res.data.pagingContent.filter(item => item.eduBlockCode === this.registrationForm.controls.block.value)];
+        this.schoolCount++;
+        this.getSchools();
+      } else {
+        this.isLoading = false;
       }
     }, error => {
       this.isLoading = false;
@@ -197,11 +220,11 @@ export class RegistrationComponent implements OnInit {
     }
   }
 
-  getSchools() {
-    this.generalService.getData(`${this.baseUrl}/v1/sso/udise/school/list`, true).subscribe((res) => {
-      this.schoolList = res;
-    });
-  }
+  // getSchools() {
+  //   this.generalService.getData(`${this.baseUrl}/v1/sso/udise/school/list`, true).subscribe((res) => {
+  //     this.schoolList = res;
+  //   });
+  // }
 
   get aadhar() {
     return this.registrationForm.get('aadhar');
