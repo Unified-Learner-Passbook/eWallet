@@ -157,20 +157,20 @@ export class RegistrationComponent implements OnInit {
 
     this.isLoading = true;
 
-    // const payload = {
-    //   "regionType": "2",
-    //   "regionCd": this.registrationForm.controls.district.value,
-    //   "sortBy": "schoolName"
-    // }
-    // this.authService.getSchoolList(payload).subscribe((res) => {
-    //   this.isLoading = false;
-    //   if (res.status) {
-    //     this.schoolList = res.data.pagingContent.filter(item => item.eduBlockCode === this.registrationForm.controls.block.value);
-    //   }
-    // }, error => {
-    //   this.isLoading = false;
-    // });
-    this.getSchools();
+    const payload = {
+      "regionType": "2",
+      "regionCd": this.registrationForm.controls.district.value,
+      "sortBy": "schoolName"
+    }
+    this.authService.getSchoolList(payload).subscribe((res) => {
+      this.isLoading = false;
+      if (res.status) {
+        this.schoolList = res.data.pagingContent.filter(item => item.eduBlockCode === this.registrationForm.controls.block.value);
+      }
+    }, error => {
+      this.isLoading = false;
+    });
+    // this.getSchools();
   }
 
   getSchools() {
