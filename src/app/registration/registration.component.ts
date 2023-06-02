@@ -156,7 +156,7 @@ export class RegistrationComponent implements OnInit {
     this.schoolList = [];
     this.registrationForm.controls.school.setValue('');
 
-    this.isLoading = true;
+    // this.isLoading = true;
 
     const payload = {
       "regionType": "2",
