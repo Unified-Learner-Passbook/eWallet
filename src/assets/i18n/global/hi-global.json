@@ -310,6 +310,8 @@
     "ENTER_ENROLLED_ON_DATE": "पंजीकृत होने की तिथि दर्ज करें",
     "REJECTED": "अस्वीकार कर दिया",
     "Invalid_QR-Code": "अमान्य क्यूआर-कोड",
+    "SELECT_APP_LANGUAGE": "एप्लिकेशन भाषा का चयन करें",
+    "RETRY_SCAN": "स्कैन पुन: प्रयास करें",
     "SCAN_QR_CODE":"स्कैन क्यू आर कोड"
 
 }

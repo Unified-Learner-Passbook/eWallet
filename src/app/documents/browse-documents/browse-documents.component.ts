@@ -104,6 +104,7 @@ export class BrowseDocumentsComponent implements OnInit, AfterViewInit {
         this.isLoading = false;
         this.fetchCredentialCategories();
       }, error => {
+        this.showApproval = true;
         this.isLoading = false;
       });
     }

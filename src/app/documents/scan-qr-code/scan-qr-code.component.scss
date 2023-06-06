@@ -7,18 +7,43 @@
     max-width: 300px;
     background: #dbdbdb;
     height: 400px;
-    border: 2px dashed #4e4e4f;
-    border-style: dashed;
+
+    --b: 5px; /* thickness of the border */
+    --c: black; /* color of the border */
+    --w: 50px; /* width of border */
+
+    border: var(--b) dashed #0000; /* space for the border */
+    // border: 2px dashed #ccc;
+    --_g: #0000 90deg, var(--c) 0;
+    --_p: var(--w) var(--w) border-box no-repeat;
+    background: conic-gradient(from 90deg at top var(--b) left var(--b), var(--_g)) 0 0 / var(--_p),
+        conic-gradient(from 180deg at top var(--b) right var(--b), var(--_g)) 100% 0 / var(--_p),
+        conic-gradient(from 0deg at bottom var(--b) left var(--b), var(--_g)) 0 100% / var(--_p),
+        conic-gradient(from -90deg at bottom var(--b) right var(--b), var(--_g)) 100% 100% / var(--_p);
+    // background-image: url("data:image/svg+xml,%3csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3e%3crect width='100%25' height='100%25' fill='none' stroke='%23333' stroke-width='2' stroke-dasharray='15%2c 10' stroke-dashoffset='0' stroke-linecap='square'/%3e%3c/svg%3e");
 }
-.img-center{
+
+.scanner:after {
+    content: "";
     position: absolute;
-    top: 248px;
-    left: 43%;  
+    left: -1px;
+    top: -1px;
+    right: -1px;
+    bottom: -1px;
+    border: 1px solid #f4fff3;
+    pointer-events: none;
 }
-h1.text-align{
-    color: #5526f5;
+.img-center {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+h4.text-align {
+    color: var(--primaryColor);
     font-size: 30px;
-    font-family: "Lato", sans-serif;
     font-weight: 600;
     margin-top: 20px;
     text-align: center;

@@ -20,6 +20,7 @@ export class ScanQrCodeComponent implements OnInit {
   qrString: string;
   entity: any;
   model;
+  isScanCompleted = false;
   @ViewChild(QuarComponent) private quar: QuarComponent;
   constructor(
     private readonly generalService: GeneralService,
@@ -31,6 +32,7 @@ export class ScanQrCodeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.isScanCompleted = false;
     this.route.params.subscribe(params => {
       console.log(params);
 
@@ -43,34 +45,51 @@ export class ScanQrCodeComponent implements OnInit {
   scanSuccessHandler(event: any) {
     this.loader = true;
     this.qrString = event;
+    this.isScanCompleted = true;
     console.log("event", event);
     if (event) {
       try {
-        const credential: any = JSON.parse(event);
-        if (credential?.id) {
-          this.credentialService.getCredentialSchemaId(credential.id).pipe(
-            concatMap((res: any) => {
+        let url: string;
+        let credentialId;
+        if (this.qrString.startsWith('http://') || this.qrString.startsWith('https://')) {
+          url = new URL(this.qrString).pathname;
+          const part = url.split('/');
+          credentialId = part[2];
+          console.log("CredentialId", credentialId);
+        }
+
+        let credential;
+        if (credentialId) {
+          this.credentialService.getCredentialById(credentialId)
+            .pipe(map(res => {
+              credential = res;
               console.log("res", res);
-              credential.schemaId = res.credential_schema;
-              return this.credentialService.getSchema(res.credential_schema).pipe(
-                map((schema: any) => {
-                  credential.credential_schema = schema;
-                  return credential;
-                })
-              );
-            })
-          ).subscribe((res: any) => {
-            this.loader = false;
-            const navigationExtras = {
-              state: credential
-            };
-            this.router.navigate(['/doc-view'], navigationExtras);
-          }, (error: any) => {
-            this.loader = false;
-            this.invalidQRCode = true;
-            this.toastService.error("", this.generalService.translateString('INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA'));
-            this.restartScanning();
-          });
+              return res;
+            }),
+              concatMap(_ => this.credentialService.getCredentialSchemaId(credentialId)),
+              concatMap((res: any) => {
+                console.log("res", res);
+                credential.schemaId = res.credential_schema;
+                return this.credentialService.getSchema(res.credential_schema).pipe(
+                  map((schema: any) => {
+                    credential.credential_schema = schema;
+                    return credential;
+                  })
+                );
+              })
+            ).subscribe((res: any) => {
+              this.loader = false;
+              const navigationExtras = {
+                state: credential
+              };
+              this.isScanCompleted = false;
+              this.router.navigate(['/doc-view'], navigationExtras);
+            }, (error: any) => {
+              this.loader = false;
+              this.invalidQRCode = true;
+              this.toastService.error("", this.generalService.translateString('INVALID_QR_CODE_OR_ERROR_WHILE_FETCHING_DATA'));
+              this.restartScanning();
+            });
         } else {
           this.loader = false;
           this.invalidQRCode = true;
@@ -85,10 +104,20 @@ export class ScanQrCodeComponent implements OnInit {
     }
   }
 
-  restartScanning() { this.quar.resumeScanner(); }
+  restartScanning() {
+    if (this.quar) {
+      this.quar.resumeScanner();
+    }
+  }
 
   onError(error) {
     console.error(error)
+  }
+
+  scanAgain() {
+    this.restartScanning();
+    this.invalidQRCode = false
+    this.isScanCompleted = false;
   }
 
   raiseImpressionEvent() {

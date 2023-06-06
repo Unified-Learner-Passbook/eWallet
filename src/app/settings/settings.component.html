@@ -1,0 +1,96 @@
+<div class="text-center pb-0 mt-20 pt-25">
+  <div class="d-flex justify-content-between pl-25">
+    <div>
+      <div class="head-title">
+        {{ "HI" | translate }}
+        <span class="text-blue-shade0">{{authService?.currentUser?.student_name}}</span>
+      </div>
+      <div class="text-gray-100">{{ "WELCOME_BACK" | translate }}</div>
+    </div>
+  </div>
+</div>
+<div>
+  <ul class="navbar-nav nav-tabs-line mb-2 mb-lg-0">
+    <li class="nav-item cursor-pointer d-flex align-items-center">
+      <div class="float-left pr-10">
+        <i class="fa fa-user float-left fs-26" aria-hidden="true"></i>
+      </div>
+      <div class="pl-10">
+        <div class="fs-16">{{ "ACCOUNT" | translate }}</div>
+        <div class="fs-14 text-gray-100">
+          {{ "PRIVACY_SECURITY_OR_NUMBER" | translate }}
+        </div>
+      </div>
+    </li>
+    <li class="nav-item cursor-pointer  d-flex align-items-center">
+      <div class="float-left pr-10">
+        <i class="fa fa-shield-alt float-left fs-26" aria-hidden="true"></i>
+      </div>
+      <div class="pl-10">
+        <div class="fs-16">{{ "SECURITY" | translate }}</div>
+        <div class="fs-14 text-gray-100">
+          {{ "MANAGE_ACCOUNT_DETAILS" | translate }}
+        </div>
+      </div>
+    </li>
+    <li class="nav-item dropdown cursor-pointer  d-flex align-items-center" (click)="showLanguageModal()">
+      <div class="float-left pr-10">
+        <i class="fa fa-globe float-left fs-26" aria-hidden="true"></i>
+      </div>
+      <div class="pl-10">
+        <div class="fs-16">{{ "CHOOSE_LANGUAGE" | translate }}</div>
+        <div class="fs-14 text-gray-100">{{'SELECT_APP_LANGUAGE' | translate}}</div>
+      </div>
+    </li>
+    <!-- <li class="nav-item" [routerLink]="['set-username']">
+      <div class="float-left pr-10"><img src="assets/images/account.png" alt="Security"></div>
+      <div class="pl-10">
+        <div class="fs-16">Set Username and Password</div>
+        <div class="fs-14 text-gray-100">Set username and password</div>
+      </div>
+    </li> -->
+    <li class="nav-item cursor-pointer d-flex align-items-center">
+      <div class="float-left pr-10">
+        <i class="fa fa-headset float-left fs-26" aria-hidden="true"></i>
+      </div>
+      <div class="pl-10">
+        <div class="fs-16">{{ "HELP" | translate }}</div>
+        <div class="fs-14 text-gray-100">
+          {{ "HELP_CENTER_CONTACT_US_PRIVACY_POLICY" | translate }}
+        </div>
+      </div>
+    </li>
+    <!-- <li class="nav-item" [routerLink]="['manage-enrollment']" >
+      <div class="float-left pr-10"><img src="assets/images/scanner.png" alt="Manage"></div>
+      <div class="pl-10">
+        <div class="fs-16">{{'MANAGE_ENROLLMENT_CONFLICTS' | translate}}</div>
+        <div class="fs-14 text-gray-100">{{'NETWORK_USAGE_AUTO_DOWNLOAD' | translate}}</div>
+      </div>
+    </li> -->
+    <li class="nav-item cursor-pointer d-flex align-items-center" (click)="logOut()">
+      <div class="float-left pr-10">
+        <i class="fa fa-sign-out-alt float-left fs-26" aria-hidden="true"></i>
+      </div>
+      <div class="pl-10">
+        <div class="fs-16">{{ "LOGOUT" | translate }}</div>
+      </div>
+    </li>
+  </ul>
+</div>
+
+<ng-template #languageSwitchModal>
+  <div class="modal-content">
+    <div class="modal-body fs-14">
+      <div class="text-center form-group fs-20">
+        <label for="language" class="fs-16">{{"CHOOSE_LANGUAGE" | translate}}</label>
+        <div class="d-flex justify-content-space-evenly pt-3">
+          <a class="langauge-bx" *ngFor="let language of languages" (click)="changeLanguage(language.code)">
+            <div class="fs-16">
+              {{ language?.name }}
+            </div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>
