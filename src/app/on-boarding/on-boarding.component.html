@@ -1,8 +1,11 @@
 <div class="container text-center pb-0 mt-20 wallet">
-   <app-global-header [showTitle]="true"></app-global-header>
+   <!-- <app-global-header [showTitle]="true"></app-global-header> -->
+   <img class="img-fluid mb-4 mt-4" src="../../assets/images/headerlogo1.png" alt="">
    <div>
-      <img src="assets/images/onboard3.png" alt="">
+      <img class="img-fluid" src="../../assets/images/passport.png" alt="passport">
    </div>
+   <div class="heading2 pb-10 mt-4">ULP Learner Wallet</div>
+   <div class="pb-20">{{ "WELCOME_TO_YOUR_ACADEMIC_WALLET" | translate }}</div>
    <div class="pb-10">
       <button type="button" class="login-btn bg-blue-dark w-100"
          (click)="openSSO();raiseInteractEvent('login-sso')">{{'LOGIN_USING_SSO' |
